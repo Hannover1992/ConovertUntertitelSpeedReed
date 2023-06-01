@@ -1,0 +1,6700 @@
+1
+00:00:00,000 --> 00:00:13,500
+Die Vorlesung nennt sich Digitale Bildverarbeitung. Dann stellt sich hier die Frage, was ist ein digitales Bild, wo kommt es her?
+
+2
+00:00:13,500 --> 00:00:24,700
+Letztendlich ist ein digitales Bild, das ist das, womit wir uns hier beschäftigen, das, was wir hier im roten Kreis sehen.
+
+3
+00:00:24,700 --> 00:00:32,700
+Ein digitales Bild ist letztendlich eine zweidimensionale Matrix mit Zahlen.
+
+4
+00:00:32,700 --> 00:00:48,700
+Und die Matrix wird erstellt dadurch, dass wir einen Sensor haben, der hinter einem optischen System typischerweise sitzt und der Licht einsammelt, was irgendwie auf den Sensor fällt.
+
+5
+00:00:48,700 --> 00:00:57,700
+Das Licht kommt von irgendeiner Beleuchtungsquelle. Das kann draußen die natürliche Beleuchtung sein, das kann eine Lampe sein, das kann aber auch eine Röntgenquelle sein, was auch immer.
+
+6
+00:00:57,700 --> 00:01:16,700
+Und dieses Licht kommt dann auf irgendwelchen Wegen auf den Sensor. Du siehst dieses Licht, der Sensor ist örtlich discretisiert und eben für jeden Bildpunkt gibt eine Zahl raus, die irgendwie abhängig ist von der Lichtmenge, die in den Sensor gefallen ist.
+
+7
+00:01:18,700 --> 00:01:20,700
+Das ist das digitale Bild.
+
+8
+00:01:26,700 --> 00:01:31,700
+Das Bild können Sie auch als Funktion darstellen.
+
+9
+00:01:32,700 --> 00:01:39,700
+Wir können sagen, wir haben eine Funktion g in Abhängigkeit von den Ortskoordinaten x und y.
+
+10
+00:01:41,700 --> 00:01:49,700
+Hier jetzt eindimensional dargestellt, dieses g von x. Das könnte dann eine Bildzeile sein oder eine Bildspalte.
+
+11
+00:01:50,700 --> 00:02:03,700
+Diese Funktion hier, dieses g von x, die ist ortskontinuierlich und sie ist auch amplitudenkontinuierlich.
+
+12
+00:02:03,700 --> 00:02:18,700
+Das ist typischerweise bei Bildern, wie wir sie heute erzeugen, nicht mehr der Fall. Die sind digital, das heißt sie sind örtlich quantisiert und sie sind auch in der Amplitude quantisiert.
+
+13
+00:02:20,700 --> 00:02:34,700
+Das Beispiel für die Amplitudenquantisierung sehen Sie hier. Wir haben jetzt diese Funktion x und als Amplitudenwerte sind nur noch diskrete Werte vorhanden.
+
+14
+00:02:34,700 --> 00:02:41,700
+Sie sehen, da wird diese Wellenlinie durch so eine Treppenfunktion approximiert.
+
+15
+00:02:41,700 --> 00:02:54,700
+Außerdem wird noch eine örtliche Diskretisierung durchgeführt, das heißt in einem Intervall haben wir dann immer die gleiche Amplitude.
+
+16
+00:02:54,700 --> 00:02:59,700
+Das ist dann letztendlich die Breite oder die Fläche der Bildpunkte.
+
+17
+00:03:00,700 --> 00:03:15,700
+Vom physikalischen Vorgehen her ist es letztendlich so, erst wird die örtliche Diskretisierung durchgeführt, weil die Sensorelemente schon die örtliche Diskretisierung, also die einzelnen Bildpunkte auf dem Sensorchip, die örtliche Diskretisierung vornehmen.
+
+18
+00:03:15,700 --> 00:03:26,700
+Wir haben eben nur an diskreten Orten einen Sensor und die Amplitudenquantisierung, die passiert dann beim Auslesen der Messwerte der einzelnen Sensorelemente, der einzelnen Bildpunkte.
+
+19
+00:03:30,700 --> 00:03:43,700
+Hier sehen sie ein Beispiel. Wir haben einmal hier oben ein zweidimensionales Bild, da ist jetzt eine Linie durchgezogen.
+
+20
+00:03:43,700 --> 00:03:58,700
+Wir sehen hier den Verlauf der Amplitude, was typischerweise so ist, dass weiß eine hohe Amplitude hat und schwarz eine dunkle Amplitude.
+
+21
+00:03:58,700 --> 00:04:10,700
+Und dann sehen sie hier am Bild weiß, hier ist es weiß, dann gibt es hier einen starken Sprung nach schwarz und dazwischen wird es dann wieder ein bisschen heller, das können sie hier auch an dem Bild erkennen.
+
+22
+00:04:10,700 --> 00:04:32,700
+Wenn wir das Ganze jetzt quantisieren wollen, eine Amplitudenquantisierung vornehmen, dann sehen sie das hier, wenn sie diese beiden Bilder vergleichen, dann haben wir jetzt die Amplitude quantisiert.
+
+23
+00:04:32,700 --> 00:04:46,700
+Die Funktion erscheint nicht mehr ganz so glatt. Je nachdem, wo sich das Rauschen gerade in Bezug auf den quantisierten Wert befindet, kann es auch zu einer Glättung der Funktion kommen.
+
+24
+00:04:46,700 --> 00:05:08,700
+Und wenn wir jetzt noch eine örtliche Quantisierung durchführen, dann werden wir also hier von diesen vielen Orten, die wir auf der horizontalen Achse haben, noch weniger Orte nehmen und dann haben wir hier das Signal, Ortsdiskret, Amplitudendiskret, was dieses gewertkontinuierliche natürliche Bild repräsentiert.
+
+25
+00:05:16,700 --> 00:05:33,700
+Ein Bild, ein zweidimensionales Bild, die Bildpunkte werden dann eben über ihre Koordinaten angesprochen. In der Schule haben wir ja irgendwie so gelernt, wir machen hier die x-Koordinate und hier die y-Koordinate.
+
+26
+00:05:33,700 --> 00:06:01,700
+Koordinatensysteme können Sie ja legen, wie Sie wollen. Sie können die Koordinatensysteme auch hintereinander transformieren. Die Frage ist immer, was ist üblich? Das ist das, was wir in der Schule gemacht haben. Achten Sie darauf, in der Bildfarbe typischerweise ist der Ursprung des Koordinatensystems oben links im Bild, nach rechts haben wir dann aufsteigende Zahlen und nach unten.
+
+27
+00:06:04,700 --> 00:06:16,700
+Wenn Sie womöglich ein dreidimensionales Koordinatensystem haben, weil Sie ein dreidimensionales Bild haben, also wie ein CT zum Beispiel, dann haben Sie auch noch eine dritte Dimension Z, die ist hier mal dargestellt.
+
+28
+00:06:16,700 --> 00:06:36,700
+Und mit einem I von x, y ist dann letztendlich die Amplitude gemeint, die das Bild an der Koordinate x und y hat, also dieser Amplitudenwert zum Beispiel.
+
+29
+00:06:36,700 --> 00:06:51,700
+Und wenn Sie jetzt ein dreidimensionales Bild haben, dann würden Sie eben drei Koordinaten angeben. Hier spricht man letztendlich von einem Pixel. Das kommt aus dem Englischen.
+
+30
+00:06:51,700 --> 00:07:07,700
+Sie finden auch in der Literatur den Begriff Pell, der steht dann für Picture Element. Und wenn Sie vom Zweidimensionalen ins Dreidimensionale gehen, dann haben Sie also ein Voxel, das ist ein Würfel im Raum.
+
+31
+00:07:07,700 --> 00:07:29,700
+So weit zu den Begrifflichkeiten. Nun ist eine Quantisierung in Amplitude oder im Ort natürlich nicht Gott gegeben, die wählen Sie. Und je nachdem, was Sie für eine Quantisierung wählen, sieht das Bild anders aus.
+
+32
+00:07:29,700 --> 00:07:57,700
+Dieses Bild hier im Abschnitt D, Teilbild D, zeigt ein Gebäude, scheint es ja zu sein, mit einer Auflösung von 192 x 256 Pixel. Also hier 192 Zeilen und pro Zeile 256 Bildpunkte.
+
+33
+00:07:57,700 --> 00:08:22,700
+So ein Bild können Sie auch in niedrigerer Auflösung erstellen, indem Sie Sensorelemente zusammenfassen oder was auch immer Sie da machen. Hier haben wir die Auflösung reduziert auf 48 x 64 Bildpunkte. Sie sehen schon hier, diese Kanten hier, die werden trappenartig.
+
+34
+00:08:22,700 --> 00:08:51,700
+Sie erkennen aber noch, dass das ein Gebäude ist. Ein Bild B, Auflösung 12 x 16 Bildpunkte. Also ich kann das nicht mehr sehen, was das ist. Wenn wir Bild B und D gleichzeitig sehen, so wie hier, dann können wir eine gewisse Zuordnung von den hellen und dunklen Bereichen im Bild B zu Bild D vornehmen. Aber ohne Bild D wären wir, glaube ich, aufgeschlossen.
+
+35
+00:08:52,700 --> 00:09:02,700
+Und wenn Sie die örtliche Auflösung noch weiter reduzieren, dann sind wir hier bei A, da ist die Auflösung in 3 x 4 Bildpunkte, da sieht man definitiv nichts mehr.
+
+36
+00:09:03,700 --> 00:09:24,700
+Wie sind wir jetzt gekommen von der hohen Auflösung zu der niedrigen Auflösung? In diesem Beispiel durch Mittelwertbildung. Das heißt 4 Bildpunkte hier, 4 Bildpunkte hier.
+
+37
+00:09:25,700 --> 00:09:38,700
+Ach, Moment, das ist 256 x 64, das ist der Faktor 4. Also 16 Bildpunkte, ein Block von 4 x 4 Bildpunkten. Da wurde der Mittelwert gebildet und das ist der Wert, den Sie hier eingesetzt haben. Und das Gleiche haben Sie von hier nach hier gemacht und von da nach da.
+
+38
+00:09:38,700 --> 00:10:07,700
+Das ist nicht das, was man typischerweise macht. Hier geht es nur um die Visualisierung, wie sehen die Bilder aus. Also vor allen Dingen können Sie, wenn Sie mal ein Bild verkleinern müssen, zum Beispiel von dieser Auflösung zu dieser Auflösung, diese Treppenmuster, die wir hier jetzt sehen, die können Sie verhindern, indem Sie das Bild im Sinne von dem, was Sie bei Signalen und Systemen gelernt haben, filtern.
+
+39
+00:10:09,700 --> 00:10:24,700
+Das Bild, was wir hier haben, ist jetzt erstmal nur ein Kanal. Das heißt, wir haben ein Schwarz-Weiß-Bild, so ist das hier jetzt mal dargestellt. Wir haben einen ganz einfachen Sensor, wo Sie das Licht aufnehmen und dann nimmt einfach nur die Helligkeit auf. Er macht keine Unterscheidung in Farben.
+
+40
+00:10:24,700 --> 00:10:43,700
+Natürlich können Sie, das hatte ich das letzte Mal gezeigt, auch mithilfe von Bayer-Pattern und den dazugehörigen Farbfiltern, das wäre das Wichtige, Farbbilder erzeugen oder Sie nehmen einfach eine 3-Chip-Kamera und auch mit Farbbildern, das wäre dann ein weiterer Schritt.
+
+41
+00:10:44,700 --> 00:10:52,700
+Hier jetzt also erstmal bei den Schwarz-Weiß-Bildern. Graustufen. Wie viele Graustufen brauchen wir?
+
+42
+00:10:52,700 --> 00:11:17,700
+In diesem Bild sehen wir ganz links Schwarz, ganz rechts Weiß. Und wenn wir diesen Bereich von Schwarz bis Weiß auf 32 Stufen quantisieren, dann bekommen wir dieses Ergebnis hier und wir können erkennen,
+
+43
+00:11:17,700 --> 00:11:35,700
+dass sich benachbarte Graustufen deutlich voneinander unterscheiden. Das ist ganz klar zu erkennen. Auf meinem Monitor sehe ich das auch hier, dass hier Treppenstufen zu sehen sind. Die Treppenstufen sehe ich im helleren Bereich, hier im dunklen Bereich sehe ich die Treppenstufen nicht.
+
+44
+00:11:35,700 --> 00:11:53,700
+Und mit ein bisschen Fantasie, wenn Sie Ihren Monitor aufdrehen, dann sehen Sie das auch hier. Bei 256 Graustufen können Sie das auf vielen Monitoren nicht mehr erkennen. Da hängt es auch davon ab, wie hell Sie Ihren Monitor einstellen.
+
+45
+00:11:53,700 --> 00:12:08,700
+Typischerweise werden, zumindest im industriellen Bereich, Bilder mit 8 Bit repräsentiert, also 256 Stufen. Das wären dann 8 Bit pro Bildpunkt.
+
+46
+00:12:08,700 --> 00:12:30,700
+Ich hatte es letztes Mal auch schon erwähnt, die neuen Fernseher, die haben 10 Bit pro Bildpunkt. Das heißt, die haben von Schwarz nach Weiß 1024 verschiedene Graustufen und da kriegen Sie wirklich eine saubere Rampe.
+
+47
+00:12:30,700 --> 00:12:50,700
+Und selbst wenn aufgrund der Übertragung vielleicht eine ideale Grauwertrampe doch leichte Treppenstufen kriegt, werden Sie das normalerweise nicht sehen. Also 8 Bit, 1 Byte pro Bildpunkt, wenn Sie ein Grauwertbild haben. Das ist das Typische.
+
+48
+00:12:50,700 --> 00:13:05,700
+Hier sehen wir jetzt, was bedeutet die Quantisierung, und zwar jetzt die Amplitudenquantisierung für ein Bild.
+
+49
+00:13:05,700 --> 00:13:25,700
+Wir haben A, 16 Quantisierungsstufen. Das hier waren 32, also kommen jetzt mit der Hälfte aus. 16, das wären also 4 Bit.
+
+50
+00:13:25,700 --> 00:13:40,700
+B ist 3 Bit mit 8 Quantisierungsstufen, hier 2 Bit, 4 Stufen und hier haben wir dann ein Binärbild, 1 Bit.
+
+51
+00:13:40,700 --> 00:14:03,700
+Und Sie sehen, dass es jetzt mehr und mehr Contouring-Artefakte gibt. Hier werden also Flächen, die unterschiedliche Grauwerte haben, plötzlich einheitlich und der eher kontinuierliche Farbübergang hier an der Kante wird zu einem Sprung hier.
+
+52
+00:14:04,700 --> 00:14:22,700
+Und natürlich, wenn Sie in ein Binärbild gehen, dann ist der Unterschied noch gravierender. Hier unterscheiden Sie letztendlich für jeden Bildpunkt nur, ob er in diesem ersten Bild größer oder kleiner 8 war.
+
+53
+00:14:23,700 --> 00:14:43,700
+Das ist letztendlich eine Binarisierung des Bildes. Sie haben ein Bild, Sie können auch ein Grauwertbild nehmen und setzen sich einen Schwellwert, was weiß ich, 128 genau in der Mitte. Alles, was 128 und größer ist, das setzen Sie auf weiß, also auf das 255 und alles, was kleiner ist als 128, das setzen Sie auf schwarz und auf 0.
+
+54
+00:14:44,700 --> 00:14:48,700
+Dann würden Sie auch so ein Bild kriegen, nur dass in diesem Bild das schwarze eher grau aussieht.
+
+55
+00:14:51,700 --> 00:14:53,700
+Ja, und es gibt Farbe.
+
+56
+00:14:54,700 --> 00:15:08,700
+Hier haben wir ein Farbbild. Ein Farbbild besteht letztendlich aus drei digitalen Bildern, aus drei zweidimensionalen Matrizen. Diese Matrizen haben einen Namen, abhängig davon, was sie für einen Farbraum haben.
+
+57
+00:15:09,700 --> 00:15:21,700
+Typischerweise auf unseren Monitoren in unseren Kameras haben wir den RGB-Farbraum und entsprechend heißen diese drei Bilder, die drei Komponenten, die man da kriegt, R, G und B.
+
+58
+00:15:22,700 --> 00:15:36,700
+Und das sind zweidimensionale Matrizen mit Zahlenwerten dran. Die unterscheiden sich in nichts, wenn Sie sich nur die Matrix angucken, von einem Schwarz-Weiß-Bild mit Grauwertstufen.
+
+59
+00:15:37,700 --> 00:15:42,700
+Und die Interpretation dieser drei Farbkomponenten als Schwarz-Weiß-Bild sehen Sie hier.
+
+60
+00:15:44,700 --> 00:15:54,700
+Sie sehen dann, dass in jedem Bild letztendlich das Gleiche drin ist. Die Amplituden sind irgendwo anders. Manches ist in dem einen Bild heller, manches in dem anderen Bild dunkler.
+
+61
+00:15:55,700 --> 00:16:04,700
+Die Farbe kommt dadurch, dass wir dann die Amplituden R, G und B in diese Bilder nehmen, um verschiedene Farben zu erzeugen.
+
+62
+00:16:06,700 --> 00:16:19,700
+Aber von der Bedeutung her, wenn Sie das Bild im Rechner haben, können Sie ein R-Komponent von einer grünen Komponente oder von einer blauen Komponente, RGB steht für Rot-Grün-Blau, nicht unterscheiden.
+
+63
+00:16:22,700 --> 00:16:34,700
+Bedeutet jetzt aber für ein Farbbild, hat ein Bildpunkt nicht nur eine Amplitude, sondern drei. Eben die Amplituden von R, G und B.
+
+64
+00:16:37,700 --> 00:16:50,700
+Ja, man kann sich die Frage stellen, was ist denn nun wichtiger? Luminanz, also die Schwarz-Weiß-Komponente oder die Chrominanz, die Farbkomponente.
+
+65
+00:16:51,700 --> 00:17:03,700
+Was dahinter steht, RGB, Rot-Grün-Blau. Dieses Signal können Sie auch umrechnen in eine Schwarz-Weiß-Komponente. Das wäre dann die Luminanz-Komponente, also die Helligkeit.
+
+66
+00:17:04,700 --> 00:17:11,700
+Und dann die anderen Komponenten heißen U und V. Das ist dann die Chrominanz, das sind die Farbkomponenten.
+
+67
+00:17:11,700 --> 00:17:32,700
+Hier haben wir jetzt das Bild und das ist dieses Bild hier. Wir haben nur die Helligkeit, also die Luminanz, überall auf den gleichen Wert gesetzt.
+
+68
+00:17:33,700 --> 00:17:41,700
+Das heißt, wir sehen nur die Farbe, aber nicht die Helligkeit. Und das Bild hat irgendwie eine Bedeutung verloren.
+
+69
+00:17:42,700 --> 00:17:53,700
+Hier zeigen wir nur die Intensität. Die Farbe haben wir auf Grau gesetzt und dieses Bild zeigt uns schon das meiste, was wir sehen wollen.
+
+70
+00:17:54,700 --> 00:17:58,700
+Das heißt, die größte Informationsmenge ist in der Helligkeit.
+
+71
+00:18:02,700 --> 00:18:11,700
+Deswegen werden auch viele Bildverarbeitungsalgorithmen nur auf diesen Schwarz-Weiß-Bildern oder Grau-Wert-Bildern gerechnet.
+
+72
+00:18:12,700 --> 00:18:20,700
+Sie haben einen RGB-Sensor, einen Farbsensor, weil Sie den eben haben. In Ihrem Handy ist ein Farbsensor drin, da kann man nichts dran ändern.
+
+73
+00:18:21,700 --> 00:18:28,700
+Aus diesem RGB-Bild wird dann letztendlich die Intensität, die Luminanz-Komponente berechnet.
+
+74
+00:18:29,700 --> 00:18:40,700
+Und auf diesem eindimensionalen Bild, also einem komponentigen Bild, wir haben ja nur noch einen Zahlenwert pro Bildpunkt, wird dann die Bildverarbeitung gemacht.
+
+75
+00:18:41,700 --> 00:18:48,700
+Weil typischerweise in diesem Bild die meiste Information steckt.
+
+76
+00:18:48,700 --> 00:18:58,700
+Wenn Sie natürlich irgendwelche Objekte haben, die die gleiche Form, die gleiche Helligkeit haben, aber sich nur in der Farbe unterscheiden, dann müssen Sie natürlich auch die Farbe mit berücksichtigen.
+
+77
+00:19:03,700 --> 00:19:11,700
+Wie wird das Bild repräsentiert? Das ist letztendlich ein komponentiges Bild, ein zweidimensionales Feld.
+
+78
+00:19:12,700 --> 00:19:17,700
+Und wenn Sie jetzt RGB haben, ein Farbbild, dann haben Sie pro Bildpunkt ein Vektor.
+
+79
+00:19:22,700 --> 00:19:30,700
+Manchmal gibt es Bilder auch in verschiedenen Auflösungen. Also stellen Sie sich vor, das hier ist jetzt nur ein Schwarz-Weiß-Bild.
+
+80
+00:19:31,700 --> 00:19:35,700
+Dann können Sie aus einem hoch aufgelösten Bild natürlich niedrig aufgelöste Bilder machen.
+
+81
+00:19:36,700 --> 00:19:39,700
+Wenn Sie mit einem Handy ein Foto machen, gucken Sie sich das auf dem Computermonitor an.
+
+82
+00:19:40,700 --> 00:19:48,700
+Ihr Computermonitor hat nicht 20 Megapixel, also wird das irgendwie kleiner gerechnet, das Bild, damit Sie das gesamte Bild auf dem Monitor sehen können.
+
+83
+00:19:49,700 --> 00:19:55,700
+Dann könnte man auch von einer Auflösungspyramide sprechen, wo wir hier unten die höchste Auflösungsstufe haben und hier unten die niedrigste.
+
+84
+00:19:56,700 --> 00:20:01,700
+Wenn Sie das jetzt für Farbbilder machen, dann ist jede dieser Ebenen natürlich ein RGB-Feld.
+
+85
+00:20:02,700 --> 00:20:14,700
+Und wenn Sie jetzt Bilder in einer zeitlichen Reihenfolge haben, dass Sie hier einen Index T haben, dann haben wir eine Bildfolge oder auch ein Video.
+
+86
+00:20:15,700 --> 00:20:21,700
+Und das hier können natürlich Schwarz-Weiß-Bilder sein, also wieder eine Zeitprobe, das können aber auch Vektoren sein, Farbbilder.
+
+87
+00:20:21,700 --> 00:20:34,700
+Hier sehen wir mal ein Luftbild als Bildpyramide, Originalauflösung, hier die Hälfte der Auflösung.
+
+88
+00:20:35,700 --> 00:20:41,700
+Hälfte der Auflösung bedeutet ein Viertel der Bildpunkte. Hälfte der Auflösung heißt halbe Zeilenzahl, halbe Spaltenzahl, also ein Viertel der Bildpunkte.
+
+89
+00:20:42,700 --> 00:20:49,700
+Hier haben wir gezogen auf das Neunte der Bildpunkte und hier noch ein Sechzehntel der Bildpunkte.
+
+90
+00:20:50,700 --> 00:20:59,700
+Und Sie können sich vorstellen, abhängig davon, was Ihr Anwendungsfall ist, benötigen Sie dieses Bild, weil Sie hier irgendwelche Details erkennen wollen.
+
+91
+00:21:00,700 --> 00:21:06,700
+Oder dieses Bild ist auch gut genug, wenn Sie nur einfach wissen wollen, wo ist denn die Grenze zwischen Wald und Ackerland.
+
+92
+00:21:06,700 --> 00:21:15,700
+Warum ist das interessant, dass ich vielleicht bei manchen Anwendungen nur die niedrige Auflösung brauche?
+
+93
+00:21:16,700 --> 00:21:26,700
+Naja, die Bilder müssen Sie verarbeiten, Sie müssen sie übertragen, Sie müssen sie von Ihrer Festplatte ins Rahmen kriegen, in den Cache der CPU Level 1, 2, 3 und dann müssen Sie den ganzen Weg wieder zurück.
+
+94
+00:21:27,700 --> 00:21:29,700
+Das Ergebnis müssen Sie auch irgendwo hinschreiben.
+
+95
+00:21:30,700 --> 00:21:42,700
+Und wenn Sie hier 20 Megapixel haben, aber Sie kommen auch mit weniger als 1 Megapixel aus, können Sie sich vorstellen, haben Sie einen enormen Rechenvorteil.
+
+96
+00:21:43,700 --> 00:21:48,700
+Schon allein dadurch, dass Sie die Bildauflösung auf das begrenzen, was Sie wirklich benötigen.
+
+97
+00:21:48,700 --> 00:22:03,700
+Man kann Bilder natürlich auf verschiedene Arten und Weisen darstellen und je abstrakter das wird, desto expliziter ist vielleicht die Information, die man da beschreibt.
+
+98
+00:22:04,700 --> 00:22:08,700
+Wir könnten jetzt sagen, das hier ist ein Bild, das haben Sie irgendwie aufgenommen.
+
+99
+00:22:09,700 --> 00:22:13,700
+Wir könnten dieses Bild aber auch vereinfachen.
+
+100
+00:22:14,700 --> 00:22:21,700
+Wir könnten segmentieren, die Teile, die uns interessieren, die beiden Bleche, die machen wir schwarz, den Hintergrund machen wir grau.
+
+101
+00:22:22,700 --> 00:22:25,700
+Vielleicht ist hier noch irgendwas, dass wir hier verschiedene Grautöne haben.
+
+102
+00:22:25,700 --> 00:22:38,700
+Das hier wird auf alle Fälle als das ikonische Bild bezeichnet, also das Grauwertbild oder Farbbild, das Bild, was Sie vom Sensor haben, was Sie verarbeiten wollen.
+
+103
+00:22:39,700 --> 00:22:42,700
+Das hier ist ein segmentiertes Bild.
+
+104
+00:22:43,700 --> 00:22:48,700
+Sie haben zusammenhängende Bildbereiche mit einem Label, mit einer Farbe versehen.
+
+105
+00:22:49,700 --> 00:22:53,700
+Dieses Schwarz hier hat eine Bedeutung und dieses Grau hat eine Bedeutung.
+
+106
+00:22:55,700 --> 00:23:02,700
+Wir können aber von diesem segmentierten Bild natürlich auch noch weitergehen zu einer symbolischen Beschreibung durch einen Graphen.
+
+107
+00:23:03,700 --> 00:23:10,700
+Wenn Sie ein Bild beschreiben wollen, dann haben Sie eigentlich immer eine Szene und in dieser Szene sind verschiedene Dinge zu sehen.
+
+108
+00:23:10,700 --> 00:23:15,700
+Hier scheinen die Montagebleche von Interesse zu sein, deswegen wird der Hintergrund nicht weiter beschrieben.
+
+109
+00:23:16,700 --> 00:23:19,700
+Aber da gibt es eben ein Montageblech 1, ein Montageblech 2.
+
+110
+00:23:20,700 --> 00:23:26,700
+Montageblech 2 ist links vom Montageblech 1 und Montageblech 1 und 2 besteht auch noch aus Komponenten.
+
+111
+00:23:27,700 --> 00:23:30,700
+Zwei Bohrungen und einen Rechteckschlitz und hier haben wir nur zwei Bohrungen.
+
+112
+00:23:31,700 --> 00:23:33,700
+Und die sind dann auch noch irgendwie zueinander benachbar.
+
+113
+00:23:33,700 --> 00:23:48,700
+Wenn wir jetzt mal einfach mal gucken, wie viele Bits brauchen wir, um diese Dinge zu beschreiben, dann könnte man jetzt erstmal ganz naiv sagen, hier brauchen wir 8 Bit pro Bildpunkt.
+
+114
+00:23:49,700 --> 00:24:00,700
+Hier brauchen Sie, sagen wir drei Labels, nur noch 2 Bit pro Bildpunkt und hier brauchen Sie nur noch weniger Bits, weniger Worte.
+
+115
+00:24:00,700 --> 00:24:05,700
+Hier brauchen Sie nur noch weniger Bits, weniger Worte, um das ganze Bild zu beschreiben.
+
+116
+00:24:06,700 --> 00:24:12,700
+Also der Abstraktionsgrad wird vom ikonischen Bild über das segmentierte Bild zur symbolischen Beschreibung immer größer.
+
+117
+00:24:13,700 --> 00:24:19,700
+Die Information, die man bekommt, wird klarer, aber teilweise geht auch das eine oder andere verloren.
+
+118
+00:24:20,700 --> 00:24:26,700
+Also hier steht Bohrung 1 ist benachbar zu Bohrung 2, da steht dann nicht mehr drin, wie weit die auseinander sind.
+
+119
+00:24:26,700 --> 00:24:29,700
+Wenn wir wissen, wie weit sie auseinander sind, müssen wir ihnen das segmentierte Bild geben.
+
+120
+00:24:36,700 --> 00:24:44,700
+Ja, nachdem wir das jetzt alles haben, gleicht letztendlich die Definition dazu.
+
+121
+00:24:44,700 --> 00:24:57,700
+Also ein Bildpunkt in der Literatur, auch als Pell oder als Pixel bekannt. Pell und Pixel sind die im angelsächsischen Bereich geläufigen Begriffe.
+
+122
+00:24:58,700 --> 00:25:06,700
+Ist ein Skalar, wenn wir nur eine Komponente eines Bildes haben, also Helligkeit oder den roten Kanal oder den grünen Kanal oder ein Vektor.
+
+123
+00:25:06,700 --> 00:25:14,700
+Typischerweise mit ganzzahligen Zahlen. Beschränkt heißt, sie haben einen Wertebereich.
+
+124
+00:25:15,700 --> 00:25:25,700
+Typischerweise 0 für dunkel und die maximale Zahl für ganz hell.
+
+125
+00:25:36,700 --> 00:25:44,700
+Viele Sensoren liefern Ihnen ganzzahlige Werte, wie ein Kamerasensor zum Beispiel. Es gibt aber auch ein paar Sensoren, die liefern Ihnen reelle Werte.
+
+126
+00:25:45,700 --> 00:25:54,700
+Wenn Sie eine Spektralkamera haben, da gibt es viele Kameras, da ist letztendlich das Ausgangsdetail auf 0 bis 1, das Intervall von 0 bis 1 normiert
+
+127
+00:25:55,700 --> 00:26:00,700
+und dann irgendwelche reellen Zahlen dazwischen geben Ihnen an, um welche Helligkeit es sich handelt.
+
+128
+00:26:01,700 --> 00:26:14,700
+Und wenn Sie mehrkomponentige Bilder haben, dann haben Sie eben einen Vektor. Farbbilder RGB oder wir haben ja auch eine Hyperspektralkamera, da haben Sie pro Bildpunkt 192 Werte,
+
+129
+00:26:15,700 --> 00:26:22,700
+weil diese Kamera nicht das einfallende Licht auf drei Bänder RGB aufteilt, sondern eben auf 192 Bildkanäle.
+
+130
+00:26:23,700 --> 00:26:33,700
+Das ist der Bildpunkt. Diese Bildpunkte, egal ob es nun Skalar oder Vektor ist mit reellen oder ganzzahligen Werten, wird angeordnet zweidimensional.
+
+131
+00:26:34,700 --> 00:26:41,700
+Dann haben wir ein Bild, das ist letztendlich nur eine Matrix und wenn Sie rechnen, wenn Sie programmieren, dann gehen Sie eben in zweidimensionalen Feldern.
+
+132
+00:26:41,700 --> 00:26:56,700
+Es gibt die Bildfolgen, Bilder hintereinander. Typischerweise haben wir eine zeitliche Ordnung, damit können Sie dann Bewegungsanalysen machen.
+
+133
+00:26:57,700 --> 00:27:08,700
+Das ikonische Bild ist das Bild, was Sie typischerweise vom Sensor bekommen. Das heißt, die skalaren Werte sind physikalisch gewinnt, weil es Intensitäten sind, die Sie gemessen haben.
+
+134
+00:27:08,700 --> 00:27:19,700
+Bei dem segmentierten Bild haben die Bildpunkte oder die Werte der Bildpunkte eine Bedeutung. Wir nehmen das Beispiel Hintergrund oder Montageblech.
+
+135
+00:27:20,700 --> 00:27:29,700
+Und die symbolische Beschreibung, dieser Graph, den wir eben kurz gesehen hatten, der ist dann schon eine Interpretation des Bildes.
+
+136
+00:27:30,700 --> 00:27:44,700
+Bei uns in der Vorlesung werden wir uns nur bis zum segmentierten Bild beschäftigen, zum Symbolischen, unserer semantischen Beschreibung werden wir es hier nicht bringen.
+
+137
+00:27:44,700 --> 00:28:09,700
+Datenmengen. Full HD, das ist das, was typischerweise ausgestrahlt wird im Fernsehen. Sie haben 1920 Bildpunkte in einer Zeile und 1080 Zeilen.
+
+138
+00:28:09,700 --> 00:28:15,700
+Das ist also letztendlich eine Fernsehkamera, ein 2 Megapixel Sensor.
+
+139
+00:28:18,700 --> 00:28:24,700
+Dann haben wir rot, grün, blau. Dann haben wir also sechs Millionen Zahlen pro Bild.
+
+140
+00:28:24,700 --> 00:28:36,700
+Je nachdem, wie das ausgestrahlt wird, haben Sie 25 Bilder oder 50 Bilder pro Sekunde. Im amerikanischen Bereich dann eben 30 oder 60 Bilder pro Sekunde.
+
+141
+00:28:36,700 --> 00:29:02,700
+Dann haben wir also 155 Millionen Zahlen pro Sekunde und wenn wir jetzt jede Zahl mit 8 Bit repräsentieren, und wie gesagt, unser Fernseher heute nimmt 10 Bit pro Komponente, dann sind wir bei 1,2 Gigabit pro Sekunde und das kriegen Sie dann schon über viele Kanäle gar nicht mehr übertragen.
+
+142
+00:29:07,700 --> 00:29:24,700
+Ein HD-Sensor, Full HD, ist jetzt auch nicht unbedingt das Größte und Tollste, was man hat. Es gibt ja durchaus Kameras, UHD, die haben eine 4 Megapixel oder 8 Megapixel pro Sekunde. Das heißt, da haben Sie dann hier mehr als 10 Gigabit pro Sekunde.
+
+143
+00:29:25,700 --> 00:29:45,700
+Damit ist es klar, Sie brauchen sehr, sehr viel Rechenleistung, wenn Sie Bilder verarbeiten wollen. Und wenn Sie Bilder übertragen wollen, dann kriegen Sie das hier auch nur noch schwerlich hin vom Sensor auf eine Disk.
+
+144
+00:29:46,700 --> 00:30:03,700
+Aber wenn Sie es über irgendwelche Netzwerke übertragen wollen, dann haben Sie eigentlich verloren. Dafür braucht man dann die Bild- oder Videokompression, wo man dann aus diesen mehreren Gigabit pro Sekunde irgendwas macht, eine Datenrate von 3 bis 10 Megabit pro Sekunde.
+
+145
+00:30:03,700 --> 00:30:08,700
+IVC, das ist der Videokodierstandard, der heute im digitalen Fernsehen verwendet wird.
+
+146
+00:30:15,700 --> 00:30:37,700
+Digitale Bilder werden als Matrizen und Vektorfelder beschrieben. Sie haben eine örtliche Quantisierung und eine Amplitudenquantisierung. Und wenn Sie eine Bildfolge haben, dann haben Sie natürlich auch eine zeitliche Diskretisierung.
+
+147
+00:30:38,700 --> 00:30:53,700
+Viele Bilder gibt es in Farbe, typischerweise in der RGB-Darstellung. Bilder können Sie als Vektorfeld darstellen, wenn Sie RGB als Vektor betrachten, als Bildfolge. Sie können Auflösungspyramiden haben.
+
+148
+00:30:54,700 --> 00:31:14,700
+Wir haben Bildpunkte. Wenn dieser Bildpunkt einen Messwert repräsentiert, dann haben wir eine ikonische Beschreibung. Wenn wir dem Bildpunkt eine Bedeutung zuweisen, haben wir ein segmentiertes Bild. Und noch weiter abstrahiert haben wir dann eine symbolische Beschreibung. Und ein großes Problem sind diese Datenmengen.
+
+149
+00:31:15,700 --> 00:31:36,700
+Fragte gerade jemand, wie funktioniert Full-HD-Streaming? Das sind eigentlich zwei Dinge, die gefühlt vielleicht gar nicht so viel miteinander zu tun haben. Ob Sie nun Full-HD-Streaming machen, UHD-Streaming oder Streaming von Briefmarken, ist völlig egal. Die Technologie, die dahinter ist, ist immer dieselbe.
+
+150
+00:31:36,700 --> 00:32:05,700
+Sie haben ein Pfeil mit Ihrem Videosignal, was irgendwie komprimiert ist, und Ihr Client sagt dem Server, ich bin jetzt bereit für das nächste Bild, schickt mir das mal. Und dann schickt der Server letztendlich blockweise, bildweise, je nachdem, wie groß das Ganze ist, hintereinander dieses Pfeil, was er hat, in verschiedenen Paketen zu Ihrem Empfänger.
+
+151
+00:32:05,700 --> 00:32:23,700
+Und wenn Sie jetzt das Streaming besonders gut machen wollen, und das heißt, der Kunde merkt nicht, dass die Datenrate schwankt, dann haben Sie am Server das Videosignal in verschiedenen örtlichen Auflösungen vorliegen.
+
+152
+00:32:23,700 --> 00:32:41,700
+Also in Full-HD und dann vielleicht Dreiviertel-HD, Halb-HD. Und wenn der Server dann merkt, oder der Client, dass die Übertragung Datenrate nicht ausreicht, dann sagt er dem Server, ich hätte gerne eine kleinere örtliche Auflösung.
+
+153
+00:32:41,700 --> 00:32:54,700
+Dann kriegt der Empfänger ein kleineres Bild, filtert das aber groß hoch, sodass wir immer das Bild in der gleichen Größe sehen, nur hohe Frequenzen sind da mehr oder weniger schlecht zu sehen.
+
+154
+00:32:54,700 --> 00:33:16,700
+Wir können das auch in der ARD-Mediathek, zumindest auf unserem Fernseher, kann man einstellen, welche Auflösung man als Video haben will, und wenn man da genau hinguckt, dann sieht man auch, dass die Videos in unterschiedlicher Qualität kommen, obwohl sie auf dem Fernseher immer in voller Größe dargestellt werden.
+
+155
+00:33:24,700 --> 00:33:42,700
+Okay, hier nochmal die Zusammenfassung von dem, was wir alles hatten. Also wir haben hier über das visuelle System gesprochen, haben ein paar Sensoren kennengelernt und die Darstellung des digitalen Bildes. Ich glaube, mehr muss ich hier jetzt vielleicht als Zusammenfassung der Zusammenfassung nicht mehr sagen.
+
+156
+00:33:55,700 --> 00:34:13,700
+Kommen wir jetzt zur Bildbearbeitung. Bildbearbeitung heißt, wir führen irgendwelche Rechenoperationen auf den Bildern durch. Diese Rechenoperationen kann man in verschiedene Klassen einteilen, also in Punktoperatoren.
+
+157
+00:34:13,700 --> 00:34:33,700
+Da brauchen sie nur einen Bildpunkt. Darauf rechnen sie. Rauskommt irgendwas, häufig auch wieder ein Bildpunkt. Lokale Operationen, da spricht man schon von Filterung. Sie nehmen mehrere Bildpunkte und berechnen damit einen neuen Bildpunkt.
+
+158
+00:34:34,700 --> 00:34:56,700
+Also, wenn sie das Bild filtern wollen, dann machen sie das typischerweise mit lokalen Operationen. Wenn ich das Bild an dieser Stelle filtern will, dann sind wahrscheinlich auch nur diese Bildpunkte relevant und nicht die, die da ganz oben noch sind. Deswegen lokale Operationen. Und dann gibt es aber auch noch globale Operationen, wo sie das ganze Bild analysieren, um ein neues Bild zu berechnen.
+
+159
+00:34:57,700 --> 00:35:13,700
+Da können sie sich natürlich auch noch vorstellen, gibt es geometrische Transformationen. Sie können ein Bild schmaler machen, Objekte in dem Bild herausrechnen, verformen. Sie können vielleicht von irgendeiner Form das Skelett extrahieren. Da kommen wir dann alles nicht zu.
+
+160
+00:35:13,700 --> 00:35:40,700
+Wir gehen jetzt mal davon aus, dass wir zwei digitale Bilder haben. Die nenne ich hier jetzt mal G und H. Das sind Matrizen von Bildpunkten. Bild G hat dann die Bildpunkte G von XY. Wir beschäftigen uns hier typischerweise nur mit schwarz-weiß Bildern, also mit grauwert Bildern.
+
+161
+00:35:40,700 --> 00:35:58,700
+Wenn ich von schwarz-weiß Bildern spreche, übersetzen Sie das bitte in grauwert Bilder. Binärbilder, die man ja dann als schwarz-weiß Bilder auch bezeichnen könnte, werden auch vorkommen, aber das werde ich typischerweise als binärbild bezeichnen.
+
+162
+00:35:58,700 --> 00:36:26,700
+Wir haben die örtliche Diskretisierung, also unser Index X, das ist die Zeile, läuft von 0 bis n-1 und der Index Y, das ist dann die Spalte, läuft von 0 bis m-1 und wir haben eine Quantisierung auf den Bereich 0 bis Gmax bei einem 8-Bit-Bild von 0 bis 255.
+
+163
+00:36:28,700 --> 00:36:40,700
+Um einen Bildpunkt dann zu erfassen, brauchen wir seine Koordinate X, seine Koordinate Y und G von XY, also drei ganze Zahlen.
+
+164
+00:36:41,700 --> 00:36:51,700
+Typischerweise, wenn Sie irgendwas berechnen mit Bildern, dann haben Sie hier ein Short-Integer, hier ein Short-Integer und das hier ist dann ein Byte.
+
+165
+00:36:51,700 --> 00:37:04,700
+Also brauchen Sie fünf Byte, um auf einen Bildpunkt zuzukommen. Unser Eingangsbild G wird dann mit Hilfe einer Operation in ein Ausgangsbild H umgerechnet.
+
+166
+00:37:04,700 --> 00:37:12,700
+Und wir schauen jetzt, was gibt es da für Operationen.
+
+167
+00:37:13,700 --> 00:37:18,700
+Warum wollen wir das machen? Naja, Sie wollen aus den Bildern etwas herausholen.
+
+168
+00:37:18,700 --> 00:37:39,700
+Sie wollen es schöner machen, das macht Ihr Sensor, aber wenn Sie dann das digitale Bild zum Beispiel drucken lassen, weil Sie ein Foto in der Hand haben wollen, dann wird auch nochmal mit diesen Bildern, bei denen das Foto dann druckt, gerechnet, um das Bild schön zu machen.
+
+169
+00:37:40,700 --> 00:37:51,700
+Also, Verbesserung von Bildern für die visuelle Darstellung oder aber auch für nachfolgende Bildinterpretationsschritte, also in einem automatisierten System.
+
+170
+00:37:52,700 --> 00:38:02,700
+Interessant sein kann die Änderung der Helligkeit. Vielleicht wollen Sie den Kontrast erhöhen, Kontrast über das gesamte Bild oder den Kontrast in einem gewissen Helligkeitsbereich.
+
+171
+00:38:02,700 --> 00:38:12,700
+Sie wollen vielleicht die Farbe korrigieren. Sie sehen, Sie wissen, manchmal haben Bilder irgendwie einen Rotstich. Das sieht ja manchmal schön aus, aber manchmal wird das auch nicht haben, also das wäre dann eine Farbkorrektur.
+
+172
+00:38:13,700 --> 00:38:20,700
+Manchmal erscheint ein Bild unscharf und Sie wollen das vielleicht schärfen, mit einem Hochpassfilter überarbeiten.
+
+173
+00:38:21,700 --> 00:38:34,700
+Vielleicht wollen Sie irgendwelche Inhalte aus den Bildern extrahieren, Kanten. Oder Sie wollen das Bild binärisieren, weil Sie wissen, das Helle hat eine besondere Bedeutung, die dunklen Bildpunkte haben eine besondere Bedeutung.
+
+174
+00:38:35,700 --> 00:38:38,700
+Vielerlei Gründe kann es geben.
+
+175
+00:38:41,700 --> 00:39:02,700
+Eine Punktoperation ist eine Operation, wo der Ausgangsbildpunkt H von XY, das ist ja ein Bildpunkt im Ausgangsbild, berechnet wird in Abhängigkeit von einem Bildpunkt im Eingangsbild.
+
+176
+00:39:03,700 --> 00:39:10,700
+G von XY und wir sehen hier auch, was typischerweise so gemacht wird. H von XY hängt ab von G von XY.
+
+177
+00:39:11,700 --> 00:39:23,700
+Also Sie berechnen einen Punkt im Ausgangsbild H in Abhängigkeit von einem Punkt am gleichen Ort im Eingangsbild G.
+
+178
+00:39:24,700 --> 00:39:45,700
+Lokale Operationen berechnen auch wieder einen Bildpunkt im Ausgangsbild, aber dieser hängt jetzt nicht von einem Bildpunkt im Eingangsbild ab, sondern er hängt ab von einem Block von Bildpunkten im Eingangsbild.
+
+179
+00:39:46,700 --> 00:40:01,700
+Und die Koordinate XY, für die wir einen Ausgangsbildpunkt berechnen, ist typischerweise im Zentrum dieses Blocks.
+
+180
+00:40:02,700 --> 00:40:15,700
+Also wenn man sich jetzt fragt, welche Werte haben hier die I und J, dann könnte das sein zum Beispiel minus 3 bis 3 und hier haben wir dann minus 5 bis 5.
+
+181
+00:40:16,700 --> 00:40:28,700
+Dann hätten Sie ein Fenster von 7 mal 11 Bildpunkten und alle Bildpunkte, die in diesem Fenster sind, würden dann benutzt werden, um einen Ausgangsbildpunkt zu berechnen.
+
+182
+00:40:31,700 --> 00:40:45,700
+Typischerweise sind diese Fenster, aus denen Sie dann einen Ausgangsbildpunkt berechnen, quadratisch, können aber auch rechteckig sein, aber die Größe ist auf einigen Fällen immer eine ungerade Zahl.
+
+183
+00:40:46,700 --> 00:40:52,700
+Wenn Sie da eine Fenstergröße 2 mal 2 haben, dann führt das typischerweise dazu, dass Sie Ihr Bild verschieben, was man normalerweise nicht will.
+
+184
+00:40:53,700 --> 00:41:00,700
+Dann gibt es noch globale Operationen. Also jeder Ausgangsbildpunkt hängt ab von allen Bildpunkten im Eingangsbild.
+
+185
+00:41:01,700 --> 00:41:12,700
+Wir schauen uns jetzt die verschiedenen Klassen an. Wir beginnen mit der Punktoperation, die einfachsten.
+
+186
+00:41:13,700 --> 00:41:18,700
+Die Funktion f ist unabhängig vom Ort und für alle Pixel identisch.
+
+187
+00:41:18,700 --> 00:41:30,700
+Also f nimmt letztendlich eine Zahl, nämlich die Zahl, die an g von xy steht, berechnet eine Zahl und schreibt sie bei h von xy rein.
+
+188
+00:41:31,700 --> 00:41:42,700
+Es gibt lineare Operationen. Sie multiplizieren Ihren Eingangsbildpunkt mit irgendeiner Konstanten und addieren noch einen drauf.
+
+189
+00:41:42,700 --> 00:41:47,700
+Es gibt auch nicht lineare Punktoperationen.
+
+190
+00:41:48,700 --> 00:41:58,700
+Zum Beispiel könnten wir ein Eingangsbild haben. Hier ist der Eingang, hier ist die Ausgangsachse.
+
+191
+00:41:59,700 --> 00:42:09,700
+Der Helligkeitsbereich im Eingangsbild beginnt irgendwo bei einem dunklen Grau und hört bei weiß auf.
+
+192
+00:42:09,700 --> 00:42:20,700
+Wir könnten jetzt eine nicht lineare Funktion haben, die dieses Grau auf Schwarz abbildet und dieses Weiß auch auf Weiß.
+
+193
+00:42:21,700 --> 00:42:34,700
+Dazwischen gibt es eben einen Verlauf, mit dem der Originalwertbereich des Bildes, der kleinere, auf den größeren des Ausgangsbildes gespreizt wird.
+
+194
+00:42:35,700 --> 00:42:53,700
+Das können Sie nicht linear machen, wie wir es hier im Bild A sehen. Sie könnten da aber auch einfach eine Gerade reinsetzen, so wie wir es hier im Bild B sehen.
+
+195
+00:42:53,700 --> 00:43:04,700
+Was Sie da brauchen, hängt ab von Ihrem Anwendungsfall oder auch von Ihrem Eingangsbild.
+
+196
+00:43:05,700 --> 00:43:22,700
+Was wir hier zum Beispiel sehen, hier wird ein ganz kleiner Wertebereich des Eingangs auf einen großen Wertebereich des Ausgangs abgebildet.
+
+197
+00:43:23,700 --> 00:43:43,700
+Das heißt, da werden die Unterschiede im Eingangsbild ganz stark verstärkt. Sie werden sichtbar gemacht, während wir in diesem Bereich ein großes Intervall des Eingangsbereichs auf ein recht kleines Intervall des Ausgangsbereichs stauchen.
+
+198
+00:43:44,700 --> 00:43:52,700
+In der Helligkeit werden Sie die Unterschiede im Ausgangsbild nicht mehr erkennen können.
+
+199
+00:43:53,700 --> 00:44:00,700
+Aber das ist eine wichtige Operation, die wird in jedem Visualisierungstool für Röntgenbilder angewendet.
+
+200
+00:44:00,700 --> 00:44:09,700
+Abhängig davon, was der Arzt sehen will, interessiert er sich für unterschiedliche Wertebereiche des Eingangsbildes.
+
+201
+00:44:10,700 --> 00:44:17,700
+Der ihn interessierende Wertebereich wird dann auf schwarz-weiß abgebildet, sodass man Details erkennen kann.
+
+202
+00:44:17,700 --> 00:44:21,700
+Hier ein Beispiel für eine lineare Punktoperation.
+
+203
+00:44:22,700 --> 00:44:24,700
+Hier haben wir das Originalbild.
+
+204
+00:44:25,700 --> 00:44:28,700
+Hier in der Grauwertinvertierung sehen Sie die Funktion.
+
+205
+00:44:29,700 --> 00:44:37,700
+Der Bereich 0 bis 255 im Eingangsbild wird abgebildet auf das Intervall 255 bis 0 im Ausgangsbereich.
+
+206
+00:44:37,700 --> 00:44:40,700
+Dann ist die Funktion f von E ganz einfach 255 minus i.
+
+207
+00:44:41,700 --> 00:44:44,700
+Und i ist gerade der Wert eines einzelnen Bildpunktes.
+
+208
+00:44:46,700 --> 00:44:54,700
+Wenn Sie das dann implementieren würden, dann würden Sie eben h von x, y gleich 255 minus g von x, y schreiben.
+
+209
+00:44:55,700 --> 00:44:57,700
+Darunter rum haben Sie zwei Schlüssel.
+
+210
+00:44:57,700 --> 00:45:00,700
+Wichtig ist, dass Sie erst über die Zeilen gehen und dann über die Spalten.
+
+211
+00:45:01,700 --> 00:45:04,700
+Dann sind Sie viel schneller, als wenn Sie es umgekehrt machen.
+
+212
+00:45:11,700 --> 00:45:14,700
+Nun sollen die Bilder jetzt in der Grauwertinvertierung angewendet werden.
+
+213
+00:45:14,700 --> 00:45:16,700
+Nun sollen die Bilder auch schön aussehen.
+
+214
+00:45:17,700 --> 00:45:21,700
+Wir haben visuelle Sensoren, die nicht linear funktionieren.
+
+215
+00:45:22,700 --> 00:45:26,700
+Die Kameras, die CCD-Sensoren, häufig funktionieren sie linear.
+
+216
+00:45:27,700 --> 00:45:35,700
+Was man dazu also machen will, ist, dass man dann die Linien, die man in der Grauwertinvertierung hat,
+
+217
+00:45:36,700 --> 00:45:40,700
+Die Kameras, die CCD-Sensoren, häufig funktionieren sie linear.
+
+218
+00:45:41,700 --> 00:45:46,700
+Was man dazu also machen will, ist, dass man dann diesen Eingangsbereich von 0 bis 255
+
+219
+00:45:47,700 --> 00:45:55,700
+nicht linear auf einen Ausgangsbereich abbildet, sodass dann das System Kamera, Monitor, Auge,
+
+220
+00:45:56,700 --> 00:45:58,700
+letztendlich realistisch funktioniert.
+
+221
+00:45:59,700 --> 00:46:03,700
+Dann gibt es die Gamma-Korrektur, das ist eine Punkt-Operation.
+
+222
+00:46:03,700 --> 00:46:09,700
+Sie haben Ihr Eingangsbild, das nehmen Sie hoch Gamma und bekommen Ihr Ausgangsbild heraus.
+
+223
+00:46:12,700 --> 00:46:15,700
+Und hier sehen wir mal die Abbildung Gamma gleich 1,0.
+
+224
+00:46:16,700 --> 00:46:22,700
+Dann haben wir hier im schwarzen Bereich relativ wenig, mit Gamma gleich 0,5.
+
+225
+00:46:23,700 --> 00:46:28,700
+Wird der dunkle Bereich heller gemacht.
+
+226
+00:46:29,700 --> 00:46:33,700
+Wir haben also in diesem Beispiel den Eindruck, dass wir viel mehr erkennen können.
+
+227
+00:46:35,700 --> 00:46:40,700
+Und mit Gamma gleich 2,0, was wir hier haben, passiert das Umgekehrte.
+
+228
+00:46:44,700 --> 00:46:48,700
+Es potenzieren immer eine rechenaufwendige Operation.
+
+229
+00:46:49,700 --> 00:46:59,700
+Das ist aber hier kein Problem, weil wir hier einen sehr beschränkten Wertebereich haben.
+
+230
+00:47:00,700 --> 00:47:08,700
+Letztendlich hat G von XY 255 verschiedene Werte.
+
+231
+00:47:09,700 --> 00:47:15,700
+Da können Sie die Potenz der 255 Werte hoch 0,3 in einer Tabelle ablegen.
+
+232
+00:47:16,700 --> 00:47:20,700
+Und dann ist die Gamma-Korrektur letztendlich nur ein Table Lookup.
+
+233
+00:47:21,700 --> 00:47:25,700
+Ihr Bild G hat irgendwo einen Grauwert.
+
+234
+00:47:26,700 --> 00:47:29,700
+Das ist dann der Index in der Tabelle und da gucken Sie, was Sie dann in H reinschreiben sollen.
+
+235
+00:47:30,700 --> 00:47:32,700
+Das geht sehr, sehr schnell.
+
+236
+00:47:36,700 --> 00:47:40,700
+Hier haben wir jetzt ein Beispiel, was macht diese Gamma-Korrektur.
+
+237
+00:47:40,700 --> 00:47:49,700
+Wie gesagt, das richtige Gamma hängt immer davon ab, was Ihr Monitor ist, was Ihr Anwendungsfall ist.
+
+238
+00:47:50,700 --> 00:47:57,700
+Wir haben hier ein Gamma von 0,5, 0,7, 1 und 2.
+
+239
+00:47:58,700 --> 00:48:03,700
+Und was jetzt für Sie das Richtige ist, hängt ein bisschen auch vom Anwendungsfall ab.
+
+240
+00:48:04,700 --> 00:48:08,700
+Welches Bild sieht denn am besten aus?
+
+241
+00:48:09,700 --> 00:48:11,700
+Vielleicht ist es C, vielleicht ist es B.
+
+242
+00:48:12,700 --> 00:48:15,700
+A macht den Eindruck, dass hier im hellen Bereich schon etwas überstrahlt ist.
+
+243
+00:48:16,700 --> 00:48:20,700
+D ist im dunklen Bereich, leicht zu dunkel.
+
+244
+00:48:21,700 --> 00:48:23,700
+Ist dann also Geschmackssache.
+
+245
+00:48:23,700 --> 00:48:33,700
+Und dann sehen Sie schon, die Punktoperation, die Gamma-Korrektur kann etwas sein, was ein Bild subjektiv schöner macht.
+
+246
+00:48:37,700 --> 00:48:39,700
+Es gibt Histogramme.
+
+247
+00:48:40,700 --> 00:48:45,700
+Kennen Sie aus der Statistik nach von Mises Definition von Wahrscheinlichkeiten geht auch über Histogramme letztendlich.
+
+248
+00:48:46,700 --> 00:48:52,700
+In einem Bild zählen wir die Anzahl der Bildpunkte, die einen gewissen Grauwert haben.
+
+249
+00:48:53,700 --> 00:48:58,700
+In einem 8-Bit-Bild gibt es 0 bis 255 verschiedene Grauwerte.
+
+250
+00:48:59,700 --> 00:49:03,700
+Und das N von I ist eine Zahl zwischen 0 und 255.
+
+251
+00:49:04,700 --> 00:49:09,700
+N von I gibt Ihnen an, wie viele Bildpunkte in diesem speziellen Bild haben den Wert I.
+
+252
+00:49:11,700 --> 00:49:13,700
+Hier haben wir ein Bild.
+
+253
+00:49:14,700 --> 00:49:15,700
+Wieder dieses Gebäude.
+
+254
+00:49:16,700 --> 00:49:18,700
+Hier sehen Sie das Histogramm.
+
+255
+00:49:18,700 --> 00:49:22,700
+Es gibt offensichtlich sehr viele schwarze Bildpunkte.
+
+256
+00:49:23,700 --> 00:49:25,700
+Hier ist der Grauwert zwischen 0 und 255.
+
+257
+00:49:26,700 --> 00:49:28,700
+Nach oben aufgetragen die Häufigkeit.
+
+258
+00:49:29,700 --> 00:49:31,700
+Es gibt also sehr, sehr viele schwarze Bildpunkte.
+
+259
+00:49:32,700 --> 00:49:35,700
+Und dann gibt es einen Bereich von ganz weiß.
+
+260
+00:49:36,700 --> 00:49:38,700
+Der ist hier gar nicht belegt.
+
+261
+00:49:39,700 --> 00:49:40,700
+Und dann sehen Sie hier die Häufigkeiten.
+
+262
+00:49:41,700 --> 00:49:44,700
+Im dunklen Bereich scheint es mehr Bildpunkte zu geben als im hellen Bereich.
+
+263
+00:49:45,700 --> 00:49:46,700
+Hier 128.
+
+264
+00:49:46,700 --> 00:49:48,700
+Und das stimmt wohl auch für dieses Bild.
+
+265
+00:49:49,700 --> 00:49:51,700
+Da gibt es mehr dunkle Bildpunkte als weiße Bildpunkte.
+
+266
+00:49:52,700 --> 00:49:54,700
+Aus meiner Sicht etwas überraschend.
+
+267
+00:49:55,700 --> 00:49:58,700
+Hier das Histogramm dieses Textbildes.
+
+268
+00:49:59,700 --> 00:50:05,700
+Wir sehen dunkle Schrift auf hellem Hintergrund.
+
+269
+00:50:06,700 --> 00:50:09,700
+In dem Histogramm sehen wir jetzt aber nicht zwei Grauwerte.
+
+270
+00:50:10,700 --> 00:50:14,700
+Sondern wir sehen hier eine gewisse Häufung dunkler Bildbereiche.
+
+271
+00:50:15,700 --> 00:50:19,700
+Im Grauwertbereich zwischen 100 und 150 sind sie überraschend hell.
+
+272
+00:50:20,700 --> 00:50:23,700
+Obwohl wir sie als Menschen eher als schwarz wahrnehmen.
+
+273
+00:50:24,700 --> 00:50:29,700
+Und der Hintergrund, der wirklich hell ist,
+
+274
+00:50:30,700 --> 00:50:34,700
+der ist irgendwo zwischen 200 und 250.
+
+275
+00:50:35,700 --> 00:50:37,700
+Das ist auch nicht einfarbig.
+
+276
+00:50:38,700 --> 00:50:40,700
+Vor allen Dingen sehen Sie auch hier,
+
+277
+00:50:40,700 --> 00:50:44,700
+jeder Grauwert zwischen dunklem und hellem Grauwert taucht auf.
+
+278
+00:50:45,700 --> 00:50:50,700
+Und dann auch hier wieder sehen Sie das an der Grenze.
+
+279
+00:50:51,700 --> 00:50:53,700
+Es gibt manchmal einen Peak im Histogramm.
+
+280
+00:50:54,700 --> 00:50:56,700
+Oben hatten wir besonders viele schwarze Bildpunkte.
+
+281
+00:50:57,700 --> 00:50:59,700
+Hier haben wir offensichtlich sehr viele weiße Bildpunkte.
+
+282
+00:51:00,700 --> 00:51:02,700
+Sie können sich vorstellen, das Histogramm würde eigentlich hier,
+
+283
+00:51:03,700 --> 00:51:05,700
+wenn der Sensor eine höhere Auflösung hätte, so weitergehen.
+
+284
+00:51:06,700 --> 00:51:08,700
+Und all diese Bildpunkte führen zur Übersteuerung des Sensors.
+
+285
+00:51:08,700 --> 00:51:13,700
+Und die werden dann eben auf 255 abgebildet.
+
+286
+00:51:14,700 --> 00:51:16,700
+Wenn Sie das hier alles zusammenzählen und aufaddieren,
+
+287
+00:51:17,700 --> 00:51:19,700
+dann wird das da immer höher werden.
+
+288
+00:51:22,700 --> 00:51:25,700
+Und diese Übersteuerung oder Untersteuerung des Bildes,
+
+289
+00:51:26,700 --> 00:51:31,700
+des Sensors, das können Sie eben auch im Histogramm erkennen,
+
+290
+00:51:32,700 --> 00:51:34,700
+an diesen Peaks hier.
+
+291
+00:51:39,700 --> 00:51:44,700
+Wenn wir jetzt eine lineare Skalierung so eines Histogramms vornehmen,
+
+292
+00:51:45,700 --> 00:51:48,700
+dann können wir letztendlich, das ist wieder eine Punktoperation,
+
+293
+00:51:49,700 --> 00:51:53,700
+das Bild stark verändern und es wird für uns leichter interpretierbar.
+
+294
+00:51:57,700 --> 00:52:00,700
+Wir sprechen jetzt von einer Histogrammspreizung.
+
+295
+00:52:01,700 --> 00:52:06,700
+In unserem Bild A haben wir ein Histogramm mit Grauwerten irgendwo zwischen 0 und 50.
+
+296
+00:52:07,700 --> 00:52:09,700
+Das sehen Sie hier.
+
+297
+00:52:10,700 --> 00:52:17,700
+Und dieses Histogramm wird jetzt gespreizt auf den Bereich 0 bis 255.
+
+298
+00:52:21,700 --> 00:52:23,700
+Wie macht man das?
+
+299
+00:52:24,700 --> 00:52:31,700
+Wir haben hier den Aussteuerungsbereich des Originalhistogramms.
+
+300
+00:52:32,700 --> 00:52:36,700
+Wir nehmen den Grauwert eines Bildes.
+
+301
+00:52:37,700 --> 00:52:39,700
+Wir ziehen davon das Minimum ab.
+
+302
+00:52:40,700 --> 00:52:44,700
+Wir setzen also diesen Grauwert g von x, y letztendlich auf einen Bezugswert 0.
+
+303
+00:52:45,700 --> 00:52:47,700
+Und dann multiplizieren wir das mit 255.
+
+304
+00:52:48,700 --> 00:52:52,700
+Wir erreichen also, wenn wir die Maximalamplitude haben,
+
+305
+00:52:53,700 --> 00:52:57,700
+auch die Vollaussteuerung im Ausgangsbild.
+
+306
+00:52:58,700 --> 00:53:05,700
+Aus dem Histogramm, das wir hier oben haben, wird jetzt so ein Histogramm.
+
+307
+00:53:06,700 --> 00:53:11,700
+Wenn wir im Eingangsbild nur 50 verschiedene Grauwerte haben,
+
+308
+00:53:12,700 --> 00:53:18,700
+werden wir auch im Ausgangsbild nur 50 verschiedene Werte haben.
+
+309
+00:53:19,700 --> 00:53:23,700
+Das bedeutet dann, dadurch, dass wir eine Spreizung durchführen,
+
+310
+00:53:23,700 --> 00:53:26,700
+haben wir in so einem Histogramm nicht ein durchgehendes Histogramm,
+
+311
+00:53:27,700 --> 00:53:28,700
+sondern wir haben diese einzelnen Linien.
+
+312
+00:53:29,700 --> 00:53:30,700
+Und dazwischen gibt es immer wieder Grauwerte,
+
+313
+00:53:31,700 --> 00:53:34,700
+die im Ausgangsbild, im gespreizten Bild, nicht vorkommen.
+
+314
+00:53:37,700 --> 00:53:41,700
+Wenn Sie jetzt zählen sollen, wie viele Zellen Sie hier in dem Bild haben,
+
+315
+00:53:42,700 --> 00:53:45,700
+und Sie haben die Wahl, nehmen Sie Bild A oder Bild C.
+
+316
+00:53:46,700 --> 00:53:50,700
+Es ist, glaube ich, klar, wir würden alle Bild C nehmen.
+
+317
+00:53:50,700 --> 00:53:53,700
+Das ist für uns viel leichter zu erfassen, was da zu sehen ist.
+
+318
+00:53:54,700 --> 00:53:57,700
+Also auch ein Beispiel, wie man durch eine Punktoperation
+
+319
+00:53:58,700 --> 00:54:00,700
+ein Bild leichter interpretierbar machen kann.
+
+320
+00:54:09,700 --> 00:54:12,700
+Ja, und so kann man dann auch ein Histogramm spreizen.
+
+321
+00:54:13,700 --> 00:54:16,700
+Man kann es auch als Histogrammausgleich bezeichnen.
+
+322
+00:54:21,700 --> 00:54:23,700
+Wir haben also unser Histogramm N von I.
+
+323
+00:54:24,700 --> 00:54:35,700
+I läuft, wie gesagt, über den Wertebereich der Amplituden, die erlaubt sind.
+
+324
+00:54:36,700 --> 00:54:41,700
+Wir können ein kumuliertes Histogramm berechnen, Groß N von I.
+
+325
+00:54:42,700 --> 00:54:49,700
+Groß N von I gibt an, wie viele Bildpunkte haben eine Amplitude von I oder kleiner.
+
+326
+00:54:51,700 --> 00:54:56,700
+Ja, es wird aufsummiert von N von 0 bis N von I.
+
+327
+00:55:00,700 --> 00:55:09,700
+Wir können uns dann ein Lookup-Table definieren, N I Strich.
+
+328
+00:55:09,700 --> 00:55:22,700
+In dem wir die Anzahl der Bildpunkte bis zu einem gewissen Grauwert ins Verhältnis setzen
+
+329
+00:55:23,700 --> 00:55:27,700
+zur Anzahl der Bildpunkte, die wir überhaupt haben.
+
+330
+00:55:28,700 --> 00:55:33,700
+Da haben wir jetzt so ein kumuliertes Histogramm, wo N von I die Anzahl der Bildpunkte angibt,
+
+331
+00:55:34,700 --> 00:55:38,700
+verbinden wollen, um unsere Bilder umzuskalieren.
+
+332
+00:55:39,700 --> 00:55:42,700
+Da müssen wir natürlich die Gesamtzahl der Bildpunkte im Auge behalten.
+
+333
+00:55:43,700 --> 00:55:45,700
+Und das machen wir mit dem N von I.
+
+334
+00:55:50,700 --> 00:55:58,700
+Und damit bekommen wir dann Bilder, die viel plastischer aussehen.
+
+335
+00:55:59,700 --> 00:56:13,700
+Dieses Histogramm hier, was einen begrenzten Wertebereich hat, wird nun auch gespreizt auf die volle Amplitudenbreite, die wir im Bild darstellen können.
+
+336
+00:56:14,700 --> 00:56:25,700
+Die Form des Histogramms bleibt erhalten, weil von einem N I zu N I plus 1 die Differenz ist letztendlich gegeben
+
+337
+00:56:25,700 --> 00:56:29,700
+durch die Differenz, die wir hier in dem ursprünglichen Histogramm haben.
+
+338
+00:56:30,700 --> 00:56:33,700
+Wir haben jetzt einen kleinen Wertebereich, den wir auf einen großen Wertbereich aufteilen.
+
+339
+00:56:34,700 --> 00:56:41,700
+Wir haben also dann wieder diese Nullen im Histogramm, weil gewisse Grauwerte nicht vorkommen.
+
+340
+00:56:42,700 --> 00:56:52,700
+Aber für dieses ausgeglichene Histogramm, wenn wir da dieses N von I ausrechnen,
+
+341
+00:56:52,700 --> 00:56:58,700
+groß N von I, dann geht es mehr oder weniger linear hoch in Treppenstufen,
+
+342
+00:56:59,700 --> 00:57:04,700
+während wir hier ja einen kleinen Wertebereich haben, wo sich die Anzahl der Bildpunkte drastisch erhöht hat.
+
+343
+00:57:05,700 --> 00:57:12,700
+Wir sorgen also hier dafür, dass wir ungefähr gleich viele Bildpunkte in jedem Intervall haben.
+
+344
+00:57:13,700 --> 00:57:18,700
+Und das Ergebnis der Transformation von diesem Bild, was ja eher flau aussieht,
+
+345
+00:57:19,700 --> 00:57:23,700
+zu diesem Bild mit Histogrammausgleich sehen Sie hier.
+
+346
+00:57:24,700 --> 00:57:26,700
+Und das Ganze erscheint natürlich viel, viel plastischer.
+
+347
+00:57:27,700 --> 00:57:35,700
+Ich will jetzt nicht behaupten, dass das eine Operation ist, die für die automatische Bildverarbeitung besonders wichtig ist.
+
+348
+00:57:36,700 --> 00:57:40,700
+Aber sicherlich ist sie relevant, wenn Sie als Mensch sich Bilder angucken wollen,
+
+349
+00:57:40,700 --> 00:57:42,700
+wenn Sie irgendwelche Details erkennen wollen.
+
+350
+00:57:43,700 --> 00:57:49,700
+Dann können Sie das mit so einer Histogrammspreizung, mit so einem Histogrammausgleich, sehr gut erreichen.
+
+351
+00:57:58,700 --> 00:58:00,700
+Nun können Sie so ein Histogramm über das gesamte Bild berechnen.
+
+352
+00:58:01,700 --> 00:58:07,700
+Aber so ein Bild ist ja vielleicht in Teilen überbelichtet und in Teilen unterbelichtet.
+
+353
+00:58:08,700 --> 00:58:14,700
+Oder in Teilen eines Bildes ist das Bild, in Bildbereichen ist es zu dunkel, in anderen Bereichen ist es eher zu hell.
+
+354
+00:58:15,700 --> 00:58:20,700
+Wenn Sie das jetzt über das gesamte Bild rechnen, dann ist das vielleicht nicht optimal.
+
+355
+00:58:21,700 --> 00:58:22,700
+Wir könnten das auch lokal machen.
+
+356
+00:58:23,700 --> 00:58:29,700
+Wir können also in verschiedenen Bildbereichen sagen, da machen wir einen Histogrammausgleich.
+
+357
+00:58:31,700 --> 00:58:42,700
+Wir können auch sagen, wir berechnen in so einem Fenster die Funktion des Histogrammausgleichs.
+
+358
+00:58:43,700 --> 00:58:52,700
+Die Funktion des Histogrammausgleichs, also diese hier, wenden die Operation ganz per der Grauwerte,
+
+359
+00:58:56,700 --> 00:58:57,700
+aber nur am Zentrum des Fensters an.
+
+360
+00:59:00,700 --> 00:59:05,700
+Das heißt, wenn wir diesen adaptiven Histogrammausgleich machen,
+
+361
+00:59:05,700 --> 00:59:20,700
+ist diese Funktion für jeden Bildpunkt eine andere, weil wir für jeden Bildpunkt ein anderes Fenster haben und damit auch ein anderes Histogramm.
+
+362
+00:59:21,700 --> 00:59:23,700
+Das hört sich jetzt rechenaufwendiger an, als es ist.
+
+363
+00:59:24,700 --> 00:59:29,700
+Wenn Sie einen Block haben, weil Sie für diesen Bildpunkt hier das Histogramm berechnen wollen,
+
+364
+00:59:30,700 --> 00:59:33,700
+und Sie gehen jetzt einen Bildpunkt zur Seite, dann ist das Histogramm schnell berechnet.
+
+365
+00:59:34,700 --> 00:59:37,700
+Die Bildpunkte, die aus dem Fenster rausfallen, ziehen Sie aus dem Histogramm ab,
+
+366
+00:59:38,700 --> 00:59:40,700
+und die Spalte, die dazugekommen ist, schreiben Sie ins Histogramm rein.
+
+367
+00:59:41,700 --> 00:59:42,700
+Also es sind wenige Operationen, es geht schnell.
+
+368
+00:59:45,700 --> 00:59:58,700
+So kann man dann aus diesem Bild, was auch irgendwie flau aussieht, ein Bild bekommen, was visuell sehr ansprechend ist.
+
+369
+00:59:59,700 --> 01:00:01,700
+Ob es richtig ist, weiß ich nicht.
+
+370
+01:00:01,700 --> 01:00:05,700
+Also diese Jacke hier, die sieht jetzt wirklich sehr kontrastreich aus.
+
+371
+01:00:06,700 --> 01:00:07,700
+Ob sie wirklich so ist, weiß man nicht.
+
+372
+01:00:08,700 --> 01:00:14,700
+Aber der Gesichtsbereich oder auch hier der Hintergrund, der ist definitiv visuell ansprechender dargestellt.
+
+373
+01:00:18,700 --> 01:00:24,700
+Wenn Sie homogene Regionen haben, kontrastarme Regionen, können Sie sich überlegen, was da passiert.
+
+374
+01:00:25,700 --> 01:00:29,700
+In einer homogenen Region haben Sie ja dann tatsächlich einen Grauwert.
+
+375
+01:00:29,700 --> 01:00:37,700
+Im Idealfall, und dann wird dieser eine Grauwert auf einen anderen Grauwert abgebildet.
+
+376
+01:00:38,700 --> 01:00:44,700
+Was Sie aber in Wirklichkeit haben, ist, wir haben diesen einen Grauwert plus Rauschen.
+
+377
+01:00:45,700 --> 01:00:47,700
+Dann wird das Rauschen verstärkt.
+
+378
+01:00:48,700 --> 01:00:50,700
+Das ist nicht unbedingt etwas, was man will.
+
+379
+01:00:50,700 --> 01:00:57,700
+Sie können natürlich, so ein Histogramm, da können Sie viele Operationen definieren.
+
+380
+01:00:58,700 --> 01:01:09,700
+Hier mal angewendet auf ein Farbbild, eine Punktoperation, nennt sich Contrast Limited Adaptive Histogramm Equalization.
+
+381
+01:01:09,700 --> 01:01:20,700
+Da wird letztendlich dafür gesorgt, dass gesagt wird, wir haben ja hier die Amplitude, also unser I, und hier haben wir das N von I, das Histogramm.
+
+382
+01:01:21,700 --> 01:01:28,700
+Es wird gesagt, dass keine Farbe im Bild häufiger vorkommen darf, als die Farbe im Bild.
+
+383
+01:01:29,700 --> 01:01:35,700
+Und dann benutzt man das letztendlich so, dass man die Anzahl der Bildpunkte, die man hier zu viel hat,
+
+384
+01:01:37,700 --> 01:01:41,700
+auch in der Amplitude, also in der Amplitude, auch in der Amplitude,
+
+385
+01:01:42,700 --> 01:01:44,700
+auch in der Amplitude, auch in der Amplitude,
+
+386
+01:01:45,700 --> 01:01:47,700
+auch in der Amplitude, auch in der Amplitude,
+
+387
+01:01:47,700 --> 01:01:55,700
+dann benutzt man das letztendlich so, dass man die Anzahl der Bildpunkte, die man hier zu viel hat,
+
+388
+01:01:57,700 --> 01:01:59,700
+auf alle Helligkeiten verteilt.
+
+389
+01:02:01,700 --> 01:02:07,700
+Dann ist das hier unser Ausgangshistogramm, das hier ist unser Zielhistogramm,
+
+390
+01:02:08,700 --> 01:02:14,700
+und dann haben Sie eine Punktoperation, die letztendlich die Bildpunkte entsprechend verändert,
+
+391
+01:02:14,700 --> 01:02:18,700
+so dass aus diesem Histogramm dieses Histogramm wird.
+
+392
+01:02:23,700 --> 01:02:31,700
+Originalbild, und viel dramatischer das Bild nach dieser Histogramm-Operation.
+
+393
+01:02:33,700 --> 01:02:35,700
+Das Bild wird dramatisch, ja.
+
+394
+01:02:36,700 --> 01:02:38,700
+Eine...
+
+395
+01:02:46,700 --> 01:02:50,700
+Da gibt es die Frage, ist das hier eine Punktoperation?
+
+396
+01:02:52,700 --> 01:02:54,700
+Kann man sich darüber streiten?
+
+397
+01:02:57,700 --> 01:03:02,700
+Auf alle Fälle ist das hier eine Punktoperation.
+
+398
+01:03:03,700 --> 01:03:05,700
+Und...
+
+399
+01:03:07,700 --> 01:03:13,700
+Nun hängt das N vom gesamten Bild an oder von einem Intervall,
+
+400
+01:03:14,700 --> 01:03:20,700
+aber von der Definition her, wenn man das N hat, ist es eine Punktoperation.
+
+401
+01:03:21,700 --> 01:03:24,700
+Also urgerecht kann man sich glaube ich streiten.
+
+402
+01:03:24,700 --> 01:03:35,700
+Wenn Sie das nicht adaptiv machen, kann man definitiv sagen, es ist eine Punktoperation,
+
+403
+01:03:36,700 --> 01:03:39,700
+weil Sie diese Funktion N einmal berechnen, für das gesamte Bild,
+
+404
+01:03:40,700 --> 01:03:45,700
+und dann führen Sie diese Bildpunktweise aus, aber wenn es hart auf hart kommt,
+
+405
+01:03:46,700 --> 01:03:49,700
+ist es dann vielleicht besser, Sie sagen, es ist eine Punktoperation,
+
+406
+01:03:50,700 --> 01:03:52,700
+aber um den Operator festzulegen, brauche ich das gesamte Bild.
+
+407
+01:03:52,700 --> 01:03:58,700
+Dann kann sich der Fragen überlegen, wie er das klassifizieren will.
+
+408
+01:04:01,700 --> 01:04:03,700
+Wie so vieles im Leben gibt es nicht nur schwarz und weiß.
+
+409
+01:04:04,700 --> 01:04:09,700
+Aber hier, jetzt kommt schwarz und weiß, wir wollen Binärbilder erzeugen.
+
+410
+01:04:11,700 --> 01:04:17,700
+Das ist eine einfache Schwerwert-Operation, das Ausgangsbild A von x,y ist entweder 1 oder 0.
+
+411
+01:04:17,700 --> 01:04:22,700
+Jetzt hier in dem Beispiel, das können Sie auch auf 255 und 0 setzen, oder 17 und 18, was auch immer.
+
+412
+01:04:23,700 --> 01:04:26,700
+Auf alle Fälle den einen Wert, den höheren Wert, weisen Sie zu,
+
+413
+01:04:27,700 --> 01:04:30,700
+wenn ein gewisser Schwellwert S im Eingangsbild überschritten wird,
+
+414
+01:04:31,700 --> 01:04:35,700
+und den kleineren Wert weisen Sie zu, wenn dieser Schwellwert nicht überschritten wird.
+
+415
+01:04:35,700 --> 01:04:50,700
+Also, wenn wir hier Eingang haben, G von x,y, dann wäre das hier A von x,y.
+
+416
+01:04:55,700 --> 01:05:00,700
+Wir haben hier ein Beispielbild. Für dieses Beispielbild haben wir hier das Histogramm ausgerechnet.
+
+417
+01:05:01,700 --> 01:05:05,700
+Ziel soll jetzt mal sein, die dunklen Zellen vom Hintergrund zu trennen.
+
+418
+01:05:06,700 --> 01:05:09,700
+Da kann man sich jetzt im Histogramm angucken, wo könnte eine gute Schwelle sein.
+
+419
+01:05:10,700 --> 01:05:15,700
+Also hier wird sie jetzt mal bei 130 hingelegt.
+
+420
+01:05:17,700 --> 01:05:19,700
+Das ist Geschmackssache, die können sich hier variieren.
+
+421
+01:05:20,700 --> 01:05:26,700
+Wird sich wahrscheinlich im Bild nicht viel ändern, weil da die Häufigkeiten der Helligkeiten sehr gering sind.
+
+422
+01:05:27,700 --> 01:05:30,700
+Und hier haben wir jetzt das Ausgangsbild, ein Binärbild.
+
+423
+01:05:31,700 --> 01:05:34,700
+Da gibt es nur schwarze und weiße Bildpunkte.
+
+424
+01:05:41,700 --> 01:05:46,700
+Sie sehen auch, dass die Zellen hier vielleicht so ein bisschen ausgefranst sind.
+
+425
+01:05:47,700 --> 01:05:53,700
+Das liegt eben an der Binarisierung, die wir hier vorgenommen haben.
+
+426
+01:05:54,700 --> 01:05:59,700
+Und das Bild hat eben nicht nur helle und dunkle Bildpunkte, sondern auch alle Grauwerte dazwischen.
+
+427
+01:06:00,700 --> 01:06:02,700
+Das führt dann dazu, dass das hier so ausfranst.
+
+428
+01:06:07,700 --> 01:06:12,700
+Sie können auch Punktoperationen mit mehreren Eingangsbildern durchführen.
+
+429
+01:06:16,700 --> 01:06:20,700
+Wir haben hier Bilder und berechnen daraus ein Ausgabebild.
+
+430
+01:06:23,700 --> 01:06:25,700
+Das weiß ich, das hier könnten auch die RGB-Komponenten sein.
+
+431
+01:06:26,700 --> 01:06:32,700
+Und wenn Sie jetzt wollen, könnten Sie die rot-grün-blau-Komponenten, die Werte aufaddieren und ein Ausgabebild erzeugen.
+
+432
+01:06:37,700 --> 01:06:44,700
+Sie können auch irgendetwas fotografieren und Sie machen mehrere Bilder davon.
+
+433
+01:06:46,700 --> 01:06:50,700
+Zum Beispiel, weil da sehr viel Rauschen drauf ist, auf den einzelnen Bildern.
+
+434
+01:06:51,700 --> 01:06:56,700
+Dann könnte man von diesen verrauschten Bildern, von denen Sie dann mehrere haben,
+
+435
+01:06:57,700 --> 01:06:59,700
+die könnte man alle aufaddieren und mittelwertbilden.
+
+436
+01:07:00,700 --> 01:07:04,700
+Also wir summieren sie hier auf, teilen durch die Anzahl der Bilder und dann bekommen Sie ein Bild,
+
+437
+01:07:05,700 --> 01:07:10,700
+das viel schärfer ist, wo Sie viel mehr Details erkennen können, weil Sie das Rauschen,
+
+438
+01:07:11,700 --> 01:07:14,700
+was hier in diesem Bild noch ziemlich dominant ist, weggemittelt haben.
+
+439
+01:07:15,700 --> 01:07:19,700
+Also das wäre jetzt eine Verbesserung des Signalrauschabstandes, nicht Durchmittlung.
+
+440
+01:07:26,700 --> 01:07:35,700
+Sie können Punktoperationen auch benutzen, um ungleichförmige Beleuchtung zu korrigieren.
+
+441
+01:07:36,700 --> 01:07:39,700
+Also stellen Sie sich vor, Sie wollen etwas fotografieren und Sie sagen, naja,
+
+442
+01:07:39,700 --> 01:07:45,700
+also die Szene ist gleichförmig ausgeleuchtet, überall kommt genauso viel Licht hin.
+
+443
+01:07:46,700 --> 01:07:51,700
+Dann legen Sie Ihr Blatt Papier unter die Lampe, machen ein Foto und dann gucken Sie sich die Matrix an
+
+444
+01:07:52,700 --> 01:07:57,700
+und stellen fest, sah alles weiß aus, aber die Grauwerte, die ich jetzt in meinem Bild habe,
+
+445
+01:07:58,700 --> 01:08:02,700
+die liegen irgendwo zwischen, in einem ganzen Bereich von 200 bis 230.
+
+446
+01:08:02,700 --> 01:08:08,700
+Und wenn Sie dann genau hingucken, dann stellen Sie fest, dass das nicht zwischen 230 und 200 schwankt,
+
+447
+01:08:09,700 --> 01:08:12,700
+irgendwo beliebig, sondern dass Sie einen Grauwertverlauf haben.
+
+448
+01:08:13,700 --> 01:08:17,700
+Das ist an gewissen Stellen, an der einen Ecke ist das Bild heller, an der anderen Seite ist es dunkler.
+
+449
+01:08:18,700 --> 01:08:20,700
+Was man so, wenn man einfach mal drauf guckt, gar nicht so sieht.
+
+450
+01:08:21,700 --> 01:08:27,700
+Also das, was Sie hier so sehen als Bild eines weißen Blattes Papiers,
+
+451
+01:08:28,700 --> 01:08:34,700
+Bild eines weißen Blattes Papiers ist etwas, was Sie häufig beobachten können.
+
+452
+01:08:37,700 --> 01:08:44,700
+So, jetzt wollen wir die Beleuchtung, die wir hier auch, das hier ist das Bild, was uns interessiert,
+
+453
+01:08:45,700 --> 01:08:50,700
+da wollen wir jetzt diese Beleuchtung loswerden, damit gleiche Punkte irgendwie gleiche Helligkeit haben
+
+454
+01:08:51,700 --> 01:08:53,700
+und auch der Hintergrund eine gleiche Helligkeit hat.
+
+455
+01:08:54,700 --> 01:09:06,700
+Da können Sie jetzt das Bild aufnehmen, mit dem, was Sie interessiert, das wäre Bild A.
+
+456
+01:09:07,700 --> 01:09:13,700
+Sie können den Hintergrund aufnehmen, ohne das, was Sie interessiert, also erstmal nur das weiße Blatt Papier,
+
+457
+01:09:14,700 --> 01:09:19,700
+das wäre das Bild C, G2 von XY.
+
+458
+01:09:20,700 --> 01:09:25,700
+Wenn Sie die beiden Bilder durcheinander teilen, dann kriegen Sie Bild E, H von XY
+
+459
+01:09:26,700 --> 01:09:30,700
+und da ist der Hintergrund einfarbig.
+
+460
+01:09:35,700 --> 01:09:39,700
+Wir haben hier das Histogramm für das Bild mit den Objekten.
+
+461
+01:09:42,700 --> 01:09:45,700
+Hier haben wir das Histogramm von dem Hintergrund ohne die Objekte.
+
+462
+01:09:46,700 --> 01:09:51,700
+Das ist jetzt wenig überraschend, die Histogramme sehen jetzt erstmal auf den ersten Blick identisch aus
+
+463
+01:09:52,700 --> 01:09:57,700
+und sie sind nicht identisch. Wir haben hier einen Peak, den Sie hier nicht haben.
+
+464
+01:10:00,700 --> 01:10:05,700
+Auf alle Fälle, wenn wir die Berechnung so durchführen, dass wir G1 durch G2 teilen,
+
+465
+01:10:06,700 --> 01:10:12,700
+dann sind die Helligkeitsunterschiede, die wir hier im Hintergrund haben, weg.
+
+466
+01:10:16,700 --> 01:10:22,700
+G1 durch G2 wäre ja immer 1, es sei denn, wir haben hier etwas anderes.
+
+467
+01:10:23,700 --> 01:10:30,700
+Mit einem Faktor C skalieren wir das Bild dann noch auf das Intervall, was wir haben wollen.
+
+468
+01:10:32,700 --> 01:10:36,700
+Wenn wir uns das Histogramm dieses Ausgangsbildes angucken,
+
+469
+01:10:36,700 --> 01:10:49,700
+sehen wir, dass wir drei Peaks haben für die beiden Farben, die wir auf das Blatt Papier gelegt haben,
+
+470
+01:10:50,700 --> 01:10:52,700
+und einen für die Hintergrundfarben.
+
+471
+01:10:55,700 --> 01:10:58,700
+Bei diesem Bild, wo wir jetzt die Beleuchtung ausgerechnet haben,
+
+472
+01:10:58,700 --> 01:11:06,700
+können wir ganz einfach durch Schwellwertbildung die verschiedenen Punkte voneinander trennen.
+
+473
+01:11:16,700 --> 01:11:20,700
+Punktoperationen können Sie auch verwenden, um zu sehen, ob sich in Bildern etwas geändert hat.
+
+474
+01:11:21,700 --> 01:11:28,700
+Das ist einer der ersten Schritte, die in den ganzen Algorithmen durchgeführt werden,
+
+475
+01:11:29,700 --> 01:11:34,700
+die Videos von Überwachungskameras auszuwerten.
+
+476
+01:11:35,700 --> 01:11:36,700
+Die werden sich ja keiner angucken.
+
+477
+01:11:37,700 --> 01:11:42,700
+Haben Sie zeitlich eine Bildfolge, zeitlich aufeinander folgenden Bilder, hat sich etwas bewegt in diesen Bildern?
+
+478
+01:11:43,700 --> 01:11:45,700
+Naja, Sie nehmen das eine Bild und ziehen es von dem anderen ab.
+
+479
+01:11:46,700 --> 01:11:48,700
+Wenn sich nichts verändert hat, kriegen Sie überall 0.
+
+480
+01:11:49,700 --> 01:11:51,700
+Wenn sich etwas verändert hat, werden Sie das erkennen.
+
+481
+01:11:52,700 --> 01:11:53,700
+Hier haben wir das Beispiel, Bild 1, Bild 2.
+
+482
+01:11:54,700 --> 01:11:59,700
+Und die Differenz sehen wir letztendlich hier im Hintergrund.
+
+483
+01:12:00,700 --> 01:12:02,700
+Es ist alles schwarz, da hat sich nichts verändert.
+
+484
+01:12:03,700 --> 01:12:06,700
+Aber hier, die Person hat sich bewegt und das können Sie hier erkennen.
+
+485
+01:12:07,700 --> 01:12:17,700
+Wenn Sie jetzt dieses Bild binarisieren, alles was von 0 verschieden ist, idealerweise, hat sich verändert.
+
+486
+01:12:18,700 --> 01:12:19,700
+Das ist dann das Objekt.
+
+487
+01:12:20,700 --> 01:12:21,700
+Oder da hat sich etwas bewegt.
+
+488
+01:12:22,700 --> 01:12:25,700
+Dann können Sie einfach die Bildpunkte zählen, dann wissen Sie, wie viel im Bild hat sich verändert.
+
+489
+01:12:26,700 --> 01:12:29,700
+Und daraus können Sie dann eine Entscheidung ableiten.
+
+490
+01:12:30,700 --> 01:12:33,700
+Sind das so viele Bildpunkte, dass ich Alarm schlagen muss oder eben auch noch nicht.
+
+491
+01:12:34,700 --> 01:12:41,700
+Und dann werden Sie diesen Schwellwert, also die Auswertung dieses Differenzbildes, sicherlich nicht bei 0 machen.
+
+492
+01:12:42,700 --> 01:12:44,700
+Denn Sie haben ja auf diesen Bildern auch noch Rauschen drauf.
+
+493
+01:12:45,700 --> 01:12:47,700
+Das heißt, Sie werden da irgendwie einen rauschadaptiven Schwellwert festlegen.
+
+494
+01:12:48,700 --> 01:12:51,700
+Und damit dann entscheiden, ob Sie hier einen Bildpunkt verändert haben oder nicht.
+
+495
+01:12:53,700 --> 01:13:01,700
+Wenn Sie Bilder voneinander abziehen, dann kann man zum Beispiel auch eine Hintergrundsubtraktion machen.
+
+496
+01:13:01,700 --> 01:13:06,700
+Sie stellen Ihre Überwachungskamera auf, nehmen ein Bild auf oder 20 Bilder und mitteln die.
+
+497
+01:13:07,700 --> 01:13:09,700
+Dann haben Sie den Hintergrund so, wie er sein soll.
+
+498
+01:13:10,700 --> 01:13:13,700
+Das wäre dann zum Beispiel das Bild GB.
+
+499
+01:13:16,700 --> 01:13:23,700
+Und wenn Sie jetzt ein aktuelles Bild haben, ziehen Sie es voneinander ab, dann sehen Sie, was sich verändert hat.
+
+500
+01:13:23,700 --> 01:13:25,700
+Sehen Sie, was sich verändert hat.
+
+501
+01:13:28,700 --> 01:13:41,700
+Sie können, wenn Sie jetzt nicht dieses Hintergrundbild haben wollen, können Sie auch eine zeitliche Änderungselektion machen.
+
+502
+01:13:42,700 --> 01:13:44,700
+Sie nehmen zwei aufeinanderfolgende Bilder und ziehen die voneinander ab.
+
+503
+01:13:45,700 --> 01:13:49,700
+Das ist der Unterschied in einem Szenario, bei dem Sie die Beleuchtung kontrollieren.
+
+504
+01:13:50,700 --> 01:13:53,700
+Also in einem Raum, in dem kein Tageslicht fällt.
+
+505
+01:13:54,700 --> 01:13:56,700
+Da können Sie natürlich ein Hintergrundbild nehmen.
+
+506
+01:13:57,700 --> 01:14:02,700
+Wenn Sie einen Außenbereich überwachen wollen, wo die Helligkeit sich über den Tag verändert und auch von einem Tag zum anderen.
+
+507
+01:14:03,700 --> 01:14:04,700
+Mal haben Sie Schnee, mal haben Sie Regen.
+
+508
+01:14:05,700 --> 01:14:07,700
+Dann gibt es so ein Hintergrundbild nicht.
+
+509
+01:14:08,700 --> 01:14:12,700
+Weil der Hintergrund immer von Sonnenstand, von der Beleuchtung, von der Tageszeit abhängt.
+
+510
+01:14:13,700 --> 01:14:16,700
+Dann ist es besser zu gucken, ob sich zeitlich etwas bewegt hat.
+
+511
+01:14:17,700 --> 01:14:20,700
+Dann machen Sie lieber eine zeitliche Änderungselektion.
+
+512
+01:14:24,700 --> 01:14:27,700
+Manchmal macht es auch Sinn, Bilder zu addieren.
+
+513
+01:14:28,700 --> 01:14:36,700
+In der Computergrafik wird ja gerne mal ein Objekt vor einen virtuellen Hintergrund gesetzt.
+
+514
+01:14:37,700 --> 01:14:40,700
+In einem Studio macht man das klassisch.
+
+515
+01:14:41,700 --> 01:14:44,700
+Dann steht jemand vor einem Greenscreen.
+
+516
+01:14:45,700 --> 01:14:46,700
+Das heißt, der Hintergrund ist einfarbig.
+
+517
+01:14:47,700 --> 01:14:50,700
+Die Person hat dann alles Mögliche an, aber nicht die Hintergrundfarbe.
+
+518
+01:14:53,700 --> 01:14:54,700
+Dann haben Sie ein zweites Bild.
+
+519
+01:14:55,700 --> 01:14:56,700
+Dann rechnen Sie die Bilder zusammen.
+
+520
+01:14:57,700 --> 01:15:02,700
+Das Ausgangsbild ist Alpha mal dem einen Bild plus eins minus Alpha mal dem anderen Bild.
+
+521
+01:15:03,700 --> 01:15:09,700
+Dieses Alpha steuern Sie abhängig von der Farbe, die Sie da im Bild mit dem grünen Hintergrund haben.
+
+522
+01:15:10,700 --> 01:15:20,700
+Rauschunterdrückung und Durchmittlung haben wir schon gesagt.
+
+523
+01:15:21,700 --> 01:15:25,700
+Shadingkorrektur, da brauchen Sie auch zwei Bilder, sodass Sie die Beleuchtung rausrechnen wollen.
+
+524
+01:15:26,700 --> 01:15:29,700
+Das wäre dann dieses hier.
+
+525
+01:15:30,700 --> 01:15:33,700
+Zusammenfassend.
+
+526
+01:15:34,700 --> 01:15:40,700
+Bei den Punktoperationen wird ein Ausgangsbildpunkt von einem Eingangsbildpunkt berechnet.
+
+527
+01:15:41,700 --> 01:15:43,700
+Es gibt lineare Operationen.
+
+528
+01:15:44,700 --> 01:15:48,700
+Sie können einen Bildpunkt mit einer Zahl multiplizieren und dann da noch was drauf addieren.
+
+529
+01:15:49,700 --> 01:15:53,700
+Die Bildpunkte typischerweise sind ja ganze Zahlen.
+
+530
+01:15:53,700 --> 01:15:59,700
+Diese Faktoren A und B müssen nicht ganze Zahlen sein, das können auch floating point Zahlen sein.
+
+531
+01:16:00,700 --> 01:16:07,700
+Vor allem für die visuelle Darstellung auf einem Monitor ist die sogenannte Gammakorrektur wichtig.
+
+532
+01:16:08,700 --> 01:16:14,700
+Wo wir also den Wert, der zum Beispiel von der Grafikkarte zum Beispiel ausgesehen ist,
+
+533
+01:16:14,700 --> 01:16:20,700
+potenzieren mit einem Wert Gamma, um dann für den Menschen ein angenehmes visuelles Erlebnis zu erzeugen.
+
+534
+01:16:21,700 --> 01:16:27,700
+Man kann an Histogrammen, wo wir auftragen, wie viele Bildpunkte eines Bildes haben, welche Helligkeit,
+
+535
+01:16:28,700 --> 01:16:32,700
+sehen, ob das Bild unterbelichtet ist oder überbelichtet ist.
+
+536
+01:16:33,700 --> 01:16:38,700
+Das heißt, wenn wir das Bild unterbelichtet haben, sehen wir, dass das Bild unterbelichtet ist.
+
+537
+01:16:38,700 --> 01:16:44,700
+Oder ob es überbelichtet ist, weil wir dann eben bei 255 eine Spitze im Histogramm haben.
+
+538
+01:16:45,700 --> 01:16:48,700
+Wir haben gesehen, wie man Histogramme ausgleichen kann.
+
+539
+01:16:49,700 --> 01:16:53,700
+Also Sie haben ein eigenes Bild mit einem Wert Gamma.
+
+540
+01:16:54,700 --> 01:16:58,700
+Das heißt, wenn wir das Bild unterbelichtet haben, sehen wir, dass das Bild unterbelichtet ist.
+
+541
+01:16:59,700 --> 01:17:03,700
+Das heißt, wenn wir das Bild unterbelichtet haben, sehen wir, dass das Bild unterbelichtet ist.
+
+542
+01:17:03,700 --> 01:17:10,700
+Wie man das Histogramm ausgleichen kann, also Sie haben ein eigenes Bild mit einem kleinen Intervall, der ausgesteuert ist,
+
+543
+01:17:11,700 --> 01:17:15,700
+wie Sie das spreizen können, wie man das Histogramm ausgleichen kann,
+
+544
+01:17:16,700 --> 01:17:20,700
+sodass mit zunehmender Helligkeit immer gleich viele Bildpunkte dazukommen, die diese Helligkeit haben.
+
+545
+01:17:21,700 --> 01:17:25,700
+Und wir haben auch die Binarisierung von Bildern gesehen, wie man das macht.
+
+546
+01:17:25,700 --> 01:17:40,700
+Punktoperationen sind auch Operationen, wo wir den Ausgangsbildpunkt h von xy als Funktion von g1 von xy plus g1 von mehreren Bildern,
+
+547
+01:17:41,700 --> 01:17:51,700
+also f von g1 xy bis gn von xy berechnen.
+
+548
+01:17:51,700 --> 01:18:02,700
+Und das hatte ich schon erwähnt bei der Kamerakorrektur.
+
+549
+01:18:03,700 --> 01:18:08,700
+Wenn Sie irgendwelche Lookup-Tabellen haben und auch eine Histogramm-Spreizung ist eine Lookup-Tabelle,
+
+550
+01:18:09,700 --> 01:18:15,700
+weil Sie haben eine endliche Anzahl von Eingangswerten, die wird abgebildet eindeutig auf eine endliche Anzahl von Ausgangswerten.
+
+551
+01:18:15,700 --> 01:18:29,700
+Da ist letztendlich der Grauwert des Eingangsbildes der Index einer Tabelle und an der Stelle in der Tabelle steht dann der Ausgangswert.
+
+552
+01:18:30,700 --> 01:18:34,700
+Durch diese Lookup-Tabelle können Sie dann ganz schnell Bilder transformieren.
+
+553
+01:18:35,700 --> 01:18:45,700
+Sie brauchen dann also zum Beispiel hier keine Addition, Sie brauchen keine Multiplikation, Sie nehmen einfach den Grauwert, den Sie hier haben,
+
+554
+01:18:46,700 --> 01:18:53,700
+gehen in Ihrer Tabelle an die entsprechende Stelle 107 und gucken, ah, da steht 109, das ist das, was wir brauchen.
+
+555
+01:18:54,700 --> 01:19:02,700
+Diese Lookup-Tabelle ist klein, Sie haben 255 verschiedene Einträge oder vielleicht 1024, können Sie also im Cache Ihrer CPU haben und damit geht es wirklich schnell.
+
+556
+01:19:02,700 --> 01:19:13,700
+Als nächstes kommen lokale Operationen dran. Wir sind jetzt fast 90 Minuten dabei.
+
+557
+01:19:14,700 --> 01:19:27,700
+Wir machen eine Pause und fangen dann um 10 Uhr wieder an und sind dann auch um 10.30 Uhr fertig. Bis dahin.
+
+558
+01:19:32,700 --> 01:19:36,700
+Vielen Dank für's Zuschauen und bis zum nächsten Mal.
+
+559
+01:20:02,700 --> 01:20:23,700
+Ja, willkommen zurück. Dann geht es jetzt um lokale Operationen. Da spricht man dann auch von Filterung.
+
+560
+01:20:23,700 --> 01:20:33,700
+Es gibt lineare Filter und nicht lineare Filter. Lineare Filter ist das, was man aus der Signalverarbeitung typischerweise kennt.
+
+561
+01:20:34,700 --> 01:20:48,700
+Nicht lineare Filter sind irgendwo eine Eigenart der Bildverarbeitung im Sinne von, da wird es viel eingesetzt, während Sie in der Audiosignalverarbeitung zum Beispiel typischerweise keine nicht lineare Bildung durchführen.
+
+562
+01:20:49,700 --> 01:21:03,700
+Lineare Filter sind in der einfachsten Form Boxfilter. Box im Sinne von Kasten. Dieser Kasten kann quadratisch sein oder auch nicht.
+
+563
+01:21:03,700 --> 01:21:15,700
+Wir haben wieder unser Eingangsbild F, wir haben unser Ausgangsbild H und wir haben jetzt G, das ist unsere Filtermaske.
+
+564
+01:21:16,700 --> 01:21:37,700
+Hier haben wir jetzt eine Filtermaske, die ist quadratisch, 3x3. Das bedeutet, die Filtermaske wird auf das Bild gelegt, den Bildpunkt in der Mitte, typischerweise an der Koordinate, dort wo die Mitte der Filtermaske zu liegen kommt.
+
+565
+01:21:37,700 --> 01:21:49,700
+Da ist die Koordinate, für die ich den Ausgangsbildpunkt berechnen will. Den Ausgangsbild berechne ich durch gewichtete Überlagerung aller Amplituden, die unter dieser Maske zu liegen kommen.
+
+566
+01:21:50,700 --> 01:21:54,700
+Das ist die gewichtete Überlagerung. Das Gewicht ist das, was in der Maske drinsteht.
+
+567
+01:21:54,700 --> 01:22:18,700
+Unser Ausgangsbild H an der Stelle MN hängt dann ab von dem Eingangsbild an der Stelle MN und der Umgebung.
+
+568
+01:22:19,700 --> 01:22:30,700
+Und ein Bildpunkt an der Stelle M plus G, M plus L wird gewichtet mit der Amplitude, die diese Filtermaske an der Stelle KL hat.
+
+569
+01:22:31,700 --> 01:22:34,700
+Wir summieren auf über die gesamte Filtermaske.
+
+570
+01:22:35,700 --> 01:22:51,700
+Typischerweise, was man macht, das K in diesem Beispiel ist die Menge Minus 101 und das L entsprechend.
+
+571
+01:22:52,700 --> 01:22:57,700
+Das sind die Werte, die das annimmt.
+
+572
+01:22:58,700 --> 01:23:05,700
+Und damit sitzt dann dieses Filter symmetrisch oder der Ausgabewert sitzt im Zentrum dieses Filters.
+
+573
+01:23:11,700 --> 01:23:16,700
+Wir haben hier jetzt einmal ein Beispiel, wieder dieser Boxfilter.
+
+574
+01:23:16,700 --> 01:23:23,700
+Da die Gewichtung aller Bildpunkte hier gleich ist, können wir jetzt auch sagen, das ist ein Mittelwertfilter.
+
+575
+01:23:24,700 --> 01:23:27,700
+Wir haben hier vorne eine Gewichtung mit einem Neuntel.
+
+576
+01:23:28,700 --> 01:23:42,700
+Das wird typischerweise gemacht, damit das Eingangswerteintervall genauso groß ist wie das Ausgangswerteintervall im Sinne von vorne kommen irgendwelche Zahlen zwischen 0 und 255 rein.
+
+577
+01:23:42,700 --> 01:23:50,700
+Dann wird am Ausgang dieses Filters das Ausgabebild auch irgendwelche Werte zwischen 0 und 255 haben.
+
+578
+01:23:53,700 --> 01:24:00,700
+Wir haben jetzt hier ein Beispiel, ein Eingangsbild mit zwei Amplituden.
+
+579
+01:24:01,700 --> 01:24:06,700
+Das Dunkle hat den Grauwert 0 und das Helle hat den Grauwert 90.
+
+580
+01:24:07,700 --> 01:24:08,700
+Die Zahlen stehen da auch drin.
+
+581
+01:24:13,700 --> 01:24:22,700
+Wenn ich jetzt also diese Maske 3x3 auf das Eingangsbild lege, dann kann ich sie nur bis hier hin schieben.
+
+582
+01:24:23,700 --> 01:24:27,700
+Das heißt, das hier ist der erste Ausgangsbildpunkt, den ich berechnen kann.
+
+583
+01:24:28,700 --> 01:24:41,700
+Diesen hier kann ich nicht berechnen, weil bei diesem Bildpunkt würde ja die Maske so zu liegen kommen und wäre dann außerhalb des Eingangsbildes.
+
+584
+01:24:43,700 --> 01:24:48,700
+Wenn wir jetzt hier den Mittelwert bilden über die Nullen, dann kommt hier natürlich eine 0 raus.
+
+585
+01:24:51,700 --> 01:24:53,700
+Wir werden sie dann um einen verschieben.
+
+586
+01:24:54,700 --> 01:25:00,700
+Dann haben wir jetzt 8x0 und eine 90. Die teilen wir durch 9, dann kommt eine 10 raus.
+
+587
+01:25:02,700 --> 01:25:09,700
+Hier werden wir jetzt 92er. Für diesen Bildpunkt haben wir zweimal die 90 drin, dann wird eine 20 rauskommen, 30.
+
+588
+01:25:10,700 --> 01:25:12,700
+Hier haben wir jetzt auch 33.
+
+589
+01:25:16,700 --> 01:25:18,700
+Hier haben wir 20 und dann 10.
+
+590
+01:25:19,700 --> 01:25:20,700
+Gucken wir mal, wie das hier so weitergeht.
+
+591
+01:25:21,700 --> 01:25:25,700
+20, 30, 30, weil wir jetzt dreimal die 90 drin haben.
+
+592
+01:25:27,700 --> 01:25:28,700
+Und dann rechnet sich das so weiter.
+
+593
+01:25:28,700 --> 01:25:49,700
+Wir berechnen jetzt für diese Koordinate den Ausgangswert. Wir können jetzt zählen. Wir haben 5x die 90 da drin, 4x die 0. Das heißt, der Ausgangswert wird hier wohl 50 werden.
+
+594
+01:25:49,700 --> 01:26:15,700
+Hier haben wir jetzt das Endergebnis. Wir haben einige Bereiche, da erreichen wir die Maximalamplitude 90.
+
+595
+01:26:16,700 --> 01:26:23,700
+Das sind die Positionen für dieses 3x3 Fenster, wo im Eingangsbild einfach nur die 90 auftaucht.
+
+596
+01:26:25,700 --> 01:26:35,700
+Dann haben wir hier 80, weil diese 0 da drin ist in dem Fenster im Überlappungsbereich und da gibt es alle anderen Bereiche.
+
+597
+01:26:36,700 --> 01:26:42,700
+Was sehen wir noch? Das Ausgangsbild hat zwei Zeilen und zwei Spalten weniger als das Eingangsbild.
+
+598
+01:26:46,700 --> 01:26:54,700
+Da kommt man nicht drum herum. Also die Daten, die man bräuchte, um den Rand zu berechnen, sind einfach nicht da.
+
+599
+01:26:55,700 --> 01:26:59,700
+Da können Sie irgendwelche Tricks anwenden, um sich da irgendwas dazu zu lügen.
+
+600
+01:27:04,700 --> 01:27:09,700
+Das hier ist ein Mittelwertfilter. Jeder Nachbar wird durch seinen Mittelwert ersetzt.
+
+601
+01:27:10,700 --> 01:27:15,700
+Was sehen wir eigentlich? Wir haben links das Eingangsbild mit scharfen Kanten.
+
+602
+01:27:16,700 --> 01:27:19,700
+Da gibt es 0, schwarz und weiß und das Ausgangsbild ist geglättet.
+
+603
+01:27:21,700 --> 01:27:25,700
+Dieser Punkt hier ist noch ein bisschen zu erkennen.
+
+604
+01:27:26,700 --> 01:27:29,700
+Da haben wir jetzt seine 20, aber so richtig auffallen tut er dann auch schon nicht mehr.
+
+605
+01:27:30,700 --> 01:27:34,700
+Und auch das Loch, das wir hier haben, das ist auch irgendwie weggeglättet.
+
+606
+01:27:35,700 --> 01:27:40,700
+Also es ist ein Glättungsfilter. Kanten werden geglättet.
+
+607
+01:27:41,700 --> 01:27:43,700
+Man könnte auch sagen, es ist ein Tiefpassfilter.
+
+608
+01:27:47,700 --> 01:27:52,700
+Das sehen Sie hier zum Beispiel. Links das Originalbild, rechts gefiltert.
+
+609
+01:27:53,700 --> 01:27:55,700
+Ja, das ist unscharf geworden.
+
+610
+01:27:56,700 --> 01:28:00,700
+Die dominanten weißen Linien sind immer noch da.
+
+611
+01:28:00,700 --> 01:28:02,700
+Aber die Kanten sind halt blau.
+
+612
+01:28:10,700 --> 01:28:12,700
+Hier haben wir auch ein Boxfilter.
+
+613
+01:28:13,700 --> 01:28:16,700
+Das ist jetzt natürlich ein triviales Ergebnis.
+
+614
+01:28:17,700 --> 01:28:21,700
+Hier wird letztendlich das Fenster dann rumgelegt.
+
+615
+01:28:22,700 --> 01:28:27,700
+Und dann wird nur der Punkt in der Mitte, in der Kante,
+
+616
+01:28:27,700 --> 01:28:31,700
+nur der Punkt in der Mitte mit 1 gewichtet.
+
+617
+01:28:32,700 --> 01:28:33,700
+Alle anderen werden mit 0 gewichtet.
+
+618
+01:28:34,700 --> 01:28:36,700
+Also da kommt das Original wieder raus.
+
+619
+01:28:37,700 --> 01:28:38,700
+Keine Änderung.
+
+620
+01:28:39,700 --> 01:28:40,700
+Da können Sie die Maske auch so groß machen, wie Sie wollen.
+
+621
+01:28:41,700 --> 01:28:42,700
+Keine Änderung.
+
+622
+01:28:48,700 --> 01:28:54,700
+Mit dem gleichen Argument kann dieses Filter auch, was die Grauwerte angeht,
+
+623
+01:28:55,700 --> 01:28:57,700
+keine Änderung bringen.
+
+624
+01:28:58,700 --> 01:29:01,700
+Aber da wir den Bildpunkt, der hier in der Mitte liegt,
+
+625
+01:29:02,700 --> 01:29:04,700
+durch den Bildpunkt an dieser Stelle ersetzen,
+
+626
+01:29:05,700 --> 01:29:06,700
+wird jetzt das Bild verschieben.
+
+627
+01:29:10,700 --> 01:29:12,700
+Und ganz rechts hatten wir nichts.
+
+628
+01:29:13,700 --> 01:29:18,700
+Also muss man sich da etwas ausdenken.
+
+629
+01:29:24,700 --> 01:29:35,700
+Was haben wir denn hier?
+
+630
+01:29:40,700 --> 01:29:45,700
+Also das Ausgangsbild wird in seiner Amplitude verdoppelt.
+
+631
+01:29:46,700 --> 01:29:49,700
+Entschuldigung, das Eingangsbild.
+
+632
+01:29:49,700 --> 01:29:51,700
+Das Eingangsbild ist im Bereich 0 bis 255,
+
+633
+01:29:52,700 --> 01:29:53,700
+wird im Bereich 0 bis 511,
+
+634
+01:29:56,700 --> 01:29:57,700
+510.
+
+635
+01:29:59,700 --> 01:30:02,700
+Und dann wird das tiefpassgefilterte Bild abgezogen.
+
+636
+01:30:06,700 --> 01:30:08,700
+Dann müsste doch alles irgendwie etwas schärfer erscheinen.
+
+637
+01:30:09,700 --> 01:30:10,700
+Mal gucken, ob das so ist.
+
+638
+01:30:11,700 --> 01:30:14,700
+Ja, ich würde jetzt sagen, da ist der Kontrast verstärkt.
+
+639
+01:30:15,700 --> 01:30:17,700
+Die Kanten sind alle etwas mehr betont.
+
+640
+01:30:18,700 --> 01:30:20,700
+Hier haben wir so eine dunkle Linie.
+
+641
+01:30:21,700 --> 01:30:22,700
+Das ist hier dunkler geworden.
+
+642
+01:30:23,700 --> 01:30:24,700
+Der Kontrast ist erhöht.
+
+643
+01:30:25,700 --> 01:30:26,700
+Das Bild macht einen schärferen Eindruck.
+
+644
+01:30:33,700 --> 01:30:37,700
+Und hier haben wir das jetzt angewendet auf das ganze Foto,
+
+645
+01:30:38,700 --> 01:30:39,700
+nicht nur auf das Auge.
+
+646
+01:30:40,700 --> 01:30:42,700
+Das Eingangsbild, hier das Ausgangsbild.
+
+647
+01:30:43,700 --> 01:30:44,700
+Es wirkt auch irgendwie lebendiger,
+
+648
+01:30:44,700 --> 01:30:46,700
+weil eben die Schwarz-Weiß-Kontraste,
+
+649
+01:30:47,700 --> 01:30:48,700
+die Unterschiede zwischen den nachbarten Bildpunkten,
+
+650
+01:30:49,700 --> 01:30:50,700
+größer werden.
+
+651
+01:30:51,700 --> 01:30:53,700
+Das sehen Sie auch hier in der Textur des Jacketts.
+
+652
+01:30:54,700 --> 01:30:55,700
+Das ist hier stärker geworden.
+
+653
+01:30:56,700 --> 01:30:57,700
+Und das führt dann auch teilweise dazu,
+
+654
+01:30:58,700 --> 01:30:59,700
+hier sehen Sie es, da gibt es weiße Bildpunkte zu übersteuern.
+
+655
+01:31:08,700 --> 01:31:10,700
+Hier haben wir den Sobelfilter.
+
+656
+01:31:15,700 --> 01:31:17,700
+Eingangsbild, Ausgangsbild.
+
+657
+01:31:18,700 --> 01:31:19,700
+Was passiert hier?
+
+658
+01:31:20,700 --> 01:31:21,700
+Wir können dieses Filter,
+
+659
+01:31:22,700 --> 01:31:24,700
+wir können es in zwei Richtungen angucken.
+
+660
+01:31:25,700 --> 01:31:28,700
+Wir können einmal schauen in vertikaler Richtung.
+
+661
+01:31:32,700 --> 01:31:35,700
+In vertikaler Richtung steht da 1, 2, 1.
+
+662
+01:31:36,700 --> 01:31:37,700
+Wenn wir es noch etwas vereinfachen,
+
+663
+01:31:38,700 --> 01:31:39,700
+steht in vertikaler Richtung 1, 1, 1.
+
+664
+01:31:40,700 --> 01:31:42,700
+Also ein Mittelwertfilter, ein Tiefpassfilter.
+
+665
+01:31:43,700 --> 01:31:45,700
+Das ist sicherlich ein Tiefpassfilter.
+
+666
+01:31:46,700 --> 01:31:48,700
+Nicht so eine starke Glättung wie bei 1, 1, 1.
+
+667
+01:31:49,700 --> 01:31:51,700
+Das Originalwert ist ja etwas mehr betont
+
+668
+01:31:52,700 --> 01:31:54,700
+als die benachbarten Bildpunkte.
+
+669
+01:31:55,700 --> 01:31:56,700
+Wir können dieses Filter
+
+670
+01:31:57,700 --> 01:31:59,700
+auch mal in eine andere Richtung angucken.
+
+671
+01:32:00,700 --> 01:32:01,700
+In dieser Richtung.
+
+672
+01:32:02,700 --> 01:32:03,700
+Da wird der,
+
+673
+01:32:04,700 --> 01:32:05,700
+ich gehe vielleicht einmal hoch,
+
+674
+01:32:06,700 --> 01:32:07,700
+hier in die Mitte,
+
+675
+01:32:08,700 --> 01:32:09,700
+da wird der,
+
+676
+01:32:09,700 --> 01:32:10,700
+ich gehe vielleicht einmal hoch,
+
+677
+01:32:11,700 --> 01:32:12,700
+hier in die Mitte,
+
+678
+01:32:13,700 --> 01:32:15,700
+da wird der Wert des aktuellen Bildpunkts,
+
+679
+01:32:16,700 --> 01:32:17,700
+von dem wir das gerade berechnen,
+
+680
+01:32:18,700 --> 01:32:19,700
+das spielt gar keine Rolle,
+
+681
+01:32:20,700 --> 01:32:21,700
+aber es wird die Differenz gebildet
+
+682
+01:32:22,700 --> 01:32:24,700
+zwischen dem linken und dem rechten Nachbarn.
+
+683
+01:32:25,700 --> 01:32:27,700
+Wenn die gleich hell sind,
+
+684
+01:32:28,700 --> 01:32:29,700
+kommt eben 0 raus.
+
+685
+01:32:30,700 --> 01:32:31,700
+Wenn die sich unterscheiden,
+
+686
+01:32:32,700 --> 01:32:34,700
+wird diese Differenz verstärkt.
+
+687
+01:32:35,700 --> 01:32:37,700
+Und so lässt sich auch dieses Ergebnis erklären.
+
+688
+01:32:39,700 --> 01:32:41,700
+In horizontaler Richtung
+
+689
+01:32:42,700 --> 01:32:44,700
+tauchen die Kanten auf.
+
+690
+01:32:45,700 --> 01:32:47,700
+Kanten, da haben wir ja auf der linken und rechten Seite
+
+691
+01:32:48,700 --> 01:32:49,700
+eines Bildpunktes,
+
+692
+01:32:50,700 --> 01:32:51,700
+die linker und rechter Nachbar sind,
+
+693
+01:32:52,700 --> 01:32:53,700
+unterscheiden sich in der Helligkeit.
+
+694
+01:32:54,700 --> 01:32:55,700
+Das wird auch noch verstärkt,
+
+695
+01:32:56,700 --> 01:32:57,700
+die Kanten tauchen auf.
+
+696
+01:32:58,700 --> 01:32:59,700
+In vertikaler Richtung
+
+697
+01:33:00,700 --> 01:33:01,700
+sind die Kanten hier zum Beispiel
+
+698
+01:33:02,700 --> 01:33:03,700
+praktisch nicht da.
+
+699
+01:33:04,700 --> 01:33:05,700
+Diagonalen
+
+700
+01:33:06,700 --> 01:33:07,700
+erkennt man teilweise noch,
+
+701
+01:33:08,700 --> 01:33:09,700
+weil ein Diagonaler
+
+702
+01:33:10,700 --> 01:33:11,700
+ist ja eine Kombination aus einer vertikalen
+
+703
+01:33:12,700 --> 01:33:13,700
+und einer horizontalen Kante.
+
+704
+01:33:22,700 --> 01:33:24,700
+Damit haben wir jetzt das Sobelfilter,
+
+705
+01:33:25,700 --> 01:33:26,700
+und wenn Sie dieses Sobelfilter
+
+706
+01:33:27,700 --> 01:33:28,700
+um 90 Grad drehen,
+
+707
+01:33:29,700 --> 01:33:30,700
+dann kriegen Sie die horizontalen Kanten.
+
+708
+01:33:35,700 --> 01:33:36,700
+Dann können Sie aus Signalen und Systemen
+
+709
+01:33:37,700 --> 01:33:38,700
+den Begriff Faltung
+
+710
+01:33:46,700 --> 01:33:47,700
+bei der
+
+711
+01:33:49,700 --> 01:33:50,700
+Filterung, bei der Faltung,
+
+712
+01:33:51,700 --> 01:33:52,700
+bei der Filterung
+
+713
+01:33:53,700 --> 01:33:54,700
+ist letztendlich,
+
+714
+01:33:55,700 --> 01:33:56,700
+die Koordinaten sind unterschiedlich.
+
+715
+01:33:57,700 --> 01:33:58,700
+Wir haben
+
+716
+01:33:59,700 --> 01:34:00,700
+unser Filterkörner
+
+717
+01:34:01,700 --> 01:34:02,700
+oder Faltungskörner,
+
+718
+01:34:03,700 --> 01:34:04,700
+wie Sie auch immer das nennen wollen,
+
+719
+01:34:05,700 --> 01:34:06,700
+E von KL.
+
+720
+01:34:07,700 --> 01:34:08,700
+Bei der Filterung,
+
+721
+01:34:09,700 --> 01:34:10,700
+so wie man es typischerweise
+
+722
+01:34:11,700 --> 01:34:12,700
+in der Bildverarbeitung macht,
+
+723
+01:34:13,700 --> 01:34:14,700
+nimmt man dann das Eingangsbild,
+
+724
+01:34:15,700 --> 01:34:16,700
+Koordinate, um die es geht,
+
+725
+01:34:17,700 --> 01:34:18,700
+plus
+
+726
+01:34:18,700 --> 01:34:19,700
+die Fensterkoordinate.
+
+727
+01:34:20,700 --> 01:34:21,700
+Bei der Faltung
+
+728
+01:34:23,700 --> 01:34:24,700
+haben Sie minus die Fensterkoordinate.
+
+729
+01:34:26,700 --> 01:34:27,700
+Wenn Ihre
+
+730
+01:34:28,700 --> 01:34:29,700
+Faltungsmaske
+
+731
+01:34:29,700 --> 01:34:30,700
+oder Filtermaske symmetrisch ist,
+
+732
+01:34:30,700 --> 01:34:31,700
+dann macht das also
+
+733
+01:34:32,700 --> 01:34:33,700
+gar keinen Unterschied.
+
+734
+01:34:41,700 --> 01:34:42,700
+Wenn sie es nicht ist,
+
+735
+01:34:43,700 --> 01:34:44,700
+dann macht es keinen Unterschied.
+
+736
+01:34:46,700 --> 01:34:47,700
+Die linearen Filter,
+
+737
+01:34:48,700 --> 01:34:49,700
+also diese Boxfilter,
+
+738
+01:34:56,700 --> 01:34:57,700
+ja, das sind lineare Filter.
+
+739
+01:34:58,700 --> 01:34:59,700
+Also, ob Sie
+
+740
+01:35:00,700 --> 01:35:01,700
+die Bilder erst,
+
+741
+01:35:02,700 --> 01:35:03,700
+einzelne Bilder erst skalieren
+
+742
+01:35:05,700 --> 01:35:06,700
+und addieren
+
+743
+01:35:08,700 --> 01:35:09,700
+oder das hinterher machen,
+
+744
+01:35:11,700 --> 01:35:12,700
+hier wird erst skaliert,
+
+745
+01:35:13,700 --> 01:35:14,700
+dann addiert,
+
+746
+01:35:14,700 --> 01:35:15,700
+dann wird das Filter angewendet
+
+747
+01:35:16,700 --> 01:35:17,700
+oder Sie wenden erst das Filter an
+
+748
+01:35:19,700 --> 01:35:20,700
+und dann
+
+749
+01:35:21,700 --> 01:35:22,700
+multiplizieren und addieren Sie,
+
+750
+01:35:23,700 --> 01:35:24,700
+ist völlig egal.
+
+751
+01:35:30,700 --> 01:35:31,700
+Sie haben auch eine Verschiebungsinvarianz.
+
+752
+01:35:36,700 --> 01:35:37,700
+Wir haben hier unser Ausgangsbild,
+
+753
+01:35:38,700 --> 01:35:39,700
+wir haben hier unser Eingangsbild,
+
+754
+01:35:40,700 --> 01:35:41,700
+da wird eine Verschiebeoperation gemacht
+
+755
+01:35:42,700 --> 01:35:43,700
+und M-Bildpunkte nach links,
+
+756
+01:35:43,700 --> 01:35:44,700
+M-Bildpunkte nach unten.
+
+757
+01:35:48,700 --> 01:35:49,700
+Es gibt das hier.
+
+758
+01:35:50,700 --> 01:35:51,700
+Wir können aber auch erst
+
+759
+01:35:53,700 --> 01:35:54,700
+das
+
+760
+01:35:54,700 --> 01:35:55,700
+Eingangsbild verschieben
+
+761
+01:35:56,700 --> 01:35:58,700
+und dann die Filteroperation anwenden.
+
+762
+01:36:01,700 --> 01:36:02,700
+Es ist,
+
+763
+01:36:02,700 --> 01:36:03,700
+so ein lineares Filter ist
+
+764
+01:36:03,700 --> 01:36:04,700
+linear shift invariant.
+
+765
+01:36:05,700 --> 01:36:06,700
+Aus Signale und Systeme
+
+766
+01:36:06,700 --> 01:36:07,700
+kennen Sie die linearen
+
+767
+01:36:07,700 --> 01:36:08,700
+Zeitinvarianten Filter,
+
+768
+01:36:09,700 --> 01:36:10,700
+weil dort typischerweise von
+
+769
+01:36:11,700 --> 01:36:12,700
+eindimensionalen Zeitsignalen
+
+770
+01:36:12,700 --> 01:36:13,700
+ausgegangen wird.
+
+771
+01:36:13,700 --> 01:36:14,700
+Hier haben wir
+
+772
+01:36:15,700 --> 01:36:16,700
+Ortssignale,
+
+773
+01:36:16,700 --> 01:36:17,700
+deswegen ist hier die
+
+774
+01:36:17,700 --> 01:36:18,700
+Zeitkomponente aus
+
+775
+01:36:18,700 --> 01:36:19,700
+Signale und Systeme ersetzt
+
+776
+01:36:19,700 --> 01:36:20,700
+durch die
+
+777
+01:36:20,700 --> 01:36:21,700
+Verschiebekomponente,
+
+778
+01:36:23,700 --> 01:36:24,700
+die man beim
+
+779
+01:36:24,700 --> 01:36:25,700
+Orthand hat.
+
+780
+01:36:31,700 --> 01:36:32,700
+Ja,
+
+781
+01:36:32,700 --> 01:36:33,700
+Sie können das Ganze durch
+
+782
+01:36:33,700 --> 01:36:34,700
+Faltungsoperationen darstellen.
+
+783
+01:36:38,700 --> 01:36:39,700
+F gefaltet mit G
+
+784
+01:36:40,700 --> 01:36:41,700
+für X und Y
+
+785
+01:36:41,700 --> 01:36:42,700
+und hier sehen wir jetzt auch mal
+
+786
+01:36:42,700 --> 01:36:43,700
+in der Formelschreibweise,
+
+787
+01:36:43,700 --> 01:36:44,700
+dass unsere
+
+788
+01:36:44,700 --> 01:36:45,700
+Filter symmetrisch
+
+789
+01:36:45,700 --> 01:36:46,700
+sind.
+
+790
+01:36:46,700 --> 01:36:47,700
+Und wenn wir jetzt hier
+
+791
+01:36:47,700 --> 01:36:48,700
+dieses K haben
+
+792
+01:36:48,700 --> 01:36:49,700
+und das L,
+
+793
+01:36:49,700 --> 01:36:50,700
+egal wie Sie K und L
+
+794
+01:36:51,700 --> 01:36:52,700
+wählen,
+
+795
+01:36:56,700 --> 01:36:57,700
+der Filterkörner ist immer
+
+796
+01:36:57,700 --> 01:36:58,700
+ungradzahlig.
+
+797
+01:37:01,700 --> 01:37:02,700
+Wenn K2 ist
+
+798
+01:37:03,700 --> 01:37:04,700
+und L1,
+
+799
+01:37:04,700 --> 01:37:05,700
+dann haben Sie einen
+
+800
+01:37:05,700 --> 01:37:06,700
+Filter der Größe
+
+801
+01:37:06,700 --> 01:37:07,700
+5 mal 3.
+
+802
+01:37:08,700 --> 01:37:09,700
+Und das ist das,
+
+803
+01:37:09,700 --> 01:37:10,700
+was Sie brauchen,
+
+804
+01:37:10,700 --> 01:37:11,700
+damit Sie keine Verschiebung
+
+805
+01:37:11,700 --> 01:37:12,700
+Ihres Bildes durchführen.
+
+806
+01:37:12,700 --> 01:37:13,700
+Wenn wir
+
+807
+01:37:13,700 --> 01:37:14,700
+ein 2 mal 2
+
+808
+01:37:14,700 --> 01:37:15,700
+Filter hätten,
+
+809
+01:37:15,700 --> 01:37:16,700
+dann würden Sie Ihr Bild
+
+810
+01:37:16,700 --> 01:37:17,700
+letztendlich immer verschieben.
+
+811
+01:37:18,700 --> 01:37:19,700
+Und das wollen wir nicht.
+
+812
+01:37:21,700 --> 01:37:22,700
+Zumindest normalerweise nicht.
+
+813
+01:37:26,700 --> 01:37:27,700
+Wenn wir jetzt mehrere
+
+814
+01:37:27,700 --> 01:37:28,700
+von diesen Filtern haben,
+
+815
+01:37:29,700 --> 01:37:30,700
+Filterkörner F,
+
+816
+01:37:30,700 --> 01:37:31,700
+Filterkörner G,
+
+817
+01:37:33,700 --> 01:37:34,700
+wie Sie da falten,
+
+818
+01:37:34,700 --> 01:37:35,700
+das ist völlig egal,
+
+819
+01:37:35,700 --> 01:37:36,700
+auch in welcher Reihenfolge
+
+820
+01:37:36,700 --> 01:37:37,700
+Sie falten,
+
+821
+01:37:37,700 --> 01:37:38,700
+ist egal,
+
+822
+01:37:41,700 --> 01:37:42,700
+was ist diese
+
+823
+01:37:42,700 --> 01:37:43,700
+praktische Bedeutung
+
+824
+01:37:43,700 --> 01:37:44,700
+von der Assoziativität.
+
+825
+01:37:46,700 --> 01:37:47,700
+Wenn G Ihr Eingangsbild
+
+826
+01:37:48,700 --> 01:37:49,700
+ist,
+
+827
+01:37:50,700 --> 01:37:51,700
+dann können Sie dieses
+
+828
+01:37:51,700 --> 01:37:52,700
+Eingangsbild einmal filtern
+
+829
+01:37:52,700 --> 01:37:53,700
+und dann filtern Sie
+
+830
+01:37:53,700 --> 01:37:54,700
+ein zweites Mal.
+
+831
+01:37:56,700 --> 01:37:57,700
+Wir können aber auch
+
+832
+01:37:59,700 --> 01:38:00,700
+erst die beiden Filterkörner
+
+833
+01:38:00,700 --> 01:38:01,700
+miteinander falten
+
+834
+01:38:04,700 --> 01:38:05,700
+und dann das Ergebnis
+
+835
+01:38:05,700 --> 01:38:06,700
+dieser Faltung
+
+836
+01:38:07,700 --> 01:38:08,700
+mit dem Bild falten.
+
+837
+01:38:13,700 --> 01:38:14,700
+Wenn Sie das so machen,
+
+838
+01:38:14,700 --> 01:38:15,700
+Sie filtern das Bild G
+
+839
+01:38:15,700 --> 01:38:16,700
+erst mit Filter F2
+
+840
+01:38:17,700 --> 01:38:18,700
+und dann das Bild G
+
+841
+01:38:18,700 --> 01:38:19,700
+mit Filter F1,
+
+842
+01:38:20,700 --> 01:38:21,700
+dann müssen Sie dieses Bild G,
+
+843
+01:38:21,700 --> 01:38:22,700
+das ist das große,
+
+844
+01:38:22,700 --> 01:38:23,700
+das sind die Megapixel,
+
+845
+01:38:24,700 --> 01:38:26,700
+2 mal durch Ihre CPU schleusen.
+
+846
+01:38:29,700 --> 01:38:30,700
+Wenn Sie die Filterkörner
+
+847
+01:38:30,700 --> 01:38:31,700
+F1 und F2
+
+848
+01:38:33,700 --> 01:38:34,700
+erst miteinander falten,
+
+849
+01:38:34,700 --> 01:38:35,700
+dann kann es sein,
+
+850
+01:38:35,700 --> 01:38:36,700
+dass dieses Filter,
+
+851
+01:38:36,700 --> 01:38:37,700
+resultierende Filter F,
+
+852
+01:38:39,700 --> 01:38:40,700
+größer ist
+
+853
+01:38:41,700 --> 01:38:42,700
+als die individuellen Filter
+
+854
+01:38:44,700 --> 01:38:45,700
+F1 und F2.
+
+855
+01:38:45,700 --> 01:38:46,700
+Typischerweise ist das auch so.
+
+856
+01:38:49,700 --> 01:38:50,700
+Wenn F1 und F2
+
+857
+01:38:50,700 --> 01:38:51,700
+3 mal 3 Filter sind,
+
+858
+01:38:51,700 --> 01:38:52,700
+dann wäre F
+
+859
+01:38:52,700 --> 01:38:53,700
+ein 5 mal 5 Filter.
+
+860
+01:38:55,700 --> 01:38:56,700
+Aber ist egal,
+
+861
+01:38:56,700 --> 01:38:57,700
+dann nennen Sie es 5 mal 5 Filter,
+
+862
+01:38:58,700 --> 01:38:59,700
+filtern damit Ihr Bild,
+
+863
+01:38:59,700 --> 01:39:00,700
+müssen aber dieses Bild
+
+864
+01:39:00,700 --> 01:39:01,700
+nur einmal durch die CPU schleusen
+
+865
+01:39:01,700 --> 01:39:02,700
+und damit sind Sie dann
+
+866
+01:39:02,700 --> 01:39:03,700
+viel schneller.
+
+867
+01:39:05,700 --> 01:39:06,700
+Erst gilt
+
+868
+01:39:06,700 --> 01:39:07,700
+das Distributivgesetz
+
+869
+01:39:08,700 --> 01:39:09,700
+und auch Multiplikation
+
+870
+01:39:10,700 --> 01:39:11,700
+mit irgendeinem Skalar
+
+871
+01:39:11,700 --> 01:39:12,700
+können Sie zu einem
+
+872
+01:39:12,700 --> 01:39:13,700
+beliebigen Zeitpunkt
+
+873
+01:39:13,700 --> 01:39:14,700
+in Ihrer Rechenreihenfolge
+
+874
+01:39:15,700 --> 01:39:16,700
+durchführen.
+
+875
+01:39:21,700 --> 01:39:23,700
+Wenn Filter separierbar sind,
+
+876
+01:39:24,700 --> 01:39:26,700
+dann können Sie Rechenzeit sparen.
+
+877
+01:39:28,700 --> 01:39:29,700
+Gegebenenfalls.
+
+878
+01:39:33,700 --> 01:39:34,700
+Stellen wir uns vor,
+
+879
+01:39:34,700 --> 01:39:35,700
+wir haben hier einen Filter,
+
+880
+01:39:38,700 --> 01:39:39,700
+der nur eine Spalte
+
+881
+01:39:40,700 --> 01:39:41,700
+von Werten hat,
+
+882
+01:39:41,700 --> 01:39:42,700
+die von 0 verschieden ist
+
+883
+01:39:42,700 --> 01:39:43,700
+und hier haben wir einen Filter,
+
+884
+01:39:43,700 --> 01:39:44,700
+da ist nur eine Zeile
+
+885
+01:39:44,700 --> 01:39:45,700
+von 0 verschieden.
+
+886
+01:39:50,700 --> 01:39:51,700
+Wenn wir jetzt
+
+887
+01:39:51,700 --> 01:39:52,700
+diese beiden
+
+888
+01:39:52,700 --> 01:39:53,700
+Filter
+
+889
+01:39:55,700 --> 01:39:56,700
+aufeinander loslassen,
+
+890
+01:39:56,700 --> 01:39:57,700
+kriegen wir
+
+891
+01:39:58,700 --> 01:39:59,700
+das hier raus.
+
+892
+01:39:59,700 --> 01:40:00,700
+Also ein Beispiel.
+
+893
+01:40:00,700 --> 01:40:01,700
+Wir haben hier
+
+894
+01:40:01,700 --> 01:40:02,700
+1, 2, 1.
+
+895
+01:40:03,700 --> 01:40:04,700
+Das ist irgendwie ein
+
+896
+01:40:04,700 --> 01:40:05,700
+Tiefpassfilter
+
+897
+01:40:05,700 --> 01:40:06,700
+in vertikaler Richtung.
+
+898
+01:40:08,700 --> 01:40:09,700
+1, 0, minus 1.
+
+899
+01:40:11,700 --> 01:40:12,700
+Das ist die
+
+900
+01:40:12,700 --> 01:40:13,700
+Differenzbildung,
+
+901
+01:40:13,700 --> 01:40:14,700
+also eine Hochpassfilterung
+
+902
+01:40:14,700 --> 01:40:15,700
+oder Kantendetektion
+
+903
+01:40:16,700 --> 01:40:17,700
+in horizontaler Richtung.
+
+904
+01:40:17,700 --> 01:40:18,700
+Wenn wir das miteinander
+
+905
+01:40:18,700 --> 01:40:19,700
+multiplizieren,
+
+906
+01:40:19,700 --> 01:40:20,700
+kriegen wir
+
+907
+01:40:20,700 --> 01:40:21,700
+dies hier raus
+
+908
+01:40:21,700 --> 01:40:22,700
+und das ist das,
+
+909
+01:40:22,700 --> 01:40:23,700
+was wir eben schon
+
+910
+01:40:23,700 --> 01:40:24,700
+als Sobelfilter haben.
+
+911
+01:40:24,700 --> 01:40:25,700
+Also damit ist der
+
+912
+01:40:25,700 --> 01:40:26,700
+Sobelfilter offensichtlich
+
+913
+01:40:26,700 --> 01:40:27,700
+separierbar.
+
+914
+01:40:33,700 --> 01:40:34,700
+Hier ein anderes
+
+915
+01:40:34,700 --> 01:40:35,700
+Beispiel.
+
+916
+01:40:35,700 --> 01:40:36,700
+Auch dieses Filter
+
+917
+01:40:36,700 --> 01:40:37,700
+ist separierbar
+
+918
+01:40:37,700 --> 01:40:38,700
+und unser
+
+919
+01:40:38,700 --> 01:40:39,700
+Mittelwertfilter,
+
+920
+01:40:39,700 --> 01:40:40,700
+das hatten wir bisher
+
+921
+01:40:40,700 --> 01:40:42,700
+als 3x3 Box,
+
+922
+01:40:42,700 --> 01:40:43,700
+können wir auch
+
+923
+01:40:43,700 --> 01:40:44,700
+darstellen als
+
+924
+01:40:44,700 --> 01:40:45,700
+zwei
+
+925
+01:40:45,700 --> 01:40:46,700
+separierte
+
+926
+01:40:46,700 --> 01:40:47,700
+Filter
+
+927
+01:40:48,700 --> 01:40:49,700
+mit diesen beiden
+
+928
+01:40:49,700 --> 01:40:50,700
+Kanten.
+
+929
+01:40:55,700 --> 01:40:56,700
+Das heißt,
+
+930
+01:40:56,700 --> 01:40:57,700
+ein separierbares
+
+931
+01:40:57,700 --> 01:40:58,700
+Filter,
+
+932
+01:40:58,700 --> 01:40:59,700
+können wir
+
+933
+01:40:59,700 --> 01:41:00,700
+in zwei Komponenten
+
+934
+01:41:01,700 --> 01:41:02,700
+zerlegen.
+
+935
+01:41:06,700 --> 01:41:07,700
+Das kann man dann
+
+936
+01:41:07,700 --> 01:41:08,700
+benutzen,
+
+937
+01:41:08,700 --> 01:41:09,700
+um Bilder
+
+938
+01:41:09,700 --> 01:41:10,700
+besonders schnell
+
+939
+01:41:10,700 --> 01:41:11,700
+zu berechnen.
+
+940
+01:41:13,700 --> 01:41:14,700
+Unser Ausgangsbild H
+
+941
+01:41:15,700 --> 01:41:16,700
+wollen wir
+
+942
+01:41:17,700 --> 01:41:18,700
+berechnen
+
+943
+01:41:18,700 --> 01:41:19,700
+durch Faltung
+
+944
+01:41:19,700 --> 01:41:20,700
+des Bildes F
+
+945
+01:41:20,700 --> 01:41:21,700
+mit unserem Körnel G.
+
+946
+01:41:22,700 --> 01:41:23,700
+Entschuldigung.
+
+947
+01:41:25,700 --> 01:41:26,700
+Wir wollen
+
+948
+01:41:27,700 --> 01:41:28,700
+das Ausgangsbild H
+
+949
+01:41:28,700 --> 01:41:29,700
+berechnen
+
+950
+01:41:30,700 --> 01:41:31,700
+aus dem
+
+951
+01:41:31,700 --> 01:41:32,700
+Eingangsbild G
+
+952
+01:41:32,700 --> 01:41:33,700
+und wir
+
+953
+01:41:33,700 --> 01:41:34,700
+falten mit dem
+
+954
+01:41:34,700 --> 01:41:35,700
+Körnel F.
+
+955
+01:41:35,700 --> 01:41:36,700
+Den F können wir
+
+956
+01:41:36,700 --> 01:41:37,700
+jetzt zerlegen,
+
+957
+01:41:37,700 --> 01:41:38,700
+separieren
+
+958
+01:41:38,700 --> 01:41:39,700
+nach dem,
+
+959
+01:41:39,700 --> 01:41:40,700
+was hier oben steht.
+
+960
+01:41:40,700 --> 01:41:41,700
+Dann können wir aus
+
+961
+01:41:41,700 --> 01:41:42,700
+dieser Doppelsumme
+
+962
+01:41:42,700 --> 01:41:43,700
+zwei Summen machen.
+
+963
+01:41:44,700 --> 01:41:45,700
+Hier eine Summe
+
+964
+01:41:45,700 --> 01:41:46,700
+über L,
+
+965
+01:41:46,700 --> 01:41:47,700
+hier eine Summe
+
+966
+01:41:47,700 --> 01:41:48,700
+über K.
+
+967
+01:41:48,700 --> 01:41:49,700
+Hier haben wir
+
+968
+01:41:49,700 --> 01:41:50,700
+unser Eingangsbild
+
+969
+01:41:51,700 --> 01:41:52,700
+und falten das
+
+970
+01:41:52,700 --> 01:41:53,700
+mit dem
+
+971
+01:41:53,700 --> 01:41:54,700
+F R.
+
+972
+01:41:55,700 --> 01:41:56,700
+In diesem Falle
+
+973
+01:41:56,700 --> 01:41:57,700
+eine zeilenweise
+
+974
+01:41:57,700 --> 01:41:58,700
+Faltung.
+
+975
+01:41:59,700 --> 01:42:00,700
+Das Ergebnis
+
+976
+01:42:00,700 --> 01:42:01,700
+merken wir uns
+
+977
+01:42:03,700 --> 01:42:04,700
+und haben dann hier
+
+978
+01:42:04,700 --> 01:42:05,700
+eine spaltenweise
+
+979
+01:42:05,700 --> 01:42:06,700
+Faltung.
+
+980
+01:42:09,700 --> 01:42:10,700
+Dann hatte ich
+
+981
+01:42:10,700 --> 01:42:11,700
+eben gesagt,
+
+982
+01:42:12,700 --> 01:42:13,700
+dass
+
+983
+01:42:14,700 --> 01:42:15,700
+möglichst wenige,
+
+984
+01:42:18,700 --> 01:42:19,700
+dass man das Bild
+
+985
+01:42:19,700 --> 01:42:20,700
+möglichst wenig
+
+986
+01:42:20,700 --> 01:42:21,700
+selten durch die
+
+987
+01:42:21,700 --> 01:42:22,700
+CPU ziehen will.
+
+988
+01:42:23,700 --> 01:42:24,700
+Wenn wir aus einer
+
+989
+01:42:24,700 --> 01:42:25,700
+Faltungsoperation
+
+990
+01:42:25,700 --> 01:42:26,700
+zwei machen,
+
+991
+01:42:26,700 --> 01:42:27,700
+muss man dann nicht
+
+992
+01:42:27,700 --> 01:42:28,700
+das Bild zweimal
+
+993
+01:42:28,700 --> 01:42:29,700
+durch die CPU ziehen,
+
+994
+01:42:29,700 --> 01:42:30,700
+müssen sie nicht.
+
+995
+01:42:31,700 --> 01:42:32,700
+Wir brauchen hier
+
+996
+01:42:32,700 --> 01:42:33,700
+dieses Bild
+
+997
+01:42:34,700 --> 01:42:35,700
+und diese Zeilen,
+
+998
+01:42:35,700 --> 01:42:36,700
+die müssen sie in der
+
+999
+01:42:36,700 --> 01:42:37,700
+CPU speichern.
+
+1000
+01:42:37,700 --> 01:42:38,700
+Aber wenn sie jetzt
+
+1001
+01:42:38,700 --> 01:42:39,700
+in der vertikalen
+
+1002
+01:42:39,700 --> 01:42:40,700
+Richtung nur drei Zeilen
+
+1003
+01:42:40,700 --> 01:42:41,700
+haben, müssen sie nur
+
+1004
+01:42:41,700 --> 01:42:42,700
+die drei Zeilen speichern.
+
+1005
+01:42:42,700 --> 01:42:43,700
+Die kriegen sie spätestens
+
+1006
+01:42:43,700 --> 01:42:44,700
+in den Level 3 Cache,
+
+1007
+01:42:44,700 --> 01:42:45,700
+kriegen sie die rein.
+
+1008
+01:42:45,700 --> 01:42:46,700
+Damit sind sie hier
+
+1009
+01:42:46,700 --> 01:42:47,700
+dann auch wieder schnell.
+
+1010
+01:42:47,700 --> 01:42:48,700
+Im RAM müssen sie das
+
+1011
+01:42:48,700 --> 01:42:49,700
+Bild nur einmal holen.
+
+1012
+01:42:51,700 --> 01:42:52,700
+Hier haben wir mal
+
+1013
+01:42:52,700 --> 01:42:53,700
+Beispiele von
+
+1014
+01:42:53,700 --> 01:42:54,700
+zwei Filterkörnern.
+
+1015
+01:42:59,700 --> 01:43:00,700
+Dieses Filter hier
+
+1016
+01:43:01,700 --> 01:43:02,700
+können sie zerlegen
+
+1017
+01:43:02,700 --> 01:43:03,700
+in 1,2,1 mal 1,2,1.
+
+1018
+01:43:07,700 --> 01:43:08,700
+Hier haben wir unser
+
+1019
+01:43:08,700 --> 01:43:09,700
+Bild, was wir
+
+1020
+01:43:09,700 --> 01:43:10,700
+filtern wollen.
+
+1021
+01:43:11,700 --> 01:43:12,700
+Also
+
+1022
+01:43:12,700 --> 01:43:13,700
+1,2,1 mit
+
+1023
+01:43:15,700 --> 01:43:16,700
+den
+
+1024
+01:43:16,700 --> 01:43:17,700
+zwei
+
+1025
+01:43:17,700 --> 01:43:18,700
+Filterkörnern.
+
+1026
+01:43:18,700 --> 01:43:19,700
+Das mit
+
+1027
+01:43:20,700 --> 01:43:21,700
+diesen Filter,
+
+1028
+01:43:22,700 --> 01:43:23,700
+mit diesem Bild,
+
+1029
+01:43:23,700 --> 01:43:24,700
+liefert uns dann
+
+1030
+01:43:24,700 --> 01:43:25,700
+diese drei
+
+1031
+01:43:25,700 --> 01:43:26,700
+Werte.
+
+1032
+01:43:27,700 --> 01:43:28,700
+Diese drei Werte
+
+1033
+01:43:28,700 --> 01:43:29,700
+falten wir dann mit dem
+
+1034
+01:43:30,700 --> 01:43:31,700
+Spaltenfilter und
+
+1035
+01:43:31,700 --> 01:43:32,700
+kriegen die 65 raus.
+
+1036
+01:43:37,700 --> 01:43:38,700
+Was manchmal zu Verwirrung
+
+1037
+01:43:38,700 --> 01:43:39,700
+führt, also sie,
+
+1038
+01:43:39,700 --> 01:43:40,700
+wenn sie ein
+
+1039
+01:43:40,700 --> 01:43:41,700
+separierbares Filter
+
+1040
+01:43:41,700 --> 01:43:42,700
+haben, dann falten
+
+1041
+01:43:42,700 --> 01:43:43,700
+sie mit dem einen
+
+1042
+01:43:43,700 --> 01:43:44,700
+Filter und das
+
+1043
+01:43:44,700 --> 01:43:45,700
+Ergebnis, also
+
+1044
+01:43:45,700 --> 01:43:46,700
+wir falten hier mit
+
+1045
+01:43:46,700 --> 01:43:47,700
+dem einen Filter
+
+1046
+01:43:47,700 --> 01:43:48,700
+und das Ergebnis
+
+1047
+01:43:48,700 --> 01:43:49,700
+wird dann genommen und
+
+1048
+01:43:49,700 --> 01:43:50,700
+mit dem zweiten Filter
+
+1049
+01:43:50,700 --> 01:43:51,700
+gefiltert.
+
+1050
+01:43:55,700 --> 01:43:56,700
+Das gilt genauso
+
+1051
+01:43:56,700 --> 01:43:57,700
+für die Fourier-Transformation.
+
+1052
+01:43:57,700 --> 01:43:58,700
+Wenn sie eine
+
+1053
+01:43:58,700 --> 01:43:59,700
+zweidimensionale
+
+1054
+01:43:59,700 --> 01:44:00,700
+Fourier-Transformation machen
+
+1055
+01:44:00,700 --> 01:44:01,700
+wollen, nehmen sie eine
+
+1056
+01:44:01,700 --> 01:44:02,700
+eindimensionale
+
+1057
+01:44:02,700 --> 01:44:03,700
+Fourier-Transformation,
+
+1058
+01:44:03,700 --> 01:44:04,700
+wenden sie zahlenweise
+
+1059
+01:44:04,700 --> 01:44:05,700
+auf ihr Signal an und
+
+1060
+01:44:05,700 --> 01:44:06,700
+das Ergebnis
+
+1061
+01:44:06,700 --> 01:44:07,700
+filtern sie dann,
+
+1062
+01:44:07,700 --> 01:44:08,700
+Fourier-Transformieren
+
+1063
+01:44:08,700 --> 01:44:09,700
+sie spaltenweise.
+
+1064
+01:44:12,700 --> 01:44:13,700
+Ja, macht
+
+1065
+01:44:13,700 --> 01:44:14,700
+diese
+
+1066
+01:44:14,700 --> 01:44:15,700
+Separierbarkeit
+
+1067
+01:44:15,700 --> 01:44:16,700
+Sinn?
+
+1068
+01:44:16,700 --> 01:44:17,700
+Durchaus.
+
+1069
+01:44:18,700 --> 01:44:19,700
+Wir haben hier
+
+1070
+01:44:19,700 --> 01:44:20,700
+eine Filtermaske
+
+1071
+01:44:20,700 --> 01:44:21,700
+5x5.
+
+1072
+01:44:23,700 --> 01:44:24,700
+Um einen
+
+1073
+01:44:24,700 --> 01:44:25,700
+Ausgabewert
+
+1074
+01:44:25,700 --> 01:44:26,700
+zu berechnen, brauchen
+
+1075
+01:44:26,700 --> 01:44:27,700
+wir 25
+
+1076
+01:44:27,700 --> 01:44:28,700
+Multiplikationen und
+
+1077
+01:44:28,700 --> 01:44:29,700
+diese 25 Zahlen müssen
+
+1078
+01:44:29,700 --> 01:44:30,700
+momentiert werden, also
+
+1079
+01:44:30,700 --> 01:44:31,700
+24 Additionen.
+
+1080
+01:44:33,700 --> 01:44:34,700
+Dieses Filter sieht
+
+1081
+01:44:34,700 --> 01:44:35,700
+symmetrisch aus, man
+
+1082
+01:44:35,700 --> 01:44:36,700
+wird es wohl
+
+1083
+01:44:36,700 --> 01:44:37,700
+separieren können.
+
+1084
+01:44:39,700 --> 01:44:40,700
+Und zwar
+
+1085
+01:44:40,700 --> 01:44:41,700
+separieren
+
+1086
+01:44:41,700 --> 01:44:42,700
+durch zwei
+
+1087
+01:44:42,700 --> 01:44:43,700
+eindimensionale
+
+1088
+01:44:43,700 --> 01:44:44,700
+Filter, einmal
+
+1089
+01:44:44,700 --> 01:44:45,700
+1, 4, 6, 4
+
+1090
+01:44:46,700 --> 01:44:47,700
+1, 4, 6, 4, 1
+
+1091
+01:44:48,700 --> 01:44:49,700
+zahlenweise und das
+
+1092
+01:44:49,700 --> 01:44:50,700
+andere mal
+
+1093
+01:44:50,700 --> 01:44:51,700
+spaltenweise.
+
+1094
+01:44:51,700 --> 01:44:52,700
+Was brauchen sie, um
+
+1095
+01:44:52,700 --> 01:44:53,700
+ein Bild mit
+
+1096
+01:44:53,700 --> 01:44:54,700
+diesem Filter zu
+
+1097
+01:44:54,700 --> 01:44:55,700
+filtern?
+
+1098
+01:44:55,700 --> 01:44:56,700
+Naja, 5
+
+1099
+01:44:56,700 --> 01:44:57,700
+Multiplikationen,
+
+1100
+01:44:57,700 --> 01:44:58,700
+4 Additionen.
+
+1101
+01:44:59,700 --> 01:45:00,700
+Damit haben sie
+
+1102
+01:45:00,700 --> 01:45:01,700
+jetzt erst die Hälfte
+
+1103
+01:45:01,700 --> 01:45:02,700
+geschafft, aber sie müssen
+
+1104
+01:45:02,700 --> 01:45:03,700
+noch mal mit dem
+
+1105
+01:45:03,700 --> 01:45:04,700
+Vertikalfilter machen,
+
+1106
+01:45:04,700 --> 01:45:05,700
+dann müssen sie das
+
+1107
+01:45:05,700 --> 01:45:06,700
+gleiche nochmal machen.
+
+1108
+01:45:06,700 --> 01:45:07,700
+Dann sind sie bei
+
+1109
+01:45:07,700 --> 01:45:08,700
+10 Multiplikationen
+
+1110
+01:45:10,700 --> 01:45:11,700
+und 8 Additionen.
+
+1111
+01:45:12,700 --> 01:45:13,700
+Im Vergleich zu 25
+
+1112
+01:45:13,700 --> 01:45:14,700
+Multiplikationen und
+
+1113
+01:45:14,700 --> 01:45:15,700
+24 Additionen.
+
+1114
+01:45:18,700 --> 01:45:19,700
+Das heißt, wenn sie
+
+1115
+01:45:19,700 --> 01:45:20,700
+so einen Filter
+
+1116
+01:45:20,700 --> 01:45:21,700
+separieren können,
+
+1117
+01:45:22,700 --> 01:45:23,700
+machen sie das.
+
+1118
+01:45:26,700 --> 01:45:27,700
+Spart rechten Leistung.
+
+1119
+01:45:27,700 --> 01:45:28,700
+So, jetzt kommen wir
+
+1120
+01:45:28,700 --> 01:45:29,700
+zur Frage, was macht
+
+1121
+01:45:29,700 --> 01:45:30,700
+man denn am Rand?
+
+1122
+01:45:31,700 --> 01:45:32,700
+Wir hatten schon festgestellt,
+
+1123
+01:45:32,700 --> 01:45:33,700
+die
+
+1124
+01:45:35,700 --> 01:45:36,700
+Hälfte der
+
+1125
+01:45:36,700 --> 01:45:37,700
+Multiplikationen, die
+
+1126
+01:45:37,700 --> 01:45:38,700
+wir jetzt
+
+1127
+01:45:38,700 --> 01:45:39,700
+hier haben, die
+
+1128
+01:45:39,700 --> 01:45:40,700
+sind von
+
+1129
+01:45:40,700 --> 01:45:41,700
+den
+
+1130
+01:45:41,700 --> 01:45:42,700
+Offset-Masken.
+
+1131
+01:45:44,700 --> 01:45:45,700
+Die Frage, die
+
+1132
+01:45:45,700 --> 01:45:46,700
+da jetzt kommt, wie
+
+1133
+01:45:46,700 --> 01:45:47,700
+groß ist der Einfluss
+
+1134
+01:45:47,700 --> 01:45:48,700
+davon, dass jetzt das
+
+1135
+01:45:48,700 --> 01:45:49,700
+Offset konstant ist.
+
+1136
+01:45:52,700 --> 01:45:53,700
+Die Frage verstehe ich
+
+1137
+01:45:53,700 --> 01:45:54,700
+nicht.
+
+1138
+01:45:54,700 --> 01:45:55,700
+Wo ist hier ein
+
+1139
+01:45:55,700 --> 01:45:56,700
+Offset?
+
+1140
+01:45:58,700 --> 01:45:59,700
+Also zumindest der
+
+1141
+01:45:59,700 --> 01:46:00,700
+Bildrand.
+
+1142
+01:46:01,700 --> 01:46:02,700
+Wenn sie
+
+1143
+01:46:02,700 --> 01:46:03,700
+diese Maske nehmen
+
+1144
+01:46:03,700 --> 01:46:04,700
+wird, wird ihr Bild
+
+1145
+01:46:06,700 --> 01:46:07,700
+gegen oben zwei Zeilen
+
+1146
+01:46:07,700 --> 01:46:08,700
+verloren und unten
+
+1147
+01:46:09,700 --> 01:46:10,700
+gehen
+
+1148
+01:46:12,700 --> 01:46:13,700
+auch zwei Zeilen
+
+1149
+01:46:13,700 --> 01:46:14,700
+verloren und links und
+
+1150
+01:46:14,700 --> 01:46:15,700
+rechts jeweils zwei
+
+1151
+01:46:15,700 --> 01:46:16,700
+Spalten.
+
+1152
+01:46:17,700 --> 01:46:18,700
+Bei dieser Filterung
+
+1153
+01:46:18,700 --> 01:46:19,700
+gehen nur zwei
+
+1154
+01:46:19,700 --> 01:46:20,700
+Spalten verloren.
+
+1155
+01:46:22,700 --> 01:46:23,700
+Bei dieser hier gehen
+
+1156
+01:46:23,700 --> 01:46:24,700
+dann die zwei Zeilen
+
+1157
+01:46:24,700 --> 01:46:25,700
+verloren, sodass die
+
+1158
+01:46:25,700 --> 01:46:26,700
+Bilder auf alle Fälle
+
+1159
+01:46:26,700 --> 01:46:27,700
+gleich groß sind.
+
+1160
+01:46:31,700 --> 01:46:32,700
+Hierfür brauchen sie
+
+1161
+01:46:32,700 --> 01:46:33,700
+fünf Multiplikationen.
+
+1162
+01:46:34,700 --> 01:46:35,700
+Hierfür brauchen sie
+
+1163
+01:46:35,700 --> 01:46:36,700
+fünf Multiplikationen
+
+1164
+01:46:37,700 --> 01:46:38,700
+und jeweils vier
+
+1165
+01:46:38,700 --> 01:46:39,700
+Multiplikationen.
+
+1166
+01:46:42,700 --> 01:46:43,700
+Naja, verstehe ich jetzt
+
+1167
+01:46:43,700 --> 01:46:44,700
+die Frage nicht nach
+
+1168
+01:46:44,700 --> 01:46:45,700
+fünf mal fünf plus
+
+1169
+01:46:45,700 --> 01:46:46,700
+fünf Multiplikationen.
+
+1170
+01:46:50,700 --> 01:46:51,700
+Das hier ist das
+
+1171
+01:46:51,700 --> 01:46:52,700
+Zwischenergebnis.
+
+1172
+01:46:53,700 --> 01:46:54,700
+Das kann man sich
+
+1173
+01:46:54,700 --> 01:46:55,700
+konzeptionell so
+
+1174
+01:46:55,700 --> 01:46:56,700
+vorstellen, sie
+
+1175
+01:46:57,700 --> 01:46:58,700
+also so sollten sie es
+
+1176
+01:46:58,700 --> 01:46:59,700
+nicht implementieren, aber
+
+1177
+01:46:59,700 --> 01:47:00,700
+wir können uns das
+
+1178
+01:47:00,700 --> 01:47:01,700
+vorstellen, wir machen
+
+1179
+01:47:01,700 --> 01:47:02,700
+eine Einlösung, eine
+
+1180
+01:47:02,700 --> 01:47:03,700
+Filterung
+
+1181
+01:47:03,700 --> 01:47:04,700
+und speichern das
+
+1182
+01:47:04,700 --> 01:47:05,700
+Bild ab und dann
+
+1183
+01:47:05,700 --> 01:47:06,700
+nehmen wir dieses
+
+1184
+01:47:06,700 --> 01:47:07,700
+gefilterte Bild und
+
+1185
+01:47:07,700 --> 01:47:08,700
+machen nochmal eine
+
+1186
+01:47:08,700 --> 01:47:09,700
+Einnimm-Synan-Filterung.
+
+1187
+01:47:09,700 --> 01:47:10,700
+Bei jeder Filterung
+
+1188
+01:47:11,700 --> 01:47:12,700
+fallen pro Bildpunkt
+
+1189
+01:47:13,700 --> 01:47:14,700
+fünf Multiplikationen
+
+1190
+01:47:14,700 --> 01:47:15,700
+und vier Additionen an.
+
+1191
+01:47:16,700 --> 01:47:17,700
+Wenn wir das so machen,
+
+1192
+01:47:17,700 --> 01:47:18,700
+dann müssen wir wie gesagt
+
+1193
+01:47:18,700 --> 01:47:19,700
+das Bild zweimal durch
+
+1194
+01:47:19,700 --> 01:47:20,700
+die CPU ziehen, also
+
+1195
+01:47:20,700 --> 01:47:21,700
+vom RAM in die
+
+1196
+01:47:21,700 --> 01:47:22,700
+CPU.
+
+1197
+01:47:22,700 --> 01:47:23,700
+Wenn wir
+
+1198
+01:47:23,700 --> 01:47:24,700
+das aber so machen,
+
+1199
+01:47:24,700 --> 01:47:25,700
+dass wir die
+
+1200
+01:47:25,700 --> 01:47:26,700
+Zwischenergebnisse
+
+1201
+01:47:26,700 --> 01:47:27,700
+speichern und
+
+1202
+01:47:27,700 --> 01:47:28,700
+sobald wir
+
+1203
+01:47:28,700 --> 01:47:29,700
+in unserem Beispiel
+
+1204
+01:47:29,700 --> 01:47:30,700
+hatten wir jetzt
+
+1205
+01:47:30,700 --> 01:47:31,700
+fünf mal eins Filter,
+
+1206
+01:47:31,700 --> 01:47:32,700
+sobald wir fünf Zeilen
+
+1207
+01:47:32,700 --> 01:47:33,700
+haben,
+
+1208
+01:47:33,700 --> 01:47:34,700
+wir das hier
+
+1209
+01:47:34,700 --> 01:47:35,700
+ausführen,
+
+1210
+01:47:35,700 --> 01:47:36,700
+dann müssen wir
+
+1211
+01:47:36,700 --> 01:47:37,700
+auch immer
+
+1212
+01:47:37,700 --> 01:47:38,700
+fünf Zeilen
+
+1213
+01:47:38,700 --> 01:47:39,700
+im Cache
+
+1214
+01:47:39,700 --> 01:47:40,700
+speichern und können
+
+1215
+01:47:40,700 --> 01:47:41,700
+die dann so
+
+1216
+01:47:41,700 --> 01:47:42,700
+durchs Bild ziehen.
+
+1217
+01:47:46,700 --> 01:47:47,700
+Okay.
+
+1218
+01:47:50,700 --> 01:47:51,700
+Es war hilfreich,
+
+1219
+01:47:51,700 --> 01:47:52,700
+dass Sie gesprochen haben.
+
+1220
+01:47:52,700 --> 01:47:53,700
+Das macht das
+
+1221
+01:47:53,700 --> 01:47:54,700
+durchaus
+
+1222
+01:47:54,700 --> 01:47:55,700
+für mich zumindest
+
+1223
+01:47:55,700 --> 01:47:56,700
+leichter.
+
+1224
+01:47:59,700 --> 01:48:00,700
+Kommen wir jetzt zu der
+
+1225
+01:48:00,700 --> 01:48:01,700
+Frage, die Sie auch schon
+
+1226
+01:48:01,700 --> 01:48:02,700
+im Chat gestellt haben.
+
+1227
+01:48:02,700 --> 01:48:03,700
+Was passiert denn am Rand?
+
+1228
+01:48:04,700 --> 01:48:05,700
+Da können Sie machen,
+
+1229
+01:48:05,700 --> 01:48:06,700
+was Sie wollen.
+
+1230
+01:48:06,700 --> 01:48:07,700
+Warum muss am Rand
+
+1231
+01:48:07,700 --> 01:48:08,700
+was passieren?
+
+1232
+01:48:08,700 --> 01:48:09,700
+Muss natürlich nicht,
+
+1233
+01:48:09,700 --> 01:48:10,700
+aber es ist unschön,
+
+1234
+01:48:10,700 --> 01:48:11,700
+wenn Sie ein Bild
+
+1235
+01:48:11,700 --> 01:48:12,700
+der Größe M mal N
+
+1236
+01:48:12,700 --> 01:48:13,700
+reinschicken
+
+1237
+01:48:13,700 --> 01:48:14,700
+in Ihre Filteroperation
+
+1238
+01:48:14,700 --> 01:48:15,700
+und rauskommt etwas
+
+1239
+01:48:15,700 --> 01:48:16,700
+Kleines.
+
+1240
+01:48:17,700 --> 01:48:18,700
+Also,
+
+1241
+01:48:18,700 --> 01:48:19,700
+weil das unschön ist,
+
+1242
+01:48:19,700 --> 01:48:20,700
+man möchte die Bilder,
+
+1243
+01:48:20,700 --> 01:48:21,700
+die Bildgröße eigentlich
+
+1244
+01:48:21,700 --> 01:48:22,700
+im Laufe der Operation
+
+1245
+01:48:22,700 --> 01:48:23,700
+erhalten,
+
+1246
+01:48:24,700 --> 01:48:25,700
+denkt man sich am Rand
+
+1247
+01:48:25,700 --> 01:48:26,700
+etwas aus.
+
+1248
+01:48:30,700 --> 01:48:31,700
+Sie können einfach
+
+1249
+01:48:31,700 --> 01:48:32,700
+um das gefilterte
+
+1250
+01:48:32,700 --> 01:48:33,700
+Bild einen schwarzen,
+
+1251
+01:48:33,700 --> 01:48:34,700
+einen weißen,
+
+1252
+01:48:34,700 --> 01:48:35,700
+einen roten Rand
+
+1253
+01:48:35,700 --> 01:48:36,700
+setzen,
+
+1254
+01:48:37,700 --> 01:48:38,700
+sodass das Ausgangsbild
+
+1255
+01:48:38,700 --> 01:48:39,700
+die gleiche Größe hat
+
+1256
+01:48:39,700 --> 01:48:40,700
+wie das Eingangsbild.
+
+1257
+01:48:40,700 --> 01:48:41,700
+Das sähe dann
+
+1258
+01:48:41,700 --> 01:48:42,700
+so aus.
+
+1259
+01:48:45,700 --> 01:48:46,700
+Ist das schön?
+
+1260
+01:48:47,700 --> 01:48:48,700
+Nein.
+
+1261
+01:48:53,700 --> 01:48:54,700
+Sie können
+
+1262
+01:48:56,700 --> 01:48:57,700
+das Bild vergrößern
+
+1263
+01:48:59,700 --> 01:49:00,700
+und filtern.
+
+1264
+01:49:01,700 --> 01:49:02,700
+Also,
+
+1265
+01:49:02,700 --> 01:49:03,700
+das Eingangsbild wird
+
+1266
+01:49:03,700 --> 01:49:04,700
+virtuell vergrößert.
+
+1267
+01:49:04,700 --> 01:49:05,700
+Wenn Sie mit einem
+
+1268
+01:49:05,700 --> 01:49:06,700
+3x3-Filter filtern,
+
+1269
+01:49:07,700 --> 01:49:08,700
+dann würde das Bild
+
+1270
+01:49:08,700 --> 01:49:09,700
+ja eine Zeile
+
+1271
+01:49:09,700 --> 01:49:10,700
+und eine Spalte
+
+1272
+01:49:10,700 --> 01:49:11,700
+jeweils oben und unten
+
+1273
+01:49:11,700 --> 01:49:12,700
+kleiner werden.
+
+1274
+01:49:12,700 --> 01:49:13,700
+Also würden Sie das Bild
+
+1275
+01:49:13,700 --> 01:49:14,700
+um eine Zeile
+
+1276
+01:49:14,700 --> 01:49:15,700
+und eine Spalte
+
+1277
+01:49:15,700 --> 01:49:16,700
+jeweils oben und unten,
+
+1278
+01:49:16,700 --> 01:49:17,700
+links und rechts vergrößern
+
+1279
+01:49:17,700 --> 01:49:18,700
+und filtern dann.
+
+1280
+01:49:19,700 --> 01:49:20,700
+Dann ist das Ausgangsbild
+
+1281
+01:49:20,700 --> 01:49:21,700
+so groß wie das Eingangsbild.
+
+1282
+01:49:22,700 --> 01:49:23,700
+Die Frage ist,
+
+1283
+01:49:23,700 --> 01:49:24,700
+was schreibe ich jetzt
+
+1284
+01:49:24,700 --> 01:49:26,700
+in diesen zusätzlichen Rand?
+
+1285
+01:49:27,700 --> 01:49:28,700
+Hier,
+
+1286
+01:49:28,700 --> 01:49:29,700
+in diesem Beispiel,
+
+1287
+01:49:29,700 --> 01:49:30,700
+wurde in diesen zusätzlichen Rand
+
+1288
+01:49:30,700 --> 01:49:31,700
+schwarz reingeschrieben
+
+1289
+01:49:32,700 --> 01:49:33,700
+und dann wurde auf das
+
+1290
+01:49:33,700 --> 01:49:35,700
+vergrößerte Bild
+
+1291
+01:49:35,700 --> 01:49:36,700
+dieses Tiefpassfilter angewendet.
+
+1292
+01:49:36,700 --> 01:49:37,700
+Naja, was passiert?
+
+1293
+01:49:38,700 --> 01:49:39,700
+Am Rand wird das Bild dunkel.
+
+1294
+01:49:40,700 --> 01:49:41,700
+Beim Tiefpassfilter
+
+1295
+01:49:42,700 --> 01:49:43,700
+verschmieren ja die Farben.
+
+1296
+01:49:43,700 --> 01:49:44,700
+Wenn Sie das als Eingangsbild
+
+1297
+01:49:44,700 --> 01:49:45,700
+am schwarzen Rand haben,
+
+1298
+01:49:46,700 --> 01:49:47,700
+sehen Sie das
+
+1299
+01:49:47,700 --> 01:49:48,700
+im gefilterten Bild.
+
+1300
+01:49:48,700 --> 01:49:49,700
+Das ist vielleicht auch nicht ganz schön.
+
+1301
+01:49:54,700 --> 01:49:55,700
+Sie können auch
+
+1302
+01:49:56,700 --> 01:49:57,700
+das Bild fortsetzen.
+
+1303
+01:49:58,700 --> 01:49:59,700
+Sie könnten sich vorstellen,
+
+1304
+01:49:59,700 --> 01:50:00,700
+dass das Bild
+
+1305
+01:50:01,700 --> 01:50:02,700
+auf einem Zylinder ist,
+
+1306
+01:50:02,700 --> 01:50:03,700
+horizontal oder vertikal.
+
+1307
+01:50:06,700 --> 01:50:07,700
+Was Sie dann sehen ist,
+
+1308
+01:50:07,700 --> 01:50:08,700
+dies hier entspricht
+
+1309
+01:50:09,700 --> 01:50:10,700
+dem Bildinhalt hier.
+
+1310
+01:50:11,700 --> 01:50:12,700
+Auch nicht so die ganz
+
+1311
+01:50:12,700 --> 01:50:13,700
+sinnige Operation,
+
+1312
+01:50:14,700 --> 01:50:15,700
+denn jetzt haben wir
+
+1313
+01:50:17,700 --> 01:50:18,700
+durch die
+
+1314
+01:50:19,700 --> 01:50:20,700
+Fortsetzung des Bildes
+
+1315
+01:50:20,700 --> 01:50:21,700
+letztendlich Kanten erzeugt.
+
+1316
+01:50:23,700 --> 01:50:24,700
+Die werden bei der Filterung
+
+1317
+01:50:25,700 --> 01:50:26,700
+einen Einfluss haben,
+
+1318
+01:50:26,700 --> 01:50:27,700
+der auch nicht schön sein kann.
+
+1319
+01:50:31,700 --> 01:50:32,700
+Stellen Sie sich,
+
+1320
+01:50:34,700 --> 01:50:35,700
+der Rand sieht jetzt irgendwie aus.
+
+1321
+01:50:35,700 --> 01:50:36,700
+Ist er richtig?
+
+1322
+01:50:36,700 --> 01:50:37,700
+Ist er falsch?
+
+1323
+01:50:37,700 --> 01:50:38,700
+Schauen wir mal zurück.
+
+1324
+01:50:41,700 --> 01:50:42,700
+Hier oben im Originalbild
+
+1325
+01:50:43,700 --> 01:50:44,700
+ist kein Rot.
+
+1326
+01:50:45,700 --> 01:50:46,700
+Da ist das Stroh.
+
+1327
+01:50:47,700 --> 01:50:48,700
+Wenn Sie jetzt dieses
+
+1328
+01:50:49,700 --> 01:50:50,700
+Wraparound machen,
+
+1329
+01:50:50,700 --> 01:50:51,700
+dann wird hier oben
+
+1330
+01:50:51,700 --> 01:50:52,700
+das Rot drangesetzt
+
+1331
+01:50:52,700 --> 01:50:53,700
+und das sehen Sie dann
+
+1332
+01:50:53,700 --> 01:50:54,700
+im gefilterten Bild.
+
+1333
+01:50:54,700 --> 01:50:55,700
+Hier ist was Rotes.
+
+1334
+01:50:55,700 --> 01:50:56,700
+Da fragt man sich,
+
+1335
+01:50:56,700 --> 01:50:57,700
+wo kommt das her?
+
+1336
+01:50:57,700 --> 01:50:58,700
+Also es war auch nicht schön.
+
+1337
+01:50:59,700 --> 01:51:00,700
+Es gibt immer wieder Gründe,
+
+1338
+01:51:00,700 --> 01:51:01,700
+warum man irgendwas macht.
+
+1339
+01:51:02,700 --> 01:51:03,700
+Aber das,
+
+1340
+01:51:04,700 --> 01:51:05,700
+was man eigentlich am liebsten macht,
+
+1341
+01:51:06,700 --> 01:51:07,700
+ist, man nimmt die
+
+1342
+01:51:08,700 --> 01:51:09,700
+Punkte, die Grauwerte,
+
+1343
+01:51:09,700 --> 01:51:10,700
+die man hier am Rand hat
+
+1344
+01:51:10,700 --> 01:51:11,700
+und schreibt die nach oben
+
+1345
+01:51:12,700 --> 01:51:13,700
+oder zur Seite
+
+1346
+01:51:14,700 --> 01:51:15,700
+fort.
+
+1347
+01:51:16,700 --> 01:51:17,700
+Dieses Bild, was wir jetzt haben,
+
+1348
+01:51:17,700 --> 01:51:18,700
+hat dann offensichtlich
+
+1349
+01:51:18,700 --> 01:51:19,700
+hier diese Streifenmuster.
+
+1350
+01:51:21,700 --> 01:51:22,700
+Also die Kantenpixel
+
+1351
+01:51:22,700 --> 01:51:23,700
+werden kopiert.
+
+1352
+01:51:25,700 --> 01:51:26,700
+Das ist das, was
+
+1353
+01:51:27,700 --> 01:51:28,700
+letztendlich die besten
+
+1354
+01:51:28,700 --> 01:51:29,700
+Ergebnisse liefert.
+
+1355
+01:51:31,700 --> 01:51:32,700
+Das wird nicht nur
+
+1356
+01:51:33,700 --> 01:51:34,700
+in irgendwelchen
+
+1357
+01:51:34,700 --> 01:51:35,700
+Bildverarbeitungsprogrammen gemacht.
+
+1358
+01:51:35,700 --> 01:51:36,700
+Das wird auch im
+
+1359
+01:51:36,700 --> 01:51:37,700
+Videocodex gemacht.
+
+1360
+01:51:39,700 --> 01:51:40,700
+Das ist so das bevorzugte
+
+1361
+01:51:42,700 --> 01:51:43,700
+Modell.
+
+1362
+01:51:43,700 --> 01:51:44,700
+Und wenn Sie Rechenzeit
+
+1363
+01:51:44,700 --> 01:51:45,700
+besonders viel haben,
+
+1364
+01:51:46,700 --> 01:51:47,700
+dann können Sie das
+
+1365
+01:51:49,700 --> 01:51:50,700
+an der Kante
+
+1366
+01:51:50,700 --> 01:51:51,700
+das Bildsignal reflektieren.
+
+1367
+01:51:51,700 --> 01:51:52,700
+Das sieht man hier
+
+1368
+01:51:52,700 --> 01:51:53,700
+besonders schön.
+
+1369
+01:51:53,700 --> 01:51:54,700
+Hier geht die Kante runter
+
+1370
+01:51:54,700 --> 01:51:55,700
+und hier geht sie jetzt wieder hoch.
+
+1371
+01:51:57,700 --> 01:51:58,700
+Liefert dann
+
+1372
+01:52:00,700 --> 01:52:01,700
+ja, ich weiß jetzt nicht,
+
+1373
+01:52:01,700 --> 01:52:02,700
+ob ich sagen soll,
+
+1374
+01:52:02,700 --> 01:52:03,700
+bessere Ergebnisse
+
+1375
+01:52:03,700 --> 01:52:04,700
+oder einfach andere Ergebnisse.
+
+1376
+01:52:04,700 --> 01:52:05,700
+Also ob dieses Bild
+
+1377
+01:52:05,700 --> 01:52:06,700
+schöner ist als
+
+1378
+01:52:07,700 --> 01:52:08,700
+das hier,
+
+1379
+01:52:08,700 --> 01:52:09,700
+ist nicht mehr so ganz
+
+1380
+01:52:09,700 --> 01:52:10,700
+offensichtlich zu erkennen.
+
+1381
+01:52:15,700 --> 01:52:16,700
+Kopieren der Ecke
+
+1382
+01:52:16,700 --> 01:52:17,700
+ist offensichtlich schneller
+
+1383
+01:52:17,700 --> 01:52:18,700
+als
+
+1384
+01:52:19,700 --> 01:52:20,700
+das Reflektieren der Ecke,
+
+1385
+01:52:20,700 --> 01:52:21,700
+aber dann Pixel
+
+1386
+01:52:22,700 --> 01:52:23,700
+hat man ja sowieso
+
+1387
+01:52:23,700 --> 01:52:24,700
+relativ wenig.
+
+1388
+01:52:27,700 --> 01:52:28,700
+So, hier haben wir jetzt noch
+
+1389
+01:52:28,700 --> 01:52:29,700
+für die,
+
+1390
+01:52:30,700 --> 01:52:31,700
+die das mal im MATLAB
+
+1391
+01:52:31,700 --> 01:52:32,700
+ausprobieren wollen,
+
+1392
+01:52:32,700 --> 01:52:33,700
+ein paar
+
+1393
+01:52:35,700 --> 01:52:36,700
+Funktionen, die sie in MATLAB
+
+1394
+01:52:36,700 --> 01:52:37,700
+benutzen können.
+
+1395
+01:52:37,700 --> 01:52:38,700
+Ich hatte das letzte Mal
+
+1396
+01:52:38,700 --> 01:52:39,700
+schon gesagt, die Übung wird
+
+1397
+01:52:39,700 --> 01:52:40,700
+in Python stattfinden.
+
+1398
+01:52:40,700 --> 01:52:41,700
+Da gibt es dann andere Filter,
+
+1399
+01:52:41,700 --> 01:52:42,700
+die aber letztendlich,
+
+1400
+01:52:42,700 --> 01:52:43,700
+also die Filter heißen anders,
+
+1401
+01:52:43,700 --> 01:52:44,700
+aber machen
+
+1402
+01:52:45,700 --> 01:52:46,700
+dasselbe.
+
+1403
+01:52:46,700 --> 01:52:47,700
+In MATLAB
+
+1404
+01:52:47,700 --> 01:52:48,700
+gibt es die Funktion
+
+1405
+01:52:48,700 --> 01:52:49,700
+Image Filter.
+
+1406
+01:52:49,700 --> 01:52:50,700
+Da geben sie eben das Bild an
+
+1407
+01:52:50,700 --> 01:52:51,700
+und
+
+1408
+01:52:52,700 --> 01:52:53,700
+das Körner
+
+1409
+01:52:54,700 --> 01:52:55,700
+und sie können angeben,
+
+1410
+01:52:56,700 --> 01:52:57,700
+was denn nun
+
+1411
+01:52:57,700 --> 01:52:58,700
+passieren soll am Rand.
+
+1412
+01:53:00,700 --> 01:53:01,700
+Hier können sie eine Konstante
+
+1413
+01:53:01,700 --> 01:53:02,700
+angeben,
+
+1414
+01:53:03,700 --> 01:53:04,700
+die im Rand
+
+1415
+01:53:04,700 --> 01:53:05,700
+zur Fortsetzung
+
+1416
+01:53:05,700 --> 01:53:06,700
+verwendet werden soll.
+
+1417
+01:53:07,700 --> 01:53:08,700
+Sie können das symmetrisch machen
+
+1418
+01:53:08,700 --> 01:53:09,700
+und das
+
+1419
+01:53:09,700 --> 01:53:10,700
+wiederholen
+
+1420
+01:53:10,700 --> 01:53:11,700
+oder auch
+
+1421
+01:53:11,700 --> 01:53:12,700
+wraparound.
+
+1422
+01:53:19,700 --> 01:53:20,700
+Unabhängig davon,
+
+1423
+01:53:20,700 --> 01:53:21,700
+ob es jetzt
+
+1424
+01:53:21,700 --> 01:53:22,700
+MATLAB ist
+
+1425
+01:53:22,700 --> 01:53:23,700
+oder Python.
+
+1426
+01:53:28,700 --> 01:53:29,700
+Man kann sich fragen,
+
+1427
+01:53:29,700 --> 01:53:30,700
+wie groß soll denn
+
+1428
+01:53:30,700 --> 01:53:31,700
+das Ausgangsbild sein?
+
+1429
+01:53:34,700 --> 01:53:35,700
+Da gibt es
+
+1430
+01:53:35,700 --> 01:53:36,700
+verschiedene Nomenklaturen,
+
+1431
+01:53:36,700 --> 01:53:37,700
+aber auch verschiedene
+
+1432
+01:53:37,700 --> 01:53:38,700
+Möglichkeiten.
+
+1433
+01:53:38,700 --> 01:53:39,700
+Das, was man
+
+1434
+01:53:39,700 --> 01:53:40,700
+typischerweise tut,
+
+1435
+01:53:40,700 --> 01:53:41,700
+ist, man will das
+
+1436
+01:53:41,700 --> 01:53:42,700
+Ausgangsbild
+
+1437
+01:53:42,700 --> 01:53:43,700
+genauso groß haben
+
+1438
+01:53:43,700 --> 01:53:44,700
+wie das Eingangsbild.
+
+1439
+01:53:47,700 --> 01:53:48,700
+Man kann sich aber auch fragen,
+
+1440
+01:53:48,700 --> 01:53:49,700
+welche
+
+1441
+01:53:49,700 --> 01:53:50,700
+Punkte des
+
+1442
+01:53:50,700 --> 01:53:51,700
+Ausgangsbildes
+
+1443
+01:53:51,700 --> 01:53:52,700
+sind valide?
+
+1444
+01:53:52,700 --> 01:53:53,700
+Valide im Sinne,
+
+1445
+01:53:53,700 --> 01:53:54,700
+die sind wirklich
+
+1446
+01:53:54,700 --> 01:53:55,700
+aufgrund der Sensordaten
+
+1447
+01:53:55,700 --> 01:53:56,700
+berechnet.
+
+1448
+01:53:57,700 --> 01:53:58,700
+Das ist natürlich
+
+1449
+01:53:58,700 --> 01:53:59,700
+das Ausgangsbild
+
+1450
+01:54:00,700 --> 01:54:01,700
+verkleinert
+
+1451
+01:54:01,700 --> 01:54:02,700
+oben und unten,
+
+1452
+01:54:02,700 --> 01:54:03,700
+links und rechts,
+
+1453
+01:54:03,700 --> 01:54:04,700
+um die
+
+1454
+01:54:04,700 --> 01:54:05,700
+halbe
+
+1455
+01:54:06,700 --> 01:54:07,700
+Filterkörnergröße
+
+1456
+01:54:10,700 --> 01:54:11,700
+nach unten gerundet.
+
+1457
+01:54:11,700 --> 01:54:12,700
+Ihr Körnerl
+
+1458
+01:54:12,700 --> 01:54:13,700
+ist 3x3,
+
+1459
+01:54:13,700 --> 01:54:14,700
+dann verlieren sie
+
+1460
+01:54:14,700 --> 01:54:15,700
+oben, unten, links, rechts
+
+1461
+01:54:15,700 --> 01:54:16,700
+jeweils eine Zeile Spalte
+
+1462
+01:54:17,700 --> 01:54:18,700
+und wenn sie ein Körnerl
+
+1463
+01:54:18,700 --> 01:54:19,700
+haben, 7x7,
+
+1464
+01:54:19,700 --> 01:54:20,700
+dann würden sie
+
+1465
+01:54:20,700 --> 01:54:21,700
+eben 3
+
+1466
+01:54:22,700 --> 01:54:23,700
+Zeilen oder Spalten
+
+1467
+01:54:23,700 --> 01:54:24,700
+auf jeder Seite
+
+1468
+01:54:24,700 --> 01:54:25,700
+verlieren.
+
+1469
+01:54:25,700 --> 01:54:26,700
+Und wenn sie ein
+
+1470
+01:54:26,700 --> 01:54:27,700
+Körnerl der Größe
+
+1471
+01:54:27,700 --> 01:54:28,700
+7x5 haben,
+
+1472
+01:54:28,700 --> 01:54:29,700
+dann haben sie eben
+
+1473
+01:54:30,700 --> 01:54:31,700
+3 und 2,
+
+1474
+01:54:31,700 --> 01:54:32,700
+die sie jeweils
+
+1475
+01:54:32,700 --> 01:54:33,700
+verlieren.
+
+1476
+01:54:35,700 --> 01:54:36,700
+Dann gibt es auch noch
+
+1477
+01:54:36,700 --> 01:54:37,700
+die Größe Full.
+
+1478
+01:54:37,700 --> 01:54:38,700
+Da wird letztendlich
+
+1479
+01:54:38,700 --> 01:54:39,700
+Full,
+
+1480
+01:54:39,700 --> 01:54:40,700
+das ist die Bildgröße,
+
+1481
+01:54:40,700 --> 01:54:41,700
+die sie brauchen,
+
+1482
+01:54:41,700 --> 01:54:42,700
+wenn sie ihr Bild
+
+1483
+01:54:42,700 --> 01:54:43,700
+durch was auch immer
+
+1484
+01:54:43,700 --> 01:54:44,700
+vergrößern,
+
+1485
+01:54:44,700 --> 01:54:45,700
+so damit,
+
+1486
+01:54:45,700 --> 01:54:46,700
+dass die Bildgröße,
+
+1487
+01:54:46,700 --> 01:54:47,700
+die sie brauchen,
+
+1488
+01:54:47,700 --> 01:54:48,700
+letztendlich um
+
+1489
+01:54:48,700 --> 01:54:49,700
+diese Bildpunkte
+
+1490
+01:54:49,700 --> 01:54:50,700
+für die Bildgröße
+
+1491
+01:54:50,700 --> 01:54:51,700
+der Same
+
+1492
+01:54:51,700 --> 01:54:52,700
+ausrechnen zu können.
+
+1493
+01:55:02,700 --> 01:55:03,700
+Beginnen wir noch kurz
+
+1494
+01:55:03,700 --> 01:55:05,700
+mit Nicht-Linear-Filtern.
+
+1495
+01:55:07,700 --> 01:55:08,700
+Das ist,
+
+1496
+01:55:08,700 --> 01:55:09,700
+wie schon mehrfach angedeutet,
+
+1497
+01:55:09,700 --> 01:55:10,700
+irgendwo eine Spezialität
+
+1498
+01:55:10,700 --> 01:55:11,700
+der Bildverarbeitung.
+
+1499
+01:55:13,700 --> 01:55:14,700
+Unser Auge ist auch
+
+1500
+01:55:14,700 --> 01:55:15,700
+hochgradig Nicht-Linear,
+
+1501
+01:55:15,700 --> 01:55:16,700
+von daher
+
+1502
+01:55:17,700 --> 01:55:18,700
+kann man das sicherlich
+
+1503
+01:55:19,700 --> 01:55:20,700
+vertreten,
+
+1504
+01:55:20,700 --> 01:55:21,700
+dass wir hier jetzt
+
+1505
+01:55:21,700 --> 01:55:22,700
+Nicht-Lineare-Filter machen.
+
+1506
+01:55:23,700 --> 01:55:25,700
+Nicht-Lineare-Filter können sie
+
+1507
+01:55:27,700 --> 01:55:28,700
+mit den Werkzeugen
+
+1508
+01:55:28,700 --> 01:55:29,700
+der Systemtheorie
+
+1509
+01:55:29,700 --> 01:55:30,700
+nicht beschreiben.
+
+1510
+01:55:30,700 --> 01:55:31,700
+Sie müssen sich
+
+1511
+01:55:31,700 --> 01:55:32,700
+letztendlich die Ergebnisse
+
+1512
+01:55:32,700 --> 01:55:33,700
+anschauen
+
+1513
+01:55:34,700 --> 01:55:35,700
+und sehen,
+
+1514
+01:55:35,700 --> 01:55:36,700
+ob es ihnen gefällt,
+
+1515
+01:55:36,700 --> 01:55:37,700
+ob sie das sehen,
+
+1516
+01:55:37,700 --> 01:55:38,700
+was sie sehen
+
+1517
+01:55:38,700 --> 01:55:39,700
+müssen.
+
+1518
+01:55:43,700 --> 01:55:45,700
+Nicht-Lineare-Filter haben
+
+1519
+01:55:45,700 --> 01:55:46,700
+gegenüber
+
+1520
+01:55:46,700 --> 01:55:47,700
+Linearen-Filtern
+
+1521
+01:55:47,700 --> 01:55:48,700
+also diesen Nachteil,
+
+1522
+01:55:48,700 --> 01:55:49,700
+dass sie es mathematisch
+
+1523
+01:55:49,700 --> 01:55:50,700
+nicht beschreiben können.
+
+1524
+01:55:50,700 --> 01:55:51,700
+Sie haben aber gegebenenfalls
+
+1525
+01:55:51,700 --> 01:55:52,700
+den Vorteil,
+
+1526
+01:55:52,700 --> 01:55:53,700
+dass sie nicht so viel
+
+1527
+01:55:53,700 --> 01:55:54,700
+rechnen müssen,
+
+1528
+01:55:54,700 --> 01:55:55,700
+um das gewünschte Ergebnis
+
+1529
+01:55:55,700 --> 01:55:56,700
+zu erzielen.
+
+1530
+01:55:56,700 --> 01:55:57,700
+Da wir nun sehr,
+
+1531
+01:55:57,700 --> 01:55:58,700
+sehr viele Bildpunkte
+
+1532
+01:55:58,700 --> 01:55:59,700
+haben,
+
+1533
+01:55:59,700 --> 01:56:00,700
+ist eine Minimierung
+
+1534
+01:56:00,700 --> 01:56:01,700
+des Rechenaufwands
+
+1535
+01:56:01,700 --> 01:56:02,700
+natürlich
+
+1536
+01:56:02,700 --> 01:56:03,700
+wichtig.
+
+1537
+01:56:05,700 --> 01:56:06,700
+Hier ein Beispiel
+
+1538
+01:56:06,700 --> 01:56:07,700
+der Median-Filter.
+
+1539
+01:56:08,700 --> 01:56:09,700
+Kennen Sie aus der Statistik.
+
+1540
+01:56:09,700 --> 01:56:10,700
+Es gibt den Mittelwert.
+
+1541
+01:56:11,700 --> 01:56:12,700
+Alle Werte aufsummieren
+
+1542
+01:56:12,700 --> 01:56:13,700
+durch die Anzahl der Werte teilen.
+
+1543
+01:56:14,700 --> 01:56:15,700
+Der Medianwert
+
+1544
+01:56:15,700 --> 01:56:16,700
+ist
+
+1545
+01:56:16,700 --> 01:56:17,700
+der Wert
+
+1546
+01:56:17,700 --> 01:56:18,700
+in ihrer Stichprobe,
+
+1547
+01:56:19,700 --> 01:56:20,700
+bei dem es genauso viele
+
+1548
+01:56:22,700 --> 01:56:23,700
+Werte darüber
+
+1549
+01:56:23,700 --> 01:56:24,700
+wie darunter gibt.
+
+1550
+01:56:26,700 --> 01:56:27,700
+In vielerlei Hinsicht
+
+1551
+01:56:27,700 --> 01:56:28,700
+ist der Medianwert
+
+1552
+01:56:28,700 --> 01:56:29,700
+viel repräsentativer
+
+1553
+01:56:29,700 --> 01:56:30,700
+als der Mittelwert.
+
+1554
+01:56:30,700 --> 01:56:31,700
+Denken Sie an die Einkommensverteilung.
+
+1555
+01:56:32,700 --> 01:56:33,700
+Das mittlere Einkommen
+
+1556
+01:56:33,700 --> 01:56:34,700
+ist völlig irrelevant,
+
+1557
+01:56:34,700 --> 01:56:35,700
+weil es ein paar Leute gibt,
+
+1558
+01:56:35,700 --> 01:56:36,700
+die verdienen sich,
+
+1559
+01:56:36,700 --> 01:56:37,700
+ich sage jetzt mal dumm und dämlich.
+
+1560
+01:56:38,700 --> 01:56:39,700
+Wenn Sie das Median-Einkommen
+
+1561
+01:56:39,700 --> 01:56:40,700
+nehmen,
+
+1562
+01:56:40,700 --> 01:56:41,700
+dann kriegen Sie
+
+1563
+01:56:42,700 --> 01:56:43,700
+ein viel besseres
+
+1564
+01:56:44,700 --> 01:56:45,700
+Verständnis dafür,
+
+1565
+01:56:45,700 --> 01:56:46,700
+wie so das Einkommen
+
+1566
+01:56:46,700 --> 01:56:47,700
+der Wohlstand
+
+1567
+01:56:47,700 --> 01:56:48,700
+in einer Gesellschaft
+
+1568
+01:56:48,700 --> 01:56:49,700
+aussehen könnte.
+
+1569
+01:56:51,700 --> 01:56:52,700
+Wir haben einen Median-Filter
+
+1570
+01:56:52,700 --> 01:56:53,700
+in diesem Beispiel
+
+1571
+01:56:53,700 --> 01:56:54,700
+der Größe 3x3.
+
+1572
+01:56:56,700 --> 01:56:57,700
+In diesem Fenster
+
+1573
+01:56:57,700 --> 01:56:58,700
+der Größe 3x3
+
+1574
+01:56:58,700 --> 01:56:59,700
+haben wir also neun Werte.
+
+1575
+01:56:59,700 --> 01:57:00,700
+Diese neun Werte
+
+1576
+01:57:00,700 --> 01:57:01,700
+werden sortiert.
+
+1577
+01:57:03,700 --> 01:57:04,700
+Der Median
+
+1578
+01:57:04,700 --> 01:57:05,700
+ist der mittlere Wert.
+
+1579
+01:57:09,700 --> 01:57:10,700
+An der Stelle
+
+1580
+01:57:10,700 --> 01:57:11,700
+5.
+
+1581
+01:57:11,700 --> 01:57:12,700
+Es gibt vier Grau-Werte,
+
+1582
+01:57:12,700 --> 01:57:13,700
+die sind kleiner
+
+1583
+01:57:13,700 --> 01:57:14,700
+und es gibt vier Grau-Werte,
+
+1584
+01:57:14,700 --> 01:57:15,700
+die sind größer.
+
+1585
+01:57:17,700 --> 01:57:18,700
+Und
+
+1586
+01:57:18,700 --> 01:57:19,700
+es kann durchaus sein,
+
+1587
+01:57:19,700 --> 01:57:20,700
+dass manche Grau-Werte
+
+1588
+01:57:20,700 --> 01:57:21,700
+mehrfach vorkommen.
+
+1589
+01:57:21,700 --> 01:57:22,700
+Das stört die Filteroperation
+
+1590
+01:57:22,700 --> 01:57:23,700
+gar nicht.
+
+1591
+01:57:27,700 --> 01:57:28,700
+Der Effekt
+
+1592
+01:57:28,700 --> 01:57:29,700
+dieses Median-Filters
+
+1593
+01:57:29,700 --> 01:57:30,700
+ist, dass der Wert
+
+1594
+01:57:30,700 --> 01:57:31,700
+der 98,
+
+1595
+01:57:31,700 --> 01:57:32,700
+die hier drin ist,
+
+1596
+01:57:32,700 --> 01:57:33,700
+so ein Ausweis nach oben
+
+1597
+01:57:35,700 --> 01:57:37,700
+praktisch gar keine Rolle spielt.
+
+1598
+01:57:38,700 --> 01:57:39,700
+Ob da nun 98 steht
+
+1599
+01:57:41,700 --> 01:57:42,700
+als Ausreißer
+
+1600
+01:57:43,700 --> 01:57:44,700
+oder 37
+
+1601
+01:57:45,700 --> 01:57:46,700
+als ein hoher Wert
+
+1602
+01:57:46,700 --> 01:57:47,700
+hat auf das
+
+1603
+01:57:48,700 --> 01:57:49,700
+Ausgabebild
+
+1604
+01:57:49,700 --> 01:57:50,700
+gar keinen Einfluss.
+
+1605
+01:57:54,700 --> 01:57:55,700
+Dieser Median-Filter
+
+1606
+01:57:55,700 --> 01:57:56,700
+ist auch
+
+1607
+01:57:56,700 --> 01:57:57,700
+ein Rangfolgefilter.
+
+1608
+01:58:01,700 --> 01:58:02,700
+Oder Rangfilter.
+
+1609
+01:58:04,700 --> 01:58:05,700
+Beim Median-Filter
+
+1610
+01:58:06,700 --> 01:58:07,700
+bei allen Rangfiltern
+
+1611
+01:58:07,700 --> 01:58:08,700
+werden innerhalb eines Fensters
+
+1612
+01:58:08,700 --> 01:58:09,700
+die Werte
+
+1613
+01:58:10,700 --> 01:58:11,700
+nach einem Ordnungskriterium
+
+1614
+01:58:11,700 --> 01:58:12,700
+sortiert.
+
+1615
+01:58:13,700 --> 01:58:14,700
+Beim Median-Filter
+
+1616
+01:58:14,700 --> 01:58:15,700
+ist das Ergebnis
+
+1617
+01:58:16,700 --> 01:58:17,700
+der mittlere Rang.
+
+1618
+01:58:19,700 --> 01:58:20,700
+Sie könnten natürlich auch
+
+1619
+01:58:20,700 --> 01:58:21,700
+das Maximum nehmen
+
+1620
+01:58:23,700 --> 01:58:24,700
+oder Sie nehmen
+
+1621
+01:58:24,700 --> 01:58:25,700
+den zweiten
+
+1622
+01:58:25,700 --> 01:58:26,700
+oder dritten Wert,
+
+1623
+01:58:26,700 --> 01:58:27,700
+je nachdem,
+
+1624
+01:58:27,700 --> 01:58:28,700
+was da vielleicht
+
+1625
+01:58:28,700 --> 01:58:29,700
+Ihre Anwendung ist.
+
+1626
+01:58:33,700 --> 01:58:34,700
+Wenn wir
+
+1627
+01:58:34,700 --> 01:58:35,700
+an dieser Stelle
+
+1628
+01:58:35,700 --> 01:58:36,700
+einmal schauen würden,
+
+1629
+01:58:36,700 --> 01:58:37,700
+was würde ein Box-Filter,
+
+1630
+01:58:37,700 --> 01:58:38,700
+ein Mittelwert-Filter liefern,
+
+1631
+01:58:38,700 --> 01:58:39,700
+der würde
+
+1632
+01:58:39,700 --> 01:58:40,700
+41,88
+
+1633
+01:58:40,700 --> 01:58:41,700
+liefern,
+
+1634
+01:58:41,700 --> 01:58:42,700
+also ein Wert,
+
+1635
+01:58:42,700 --> 01:58:43,700
+der außerhalb des Normalen ist,
+
+1636
+01:58:43,700 --> 01:58:44,700
+weil wir hier
+
+1637
+01:58:44,700 --> 01:58:45,700
+diesen Ausreißer haben.
+
+1638
+01:58:46,700 --> 01:58:47,700
+Der ist jetzt
+
+1639
+01:58:48,700 --> 01:58:49,700
+durch den Median-Filter
+
+1640
+01:58:49,700 --> 01:58:50,700
+einfach verschoben.
+
+1641
+01:58:56,700 --> 01:58:57,700
+Hier haben wir jetzt mal
+
+1642
+01:58:57,700 --> 01:58:58,700
+ein Foto,
+
+1643
+01:58:59,700 --> 01:59:00,700
+auf dem
+
+1644
+01:59:01,700 --> 01:59:02,700
+günstig eine Störung
+
+1645
+01:59:03,700 --> 01:59:04,700
+mit schwarzen
+
+1646
+01:59:04,700 --> 01:59:05,700
+und weißen Flecken
+
+1647
+01:59:05,700 --> 01:59:06,700
+angebracht wurde.
+
+1648
+01:59:07,700 --> 01:59:08,700
+Und das wurde
+
+1649
+01:59:08,700 --> 01:59:09,700
+mit einem Median-Filter gefiltert.
+
+1650
+01:59:11,700 --> 01:59:12,700
+Die Flecken sind nicht weg,
+
+1651
+01:59:14,700 --> 01:59:15,700
+weil sie relativ grau sind,
+
+1652
+01:59:17,700 --> 01:59:18,700
+aber sie sind
+
+1653
+01:59:19,700 --> 01:59:20,700
+deutlich weniger störend
+
+1654
+01:59:20,700 --> 01:59:21,700
+als auf der linken Seite.
+
+1655
+01:59:23,700 --> 01:59:24,700
+Und
+
+1656
+01:59:24,700 --> 01:59:25,700
+die Schärfe des Bildes
+
+1657
+01:59:25,700 --> 01:59:26,700
+hat vielleicht
+
+1658
+01:59:26,700 --> 01:59:27,700
+nicht so sehr gelitten.
+
+1659
+01:59:27,700 --> 01:59:28,700
+Ja, die Augen
+
+1660
+01:59:28,700 --> 01:59:29,700
+erscheinen hier schärfer
+
+1661
+01:59:29,700 --> 01:59:30,700
+als hier,
+
+1662
+01:59:30,700 --> 01:59:31,700
+aber
+
+1663
+01:59:31,700 --> 01:59:32,700
+es ist noch immer besser
+
+1664
+01:59:32,700 --> 01:59:33,700
+als beim Tiefpass-Filter.
+
+1665
+01:59:34,700 --> 01:59:35,700
+Ja,
+
+1666
+01:59:35,700 --> 01:59:36,700
+dann
+
+1667
+01:59:36,700 --> 01:59:37,700
+danke ich
+
+1668
+01:59:37,700 --> 01:59:38,700
+für Ihre Aufmerksamkeit.
+
+1669
+01:59:40,700 --> 01:59:41,700
+Wir sehen uns dann
+
+1670
+01:59:41,700 --> 01:59:42,700
+wieder in zwei Wochen.
+
+1671
+01:59:42,700 --> 01:59:43,700
+Nächste Woche,
+
+1672
+01:59:43,700 --> 01:59:44,700
+wie gesagt,
+
+1673
+01:59:44,700 --> 01:59:45,700
+gibt es
+
+1674
+01:59:45,700 --> 01:59:46,700
+eine Übung.
+
+1675
+01:59:47,700 --> 01:59:48,700
+Alles Gute!
+

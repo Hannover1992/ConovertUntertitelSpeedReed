@@ -1,0 +1,3476 @@
+1
+00:00:00,000 --> 00:00:05,760
+Kanten definieren ja Diskontinuitäten zwischen zwei Bildbereichen,
+
+2
+00:00:05,760 --> 00:00:10,920
+Helligkeitsänderungen zum Beispiel, und die könnte man ja auch nutzen, um einheitliche
+
+3
+00:00:10,920 --> 00:00:16,720
+Bildbereiche zu finden. Da schauen wir uns zwei Verfahren an, einmal den Gunny Edge Detektor
+
+4
+00:00:16,720 --> 00:00:22,960
+als Startpunkt für ein kantenbasiertes Segmentierungsverfahren und als erstes die
+
+5
+00:00:22,960 --> 00:00:37,360
+sogenannte Watershed Segmentierung. Diese sogenannte Wasserscheibentransformation
+
+6
+00:00:37,360 --> 00:00:50,960
+betrachtet das Bildsignal als Höhenkarte. Je heller ein Bildpunkt, desto höher ist es. Oder
+
+7
+00:00:51,560 --> 00:00:57,720
+je nachdem, wie sie es machen wollen. Sie markieren jetzt irgendwelche Regionen und
+
+8
+00:00:57,720 --> 00:01:02,840
+dann wollen sie, dass diese Regionen alle die gleiche Farbe bekommen. Also hier markieren sie
+
+9
+00:01:02,840 --> 00:01:10,920
+sich so einen Bildbereich. Reicht auch an einer Stelle und hinterher wollen sie, dass alles,
+
+10
+00:01:10,920 --> 00:01:16,040
+was diese Farbe hat, eine andere Farbe bekommt oder zu einer Region gehört. Und das sehen sie
+
+11
+00:01:16,040 --> 00:01:25,800
+hier. Das sind dann Bereiche im Gesicht und auch Bereiche auf dem Bauch. Aber man kann sich
+
+12
+00:01:25,800 --> 00:01:29,000
+vorstellen, wenn sie so Cartoons haben, die sind ja immer schön durch Konturen behandelt,
+
+13
+00:01:29,000 --> 00:01:37,480
+dann wird das auch gut klappen, weil sie diesen Bereich markieren. Der wächst dann irgendwie und
+
+14
+00:01:37,480 --> 00:01:43,320
+stößt an irgendwelche Kanten, Höhen, Änderungen. Dann haben sie ihre Region.
+
+15
+00:01:43,320 --> 00:01:55,920
+Bei der Wasserscheibentransformation, das können sie sich prinzipiell auch so vorstellen,
+
+16
+00:01:55,920 --> 00:02:01,960
+dass sie zum Geografieunterricht, kennt man das ja, da gibt es irgendwelche Bergketten. Es regnet
+
+17
+00:02:01,960 --> 00:02:07,120
+von oben und an einer gewissen Linie trennt sich, dass das eine Wasser fließt in die Donau und das
+
+18
+00:02:07,120 --> 00:02:12,880
+wenn sie auf der anderen Seite der Linie sind, fließt das Wasser in den Rhein. Ganz so ist es
+
+19
+00:02:12,880 --> 00:02:22,840
+hier nicht. Hier muss man sich vielleicht vorstellen, dass sie unterhalb ihrer Oberfläche,
+
+20
+00:02:22,840 --> 00:02:29,200
+und die Oberfläche ist definiert durch das Bildsignal. Wir könnten uns hier vorstellen,
+
+21
+00:02:29,200 --> 00:02:34,720
+das hier könnte jetzt die X-Koordinate sein und nach oben haben wir das Bildsignal, also S von X.
+
+22
+00:02:34,880 --> 00:02:41,080
+Wir könnten uns jetzt konzeptionell vorstellen, dass wir auf der X-Koordinate, also auf der
+
+23
+00:02:41,080 --> 00:02:46,400
+Fläche, auf der Bildfläche unten überall kleine Löcher haben, durch die Wasser in das Gelände
+
+24
+00:02:46,400 --> 00:02:51,040
+fließen kann. Die Geländeoberfläche ist eben hier durch diese Grauwerte gegeben.
+
+25
+00:02:51,040 --> 00:03:02,680
+Jetzt lassen wir Wasser rein und dann wird es ja so sein, dass erstmal die tiefen Punkte
+
+26
+00:03:02,800 --> 00:03:08,920
+aufgefüllt werden und wir einen Wasserstand haben, der gleichmäßig steigt. Dann gibt es
+
+27
+00:03:08,920 --> 00:03:17,320
+eben Bereiche, die sind unter Wasser und es gibt Bereiche, die sind über Wasser. Dieser Wasserstand,
+
+28
+00:03:17,320 --> 00:03:21,840
+diese gestrichene Linie zeigt dann eben an, wie viele Regionen oder Bildpunkte betroffen sind.
+
+29
+00:03:21,840 --> 00:03:29,320
+Sie sehen hier, je höher der Wasserstand steigt, desto mehr der Landschaft steht unter Wasser.
+
+30
+00:03:29,320 --> 00:03:42,480
+Die Wasserscheide selbst, das ist jetzt der Punkt, der direkt an zwei geflutete Regionen angrenzt.
+
+31
+00:03:50,920 --> 00:03:57,320
+Damit wären wir zum Beispiel hier, das hier wird eine Wasserscheide, das wird eine Wasserscheide.
+
+32
+00:03:57,440 --> 00:04:03,280
+Das merken Sie letztendlich, dass ein Punkt eine Wasserscheide ist, also den Wasserpegel steigen
+
+33
+00:04:03,280 --> 00:04:10,080
+lassen. Irgendwann guckt ein Punkt heraus und links und rechts von ihm ist Wasser. Da haben Sie eine
+
+34
+00:04:10,080 --> 00:04:18,400
+Wasserscheide. Was Sie hier auch sehen, abhängig davon, wie hoch Sie das Wasser steigen lassen,
+
+35
+00:04:18,400 --> 00:04:26,280
+werden Sie unterschiedliche Regionen bekommen. Hier haben wir jetzt zwei Regionen, hier eine
+
+36
+00:04:26,280 --> 00:04:33,880
+dritte dazu. Hier hat sich jetzt was getan bei diesem Bild. Da verschmelzen die Regionen zwei
+
+37
+00:04:33,880 --> 00:04:42,160
+und drei miteinander. Da an dieser Stelle die Regionen zwei und drei miteinander verschmelzen,
+
+38
+00:04:42,160 --> 00:04:52,960
+ist es auch wieder eine Wasserscheide. So viel zum Prinzip. Die Annahme ist also,
+
+39
+00:04:53,120 --> 00:05:00,440
+dass wir eine Region definiert, die durch Grenzen mit einem hohen Grauwert voneinander getrennt
+
+40
+00:05:00,440 --> 00:05:10,280
+ist. Die Grauwerte sind die Höhen. Wir suchen dann nach Gebieten, die durch den gleichen Punkt
+
+41
+00:05:10,280 --> 00:05:17,280
+entwässert werden. Das wäre eine andere Darstellung desgleichen. Wir können jetzt auch, wenn wir uns
+
+42
+00:05:17,320 --> 00:05:23,640
+dieses Bild hier einmal anschauen, feststellen, wenn wir jetzt hier sagen, da soll das Wasser
+
+43
+00:05:23,640 --> 00:05:32,240
+abfließen, dann ist alles, was hier unter Wasser steht, durch diesen Punkt abfließen. Natürlich
+
+44
+00:05:32,240 --> 00:05:35,640
+teilt er sich dann irgendwann auf und an dieser Stelle bräuchte man dann zwei Punkte, um das
+
+45
+00:05:35,640 --> 00:05:44,760
+Ganze weiter zu entleeren. Wir füllen also dieses Gebiet langsam auf und bestimmen die
+
+46
+00:05:44,760 --> 00:05:51,200
+Wasserscheiden. Jetzt ist noch die Frage, was wollen wir denn da auffüllen? Stellen
+
+47
+00:05:51,200 --> 00:05:58,080
+sich ein Schachbrett vor, schwarz und weiß. Dann liefert uns dieses Verfahren wahrscheinlich
+
+48
+00:05:58,080 --> 00:06:04,760
+noch nicht so richtig die Regionen. Die Regionen müssen durch einen hohen Grauwert begrenzt sein.
+
+49
+00:06:04,760 --> 00:06:11,440
+Das ist bei einem Schachbrettbild zum Beispiel nicht der Fall. Aber wir können die Bildsignalgradienten
+
+50
+00:06:11,440 --> 00:06:18,520
+berechnen und dann hätten wir beim Schachbrett zum Beispiel an den Feldgrenzen einen hohen
+
+51
+00:06:18,520 --> 00:06:25,400
+Gradienten. Im Feld ist der Gradient niedrig. Dann hätten wir zum Beispiel so ein Bild. Wenn wir hier
+
+52
+00:06:25,400 --> 00:06:33,520
+jetzt diese Wasserscheidentransformation auf dem Gradientenbild ausführen, dann werden wir die
+
+53
+00:06:33,680 --> 00:06:44,080
+Konturen bekommen, die unser Bild segmentieren. Die Wasserscheidentransformation wird typischerweise
+
+54
+00:06:44,080 --> 00:06:57,360
+auf dem Gradientenbild ausgeführt. Dieses Bild ist rechts abgeschnitten.
+
+55
+00:07:03,520 --> 00:07:12,560
+Damit haben wir das Prinzip.
+
+56
+00:07:18,200 --> 00:07:23,280
+Wir haben also den Flutungsprozess. Der beginnt auf dem Pixel mit dem niedrigsten Höhenwert.
+
+57
+00:07:23,280 --> 00:07:28,760
+Das ist in diesem Beispiel hier. Dann geht es weiter hoch. Irgendwann kriegen sie eine neue
+
+58
+00:07:28,800 --> 00:07:37,680
+Region dazu und noch eine neue Region. Die existierenden Regionen, also das wäre hier
+
+59
+00:07:37,680 --> 00:07:44,040
+erstmal dieser blaue Bereich. Hier hätten wir jetzt drei existierende Regionen. Die werden
+
+60
+00:07:44,040 --> 00:07:48,720
+dann um die Pixel erweitert, die, wenn ich die Wasserstand um eine Stufe hochsetze,
+
+61
+00:07:48,720 --> 00:07:51,440
+letztendlich dann zusätzlich unter Wasser kommen.
+
+62
+00:07:51,440 --> 00:08:01,800
+Und das, was aus dem Bild herausschaut, sind dann immer die Wasserscheiden. Natürlich an dieser
+
+63
+00:08:01,800 --> 00:08:07,240
+Stelle in diesem Bild würden wir sagen, ja, das sind jetzt wirklich Wasserscheiden. Wenn wir hier
+
+64
+00:08:07,240 --> 00:08:10,960
+sagen würden, naja, da sind wir noch weit weg davon, dass wir alle Wasserscheiden gefunden haben.
+
+65
+00:08:10,960 --> 00:08:20,960
+Hier mal ein Beispiel für die Zellsegmentierung, also eine Anwendung aus dem medizinischen Bereich.
+
+66
+00:08:21,320 --> 00:08:29,880
+Die Bilder sind unscharf. Oben links sehen sie die Zellen. Das sind die schwarzen Punkte in diesem
+
+67
+00:08:29,880 --> 00:08:37,080
+ansonsten eher unstrukturierten Bild. Wenn sie jetzt die Gradienten berechnen, dann sind sie
+
+68
+00:08:37,080 --> 00:08:44,680
+hier. Das ist das Gradientenbild. Und da lassen wir dann die Wasserscheidentransformation drauf
+
+69
+00:08:44,680 --> 00:08:49,760
+laufen. Dann bekommen sie das hier. Das ist das Ergebnis der Wasserscheidentransformation
+
+70
+00:08:49,760 --> 00:08:57,240
+auf dem Gradientenbild von diesem Zellbild. Wenn sie diese Konturen jetzt auf das Originalbild
+
+71
+00:08:57,240 --> 00:09:04,760
+überlagern, dann sind sie hier. Und da sehen sie, passt. Passt so ungefähr. Wenn ich ihnen jetzt
+
+72
+00:09:04,760 --> 00:09:10,480
+von der Hand gesagt hätte, segmentieren sie mal dieses Bild, bin ich mir sicher, da hätten wir
+
+73
+00:09:10,480 --> 00:09:18,720
+alle leicht unterschiedliche Konturen bekommen. Aber das hier ist das Ergebnis der Wasserscheidentransformation
+
+74
+00:09:18,880 --> 00:09:26,320
+und zumindest aufgrund des Algorithmus können wir behaupten, das ist eine plausible Segmentierung.
+
+75
+00:09:31,000 --> 00:09:38,400
+Natürlich ist uns allen klar, dass das hier wahrscheinlich keine Zellgrenze ist,
+
+76
+00:09:39,000 --> 00:09:43,720
+seit hier liegt irgendwas unter dieser Zelle.
+
+77
+00:09:48,000 --> 00:09:56,680
+Hier ein anderes Beispiel, was sie bekommen mit der Wasserscheidentransformation. Hier haben wir Obst,
+
+78
+00:09:56,680 --> 00:10:09,320
+vielleicht Stachelbeeren, Äpfel. Egal. Auf alle Fälle ist klar, in diesem Bild ist jeder
+
+79
+00:10:09,320 --> 00:10:18,240
+Bildpunkt durch Obst definiert. Die Wasserscheidentransformation liefert uns aber durchaus die
+
+80
+00:10:18,240 --> 00:10:26,360
+Regionen von den Früchten. Und da, wo die tiefer gelegenen Früchte nicht zu sehen sind,
+
+81
+00:10:26,960 --> 00:10:33,520
+schaut bei dieser Wasserscheidentransformation einfach das Gebirge raus. Das wird dann keiner
+
+82
+00:10:33,520 --> 00:10:40,680
+Region zugeordnet. Hier haben wir jetzt ein Segmentierungsverfahren. Das liefert uns Segmente,
+
+83
+00:10:40,680 --> 00:10:47,840
+aber es liefert uns nicht unbedingt ein vollständig segmentiertes Bild. Ich würde aber behaupten,
+
+84
+00:10:47,840 --> 00:10:56,800
+dass das hier eine sinnvolle Segmentierung ist, wie wir hier sehen. Das kann man natürlich auch
+
+85
+00:10:56,800 --> 00:11:02,400
+in der industriellen Bildverarbeitung anwenden, wenn sich hier irgendwelche regelmäßigen Strukturen
+
+86
+00:11:02,400 --> 00:11:07,360
+finden wollen, dann können sie Abweichungen davon auch leicht mit der Wasserscheidentransformation
+
+87
+00:11:07,360 --> 00:11:12,480
+bekommen. Sie wissen, wie viele Regionen hier drin sind, wie groß sie sein müssen. Sie lassen das
+
+88
+00:11:12,480 --> 00:11:23,160
+Verfahren laufen und bekommen die Abweichung. Dieses Verfahren ist einfach zu implementieren.
+
+89
+00:11:23,160 --> 00:11:34,400
+Das Ansteigen des Wasserspiegels ist letztendlich eine Binarisierung ihres Eingangsbildes,
+
+90
+00:11:34,400 --> 00:11:46,240
+ihres Gradientenbildes. Sie erweitern dann eine bestehende Segmentierung für den Schwellwert x,
+
+91
+00:11:46,240 --> 00:11:52,880
+um die neu hinzugekommenen Bildpunkte, die sie durch die Binarisierung mit dem Schwellwert x plus 1
+
+92
+00:11:52,880 --> 00:12:02,320
+bekommen. Das erfordert also auch wenig Rechenleistung. Nicht jedes Bild ist für
+
+93
+00:12:02,320 --> 00:12:12,920
+diese Art von Transformation geeignet, wenn sie Bildbereiche haben, die letztendlich irgendwie
+
+94
+00:12:12,920 --> 00:12:20,000
+durch Konturen umrandet sind, aber diese Konturen welche Lücken haben, weil da irgendwelche
+
+95
+00:12:20,120 --> 00:12:27,400
+Grauwertrampen dann womöglich doch zu sehen sind, dann sind das natürlich Bereiche, wo schon bei
+
+96
+00:12:27,400 --> 00:12:33,160
+relativ niedrigem Wasserstand der Wasserscheidentransformation die Gebiete zusammenkommen
+
+97
+00:12:33,160 --> 00:12:41,680
+und sie dann nicht mehr getrennt bekommen. Ein bisschen erfordert dieses Verfahren auch,
+
+98
+00:12:41,680 --> 00:12:48,360
+dass sie letztendlich durchgängige Konturen haben. Durchgängige Konturen im Sinne von,
+
+99
+00:12:48,600 --> 00:12:59,560
+sie brauchen ein Gradientenbild, wo sie die interessierenden Segmente mit einer Kontur umrandet
+
+100
+00:12:59,560 --> 00:13:16,040
+sehen. Ja, wenn sie solche Konturen nicht haben, dann können sie vielleicht eine Segmentierung mit
+
+101
+00:13:16,040 --> 00:13:28,280
+einem Kantendetektor unterstützen. Wir sehen hier links mal ein Bild und rechts die Kantenpartikel.
+
+102
+00:13:28,280 --> 00:13:39,240
+Da kann man sich fragen, ist das ein gutes Bild, ist es ein schlechtes Bild. Wir fragen uns sicherlich,
+
+103
+00:13:39,240 --> 00:13:48,840
+warum sind denn hier keine Kanten eingezeichnet. Das senkrechte Rohr bildet rechts, der Beginn ist
+
+104
+00:13:48,840 --> 00:13:58,120
+da. Auf der positiven Seite sollte man vielleicht vermerken, es ist relativ wenig Rauschen da.
+
+105
+00:13:58,120 --> 00:14:09,360
+Ja, hier zum Beispiel sind Kantenregionen, aber die korrespondieren letztendlich zu irgendwelchen
+
+106
+00:14:09,360 --> 00:14:17,640
+Schadstellen an der Oberfläche des Metallteils. Das ist dann schon wieder eine hersemantische
+
+107
+00:14:17,640 --> 00:14:26,000
+Analyse des Bildes. Das ist viel schwieriger als eine schnöde Kantendetektion das vielleicht
+
+108
+00:14:26,000 --> 00:14:44,080
+leisten kann. Den KANI Edge Detektor, den KANI Kantendetektor, den sollten sie kennen. Zumindest vom Namen her,
+
+109
+00:14:44,080 --> 00:14:52,120
+sie sollten ungefähr wissen, was das Ding macht. Wird überall gerne eingesetzt, weil man sagt,
+
+110
+00:14:52,120 --> 00:14:59,360
+es ist ein einfaches und ein robustes Verfahren zur Detektion von Kanten. Sie brauchen zwei
+
+111
+00:14:59,360 --> 00:15:06,840
+Schwellwerte. Das heißt, sie müssen diesen Algorithmus parametrisieren. Das machen sie
+
+112
+00:15:06,840 --> 00:15:11,680
+mit Hilfe dieser zwei Schwellwerte. Mit Hilfe dieser zwei Schwellwerte passen sie den Algorithmus
+
+113
+00:15:11,680 --> 00:15:20,720
+an ihr Bild an. Ich hatte eben gesagt, bei dem Kantenbild, was wir gesehen haben, es gibt
+
+114
+00:15:20,720 --> 00:15:28,080
+relativ wenige Rausch-Artefakte. Das liegt daran, dass in einem ersten Schritt das Bild,
+
+115
+00:15:28,080 --> 00:15:35,320
+was sie haben, genommen wird und das wird geglättet. Rausch-Unterdrückung, zu deutsch
+
+116
+00:15:35,320 --> 00:15:45,040
+Tiefmaßfüllung. Dann werden Gradienten berechnet und zwar nicht nur die Gradienten, wie stark ist
+
+117
+00:15:45,040 --> 00:15:50,560
+der Gradient. Gradienten in xy und in der xy-Richtung. Hatten wir ja schon mal gemacht.
+
+118
+00:15:50,560 --> 00:15:56,960
+Sie könnten mit dem Sobol-Operator den Gradienten in x- und in y-Richtung berechnen. Wenn sie Stärke
+
+119
+00:15:56,960 --> 00:16:01,800
+haben wollen, dann quadrieren sie das Ganze. Quadrieren sie die Gradienten und addieren und
+
+120
+00:16:01,800 --> 00:16:09,200
+dann ziehen sie noch die Wurzel, wenn sie möchten. Nein, es wird neben der Gradientenstärke auch die
+
+121
+00:16:09,200 --> 00:16:19,160
+Gradientenrichtung bestimmt. Wenn sie jetzt den Gradient von einem Bildsignal berechnen,
+
+122
+00:16:19,160 --> 00:16:24,720
+dann kriegen sie natürlich für jeden Bildpunkt den Gradienten raus. Also pro Bildpunkt bekommen wir
+
+123
+00:16:24,720 --> 00:16:32,360
+dann hier zwei Parameter, nämlich die Gradientenrichtung. Da wird nun in einem nächsten
+
+124
+00:16:32,640 --> 00:16:40,640
+Schritt alles unterdrückt, was kein Maximum ist. Kein Maximum in der lokalen Umgebung. Es wird nicht
+
+125
+00:16:40,640 --> 00:16:47,160
+ein Maximum über das gesamte Bild beurteilt, sondern jeder Bildpunkt mit seinen Gradienten
+
+126
+00:16:47,160 --> 00:16:55,680
+wird in der lokalen Umgebung betrachtet und wer da nicht das Maximum ist, wird unterdrückt.
+
+127
+00:16:56,680 --> 00:17:08,720
+Dann bleiben diese lokalen Maxima über. Aus diesen lokalen Maxima versucht man dann Kulturen zu
+
+128
+00:17:08,720 --> 00:17:18,800
+erzeugen. Das ist dann der Punkt, bei dem die Schwellwerte eine Rolle spielen. Es gibt ganz
+
+129
+00:17:18,800 --> 00:17:24,920
+starke Gradienten. Da sagen wir einfach, da muss die Kanne langlaufen. Dann haben sie mehrere
+
+130
+00:17:24,960 --> 00:17:32,280
+Segmente. Das sind starke, dominante Kanten und dazwischen haben sie irgendwelche schwachen,
+
+131
+00:17:32,280 --> 00:17:37,440
+schwächeren Gradienten. Dann werden diese schwächeren Gradienten genutzt, um diese
+
+132
+00:17:37,440 --> 00:17:45,960
+starken Gradientenstücke zu verbinden. Natürlich nicht beliebig weit. Die müssen schon relativ nah
+
+133
+00:17:45,960 --> 00:17:59,520
+beieinander sein. Aber das ist dann das Verfahren, was den KERNI Edge Detektor ausmacht. Er versucht
+
+134
+00:17:59,520 --> 00:18:08,960
+also, dadurch dass er adaptiv sich anpassen kann mit diesen zwei Schwellwerten, möglichst alle
+
+135
+00:18:08,960 --> 00:18:16,960
+relevanten Kanten zu finden. Die Kanten sollen dann dicht an den Kanten im Grauwertbild liegen.
+
+136
+00:18:16,960 --> 00:18:27,760
+Das macht Sinn. Wobei sie natürlich ein gewisses Problem haben, wenn sie so ein Bildsignal haben.
+
+137
+00:18:27,760 --> 00:18:32,960
+Hier ein Bildpunkt, hier ein Bildpunkt, hier ein Bildpunkt, hier ein Bildpunkt. Wo ist denn die
+
+138
+00:18:32,960 --> 00:18:41,640
+Kante im dunklen oder im hellen Bereich? Da kann man sich darüber streiten. Aber weiter weg von dem
+
+139
+00:18:41,640 --> 00:18:51,560
+Sprung im Signal sollte die Kante nicht sein. Dann soll diese Kante auch nur einmal detektiert
+
+140
+00:18:51,560 --> 00:18:56,520
+werden. Das heißt, sie wollen nicht an dieser Stelle links von der Kante eine Kante detektieren
+
+141
+00:18:56,520 --> 00:19:04,440
+und rechts von der Kante nochmal eine Kante. Damit das nicht passiert, darf dann auch eine
+
+142
+00:19:04,440 --> 00:19:12,760
+Kante nur einen Pixel breit sein. Das sind so die Anforderungen an diesen Edge Detektor, die dann
+
+143
+00:19:12,760 --> 00:19:24,160
+auch die Entwicklung des Algorithmus bestimmt haben. Rauschunterdrückung können sie viele
+
+144
+00:19:24,320 --> 00:19:33,000
+Bilder nehmen. Hier mal beispielhaft ein Gauss Filter der Größe 5x5. Damit wird dann das Bild
+
+145
+00:19:33,000 --> 00:19:44,480
+F gefaltet. Hier ist das Eingangsbild F und hier haben wir jetzt das mit dem Gauss Filter gefaltete
+
+146
+00:19:44,480 --> 00:19:49,040
+Bild. Sieht sehr ähnlich aus, aber wenn man genauer hinschaut, hat man den Eindruck, dass es ein bisschen
+
+147
+00:19:49,160 --> 00:20:01,600
+unschärfer ist. Das glättet dann letztendlich die durch Rauschen veränderten Schwankungen im
+
+148
+00:20:01,600 --> 00:20:06,640
+Bildsignal und Rauschen erzeugt dann auch zufällige Gradienten. Die werden dadurch weniger.
+
+149
+00:20:06,640 --> 00:20:23,120
+Dann machen wir eine Kantendetektion. Da können sie viele Operatoren nehmen.
+
+150
+00:20:23,120 --> 00:20:31,480
+Sobel ist ja mit Tiefpassfilterung in der einen Richtung, Gradientenberechtigung in der anderen
+
+151
+00:20:31,480 --> 00:20:36,040
+Richtung. Roberts Privet Filter sind Varianten desselben.
+
+152
+00:20:41,320 --> 00:20:49,240
+Dies hier erkennen sie, sind Sobel Filter. Wir bekommen jetzt zwei Bilder. Wir berechnen
+
+153
+00:20:49,240 --> 00:20:58,880
+Gradienten in x-Richtung und in y-Richtung. Wenn sie beiden Gradientenbilder bildpunktweise
+
+154
+00:20:59,080 --> 00:21:05,200
+gradieren, aufaddieren und dann die Wurzel ziehen, dann bekommen sie letztendlich die Stärke des
+
+155
+00:21:05,200 --> 00:21:17,880
+Gradienten an einem gewissen Punkt. Diese Gradientenstärke, also Wurzel aus Gx² plus Gy²,
+
+156
+00:21:17,880 --> 00:21:26,760
+sehen sie hier. Auch klar, wenn wir später das Bild weiter verarbeiten, ob sie nun wirklich die
+
+157
+00:21:26,760 --> 00:21:30,240
+Wurzel ziehen wollen oder nicht, ist egal, hauptsache sie gradieren und addieren.
+
+158
+00:21:30,240 --> 00:21:53,640
+Wir sehen, die relevanten Kanten sind da. Auch hier sind die Kanten rund um den ganzen Flansch
+
+159
+00:21:53,640 --> 00:22:02,120
+zu sehen. Wir sehen hier, auf beiden Seiten der Stange haben wir eine Kante,
+
+160
+00:22:02,120 --> 00:22:06,680
+aber die Kante ist recht dick. Sie ist definitiv breiter als ein Pixel.
+
+161
+00:22:13,040 --> 00:22:14,720
+Also das ist die Kantenstärke.
+
+162
+00:22:14,720 --> 00:22:26,520
+Und dieses Gradientenbild, das wird jetzt mal binarisiert und in dem Beispiel hier wird eine
+
+163
+00:22:26,520 --> 00:22:33,080
+Schwelle von 80 genommen. Diese Schwelle müssen sie anpassen an ihr Bildmaterial.
+
+164
+00:22:35,480 --> 00:22:40,120
+Sie können versuchen, die Schwelle automatisch zu bestimmen, indem sie vielleicht vorgeben,
+
+165
+00:22:40,120 --> 00:22:49,680
+dass sie ein Prozent des Bildes als Kantenpixel in Betracht ziehen wollen. Oder sie schauen es
+
+166
+00:22:49,680 --> 00:22:53,480
+sich einfach an. Vor allen Dingen im industriellen Umfeld können sich die Bilder anschauen. Im
+
+167
+00:22:53,480 --> 00:23:00,160
+industriellen Umfeld wissen sie, welche Objekte sie erwartet und sie haben die Kontrolle über die
+
+168
+00:23:00,160 --> 00:23:09,720
+Beleuchtung. Nun interessiert für die Kantendetektion nicht nur die Stärke des Gradienten, sondern auch
+
+169
+00:23:09,720 --> 00:23:17,520
+die Richtung. Deswegen wird ein Richtungsbild erzeugt. Der Akustang ist das Patienten aus
+
+170
+00:23:17,520 --> 00:23:23,360
+Gradienten in Y-Richtung und in X-Richtung. Er liefert uns die Richtung einer Kante.
+
+171
+00:23:26,760 --> 00:23:29,480
+Und da kriegt man jetzt beliebig viele Winkel raus.
+
+172
+00:23:29,480 --> 00:23:38,920
+Um jetzt eine gewisse Segmentierung oder Einordnung der Kanten durchzuführen,
+
+173
+00:23:38,920 --> 00:23:48,640
+wird man diesen Winkel, die Richtung der Gradienten quantisieren. Typischerweise
+
+174
+00:23:48,640 --> 00:23:59,640
+nimmt man diese vier Winkel. Letztendlich quantisieren sie dann alle Kanten auf Richtung
+
+175
+00:23:59,640 --> 00:24:14,080
+zwischen 0 und vielfach von 45°. Und 90° und minus 90° oder 90° und 270° kann man von der
+
+176
+00:24:14,240 --> 00:24:22,680
+Richtung her nicht unterscheiden. Wir haben jetzt von hier nach hier zum einen diesen
+
+177
+00:24:22,680 --> 00:24:31,880
+Schwellwert angewendet und dann die Kantenrichtungen bestimmt und quantisiert. Wir sehen jetzt farblich
+
+178
+00:24:31,880 --> 00:24:44,080
+unterschieden die vier Richtungen, die dann möglich sind. Gelb ist 0°. Das entspricht
+
+179
+00:24:44,080 --> 00:24:50,680
+dann einer horizontalen Linie. Aufgrund der Quantisierung sind dann auch Linien gelb,
+
+180
+00:24:50,680 --> 00:25:00,200
+die nicht horizontal sind. Letztendlich die 0° erfassen dann ja plus minus 22,5°.
+
+181
+00:25:01,880 --> 00:25:09,600
+So haben wir jetzt das hier farblich visualisierte Bild.
+
+182
+00:25:09,600 --> 00:25:22,920
+Hier sehen sie noch mal, wie die Winkel quantisiert werden.
+
+183
+00:25:22,920 --> 00:25:32,600
+Die 22,5° hatte ich hier schon gesagt. Jedes Winkelfeld ist 45° groß.
+
+184
+00:25:32,600 --> 00:25:46,440
+Und der Winkel, den sie hier haben, das ist dann der Gradientenwinkel.
+
+185
+00:25:46,680 --> 00:25:52,520
+Das ist der Winkel des Gradienten. Das ist also letztendlich der normalen Vektor zu graben.
+
+186
+00:25:52,520 --> 00:26:00,560
+Das heißt, wenn ihre gerade so läuft, dann geht die normale nach unten.
+
+187
+00:26:00,560 --> 00:26:04,400
+Dann haben wir hier unten also die horizontalen Graben.
+
+188
+00:26:04,400 --> 00:26:16,400
+So, nun wollen wir Kanten haben, die nur einen Bildpunkt groß sind, aber breit sind.
+
+189
+00:26:16,400 --> 00:26:22,640
+Das heißt, wir müssen jetzt mit diesen dicken Linien, die wir hier haben,
+
+190
+00:26:22,640 --> 00:26:26,880
+die wirklich ein Maxima finden. Diese dicken Linien sind entstanden dadurch,
+
+191
+00:26:26,880 --> 00:26:32,640
+dass wir das Gradientenbild binarisiert haben mit einem Schwellwert.
+
+192
+00:26:33,240 --> 00:26:37,880
+Jetzt schauen wir für alle Bildpunkte, die nicht 0 sind in diesem Bild,
+
+193
+00:26:37,880 --> 00:26:41,320
+ist das denn ein lokales Maximum oder nicht?
+
+194
+00:26:41,320 --> 00:26:51,920
+Und dazu prüfen wir jetzt aber nicht alle Bildpunkte um einen hohen Gradienten drumherum,
+
+195
+00:26:51,920 --> 00:26:58,360
+sondern nur die, die nicht in Richtung der Kante verlaufen.
+
+196
+00:26:59,080 --> 00:27:04,960
+Ich habe jetzt ein Maximum. Im Gradientenbild habe ich irgendwo ein Maximum gefunden.
+
+197
+00:27:04,960 --> 00:27:07,920
+Das hat die Binarisierung überlebt. Von dem kenne ich die Richtung.
+
+198
+00:27:07,920 --> 00:27:15,760
+Und wenn ich jetzt entlang der Richtung mehrere Bildpunkte habe, die auch Maxima sind,
+
+199
+00:27:15,760 --> 00:27:17,240
+dann ist das ja durchaus etwas, was ich will.
+
+200
+00:27:17,240 --> 00:27:23,440
+Ich werde auf diesem Gradientenbild, das können Sie sich vorstellen wie so ein Bergkamm,
+
+201
+00:27:23,560 --> 00:27:28,320
+da will ich auf diesem Kamm langmarschieren in Richtung der Kante des Kammes.
+
+202
+00:27:28,320 --> 00:27:31,360
+Gehe ich von einem lokalen Maximum zum anderen?
+
+203
+00:27:31,360 --> 00:27:34,720
+Und das heißt, bin ich auf dem Kamm?
+
+204
+00:27:34,720 --> 00:27:40,880
+Diese Frage beantworte ich nicht, indem ich nach in Kammrichtung schaue, sondern senkrecht dazu.
+
+205
+00:27:40,880 --> 00:27:47,400
+Also ich schaue, ob ich orthogonal zu meiner aktuellen Gradientenrichtung
+
+206
+00:27:47,400 --> 00:27:49,800
+ein lokales Maximum bin oder nicht.
+
+207
+00:27:50,520 --> 00:27:53,480
+Dann kann ich in Kammrichtung durchaus runter und auch wieder hoch.
+
+208
+00:27:53,480 --> 00:27:59,000
+Und hier sehen Sie so ein Pseudocode.
+
+209
+00:27:59,000 --> 00:28:06,360
+Da wird hier die Kantenrichtung abgefragt und wenn die 0° ist,
+
+210
+00:28:06,360 --> 00:28:11,880
+dann wird also die Kante in X-Richtung verlaufen.
+
+211
+00:28:11,880 --> 00:28:16,960
+Dann schaue ich, ob ich in Y-Richtung, da drunter oder da drüber,
+
+212
+00:28:17,080 --> 00:28:20,440
+ob da mein aktueller Gradient größer ist.
+
+213
+00:28:23,120 --> 00:28:27,280
+Und wenn das der Fall ist, dann ist mein Punkt ein Kantenpunkt.
+
+214
+00:28:27,280 --> 00:28:36,840
+Und das muss ich natürlich überprüfen für alle vier Richtungen, die meine Kante haben kann.
+
+215
+00:28:36,840 --> 00:28:39,880
+Also der aktuelle Punkt, den ich untersuche,
+
+216
+00:28:39,880 --> 00:28:46,560
+der gehört zu der Klasse der 0° Punkte, 45°, 90° oder 135° Punkte.
+
+217
+00:28:46,680 --> 00:28:52,920
+Und je nachdem, welche Richtung mein Gradient hat, überprüfe ich dann die richtige Stelle.
+
+218
+00:29:00,080 --> 00:29:09,240
+Und wenn Sie das machen, dann sehen Sie hier rechts, wird das Bild schon viel dünner.
+
+219
+00:29:12,240 --> 00:29:13,240
+Die Linien werden dünner.
+
+220
+00:29:17,240 --> 00:29:19,000
+Ohne, dass sie unterbrochen werden.
+
+221
+00:29:19,000 --> 00:29:21,160
+Ich habe hier eine dicke durchgehende Linie.
+
+222
+00:29:21,160 --> 00:29:24,560
+Jetzt habe ich eine dünne durchgehende Linie.
+
+223
+00:29:24,560 --> 00:29:28,760
+Hier habe ich zwei dünne Linien dicht beieinander.
+
+224
+00:29:28,760 --> 00:29:31,480
+Ich habe hier weiterhin zwei dünne Linien dicht beieinander.
+
+225
+00:29:31,480 --> 00:29:33,280
+Sie sind jetzt noch etwas dünner geworden.
+
+226
+00:29:36,520 --> 00:29:38,920
+Aber verschwinden tut nichts.
+
+227
+00:29:39,920 --> 00:29:47,080
+Auch irgendwelche Rausch-Artefakte, wenn Sie sich an das Original erinnern,
+
+228
+00:29:47,080 --> 00:29:51,640
+das sind Muttern an der Stelle gewesen, die bleiben erhalten.
+
+229
+00:30:00,560 --> 00:30:07,480
+So, nun wollen wir die Kanten verfolgen.
+
+230
+00:30:08,480 --> 00:30:14,360
+Nachdem wir diese Non-Maxima-Unterdrückung gemacht haben, haben wir die Kantenpixel.
+
+231
+00:30:14,360 --> 00:30:20,640
+Die Kanten sind immer noch irgendwie unterschiedlich stark.
+
+232
+00:30:23,200 --> 00:30:31,800
+Und die Ergebnisse nach dieser globalen Schwellwertoperation sind darunter durchaus unbefriedigend.
+
+233
+00:30:32,800 --> 00:30:37,560
+Weil sie starke Kanten haben, die unterbrochen sind.
+
+234
+00:30:37,560 --> 00:30:39,560
+Die wollen sie zusammenführen.
+
+235
+00:30:42,560 --> 00:30:45,560
+Und das machen wir jetzt.
+
+236
+00:30:48,560 --> 00:30:51,560
+Diese Kanten verfolgen wir jetzt mit Hilfe von zwei Schwellwerten.
+
+237
+00:30:54,560 --> 00:31:01,560
+Die Bildpunkte, die wir haben, teilen wir in drei Kategorien ein.
+
+238
+00:31:02,320 --> 00:31:08,320
+Entsprechend ihrer Kantenstärke, also der Stärke des Gradienten.
+
+239
+00:31:09,320 --> 00:31:13,320
+Es gibt die starken Kantenpixel.
+
+240
+00:31:16,320 --> 00:31:22,320
+Es gibt Kandidatenbildpunkte.
+
+241
+00:31:22,320 --> 00:31:24,320
+Und es gibt schwache Punkte.
+
+242
+00:31:25,080 --> 00:31:32,080
+Diese teilen wir jetzt auf.
+
+243
+00:31:32,080 --> 00:31:39,080
+Wir sagen, für die starken Bildpunkte, das sind Kantenpixel.
+
+244
+00:31:41,080 --> 00:31:51,080
+Und für die schwachen, die unterhalb des unteren Schwellwerts sind, das sind keine Kantenpixel.
+
+245
+00:31:51,840 --> 00:31:54,840
+So, und jetzt haben wir noch die Kandidatenbildpunkte.
+
+246
+00:31:55,840 --> 00:32:02,840
+Für die entscheiden wir uns abhängig davon, ob starke Pixel in der Nähe sind oder nicht.
+
+247
+00:32:02,840 --> 00:32:06,840
+Dafür, ob es eine Kontur ist oder nicht.
+
+248
+00:32:11,840 --> 00:32:15,840
+Die Kandidatenpixel betrachten wir jetzt.
+
+249
+00:32:15,840 --> 00:32:18,840
+Wir verfolgen diese Kandidatenpixel im Bild.
+
+250
+00:32:21,840 --> 00:32:23,840
+Entlang beider Kantenrichtungen.
+
+251
+00:32:23,840 --> 00:32:25,840
+Sie haben Kandidatenpixel und Nachbarn auch.
+
+252
+00:32:25,840 --> 00:32:27,840
+Die gehen in die eine Richtung und die andere Richtung.
+
+253
+00:32:30,840 --> 00:32:37,840
+Sie verfolgen jetzt diese Kandidatenbildpunkte.
+
+254
+00:32:38,840 --> 00:32:45,840
+Und irgendwann schließen sie dann entweder an einen starken Gradienten an.
+
+255
+00:32:47,840 --> 00:32:49,840
+Oder es geht nicht weiter.
+
+256
+00:32:51,840 --> 00:32:58,840
+Und abhängig davon, setzen sie diese Kandidatenpixel auf Kante oder auf Nichtkante.
+
+257
+00:33:00,840 --> 00:33:02,840
+Wir verfolgen unsere Kandidatenpixel.
+
+258
+00:33:02,840 --> 00:33:05,840
+Es gibt eine Kette.
+
+259
+00:33:05,840 --> 00:33:14,840
+Wenn diese Kette mit einem starken Gradienten verbunden ist, dann sind alle Kandidaten Kantenpixel.
+
+260
+00:33:15,600 --> 00:33:22,600
+Und wenn nicht, dann sagen wir, es ist durch Rauschen entstanden und es sind keine Kandidaten.
+
+261
+00:33:29,600 --> 00:33:32,600
+Hier mal ein Beispiel.
+
+262
+00:33:33,360 --> 00:33:54,360
+Wir haben hier zwei strong edge points, starke Kantenpunkte, die also schon im ersten Schritt im Ausgabebild, im Kantenbild auf 1 gesetzt werden.
+
+263
+00:33:56,360 --> 00:33:59,360
+Dann haben wir noch ein paar Kandidatenbildpunkte.
+
+264
+00:34:00,120 --> 00:34:05,120
+Das sind die hier.
+
+265
+00:34:06,120 --> 00:34:15,120
+Und den Rest der Bildpunkte betrachten wir schon für die Kanten, weil da der Gradient so wenig ist.
+
+266
+00:34:15,880 --> 00:34:32,880
+Und jetzt wird geschaut, ob diese Kandidatenbildpunkte mit einem starken Bildpunkt zusammenkommen und ob es mit der Richtung passt.
+
+267
+00:34:35,880 --> 00:34:41,880
+Die Bildpunkte, die sich hier aus C2 passen, die treffen auf einen starken Kantenpunkt, die Richtung passt.
+
+268
+00:34:42,640 --> 00:34:48,640
+Damit geht dort die Kante weiter.
+
+269
+00:34:50,640 --> 00:34:56,640
+Diese hier passen auch in eine Richtung, treffen auf einen Kandidaten, aber die Richtung passt nicht.
+
+270
+00:34:56,640 --> 00:35:00,640
+Damit gehören sie nicht zu den Kanten.
+
+271
+00:35:01,400 --> 00:35:09,400
+Also die starken Kantenpixel, diese hier.
+
+272
+00:35:10,400 --> 00:35:20,400
+Wir geben einmal vor, hier können sich Kandidaten verbinden, sie müssen aber auch die richtige Richtung haben.
+
+273
+00:35:21,160 --> 00:35:37,160
+Mit diesen Parametern, mit denen sie die Strong- und die Weak-Kandidaten extrahieren.
+
+274
+00:35:37,920 --> 00:35:45,920
+In dem Beispiel, was wir hier vorher hatten, war das hier die 80.
+
+275
+00:35:46,920 --> 00:35:51,920
+Letztendlich der untere Schwellwert.
+
+276
+00:35:52,920 --> 00:35:56,920
+Alles, was kleiner war, wird nicht weiter betrachtet.
+
+277
+00:35:57,920 --> 00:36:01,920
+Also wäre dieses T-Low.
+
+278
+00:36:02,680 --> 00:36:07,680
+Mit Variationen der Schwellwerte bekommen sie unterschiedliche Ergebnisse.
+
+279
+00:36:07,680 --> 00:36:09,680
+Hier haben wir das Originalbild.
+
+280
+00:36:09,680 --> 00:36:13,680
+Hier haben wir die Kantenstärke berechnet.
+
+281
+00:36:14,680 --> 00:36:20,680
+Und jetzt hier mal die Schwellwerte 25 angesetzt.
+
+282
+00:36:21,680 --> 00:36:24,680
+Dann sehen wir die Konturen.
+
+283
+00:36:24,680 --> 00:36:29,680
+Und hier haben wir die Schwellwerte 20 und 40 angesetzt.
+
+284
+00:36:30,440 --> 00:36:32,440
+Wir sehen weniger Konturen.
+
+285
+00:36:32,440 --> 00:36:34,440
+Das ist jetzt nicht überraschend.
+
+286
+00:36:40,440 --> 00:36:44,440
+Sie sehen aber auch, wenn wir uns jetzt das rechte Bild hier anschauen,
+
+287
+00:36:45,440 --> 00:36:52,440
+dass hier zum Beispiel das Tischtuch, die Kanten wurden recht gut gefunden.
+
+288
+00:36:53,200 --> 00:37:00,200
+Die feine Textur, die hier im Halsschal und in der Hose zu sehen ist,
+
+289
+00:37:00,200 --> 00:37:05,200
+hat nicht dazu geführt, dass hier übermäßig viele Kanten existieren.
+
+290
+00:37:05,200 --> 00:37:10,200
+Ganz einfach, weil die Richtung bei der Kantenverfolgung auch eine Rolle spielt.
+
+291
+00:37:10,200 --> 00:37:13,200
+Und wenn sie da auch wie ein Texturiertes Muster haben,
+
+292
+00:37:13,200 --> 00:37:18,200
+dann führt das dazu, dass die Kanten nicht verfolgt werden.
+
+293
+00:37:23,200 --> 00:37:32,200
+Ja, damit haben wir also den EdCanny Edge Detektor besprochen.
+
+294
+00:37:33,200 --> 00:37:39,200
+Er liefert uns Kanten relativ rauschunabhängig.
+
+295
+00:37:39,200 --> 00:37:44,200
+Das liegt daran, dass wir erstmal hier einen Glättungsfilter über das Bild laufen lassen.
+
+296
+00:37:44,200 --> 00:37:49,200
+Kanten werden definiert durch die Stärke des Gradienten an einer lokalen Stelle
+
+297
+00:37:49,200 --> 00:37:52,200
+und auch durch die Richtung der Gradienten.
+
+298
+00:37:52,960 --> 00:37:58,960
+Die Richtung der Gradienten an diesen starken Kantenpunkten gibt dann letztendlich vor,
+
+299
+00:37:58,960 --> 00:38:03,960
+die Richtung, in der eine Kantenverfolgung gemacht wird über das Gradientenbild,
+
+300
+00:38:03,960 --> 00:38:06,960
+um gegebenenfalls Lücken zu schließen.
+
+301
+00:38:09,960 --> 00:38:15,960
+Das hier ist der Algorithmus, so wie er mal vorgeschlagen wurde.
+
+302
+00:38:16,720 --> 00:38:24,720
+Die verschiedenen Komponenten davon finden Sie dann auch in anderen Anwendungen zur Kantendetektion.
+
+303
+00:38:25,720 --> 00:38:33,720
+Letztendlich, wenn man darüber nachdenkt, sind diese Komponenten ja alle sinnvoll, intuitiv.
+
+304
+00:38:34,720 --> 00:38:37,720
+Man kann sie an verschiedenen Stellen variieren,
+
+305
+00:38:37,720 --> 00:38:43,720
+aber das Vorgehen passt letztendlich für alle Kantendetektionen.
+
+306
+00:38:44,480 --> 00:38:49,480
+Damit sind wir dann beim Thema Bildsegmentierung durch.
+
+307
+00:38:53,480 --> 00:38:58,480
+Kantenbasierte Verfahren, Kantendetektion ist letztendlich eine schwierige Sache.
+
+308
+00:38:58,480 --> 00:39:02,480
+Im industriellen Umfeld sicherlich etwas, was Sie machen können,
+
+309
+00:39:02,480 --> 00:39:08,480
+weil Sie dort die Beleuchtung unter Kontrolle haben und Sie wissen, was Sie erwartet.
+
+310
+00:39:09,240 --> 00:39:15,240
+Sie können gegebenenfalls auch den Hintergrund des Objektes, die Farbe des Förderbandes bestimmen.
+
+311
+00:39:20,240 --> 00:39:24,240
+Wenn Sie dann geschlossene Kanten bekommen, dann haben Sie auch eine Segmentierung.
+
+312
+00:39:26,240 --> 00:39:32,240
+Andere Verfahren, regionenbasierte Verfahren, wo Sie irgendwelche Startpunkte definieren
+
+313
+00:39:32,240 --> 00:39:37,240
+oder Sie teilen das Bild auf in Bereiche einheitlicher Regionen,
+
+314
+00:39:38,000 --> 00:39:44,000
+die liefern in typischer Weise vollständige Segmentierung jeder Bildpunkte zu einem Segment.
+
+315
+00:39:44,000 --> 00:39:48,000
+Und wenn Sie diese homogenen Bildbereiche haben,
+
+316
+00:39:48,000 --> 00:39:52,000
+wenn Sie ein Kriterium definieren können, was Ihnen die Homogenität definiert,
+
+317
+00:39:52,000 --> 00:39:56,000
+dann bekommen Sie da auch recht gute Segmentierung.
+
+318
+00:39:57,000 --> 00:40:04,000
+Schwerwertverfahren sind sehr einfach, häufig als erste Stufe für die Bildsegmentierung mal gedacht.
+
+319
+00:40:04,760 --> 00:40:08,760
+Sie wissen ja nun auch das Schwerwertverfahren.
+
+320
+00:40:08,760 --> 00:40:13,760
+Das können Sie auf ein Bildsignal oder ein abgeleitetes Bildsignal anwenden.
+
+321
+00:40:14,760 --> 00:40:20,760
+Auch das Schwerwertverfahren wurde beim Canny Edge Detektor letztendlich angewendet,
+
+322
+00:40:20,760 --> 00:40:23,760
+um eine erste Segmentierung des Bildes zu haben in die Bereiche,
+
+323
+00:40:23,760 --> 00:40:28,760
+die sind Kantenkandidat und Nichtkantenkandidat.
+
+324
+00:40:29,520 --> 00:40:31,520
+Okay.
+
+325
+00:40:33,520 --> 00:40:37,520
+Weil die Segmentierung letztendlich immer von den Daten abhängt,
+
+326
+00:40:37,520 --> 00:40:42,520
+spricht man dann auch von einer datengetriebenen Segmentierung,
+
+327
+00:40:42,520 --> 00:40:45,520
+wenn wir das mit bildbezogenen Eigenschaften machen.
+
+328
+00:40:45,520 --> 00:40:49,520
+Also wenn Sie das Bild nicht aufgrund einer Koordinate segmentieren,
+
+329
+00:40:49,520 --> 00:40:54,520
+sondern aufgrund der Grauwerte oder Farbwerte, die Sie im Bild haben,
+
+330
+00:40:55,280 --> 00:41:01,280
+ist ein erster Schritt zur Weiterverarbeitung.
+
+331
+00:41:01,280 --> 00:41:04,280
+Wir haben dann ja die Segmente.
+
+332
+00:41:04,280 --> 00:41:07,280
+Wir können in einem Bild 20 verschiedene Segmente haben,
+
+333
+00:41:07,280 --> 00:41:09,280
+aber Sie können auch jedes Segment letztendlich extrahieren.
+
+334
+00:41:09,280 --> 00:41:15,280
+Haben Sie es als Binärbild und können das dann weiter verarbeiten.
+
+335
+00:41:15,280 --> 00:41:20,280
+Wir können Segmente in Größe, Form beschreiben, Farbe, Textureigenschaften
+
+336
+00:41:21,040 --> 00:41:26,040
+oder was auch immer Sie für Ihre Analyse benötigen.
+
+337
+00:41:26,040 --> 00:41:31,040
+Wir können auch solche Segmente in einer Bildfolge Ihrer Bewegung beschreiben,
+
+338
+00:41:31,040 --> 00:41:35,040
+je nachdem, was Ihr Anwendungsfall ist.
+
+339
+00:41:43,040 --> 00:41:45,040
+Okay.
+
+340
+00:41:45,800 --> 00:41:56,800
+Das nächste Schritt könnte sein, dass ich jetzt nur mal wirklich wissen will,
+
+341
+00:41:56,800 --> 00:41:59,800
+was habe ich denn da in meinem Bild.
+
+342
+00:41:59,800 --> 00:42:04,800
+Ich suche ein gewisses Objekt.
+
+343
+00:42:04,800 --> 00:42:08,800
+Die Frage ist, ist dieses Objekt da drin?
+
+344
+00:42:09,560 --> 00:42:18,560
+Da kann man vielleicht zwei grundlegende Verfahren nennen.
+
+345
+00:42:18,560 --> 00:42:21,560
+Template Matching,
+
+346
+00:42:21,560 --> 00:42:25,560
+Korrelationsverfahren
+
+347
+00:42:25,560 --> 00:42:30,560
+und auch die Suche nach geometrischen Primitiven.
+
+348
+00:42:30,560 --> 00:42:34,560
+Wir suchen jetzt irgendetwas im Bild.
+
+349
+00:42:34,560 --> 00:42:38,560
+Wir wissen, was wir suchen.
+
+350
+00:42:38,560 --> 00:42:40,560
+Wir haben ein Modell davon.
+
+351
+00:42:40,560 --> 00:42:44,560
+Dieses Modell ist entweder das Bild von dem, was wir suchen
+
+352
+00:42:44,560 --> 00:42:49,560
+oder eine mathematische Beschreibung.
+
+353
+00:42:49,560 --> 00:42:56,560
+Damit spricht man dann auch von einer modellgetriebenen Bildanalyse.
+
+354
+00:42:56,560 --> 00:43:02,560
+Wir suchen zum Beispiel ein Verkehrszeichen, eine Geschwindigkeitsbeschränkung.
+
+355
+00:43:02,560 --> 00:43:09,560
+Aber dieses Zeichen beschreiben wir dadurch, dass wir Kreise suchen.
+
+356
+00:43:09,560 --> 00:43:14,560
+Und in den Kreisen sollen noch zwei Zahlen, zwei Ziffern drinstehen.
+
+357
+00:43:20,560 --> 00:43:25,560
+Das sogenannte Template Matching, Block Matching,
+
+358
+00:43:25,560 --> 00:43:31,560
+ist das einfachste Verfahren einer modellbasierten Suche.
+
+359
+00:43:31,560 --> 00:43:38,560
+Wir haben als Modell ein Beispiel dessen, was wir suchen.
+
+360
+00:43:38,560 --> 00:43:45,560
+In dem Beispiel, das wir jetzt als nächstes haben wollen, nutzen wir ein Auge.
+
+361
+00:43:48,560 --> 00:43:53,560
+Das nennt sich hier jetzt einfachste Form einer modellbasierten Suche,
+
+362
+00:43:53,560 --> 00:43:56,560
+weil wir als Modell ein Bildsignal verwenden,
+
+363
+00:43:56,560 --> 00:44:03,560
+aber einfachste Form dürfen Sie jetzt nicht so abtun.
+
+364
+00:44:03,560 --> 00:44:10,560
+Wenn Sie ein Auge durch ein Modell beschreiben wollen, dann haben Sie was zu tun.
+
+365
+00:44:10,560 --> 00:44:15,560
+Dann müssen Sie die Form des oberen Augenblicks, des unteren Augenblicks beschreiben,
+
+366
+00:44:15,560 --> 00:44:21,560
+Sie müssen die Pupille beschreiben, womöglich müssen Sie auch noch beschreiben,
+
+367
+00:44:21,560 --> 00:44:26,560
+dass Sie meistens ein oder mehrere Lichtreflexe auf der Pupille haben
+
+368
+00:44:26,560 --> 00:44:31,560
+und die sollten dann Ihr Verfahren auch möglicherweise nicht stören.
+
+369
+00:44:31,560 --> 00:44:39,560
+Auch wenn diese Templates ein einfaches Verfahren sind, haben sie ihren großen Nutzen,
+
+370
+00:44:39,560 --> 00:44:42,560
+weil Sie damit beliebiges finden können.
+
+371
+00:44:42,560 --> 00:44:46,560
+Wir haben ein Musterbild von dem, was wir suchen.
+
+372
+00:44:46,560 --> 00:44:51,560
+Wir platzieren das auf dem Bild, was wir analysieren wollen
+
+373
+00:44:51,560 --> 00:44:55,560
+und berechnen den Unterschied zwischen diesem Template und dem Bildausschnitt,
+
+374
+00:44:55,560 --> 00:44:59,560
+auf den wir dieses Template gelegt haben.
+
+375
+00:44:59,560 --> 00:45:04,560
+Und konzeptionell sollte es dann so sein, wenn ich das Auge auf ein Auge im Bild setze,
+
+376
+00:45:04,560 --> 00:45:08,560
+dann sollte der Unterschied sehr klein sein und wenn ich es auf die Krawatte zum Beispiel setze,
+
+377
+00:45:08,560 --> 00:45:12,560
+dann sollte der Unterschied wohl eher groß sein.
+
+378
+00:45:12,560 --> 00:45:15,560
+Wie finde ich jetzt heraus, ob der Auge und das Bild sind?
+
+379
+00:45:15,560 --> 00:45:21,560
+Naja, ich schiebe dieses Template über das gesamte Bild und an jeder Position XY
+
+380
+00:45:21,560 --> 00:45:28,560
+werte ich aus die Differenz zwischen diesem Template und dem Bildsignal.
+
+381
+00:45:30,560 --> 00:45:34,560
+Das Ergebnis wäre dann dieses Distanzbild.
+
+382
+00:45:35,560 --> 00:45:44,560
+Wir bezeichnen hier mit G das Template und F wäre dann der Bildpatch an der Position XY.
+
+383
+00:45:51,560 --> 00:45:55,560
+Ja, was ist denn jetzt das Distanzmaß?
+
+384
+00:45:56,560 --> 00:46:03,560
+Korrelation, Zero-Mean-Korrelation.
+
+385
+00:46:03,560 --> 00:46:08,560
+Nehmen wir einfach die Differenz und quadrieren die auf.
+
+386
+00:46:08,560 --> 00:46:19,560
+Normalisierte Kreuzkorrelation, das ist das, was der Korrelationskoeffizient eigentlich ist.
+
+387
+00:46:20,560 --> 00:46:26,560
+Also man kann diese ganzen Kriterien ausprobieren und wird dann ja feststellen, was geht am besten.
+
+388
+00:46:27,560 --> 00:46:32,560
+Und dann stellt man fest, das was am rechneraufwendigsten ist, wird am besten gehen
+
+389
+00:46:32,560 --> 00:46:37,560
+und dann muss man eben gucken, ob man mit diesen anderen Maßen, die da sind, vielleicht auch leben kann.
+
+390
+00:46:37,560 --> 00:46:56,560
+Also das Einfachste könnte ja sein, wir nehmen unser Bild, F, multiplizieren das mit unserem Template G,
+
+391
+00:46:56,560 --> 00:47:03,560
+an der Stelle M, N.
+
+392
+00:47:03,560 --> 00:47:15,560
+Wir betrachten also einen Ausschnitt von diesem Bild an der Stelle M, N.
+
+393
+00:47:18,560 --> 00:47:23,560
+Werten diese Doppelsumme aus und bekommen dann den Wert für das Ausgangsbild H.
+
+394
+00:47:26,560 --> 00:47:40,560
+Gut, und wir hätten jetzt gehofft, dass wir ein Signal bekommen, was hier bei den Augen irgendwie besonders hoch ist,
+
+395
+00:47:40,560 --> 00:47:46,560
+besonders schwach, aber irgendwie ins Auge fällt. Tut es hier nicht, also irgendwas ist hier noch schief gelaufen.
+
+396
+00:47:47,560 --> 00:47:57,560
+Stellt sich heraus, naja, wenn wir das so machen, das Template so definieren, wie wir es haben, einfach als Bild eines Auges,
+
+397
+00:47:57,560 --> 00:48:03,560
+dann sind wir hier bei dieser Summbildung sehr vom Mittelwert abhängig, den dieses Template hat.
+
+398
+00:48:04,560 --> 00:48:08,560
+Das macht vielleicht nicht so richtig Sinn.
+
+399
+00:48:08,560 --> 00:48:27,560
+Wenn wir unser Template vom Mittelwert befreien, dann bekommen wir etwas, was schon besser aussieht.
+
+400
+00:48:27,560 --> 00:48:34,560
+Wir sehen, da gibt es Extrema um die Augen herum.
+
+401
+00:48:37,560 --> 00:48:45,560
+Hier in den dunklen Bereichen haben wir auch welche.
+
+402
+00:48:47,560 --> 00:48:55,560
+Das ist vielleicht noch nicht ganz voll, aber auf alle Fälle besser als das, was wir vorher hatten.
+
+403
+00:48:55,560 --> 00:49:02,560
+Wenn wir jetzt dieses Bild hier binarisieren würden, mit einem möglichst hohen Schwellwert,
+
+404
+00:49:02,560 --> 00:49:10,560
+dann würde man hier letztendlich falsche Detektion bekommen, aber wir würden auch die Augen bekommen.
+
+405
+00:49:10,560 --> 00:49:14,560
+Man könnte sagen, auf diese Art und Weise bekommen wir zumindest Kandidaten für die Augen
+
+406
+00:49:14,560 --> 00:49:20,560
+und die Zahl der Kandidaten ist viel kleiner als die Anzahl der Bildpunkte, die das Bild hat.
+
+407
+00:49:26,560 --> 00:49:35,560
+Wir könnten auch unser Template über das Bild schieben und an jeder Stelle die Differenz betrachten
+
+408
+00:49:35,560 --> 00:49:43,560
+zwischen unserem Grauwert, unserem Template und dem darunter liegenden Bildsignal
+
+409
+00:49:43,560 --> 00:49:46,560
+und davon dann den quadratischen Fehler berechnen.
+
+410
+00:49:47,560 --> 00:49:52,560
+Eigentlich ist es der mittlere quadratische Fehler, man müsste dann hier noch einmal durch die Blockgröße teilen,
+
+411
+00:49:52,560 --> 00:49:58,560
+aber wenn wir jetzt maximal suchen und wir das für alle Bildpunkte nicht machen,
+
+412
+00:49:58,560 --> 00:50:00,560
+sparen wir uns Rechenoperationen.
+
+413
+00:50:04,560 --> 00:50:10,560
+Hier stellt sich jetzt heraus, dass diese Bereiche hier, die eben noch hohe Ausschläge geliefert haben,
+
+414
+00:50:10,560 --> 00:50:14,560
+jetzt gar keine Rolle mehr spielen, sondern wir kriegen unsere Maxima hier.
+
+415
+00:50:15,560 --> 00:50:23,560
+Und wenn Sie dann den Schwellwert entsprechend wählen, bekommen Sie nur zwei Detektionen.
+
+416
+00:50:23,560 --> 00:50:52,560
+Diese Detektionen sind weg, wenn Sie den Grauwert des Eingangsbildes verändern.
+
+417
+00:50:53,560 --> 00:51:06,560
+Das heißt, das, was wir eben gelernt hatten, wir sollten doch bitte das mittelwertbefreite Template nehmen,
+
+418
+00:51:06,560 --> 00:51:11,560
+um helligkeitsunabhängig zu werden, das ist hier wohl auch noch ein Problem.
+
+419
+00:51:14,560 --> 00:51:19,560
+Also dieses Sum-of-Square-Differences, SSD oder mittlere quadratische Fehler,
+
+420
+00:51:19,560 --> 00:51:23,560
+ist nicht invariant gegenüber Helligkeitsänderungen, kann er ja auch nicht,
+
+421
+00:51:23,560 --> 00:51:26,560
+weil der Mittelwert geht ja hier voll in die Berechnungen ein.
+
+422
+00:51:27,560 --> 00:51:35,560
+Das soll heißen, das hier ist vielleicht nicht die optimale Größe.
+
+423
+00:51:36,560 --> 00:51:42,560
+Das hat an dieser Stelle letztendlich nur gut geklappt, weil das Template, mit dem wir gesucht haben,
+
+424
+00:51:42,560 --> 00:51:50,560
+ein Auge aus diesem Bild war. Und dann haben wir kein Problem mit der mittleren Helligkeit.
+
+425
+00:51:58,560 --> 00:52:06,560
+Ja, bleibt dann letztendlich nur, dass wir den Mittelwert aus dem Signal herausnehmen.
+
+426
+00:52:06,560 --> 00:52:12,560
+Wir berechnen die Kreuzgrau-Ratio.
+
+427
+00:52:18,560 --> 00:52:29,560
+Und da sehen Sie hier die Formel. Wir summieren auf über den gesamten Block, an der Stelle Mn.
+
+428
+00:52:29,560 --> 00:52:35,560
+Die Blockgröße ist definiert durch das Template.
+
+429
+00:52:36,560 --> 00:52:43,560
+Da summieren wir auf das Produkt vom mittelwertbefreiten Template mit dem mittelwertbefreiten Bildsignal.
+
+430
+00:52:44,560 --> 00:52:53,560
+Wichtig, dass hier ist der Mittelwert in dem Block.
+
+431
+00:52:54,560 --> 00:52:58,560
+Und dann normieren wir das Ganze noch.
+
+432
+00:53:02,560 --> 00:53:19,560
+Hier haben wir die Varianz des Templates und hier haben wir die lokale Varianz des Bildsignals.
+
+433
+00:53:24,560 --> 00:53:28,560
+Das da ist lokal, das da ist lokal.
+
+434
+00:53:29,560 --> 00:53:32,560
+Bedeutet, das hier ist ein recht rechenaufwendiges Verfahren.
+
+435
+00:53:33,560 --> 00:53:41,560
+Den Template, den Mittelwert müssen Sie nur einmal berechnen, aber ansonsten müssen Sie es zweimal berechnen.
+
+436
+00:53:42,560 --> 00:53:48,560
+Und das ist jetzt auch gleich der Korrelationskoeffizient, den wir jetzt bildpunktweise ausrechnen.
+
+437
+00:53:48,560 --> 00:53:59,560
+Wir berechnen die Korrelation, normalisierte Kreuzkorrelation zwischen unserem Template und dem Bildsignal.
+
+438
+00:54:00,560 --> 00:54:04,560
+Also in manchen Büchern ist das dann einfach der Korrelationskoeffizient.
+
+439
+00:54:05,560 --> 00:54:13,560
+In der englischsprachigen Literatur wird es häufig als der Pearson-Korrelation-Koeffizient bezeichnet.
+
+440
+00:54:14,560 --> 00:54:20,560
+Wichtig ist, wir normalisieren auf den Mittelwert und auf die Standardabweichung.
+
+441
+00:54:21,560 --> 00:54:27,560
+Das hier ist ja die Wurzel, also ist es letztendlich die Standardabweichung im Template und die Standardabweichung im lokalen Bild.
+
+442
+00:54:37,560 --> 00:54:39,560
+Hier das Ergebnis.
+
+443
+00:54:43,560 --> 00:54:52,560
+Sie sehen, dass man hier durch falsche Wahl des Schwellwertes natürlich auch viele Maxima bekommen kann.
+
+444
+00:54:53,560 --> 00:55:03,560
+Aber wenn Sie den Schwellwert langsam hochsetzen und einfach gucken, wann habe ich erste Detektionen, dann kriegen Sie die beiden Augen.
+
+445
+00:55:04,560 --> 00:55:09,560
+Und Sie kriegen hier die beiden Augen, obwohl wir nur mit einem Auge suchen.
+
+446
+00:55:10,560 --> 00:55:16,560
+Und als Mindestmaß ist ja das linke Auge spiegelverkehrt zum rechten Auge.
+
+447
+00:55:17,560 --> 00:55:19,560
+Aber das ist mit dem Template dann noch okay.
+
+448
+00:55:28,560 --> 00:55:34,560
+Hier haben wir jetzt nochmal aufgeschrieben ein paar Ähnlichkeitsmaße für den lokalen Vergleich.
+
+449
+00:55:35,560 --> 00:55:40,560
+Sum of squared differences, mean square error, mittlerer quadratischer Fehler,
+
+450
+00:55:41,560 --> 00:55:46,560
+hatte den Nachteil, dass der helligkeitsabhängig ist.
+
+451
+00:55:49,560 --> 00:55:51,560
+Als Vereinfachung
+
+452
+00:55:51,560 --> 00:55:53,560
+Die Summe der absoluten Differenzen.
+
+453
+00:55:54,560 --> 00:56:00,560
+Das hier ist etwas, was in der Bildverarbeitung statt des mittleren quadratischen Fehlers sehr oft genommen wird,
+
+454
+00:56:01,560 --> 00:56:10,560
+weil die Ergebnisse, die Sie aus der SAD bekommen, wenn Sie das weiterverarbeiten, das Maximum suchen, das Minimum suchen,
+
+455
+00:56:11,560 --> 00:56:16,560
+wie auch immer, bekommen Sie ganz ähnliche Ergebnisse wie Sum of squared differences.
+
+456
+00:56:17,560 --> 00:56:25,560
+Dieses SAD-Maß ist dann auch auf allen modernen CPUs als komplexe Differenzen verwendbar.
+
+457
+00:56:26,560 --> 00:56:30,560
+Das heißt, wenn Sie das Sum of squared differences machen,
+
+458
+00:56:30,560 --> 00:56:43,560
+Das SAD-Maß ist dann auch auf allen modernen CPUs als komplexe Differenzen vordefiniert,
+
+459
+00:56:44,560 --> 00:56:50,560
+sodass Sie mit einem Befehl gleich für 8 oder 16 Bildpunkte dieses SAD ausrechnen können.
+
+460
+00:56:55,560 --> 00:56:58,560
+Das Maß aller Dinge ist die normierte Kreuzkorrelation.
+
+461
+00:57:00,560 --> 00:57:04,560
+Aber Sie sehen, die ist auch die rechenaufwendigste.
+
+462
+00:57:17,560 --> 00:57:23,560
+Was haben wir bisher gemacht? Wir hatten ein Template und das haben wir über das Bild geschoben.
+
+463
+00:57:23,560 --> 00:57:36,560
+Das heißt, unser Template wird in der Position gefunden, aber wenn das Objekt, was wir suchen, um 45 Grad gedreht ist,
+
+464
+00:57:37,560 --> 00:57:40,560
+dann passt das Template wahrscheinlich nicht so richtig.
+
+465
+00:57:41,560 --> 00:57:46,560
+Obwohl wir jetzt nur dieses Template in der richtigen Orientierung im Bild suchen
+
+466
+00:57:47,560 --> 00:57:52,560
+und als Freiheitsgrade zwei Parameter haben, nämlich Translation in links, Translation in die andere Richtung,
+
+467
+00:57:53,560 --> 00:57:55,560
+muss man schon viel rechnen.
+
+468
+00:57:56,560 --> 00:58:05,560
+Wenn Sie annehmen, dass Sie ein Bild haben der Größe N mal M
+
+469
+00:58:07,560 --> 00:58:13,560
+und Ihr Template ist dann vielleicht 100 mal 50 Bildpunkte groß,
+
+470
+00:58:14,560 --> 00:58:24,560
+dann müssen Sie diese SAD, also diese Betragsdifferenz, N mal M mal K mal L berechnen.
+
+471
+00:58:25,560 --> 00:58:41,560
+Wenn Sie ein kleines HD Bild haben, die Größe 1080 mal 720, wurde uns eine Zeit lang als HD verkauft.
+
+472
+00:58:41,560 --> 00:58:50,560
+Die Fernseher, die nur dieses Format konnten und höher aufgelöste Bilder runterskaliert haben, die hießen dann HD Ready.
+
+473
+00:58:51,560 --> 00:58:56,560
+Wir haben ein Template von der Größe 20 mal 20, also ein kleines quadratisches Template.
+
+474
+00:58:57,560 --> 00:59:02,560
+Dann sind wir bei 311 Millionen Operationen.
+
+475
+00:59:02,560 --> 00:59:16,560
+Und wenn Sie einen Gigahertz Prozessor haben, dann können Sie eine Milliarde Operationen pro Sekunde durchführen.
+
+476
+00:59:17,560 --> 00:59:30,560
+Subtraktion und diese Addition, das wird in modernen Architekturen mit einem Operationsschritt gemacht.
+
+477
+00:59:30,560 --> 00:59:37,560
+Das heißt, allein vor der Rechenleistung können Sie dann drei Bilder pro Sekunde in dieser kleinen Auflösung,
+
+478
+00:59:38,560 --> 00:59:47,560
+jede Überwachungskamera heute hat UHD, an dieser Stelle schon mal 4000 stehen und an der Stelle 2000.
+
+479
+00:59:48,560 --> 00:59:54,560
+Bei dieser kleinen Auflösung, also Sie sagen ja Überwachungskamera, Sie sollen mir die Bilder ganz klein rausliefern,
+
+480
+00:59:55,560 --> 00:59:57,560
+schaffen Sie drei Bilder pro Sekunde.
+
+481
+00:59:57,560 --> 01:00:02,560
+Das ist also sehr rechenaufwendig.
+
+482
+01:00:03,560 --> 01:00:07,560
+Das ändert sich auch nicht, wenn Sie jetzt statt ein Gigahertz drei Gigahertz haben.
+
+483
+01:00:08,560 --> 01:00:12,560
+Dann schaffen Sie vielleicht zehn Bilder pro Sekunde, aber auf eher kleinen Bildern.
+
+484
+01:00:13,560 --> 01:00:17,560
+Typische Videosequenzen haben 25 Bilder pro Sekunde oder 50 Bilder pro Sekunde.
+
+485
+01:00:18,560 --> 01:00:23,560
+Das ist also extrem rechenaufwendig.
+
+486
+01:00:24,560 --> 01:00:27,560
+Dann wollen Sie ja noch mehr machen als dieses Template Matching.
+
+487
+01:00:28,560 --> 01:00:33,560
+Das ist ja typischerweise der erste Schritt der Verarbeitung, dem dann noch weitere folgen.
+
+488
+01:00:39,560 --> 01:00:46,560
+Dann stellt sich natürlich auch noch die Frage, was ist denn, wenn unser Template größer ist als das, was wir im Bild suchen.
+
+489
+01:00:47,560 --> 01:00:53,560
+Also Sie wollen jetzt die Verkehrszeichen finden in einem Auto.
+
+490
+01:00:54,560 --> 01:01:01,560
+Die Kamera schaut nach vorne und Sie wollen das Verkehrszeichen ja nicht nur erkennen, wenn es eine Größe hat von 20x20 Pixel,
+
+491
+01:01:02,560 --> 01:01:03,560
+sondern Sie wollen es auch erkennen, wenn Sie näher dran sind.
+
+492
+01:01:04,560 --> 01:01:07,560
+Also das Verkehrszeichen ist vielleicht 30x30 groß oder womöglich ist es weiter weg.
+
+493
+01:01:08,560 --> 01:01:13,560
+Da wollen Sie auch schon wissen, da kommt wohl ein Verkehrszeichen auf mich zu und es hat da nur die Größe von 15x15.
+
+494
+01:01:14,560 --> 01:01:16,560
+Dann kriegen wir einen weiteren Freiheitsgrad.
+
+495
+01:01:20,560 --> 01:01:30,560
+Das heißt, die Suche wird noch aufwendiger und wenn Sie jetzt irgendetwas suchen, was auch verdreht sein kann, dann haben Sie einen vierten Freiheitsgrad.
+
+496
+01:01:37,560 --> 01:01:41,560
+Und das erhöht dann entsprechend nochmal den Rechenaufwand dramatisch.
+
+497
+01:01:43,560 --> 01:01:53,560
+Also Template Matching ist ein systematisches Suchverfahren.
+
+498
+01:01:54,560 --> 01:02:03,560
+Distanz, Maße, SAD oder die Korrelation.
+
+499
+01:02:04,560 --> 01:02:11,560
+Wenn Sie unbekannte Beleuchtungsverhältnisse haben, dann ist die Korrelation das Verfahren der Wahl.
+
+500
+01:02:11,560 --> 01:02:25,560
+Wenn Sie die Beleuchtung unter Kontrolle haben oder irgendwie wissen, dass Ihr Template letztendlich aus einer Beleuchtungsumgebung kommt, die den zu analysierenden Bildern entspricht,
+
+501
+01:02:26,560 --> 01:02:29,560
+dann können Sie auch mit SAD das machen.
+
+502
+01:02:30,560 --> 01:02:35,560
+Das ist, wie schon gesagt, etwas, was schnell geht, was Prozessoren heute auch an einem Befehl erledigen können.
+
+503
+01:02:36,560 --> 01:02:52,560
+Dieses Template Matching erlaubt aber letztendlich nur die Detektion eines Objektes mit bekannter Größe und zwar nicht Größe in der physikalischen Welt, sondern Größe im Bild, was Sie analysieren wollen.
+
+504
+01:02:53,560 --> 01:02:58,560
+Also gut geeignet für industrielle Anwendungen, wo Sie die Szene unter Kontrolle haben.
+
+505
+01:02:59,560 --> 01:03:04,560
+Wir können das erweitern für Rotation, für Skalierung.
+
+506
+01:03:05,560 --> 01:03:08,560
+Das ist aber auch rechenaufwendig.
+
+507
+01:03:09,560 --> 01:03:17,560
+Selbst das klassische Template Matching mit nur zwei Freiheitsgraden, Transformation der Nächsten und Y, ist sehr rechenaufwendig.
+
+508
+01:03:18,560 --> 01:03:23,560
+Je nachdem, was Sie da machen wollen, kann man sich natürlich überlegen, wie man das Ganze beschleunigt.
+
+509
+01:03:23,560 --> 01:03:25,560
+Sie könnten sich Bildparameter erzeugen.
+
+510
+01:03:26,560 --> 01:03:30,560
+Sie machen erstmal ein grobes Matching in einem niedrig aufgelösten Bild.
+
+511
+01:03:31,560 --> 01:03:39,560
+Dann eine Mineralisierung und die Bildpunkte, die dann überbleiben oder die Orte, die dann überbleiben, schauen sich dann in einer höheren Auflösung mit dem Template Matching an.
+
+512
+01:03:40,560 --> 01:03:43,560
+Damit können Sie natürlich den Rechenaufwand dramatisch reduzieren.
+
+513
+01:03:44,560 --> 01:03:54,560
+Hat dann aber mehr Programmieraufwand, mehr Speicherzugriffe, erfordert ein bisschen mehr Sachverstand.
+
+514
+01:03:57,560 --> 01:04:05,560
+Eine Variation des Template Matchings haben Sie alle auf Ihren Handys.
+
+515
+01:04:06,560 --> 01:04:11,560
+Das ist die Bewegungskompensation bei der Videokodierung.
+
+516
+01:04:12,560 --> 01:04:16,560
+Das müsste hier eigentlich Videokodierung heißen.
+
+517
+01:04:23,560 --> 01:04:25,560
+Beim Bildcoder ist das nicht der Fall.
+
+518
+01:04:26,560 --> 01:04:29,560
+Beim Videokodierer gilt ja letztendlich, dass aufeinanderfolgende Bilder sehr, sehr ähnlich sind.
+
+519
+01:04:30,560 --> 01:04:39,560
+Dann wird das aktuelle Bild, das wir hier haben, da wird ein Blockraste draufgelegt und jeder Block ist dann das Template.
+
+520
+01:04:40,560 --> 01:04:46,560
+Und für dieses Template wird dann im vorangegangenen Bild geguckt, wo passt das Template am besten.
+
+521
+01:04:47,560 --> 01:04:49,560
+In einer Bildfolge ändert sich die Beleuchtung nicht.
+
+522
+01:04:50,560 --> 01:04:55,560
+Das heißt, wir müssen nicht den Korrelationskoeffizienten ausrechnen.
+
+523
+01:04:56,560 --> 01:05:02,560
+Wir können einfach mittleren quadratischen Fehler nehmen oder, was man in der Realität macht, man nimmt SAD.
+
+524
+01:05:03,560 --> 01:05:04,560
+Sum of Absolute Differences.
+
+525
+01:05:05,560 --> 01:05:12,560
+Und dann wird dieser Block, um ihn im vorangegangenen Bild zu finden, wird auch nicht über das gesamte Bild geschoben,
+
+526
+01:05:13,560 --> 01:05:14,560
+sondern man macht irgendwelche Annahmen.
+
+527
+01:05:15,560 --> 01:05:16,560
+Wie groß kann denn die Bewegung sein von einem Bild zum anderen?
+
+528
+01:05:17,560 --> 01:05:22,560
+Und nur in diesem Suchbereich wertet man dann dieses Template Vergleich aus.
+
+529
+01:05:23,560 --> 01:05:25,560
+Nennt sich dann Block Matching oder Bewegungskompensation.
+
+530
+01:05:26,560 --> 01:05:33,560
+Der Encoder macht diese Suche, das Matching und der Decoder kennt dann letztendlich nur das vorangegangene Bild,
+
+531
+01:05:34,560 --> 01:05:40,560
+kriegt den Bewegungsvektor dazu und nimmt dann den Block aus dem vorangegangenen Bild und schiebt ihn an die richtige Stelle im aktuellen Bild.
+
+532
+01:05:41,560 --> 01:05:48,560
+Weil der Decoder nur letztendlich vom alten Bild ins neue Bild was kopieren muss, unter Berücksichtigung dieses Bewegungsvektors,
+
+533
+01:05:49,560 --> 01:05:52,560
+ist der Decoder dann auch nicht so rechenaufwendig wie der Encoder.
+
+534
+01:05:53,560 --> 01:05:54,560
+Der Encoder muss das Template Matching machen.
+
+535
+01:05:55,560 --> 01:05:56,560
+Block Matching.
+
+536
+01:05:57,560 --> 01:05:58,560
+Und das ist eben rechenintensiv.
+
+537
+01:06:07,560 --> 01:06:16,560
+Eine andere Möglichkeit hier im Anwendungsfall, wir wollen das Verkehrszeichen finden.
+
+538
+01:06:16,560 --> 01:06:26,560
+Und zwar wollen wir hier die Achtungszeichen finden, diese Dreiecke.
+
+539
+01:06:34,560 --> 01:06:38,560
+So wird das Szenenbild, das Feature-Bild umgerechnet.
+
+540
+01:06:39,560 --> 01:06:42,560
+Da wird dann eine Distanztransformation darauf angewendet.
+
+541
+01:06:43,560 --> 01:06:48,560
+Dann wird die Korrelation zwischen dieser Distanztransformation und dem Template berechnet.
+
+542
+01:06:49,560 --> 01:06:55,560
+Und dann setzen sie den Schwellwert und hoffentlich finden sie das, was sie suchen.
+
+543
+01:06:55,560 --> 01:07:19,560
+Hier wird jetzt als Template nicht das Verkehrszeichen an sich genommen, sondern hier wird nur erstmal die Form genommen.
+
+544
+01:07:20,560 --> 01:07:29,560
+Und dieses Template, mit dem sie jetzt erstmal suchen, wo sind denn meine Dreiecke, die aufrecht stehenden Dreiecke, die Verkehrszeichen, die daraus bestehen.
+
+545
+01:07:30,560 --> 01:07:32,560
+Ich will nicht wissen, wo ist das Dreieck im Bild.
+
+546
+01:07:33,560 --> 01:07:35,560
+Ich will letztendlich wissen, was für ein Verkehrszeichen sehe ich da.
+
+547
+01:07:36,560 --> 01:07:38,560
+Wir haben jetzt den Schritt, wo sind die Dreiecke.
+
+548
+01:07:39,560 --> 01:07:40,560
+Warum mache ich das?
+
+549
+01:07:40,560 --> 01:07:49,560
+Die Identifikation, ob es sich um einen Vorsichtsschleudern oder Straßenengpass handelt, die ist wahrscheinlich sehr rechenaufwendig.
+
+550
+01:07:50,560 --> 01:07:56,560
+Ich versuche jetzt erstmal in einem ersten Schritt die Kandidaten der Bildbereiche, die ich untersuchen muss, herauszufiltern.
+
+551
+01:07:57,560 --> 01:08:02,560
+Ich will nicht mehr das ganze Bild aufwendig untersuchen, sondern ich will gucken, wo ist die Wahrscheinlichkeit groß, dass da ein Schild ist.
+
+552
+01:08:03,560 --> 01:08:15,560
+Also gucke ich erstmal, wo ist die Wahrscheinlichkeit groß, dass da ein Dreieck ist und das macht Sinn, wenn ich dieses Dreieck sehr schnell finden kann.
+
+553
+01:08:16,560 --> 01:08:27,560
+Nun ist dieses Template Matching besonders rechenaufwendig, aber wenn ich ein Dreieck suche, kann ich dieses Dreieck durch ein Binärbild repräsentieren mit den Werten 0 und 1.
+
+554
+01:08:27,560 --> 01:08:41,560
+Dann muss ich letztendlich, wenn ich hier die Korrelation berechne, nur noch auf diesen Bildpunkt aufsummieren.
+
+555
+01:08:42,560 --> 01:08:50,560
+Da kann ich mir sogar eine Index-Tabelle machen, um direkt auf diese Eins-Werte zugreifen zu können.
+
+556
+01:08:50,560 --> 01:09:05,560
+Diese Index-Tabelle kann ich auch relativ zur Position im großen Suchbild definieren, sodass ich da besonders schnell diese Korrelation ausrechnen kann, weil ich eben nur noch diese Bildpunkte auf dem Dreieck des Templates auswerte.
+
+557
+01:09:06,560 --> 01:09:10,560
+Dann weiß ich, hier ist jetzt ein Dreieck.
+
+558
+01:09:11,560 --> 01:09:29,560
+In einem zweiten Schritt wird dann letztendlich nur noch dieser Bildausschnitt betrachtet und dann mit einem aufwändigen Verfahren, also mit der normierten Kreuzkorrelation, geschaut, um welches Verkehrszeichen handelt es sich denn.
+
+559
+01:09:30,560 --> 01:09:36,560
+Wir haben also hier mehrere Tricks angewendet, um den Rechenaufwand zu reduzieren.
+
+560
+01:09:37,560 --> 01:09:49,560
+Der eine Trick war hier, dass ich ein lineares Template habe und mein Eingangsbild so vorverarbeite, dass ich eine Korrelation mit diesem linearen Template berechnen kann, indem ich eben hier das Distanzbild berechne.
+
+561
+01:09:50,560 --> 01:10:00,560
+Und dann in einem zweiten Schritt nur noch dort, wo ich Dreiecke finde. In dem Beispiel hier wird nur an einer Stelle ein Dreieck gefunden. In der Realität finden Sie vielleicht an zwei oder drei Stellen ein Dreieck.
+
+562
+01:10:01,560 --> 01:10:09,560
+Nur in diesen Bereichen, in diesen Bildbereichen, wird dann die normalisierte Kreuzkorrelation ausgerechnet.
+
+563
+01:10:09,560 --> 01:10:38,560
+Ja, Template Matching ist also ein Verfahren, was eingesetzt wird in der Videokodierung, zur Bewegungsschätzung, Bewegungskompensation, in der Mustererkennung, Verkehrszeichenerkennung, in der industriellen Bildverarbeitung, zur Qualitätskontrolle, Prüfung auf Vollständigkeit.
+
+564
+01:10:39,560 --> 01:10:45,560
+Prüfung, ob Sie irgendwas in dem Bild, das gegeneinander verschoben ist. Kann man sich viele Dinge vorstellen.
+
+565
+01:10:46,560 --> 01:10:58,560
+Sie ist gegebenenfalls rechenaufwendig, wenn Sie viele Freiheitsgrade haben. Wenn die Freiheitsgrade nur sind Verschiebung, dann ist das mit dem Template Matching etwas, was Sie gut machen können.
+
+566
+01:10:59,560 --> 01:11:20,560
+Wenn Sie mehr Freiheitsgrade haben, Rotation, Skalierung, dann müssen Sie überlegen, ob Sie sich vielleicht irgendwelche Tricks einfallen lassen, um den Rechenaufwand zu begrenzen, um letztendlich von dem Gesamtbild mit einfachen Verfahren herauszukriegen, wo sind denn überhaupt die Kandidaten, die ich genau untersuchen muss.
+
+567
+01:11:20,560 --> 01:11:31,560
+Ja, soweit zum Template Matching.
+
+568
+01:11:31,560 --> 01:11:56,560
+Ein anderes Verfahren ist, ja, dass wir das, was wir suchen, durch ein mathematisches Verfahren machen.
+
+569
+01:11:56,560 --> 01:12:03,560
+Das, was wir suchen, durch ein mathematisches Modell beschreiben.
+
+570
+01:12:04,560 --> 01:12:09,560
+Template Matching, da beschreiben wir ja das, was wir suchen, letztendlich durch Spitzing rein.
+
+571
+01:12:10,560 --> 01:12:19,560
+Manche Dinge kann man ja auch vielleicht durch geometrische Primitive beschreiben und dann kann man versuchen, diese zu finden.
+
+572
+01:12:20,560 --> 01:12:25,560
+Und wenn man so etwas hat, dann sind wir beim Thema der Hafttransformation.
+
+573
+01:12:31,560 --> 01:12:35,560
+Die Hafttransformation ermöglicht die globale Suche nach geometrischen Primitiven.
+
+574
+01:12:36,560 --> 01:12:48,560
+Und je nachdem, wie aufwendig Sie das gestalten wollen, geraden finden Sie leicht mit der Hafttransformation, leicht im Sinne von Rechenaufwand hält sich in Grenzen.
+
+575
+01:12:49,560 --> 01:12:58,560
+Wenn Sie Kreise suchen, wird es schon aufwendiger und wenn Sie beliebig geformte Konturen suchen, dann ist es entsprechend noch aufwendiger.
+
+576
+01:12:59,560 --> 01:13:04,560
+Also Geraden will man vielleicht hier in Luftbildern detektieren.
+
+577
+01:13:05,560 --> 01:13:14,560
+Sie wollen die Geometrie eines Raumes schätzen, vermessen, dann sind Geraden sicherlich von Interesse.
+
+578
+01:13:14,560 --> 01:13:23,560
+Oder wenn Sie an der Kamera kollabieren wollen, dann haben Sie irgendwelche Schachbrettmuster ähnlichen Gebilde, da wollen Sie auch Geraden zum Beispiel extrahieren.
+
+579
+01:13:25,560 --> 01:13:32,560
+Oder wenn Sie Augen suchen, dann können Sie das Auge auch mit Kreisen beschreiben.
+
+580
+01:13:33,560 --> 01:13:39,560
+Eins, zwei, drei, vier Kreise oder Kreissegmente beschreiben ein Auge.
+
+581
+01:13:40,560 --> 01:13:44,560
+Verkehrszeichen können Sie mit Kreisen beschreiben.
+
+582
+01:13:45,560 --> 01:13:49,560
+Geschwindigkeitsbeschränkung würde zum Beispiel bedeuten, wir brauchen da zwei Kreislinien.
+
+583
+01:13:50,560 --> 01:13:58,560
+Mit der verallgemeinerten Hafttransformation kann man dann auch beliebige Konturen finden.
+
+584
+01:14:01,560 --> 01:14:03,560
+Was zeichnet hier die Geraden aus?
+
+585
+01:14:04,560 --> 01:14:09,560
+Die Geraden zeichnen ja aus, dass wir dann Bildgradienten haben.
+
+586
+01:14:10,560 --> 01:14:13,560
+Da können wir jetzt auch einfach eine Kantenverfolgung machen.
+
+587
+01:14:14,560 --> 01:14:28,560
+Aber wir gehen jetzt mal davon aus, dass wir nicht das Gradientenbild berechnen und da Kanten verfolgen, sondern wir wollen wirklich ein mathematisches Modell für Geraden finden.
+
+588
+01:14:29,560 --> 01:14:31,560
+Das ist die Hafttransformation.
+
+589
+01:14:33,560 --> 01:14:35,560
+Eine Gerade, wir wollen ein mathematisches Modell haben.
+
+590
+01:14:36,560 --> 01:14:43,560
+Eine Gerade können Sie beschreiben als Steigung mal x plus y-Achsenabschnitt, hier das b.
+
+591
+01:14:47,560 --> 01:14:51,560
+Eine Gerade beschreiben Sie mit a und b, x ist die Variable, y ist die Funktion von x.
+
+592
+01:14:52,560 --> 01:14:57,560
+Eine Gerade beschreiben Sie mit a und b, x ist die Variable, y ist die Funktion von x.
+
+593
+01:14:58,560 --> 01:15:01,560
+Sie können diese Gerade auch anders darstellen.
+
+594
+01:15:06,560 --> 01:15:14,560
+Sie können den Abstand d zum Ursprung des Koordinatensystems definieren.
+
+595
+01:15:15,560 --> 01:15:26,560
+Und Sie können den Winkel, den diese normale 2x-Achse hat, angeben, damit es eine Gerade auch eindeutig bestimmt.
+
+596
+01:15:29,560 --> 01:15:36,560
+Das ist dann die hessische normalen Form, die eben vom Winkel abhängt und vom Abstand zum Ursprung.
+
+597
+01:15:36,560 --> 01:15:45,560
+Und das hier ist jetzt die Geradebeschreibung, die wir verwenden wollen.
+
+598
+01:15:53,560 --> 01:16:02,560
+Im Haftraum, Haftspace, Parameterspace, wie auch immer, beschreiben wir die Gerade nun durch d und phi.
+
+599
+01:16:03,560 --> 01:16:06,560
+Das sind auch unsere Koordinaten im Haftraum.
+
+600
+01:16:09,560 --> 01:16:21,560
+So eine Gerade ist dann definiert durch einen gewissen Abstand zum Koordinatenursprung und einen gewissen Winkel.
+
+601
+01:16:21,560 --> 01:16:36,560
+Jetzt kann ich mir natürlich überlegen, welchen Punkt im Raum welche Gerade durchgehen kann.
+
+602
+01:16:36,560 --> 01:17:03,560
+Wenn ich mir hier einen Punkt nehme, kann so eine Gerade durchlaufen, kann so eine Gerade durchlaufen, kann auch so eine Gerade durchlaufen.
+
+603
+01:17:03,560 --> 01:17:06,560
+Unendlich viele Geraden können da durchlaufen.
+
+604
+01:17:11,560 --> 01:17:16,560
+Diese Geraden haben ein unterschiedliches d und ein unterschiedliches phi.
+
+605
+01:17:17,560 --> 01:17:26,560
+Also so ein Punkt wird dann irgendwie zu einem Verlauf in diesem phi d Raum führen.
+
+606
+01:17:26,560 --> 01:17:33,560
+Dieser Verlauf markiert dann alle möglichen Geraden, die durch diesen eben gewählten Punkt laufen können.
+
+607
+01:17:38,560 --> 01:17:43,560
+Und das sehen wir hier.
+
+608
+01:17:47,560 --> 01:17:57,560
+Wir haben hier fünf Punkte, die Eckpunkte dieses Quadrats und den Mittelpunkt.
+
+609
+01:18:03,560 --> 01:18:12,560
+Und jeder dieser Punkte kann zu unendlich vielen Geraden gehören.
+
+610
+01:18:13,560 --> 01:18:20,560
+Während wir hier den xy Raum haben, haben wir jetzt hier phi d.
+
+611
+01:18:27,560 --> 01:18:30,560
+Schauen wir uns Punkt 1 an.
+
+612
+01:18:30,560 --> 01:18:40,560
+Alle Geraden, die durch den Punkt 1 laufen, werden zum Koordinatenursprung den Wert d gleich 0 haben.
+
+613
+01:18:42,560 --> 01:18:45,560
+Und dann, je nachdem wie die Gerade gedreht ist, alle möglichen Winkel.
+
+614
+01:18:48,560 --> 01:18:55,560
+In unserem Haftraum bedeutet das, dieser Punkt 1 ist diese Gerade.
+
+615
+01:18:55,560 --> 01:19:02,560
+d ist gleich 0 und alle Winkel sind erlaubt von 90 bis minus 90 Grad.
+
+616
+01:19:02,560 --> 01:19:10,560
+Das heißt, ein Punkt im Bild definiert uns eine Gerade.
+
+617
+01:19:10,560 --> 01:19:16,560
+Also dieser Punkt im Ursprung des Koordinatensystems definiert uns eine Gerade im Haftraum.
+
+618
+01:19:21,560 --> 01:19:24,560
+Schauen wir uns Punkt 2 an.
+
+619
+01:19:24,560 --> 01:19:44,560
+Wenn die Gerade durch den Punkt 2 eine mögliche Gerade so verläuft, dann haben wir den maximalen Abstand zum Koordinatenursprung.
+
+620
+01:19:44,560 --> 01:19:49,560
+Alle anderen Geraden werden dichter verlaufen.
+
+621
+01:19:50,560 --> 01:19:58,560
+Der maximale Abstand zum Koordinatenursprung ist verbunden mit dem Winkel 0 Grad.
+
+622
+01:20:06,560 --> 01:20:10,560
+Oder auch 90 Grad, wie auch immer Sie es drehen wollen.
+
+623
+01:20:12,560 --> 01:20:15,560
+Das wäre dieser Punkt.
+
+624
+01:20:16,560 --> 01:20:19,560
+Das ist der Winkel 0, 90 Grad.
+
+625
+01:20:26,560 --> 01:20:34,560
+Eine Gerade durch diesen Punkt, die horizontal verläuft, hat den Abstand d gleich 0.
+
+626
+01:20:37,560 --> 01:20:43,560
+Und dann kann sich das Ganze noch um 90 Grad weiter drehen, sodass wir dann hier unten landen.
+
+627
+01:20:43,560 --> 01:20:50,560
+Das heißt, alle Geraden durch diesen Punkt 2 liegen auf dieser Kurve.
+
+628
+01:20:54,560 --> 01:20:59,560
+Das interessiert uns eigentlich weniger. Wir wollen wissen, wo sind die Geraden im Bild.
+
+629
+01:21:00,560 --> 01:21:08,560
+Aber was passiert jetzt, wenn wir mehrere Punkte im Bild identifizieren und die liegen auf einer Gerade?
+
+630
+01:21:14,560 --> 01:21:24,560
+Schauen wir uns an. Punkt 1 liefert diese Kurve.
+
+631
+01:21:24,560 --> 01:21:30,560
+Punkt 3 liefert diese Kurve.
+
+632
+01:21:30,560 --> 01:21:39,560
+Und Punkt 5 liefert diese Kurve.
+
+633
+01:21:43,560 --> 01:21:47,560
+Diese drei Punkte liegen auf einer Gerade.
+
+634
+01:21:47,560 --> 01:21:56,560
+Das heißt, diese drei Kurven, die zu den Punkten 1, 3 und 5 gehören, müssen sich an einer Stelle irgendwo schneiden.
+
+635
+01:22:03,560 --> 01:22:06,560
+Das ist dieser Punkt A.
+
+636
+01:22:06,560 --> 01:22:12,560
+Den Sie jetzt gerade nicht sehen können.
+
+637
+01:22:12,560 --> 01:22:15,560
+Zumindest nicht den Kringel, den ich gemalt habe.
+
+638
+01:22:29,560 --> 01:22:34,560
+Jetzt sehen Sie den Kringel.
+
+639
+01:22:35,560 --> 01:22:38,560
+Gut, da ist er.
+
+640
+01:22:41,560 --> 01:22:49,560
+Wenn wir uns den Punkt B angucken, da schneiden sich die Punkte 2, 3 und 4.
+
+641
+01:22:49,560 --> 01:22:54,560
+Das heißt, es muss eine Gerade geben, die durch die Punkte 2, 3 und 4 geht.
+
+642
+01:22:54,560 --> 01:22:56,560
+Und das ist dann diese hier.
+
+643
+01:22:56,560 --> 01:23:07,560
+Wir können jetzt hier auch ablesen, welchen Abstand sie hat zum Koordinatenursprung und welche Orientierung sie hat.
+
+644
+01:23:10,560 --> 01:23:21,560
+Entsprechend muss es auch im HAV-Raum sichtbar sein, dass es eine Gerade gibt mit den Punkten 2 und 5.
+
+645
+01:23:21,560 --> 01:23:25,560
+Zwei Punkte kann ich immer mit Geraden verbinden.
+
+646
+01:23:25,560 --> 01:23:32,560
+Das heißt, alle Kurven müssen sich mindestens einmal schneiden.
+
+647
+01:23:32,560 --> 01:23:39,560
+Und Punkte 2 und 5 schneiden sich im Punkt Q.
+
+648
+01:23:39,560 --> 01:23:52,560
+Da haben wir jetzt einen Trick, wie wir Geraden finden können.
+
+649
+01:23:52,560 --> 01:23:59,560
+Wir haben verschiedene Kandidatenpunkte im Bild.
+
+650
+01:23:59,560 --> 01:24:06,560
+Jeder dieser Punkte liefert uns eine Kurve im HAV-Raum.
+
+651
+01:24:09,560 --> 01:24:21,560
+Dort, wo sich diese Kurven im HAV-Raum schneiden, da habe ich dann eine gewisse Anzahl der Linien, die sich schneiden.
+
+652
+01:24:21,560 --> 01:24:30,560
+Das ergibt dann die Anzahl der Punkte, die auf dieser Gerade mit dem entsprechenden Koordinatenursprungsabstand unter Richtung fliegen.
+
+653
+01:24:31,560 --> 01:24:41,560
+Wenn ich das jetzt auf akkumuliere, also jedes Mal, wenn ich eine Kurve mache, ich mache mir hier ein Bild, initialisiere ich mit 0.
+
+654
+01:24:41,560 --> 01:24:50,560
+Da zeichne ich eine Kurve ein und den Verlauf der Kurve markiere ich dadurch, dass ich im Bild den Grauwert um einen erhöhe.
+
+655
+01:24:50,560 --> 01:25:01,560
+Wenn ich dann die Maxima suche, dann habe ich die Geradenparameter, die von den meisten Punkten bedient wird.
+
+656
+01:25:01,560 --> 01:25:09,560
+Das wäre in diesem Fall für dieses Bild diese beiden Diagonalen, die jeweils von drei Punkten unterstützt werden.
+
+657
+01:25:10,560 --> 01:25:22,560
+So kann ich dann an diesen Schnittpunkten nicht nur finden, da gibt es eine Gerade, die die Parameter Phi und D hat,
+
+658
+01:25:22,560 --> 01:25:28,560
+sondern ich weiß auch noch, wie viele Punkte es gibt, die die Existenz dieser Gerade unterstützen.
+
+659
+01:25:29,560 --> 01:25:42,560
+D und Phi sind eigentlich reelle Zahlen. Das wird dann nicht zu sinnvollen Ergebnissen führen.
+
+660
+01:25:42,560 --> 01:25:46,560
+Man muss diesen Parameterraum quantisieren.
+
+661
+01:25:46,560 --> 01:25:51,560
+Da definiert sich ein minimaler und ein maximaler Abstand zum Koordinatenursprung.
+
+662
+01:25:51,560 --> 01:26:03,560
+Wenn Sie nur Geraden suchen, die einen kleinen Winkel haben von plus minus 45 Grad,
+
+663
+01:26:03,560 --> 01:26:08,560
+dann müssen Sie natürlich mit Phi nicht die gesamten 180 oder 360 Grad abdecken.
+
+664
+01:26:08,560 --> 01:26:21,560
+Sie quantisieren diesen Raum also und dann bedeutet so ein Kästchen eben,
+
+665
+01:26:21,560 --> 01:26:27,560
+da gibt es eine gewisse Anzahl von Bildpunkten, die gehören alle zu einer Gerade, die einen gewissen Achsenabstand hat
+
+666
+01:26:27,560 --> 01:26:39,560
+und zu einem gewissen Intervall von Y, Koordinatensprung, Abstand gehören und Orientierung D und Phi.
+
+667
+01:26:39,560 --> 01:26:54,560
+Das heißt, wenn Sie ein Bild haben und Sie quantisieren Ihren Parameterraum,
+
+668
+01:26:54,560 --> 01:27:03,560
+dann kann es sein, dass Sie diese beiden Geraden nicht mehr voneinander trennen können,
+
+669
+01:27:03,560 --> 01:27:12,560
+weil sie, was den Abstand zum Ursprung angeht, in einem Intervall liegen und was den Winkel angeht, liegen sie auch in einem Intervall.
+
+670
+01:27:12,560 --> 01:27:19,560
+Je feiner Sie das auflösen wollen, desto feiner müssen Sie eben diesen Parameterraum quantisieren.
+
+671
+01:27:20,560 --> 01:27:25,560
+Hier mal ein Beispiel.
+
+672
+01:27:25,560 --> 01:27:39,560
+Wir haben diese Bierlinien, jeweils vertikal und horizontal.
+
+673
+01:27:39,560 --> 01:27:54,560
+Die finden Sie hier als maximal im Haftraum.
+
+674
+01:28:09,560 --> 01:28:17,560
+Und die finden Sie auch, obwohl ja hier sehr viele horizontale Linien sind.
+
+675
+01:28:17,560 --> 01:28:30,560
+Wir stören das nicht, weil wir hier entsprechend zusätzliche Linien noch dazu bekommen.
+
+676
+01:28:30,560 --> 01:28:46,560
+Und wenn wir jetzt die Rücktransformation machen, wir finden die Maxima im Haftraum,
+
+677
+01:28:46,560 --> 01:28:56,560
+können wir die auf das Original überlagern und Sie sehen, die entsprechenden Linien sind alle gefunden.
+
+678
+01:28:56,560 --> 01:29:03,560
+Und Sie sehen hier auch die Quantisierung, die dazu führt, dass wir Linien nicht perfekt ausrichten können.
+
+679
+01:29:15,560 --> 01:29:23,560
+Wenn wir Linien suchen, wir wissen nicht, was wir suchen, dann haben wir dieses Akkumulator-Array.
+
+680
+01:29:24,560 --> 01:29:28,560
+Und da definieren Sie jetzt einen Schwellwert.
+
+681
+01:29:28,560 --> 01:29:32,560
+Das heißt, mit dem Schwellwert geben Sie vor, wie lange muss die Linie sein.
+
+682
+01:29:32,560 --> 01:29:40,560
+Was Sie mit dem Schwellwert noch nicht sicherstellen können, ist, ob die Linie durchgezogen ist.
+
+683
+01:29:41,560 --> 01:30:04,560
+Also Sie könnten mit einem Schwellwert hier eine Linie von dieser Linie unterscheiden.
+
+684
+01:30:04,560 --> 01:30:12,560
+Also nehmen wir an, Sie haben den gleichen Y-Achsenabstand, aber diese Linie habe 100 Bildpunkte und hier hatten wir 4 mal 25 Bildpunkte.
+
+685
+01:30:12,560 --> 01:30:15,560
+Das können Sie nicht voneinander unterscheiden.
+
+686
+01:30:23,560 --> 01:30:29,560
+Wenn Sie das voneinander unterscheiden wollen, dann müssen Sie sich letztendlich für jeden Eintrag, den Sie hier machen,
+
+687
+01:30:30,560 --> 01:30:34,560
+müssen Sie sich merken, von welcher Bildkoordinaten der Eintrag kommt.
+
+688
+01:30:34,560 --> 01:30:43,560
+Dann können Sie natürlich, indem Sie von hier wieder zurückgehen, nicht nur die Linie als unendlich lange gerade rekonstruieren,
+
+689
+01:30:43,560 --> 01:30:49,560
+sondern dann könnten Sie auch rekonstruieren, wo sind denn die einzelnen Elemente dieser Linie, die Sie im Bild gefunden haben.
+
+690
+01:31:00,560 --> 01:31:05,560
+Okay, also der Algorithmus ist dann relativ einfach.
+
+691
+01:31:05,560 --> 01:31:11,560
+Sie überlegen sich, wie wollen Sie Ihren Parameterraum quantisieren.
+
+692
+01:31:11,560 --> 01:31:17,560
+Damit stellen Sie dann also dieses Feld zur Verfügung, in dem Sie akkumulieren.
+
+693
+01:31:19,560 --> 01:31:22,560
+Für jeden Kantenpunkt im Bild.
+
+694
+01:31:23,560 --> 01:31:32,560
+Das hier könnte zum Beispiel mit Candy-Edge-Detektor erzeugt worden sein.
+
+695
+01:31:32,560 --> 01:31:41,560
+Für jeden Kantenpunkt berechnen Sie das D und das V.
+
+696
+01:31:47,560 --> 01:31:51,560
+Und tragen das ein.
+
+697
+01:31:52,560 --> 01:31:55,560
+An der richtigen Stelle im Haftraum.
+
+698
+01:31:55,560 --> 01:31:59,560
+Sie bekommen dann zum Beispiel so ein Bild.
+
+699
+01:31:59,560 --> 01:32:03,560
+Und in diesem Bild suchen Sie dann die Maximum.
+
+700
+01:32:09,560 --> 01:32:14,560
+Wenn Sie nur das Maximum suchen, dann bekommen Sie letztendlich die längste gerade Linie.
+
+701
+01:32:14,560 --> 01:32:18,560
+Dann würden Sie wahrscheinlich diese hier bekommen.
+
+702
+01:32:18,560 --> 01:32:23,560
+Wenn Sie jetzt mit Ihrem Maximum weiter runter gehen,
+
+703
+01:32:23,560 --> 01:32:28,560
+dann würden Sie sicherlich auch irgendwann mal diese Linie bekommen.
+
+704
+01:32:28,560 --> 01:32:31,560
+Aber wenn Sie nur das Maximum suchen, dann ist es diese Linie.
+
+705
+01:32:31,560 --> 01:32:35,560
+Wenn Sie eine Vorstellung davon haben, wie lang die Linien sind.
+
+706
+01:32:35,560 --> 01:32:37,560
+Also Luftbilder ist ja hier das Beispiel.
+
+707
+01:32:37,560 --> 01:32:43,560
+Da hat man eine gewisse Vorstellung davon, wie lang muss denn so eine Landebahn oder eine Startbahn sein.
+
+708
+01:32:43,560 --> 01:32:46,560
+Sie kennen auch die Bodenauflösung Ihres Bildes.
+
+709
+01:32:46,560 --> 01:32:52,560
+Das heißt, dann wissen Sie, die Gerade, die diese Landebahn begrenzt, muss vielleicht 1000 Pixel groß sein.
+
+710
+01:32:52,560 --> 01:32:59,560
+Und dann legen Sie den Schwellwert vielleicht bei 800.
+
+711
+01:32:59,560 --> 01:33:04,560
+Und schauen sich dann alle Geraden an, die länger sind als 800 Bildpunkte.
+
+712
+01:33:06,560 --> 01:33:09,560
+Jetzt haben wir auf alle Fälle eine mathematische Beschreibung.
+
+713
+01:33:09,560 --> 01:33:14,560
+Die Genauigkeit dieser Geraden hängt davon ab, wie stark Sie Ihren Haftraum hier quantisieren.
+
+714
+01:33:14,560 --> 01:33:22,560
+Sie können auch erstmal anfangen mit einer groben Quantisierung, dann das gegebenenfalls feiner auflösen.
+
+715
+01:33:22,560 --> 01:33:30,560
+Damit stellen Sie dann letztendlich fest, wie genau Sie die Kanten gegeneinander beschreiben.
+
+716
+01:33:35,560 --> 01:33:42,560
+In diesem Beispiel haben wir hier die Maxima an diesen beiden Stellen.
+
+717
+01:33:42,560 --> 01:33:44,560
+Das hier ist das Bild dazu.
+
+718
+01:33:44,560 --> 01:33:49,560
+Und dann hier einmal auf das Originalbild überlagert.
+
+719
+01:33:49,560 --> 01:33:52,560
+Funktioniert prima.
+
+720
+01:33:52,560 --> 01:33:54,560
+Funktioniert nicht immer prima.
+
+721
+01:33:54,560 --> 01:34:00,560
+Aber es ist auf alle Fälle ein Verfahren, was Sie ausprobieren können, ob das Ihr Problem löst.
+
+722
+01:34:03,560 --> 01:34:11,560
+Funktioniert nicht immer prima, weil Voraussetzung ist hier natürlich, dass Ihr Kantendetektor nicht durchgängig die Kanten liefert.
+
+723
+01:34:11,560 --> 01:34:17,560
+Aber es muss schon eine große Anzahl der Kanten, der Linien, die Sie finden, bereitstellen.
+
+724
+01:34:29,560 --> 01:34:31,560
+Das hier habe ich im Grunde schon gesagt.
+
+725
+01:34:31,560 --> 01:34:35,560
+Die Parameter einer Linie können mit feinerer Quantisierung genauer bestimmt werden.
+
+726
+01:34:35,560 --> 01:34:39,560
+Das bedeutet aber, Sie brauchen mehr Rechenzeit, mehr Speicherbedarf.
+
+727
+01:34:42,560 --> 01:34:50,560
+Rauschen ist natürlich schwieriger in den Griff zu bekommen, wenn Sie das sehr fein quantisieren.
+
+728
+01:34:53,560 --> 01:34:58,560
+Andererseits, die Quantisierung hat natürlich auch gewisse Nachteile.
+
+729
+01:34:58,560 --> 01:35:06,560
+Da gibt es dann auch das Problem, dass Sie manchmal Kanten, die sich nur in einem kleinen Winkel voneinander unterscheiden,
+
+730
+01:35:06,560 --> 01:35:11,560
+dass die gerade an die Entscheidungsschwelle Ihres Quantisierers fallen.
+
+731
+01:35:11,560 --> 01:35:19,560
+Und die eine Kante landet dann in dem einen Haufen und die andere Kante landet in dem anderen Haufen oder im anderen Array.
+
+732
+01:35:19,560 --> 01:35:28,560
+Also wenn sich der Winkel nur leicht ändert, dann kann es trotzdem sein, wenn die Variation hier genau an der Schwelle ist,
+
+733
+01:35:28,560 --> 01:35:33,560
+dass Sie in unterschiedlichen Bins landen.
+
+734
+01:35:33,560 --> 01:35:37,560
+Wenn die Variation an dieser Stelle wäre, würden Sie im selben Bin landen.
+
+735
+01:35:37,560 --> 01:35:42,560
+Das zeigt schon eine gewisse Problematik, die diese Hafttransformation auch hat.
+
+736
+01:35:47,560 --> 01:35:57,560
+Aber wenn Sie solche Bilder zum Beispiel haben, die eher verrauscht sind, dann können Sie mit der Hafttransformation durchaus Kanten finden.
+
+737
+01:35:57,560 --> 01:36:07,560
+Hier mal ein Beispiel für so ein Akkumulator-Array, wo Sie dann die Maxima suchen, um da Linienprimitive rauszufinden.
+
+738
+01:36:17,560 --> 01:36:19,560
+Hier haben wir das Originalbild.
+
+739
+01:36:20,560 --> 01:36:25,560
+Da können Sie jetzt ein Kantenbild drauf extrahieren.
+
+740
+01:36:25,560 --> 01:36:29,560
+Das wäre dann zum Beispiel dieses hier.
+
+741
+01:36:32,560 --> 01:36:37,560
+Zu diesem Kantenbild gehört der Haftraum, den Sie dort sehen.
+
+742
+01:36:37,560 --> 01:36:55,560
+Und hier sehen Sie dann auch diese Maxima, die diesen Linien hier entsprechen.
+
+743
+01:36:55,560 --> 01:37:03,560
+Wenn Sie diese Linien jetzt auf das Kantenbild drauflegen,
+
+744
+01:37:04,560 --> 01:37:08,560
+sehen Sie hier, das sind dann die Linien.
+
+745
+01:37:08,560 --> 01:37:17,560
+Sie können das dann auch benutzen, um die Kanten, die Sie vielleicht nicht komplett im Originalbild gefunden haben, zu vervollständigen.
+
+746
+01:37:17,560 --> 01:37:23,560
+Weil Sie, das ist jetzt Vorwissen, wenn Sie wissen, wenn da Kanten sind, dann müssen die durchgängig sein.
+
+747
+01:37:23,560 --> 01:37:27,560
+Wenn Sie das nicht wissen, sollten Sie es auch nicht machen.
+
+748
+01:37:34,560 --> 01:37:38,560
+Ja, das war jetzt die Detektion von Kanten.
+
+749
+01:37:38,560 --> 01:37:44,560
+Das ist die einfachste Möglichkeit, die Sie durch diese Haft-Transformation haben.
+
+750
+01:37:44,560 --> 01:37:47,560
+Wir können das jetzt erweitern.
+
+751
+01:37:47,560 --> 01:37:50,560
+Dann wird es aber schwieriger.
+
+752
+01:37:50,560 --> 01:38:00,560
+Trick ist ja, wir definieren uns irgendwelche geometrischen Primitive, die wir parametrisch beschreiben.
+
+753
+01:38:00,560 --> 01:38:05,560
+Und dann nehmen wir einen Punkt im Bild.
+
+754
+01:38:05,560 --> 01:38:15,560
+Und in unserem Parameterraum markieren wir alle Parameterkombinationen, zu denen dieser Punkt gehören könnte.
+
+755
+01:38:15,560 --> 01:38:20,560
+Deswegen hatten wir einen Bildpunkt bei der Liniensuche.
+
+756
+01:38:20,560 --> 01:38:23,560
+Da gehören unendlich viele Geraden dazu.
+
+757
+01:38:23,560 --> 01:38:29,560
+Und im Haftraum haben wir alle diese Geraden, die dazu gehören, markiert.
+
+758
+01:38:29,560 --> 01:38:38,560
+Beim Kreis haben wir eigentlich drei Parameter.
+
+759
+01:38:38,560 --> 01:38:42,560
+Wir haben den Punkt, den Mittelpunkt und den Radius.
+
+760
+01:38:42,560 --> 01:38:46,560
+Das heißt, unser Haftraum müsste dann drei Parameter haben.
+
+761
+01:38:46,560 --> 01:39:02,560
+Wenn wir uns so einen Punkt anschauen, was würde der im Parameterraum erzeugen, wo wir jetzt die Parameter x, y und r haben?
+
+762
+01:39:02,560 --> 01:39:15,560
+Für Radius 0 müssen x0 und y0 genau diese Bildpunktkardinale sein.
+
+763
+01:39:15,560 --> 01:39:23,560
+Das heißt, das hier, die Spitze, ist an der Koordinate x0, y0 und r gleich 0.
+
+764
+01:39:23,560 --> 01:39:31,560
+x1 und y1
+
+765
+01:39:31,560 --> 01:39:38,560
+Und da muss r gleich 0 sein.
+
+766
+01:39:39,560 --> 01:39:51,560
+Wenn jetzt der Radius größer wird, dann gibt es viele Kreise, zu denen dieser Punkt gehören kann.
+
+767
+01:39:52,560 --> 01:40:11,560
+Für einen gewissen Radius r liegen die möglichen Kreismittelpunkte auf einem Kreis mit Radius r um unseren Bildpunkt herum.
+
+768
+01:40:11,560 --> 01:40:15,560
+Das sind diese Kreise.
+
+769
+01:40:16,560 --> 01:40:27,560
+Je größer r ist, desto weiter sind die Kandidaten für die Kreismittelpunkte weg von unserem aktuellen zu untersuchenden Bildpunkt.
+
+770
+01:40:27,560 --> 01:40:31,560
+Und desto mehr Kandidaten gibt es.
+
+771
+01:40:31,560 --> 01:40:38,560
+Der Trichter wächst also aus der Bildkoordinate vom Ursprungsbild heraus.
+
+772
+01:40:38,560 --> 01:40:43,560
+Im wachsenden r wird dieser Trichter immer größer.
+
+773
+01:40:44,560 --> 01:40:50,560
+Damit haben wir also einen großen Rechenaufwand, denn wir müssen jetzt für jeden Bildpunkt, den wir haben,
+
+774
+01:40:50,560 --> 01:40:55,560
+den wir betrachten wollen, also für jeden Bildpunkt, der aus der Kantendetektion herausgekommen ist,
+
+775
+01:40:55,560 --> 01:41:02,560
+so einen Trichter in einem dreidimensionalen Raum malen.
+
+776
+01:41:02,560 --> 01:41:07,560
+Also den würden wir ja auch wieder quantisieren, dann haben wir nicht mehr ein Bild, sondern wir haben ein Volumen.
+
+777
+01:41:07,560 --> 01:41:13,560
+Und dann müssten wir die entsprechenden Punkte um eins erhöhen, wenn wir da so ein Bildpunkt haben.
+
+778
+01:41:19,560 --> 01:41:23,560
+Man kann das Ganze vereinfachen.
+
+779
+01:41:23,560 --> 01:41:26,560
+Also wir werden den dritten Parameter los.
+
+780
+01:41:26,560 --> 01:41:37,560
+Wenn wir sagen, dass der Kreismittelpunkt auf Verlängerung des Gradientenvektors liegen muss.
+
+781
+01:41:37,560 --> 01:41:44,560
+Wenn ich hier einen Kreis habe, dann gibt es hier irgendwie einen Gradienten.
+
+782
+01:41:44,560 --> 01:41:51,560
+Und auf diesem Gradienten muss der Mittelpunkt liegen.
+
+783
+01:41:52,560 --> 01:41:58,560
+Ursprünglich hatte ich gesagt, hier ist mein Punkt, bei einem gewissen Radius r,
+
+784
+01:41:58,560 --> 01:42:03,560
+muss der Kreismittelpunkt auf diesem Kreis liegen.
+
+785
+01:42:03,560 --> 01:42:09,560
+Jetzt betrachte ich auch noch den Gradienten, den ich an dieser Stelle habe, die Gradientenrichtung.
+
+786
+01:42:14,560 --> 01:42:19,560
+Und sage, der Kreismittelpunkt muss in Richtung dieses Gradienten liegen.
+
+787
+01:42:20,560 --> 01:42:23,560
+Welchen Gradienten nehme ich? Den Grauwertgradienten.
+
+788
+01:42:23,560 --> 01:42:27,560
+Damit habe ich jetzt nur wieder zwei Parameter.
+
+789
+01:42:32,560 --> 01:42:35,560
+Und kriege nur noch eine Gerade.
+
+790
+01:42:37,560 --> 01:42:44,560
+Im Bildpunkt bekomme ich jetzt also eine Linie im Parameterraum.
+
+791
+01:42:44,560 --> 01:42:47,560
+Das vereinfacht das Ganze natürlich.
+
+792
+01:42:47,560 --> 01:42:49,560
+Ich muss da nicht mehr Trichter reinmalen, sondern nur noch Linie.
+
+793
+01:42:49,560 --> 01:42:51,560
+Aber ich bin immer noch am Gradientenraum.
+
+794
+01:42:55,560 --> 01:43:01,560
+Beispiel Fußabdruck einer Schuhsohle.
+
+795
+01:43:03,560 --> 01:43:05,560
+Hier mal das Binärbild.
+
+796
+01:43:05,560 --> 01:43:11,560
+Hier das Kantenbild, wie es der Kenny Edge Detector wahrscheinlich geliefert hat.
+
+797
+01:43:11,560 --> 01:43:19,560
+Und wenn wir da jetzt Kreise detektieren, dann sehen Sie diese Kreise eingezeichnet auf der rechten Seite.
+
+798
+01:43:28,560 --> 01:43:30,560
+Sieht auf den ersten Blick gut aus.
+
+799
+01:43:30,560 --> 01:43:35,560
+Und wenn Sie dann ganz genau hingucken, dann sehen Sie, dass dieser Kreis nicht gefunden ist.
+
+800
+01:43:35,560 --> 01:43:40,560
+Zeigt Ihnen letztendlich, das ist jetzt auch nicht unbedingt ein Allheilmittel.
+
+801
+01:43:42,560 --> 01:43:51,560
+Der Kreisdetektor hängt letztendlich dann auch ab von dem Schwellwert, den Sie da im Haftraum ansetzen.
+
+802
+01:43:51,560 --> 01:43:58,560
+Und wahrscheinlich ist es jetzt bei diesem Kreis hier so, dass man da den Schwellwert so niedrig setzen muss,
+
+803
+01:43:58,560 --> 01:44:03,560
+dass man dann auch an verschiedenen Stellen Kreise bekommt, wo keine Kreise sind.
+
+804
+01:44:12,560 --> 01:44:20,560
+Man kann diese Hafttransformation auch noch einen Schritt weiter treiben,
+
+805
+01:44:20,560 --> 01:44:25,560
+indem wir beliebige analytische Kurven beschreiben können.
+
+806
+01:44:25,560 --> 01:44:28,560
+Wir brauchen dann eine implizite Funktion.
+
+807
+01:44:29,560 --> 01:44:36,560
+Die Bildkoordinaten gehen da rein.
+
+808
+01:44:36,560 --> 01:44:44,560
+Und unsere Transformationsparameter, das sei jetzt hier ein Vektor a.
+
+809
+01:44:44,560 --> 01:44:51,560
+Und für die gegebenen Transformationsparameter muss dann f von x, y mit diesem Parameter neben 0 sein.
+
+810
+01:44:51,560 --> 01:44:55,560
+Das ist dann die implizite Definition der Kurve, die irgendwo im Bild verläuft.
+
+811
+01:44:59,560 --> 01:45:03,560
+Dann können wir uns die Normalen definieren.
+
+812
+01:45:03,560 --> 01:45:11,560
+Und dann im normalen Berechnen, genauso wie wir das eben beim Kreis gemacht haben.
+
+813
+01:45:11,560 --> 01:45:19,560
+Und dann berechnen wir alle Kombinationen von x, y, a, für die die Gleichungen erfüllt sind.
+
+814
+01:45:20,560 --> 01:45:24,560
+Und dann gehen wir wieder in ein Akkumulator-Array.
+
+815
+01:45:24,560 --> 01:45:34,560
+Das wir inkrementieren für jeden Bildpunkt, den wir schauen, den wir gefunden haben,
+
+816
+01:45:34,560 --> 01:45:41,560
+bestimmen wir dieses a und an der Stelle erhöhen wir dann unser Array.
+
+817
+01:45:41,560 --> 01:45:51,560
+Und dann können Sie auch beliebige Formen finden.
+
+818
+01:45:51,560 --> 01:45:57,560
+Wenn Sie denn da eine mathematische Beschreibung haben.
+
+819
+01:45:57,560 --> 01:46:04,560
+Sie müssen einen Referenzpunkt für Ihre Kurve typischerweise definieren.
+
+820
+01:46:05,560 --> 01:46:11,560
+Dann laufen Sie auf dieser Kurve lang, berechnen Sie die Differenzen.
+
+821
+01:46:11,560 --> 01:46:15,560
+Haben dann ein sogenanntes R-Table.
+
+822
+01:46:15,560 --> 01:46:25,560
+Und über diese Tabelle werden Sie dann wieder Ihr Akkumulator-Array erhöhen.
+
+823
+01:46:26,560 --> 01:46:37,560
+Das ist von der Beschreibung her, muss man sich das ein bisschen genauer angucken.
+
+824
+01:46:37,560 --> 01:46:39,560
+Dann versteht man es irgendwann.
+
+825
+01:46:39,560 --> 01:46:46,560
+Es macht jetzt hier so den Eindruck, als wenn das prima funktioniert.
+
+826
+01:46:46,560 --> 01:46:50,560
+Es wird dann in der Anwendung aber relativ schwierig.
+
+827
+01:46:50,560 --> 01:46:54,560
+Kreise können Sie finden, beliebige Formen.
+
+828
+01:46:54,560 --> 01:46:57,560
+Das wird sehr schwierig, es ist sehr rauschabhängig.
+
+829
+01:46:57,560 --> 01:47:04,560
+Weil Sie in den Bildern, jetzt hier mal schauen, in so einem Kantenbild,
+
+830
+01:47:04,560 --> 01:47:06,560
+Sie verlieren die Lokalisation.
+
+831
+01:47:06,560 --> 01:47:13,560
+Also ich kann auch mir vorstellen, dass hier ein Kreis existiert mit einem gewissen Radius.
+
+832
+01:47:14,560 --> 01:47:21,560
+Wenn ich den jetzt hier mal einzeichne, dann sehen Sie, dass es relativ viele Punkte gibt,
+
+833
+01:47:21,560 --> 01:47:24,560
+die von dieser Kreislinie erstmal geschnitten werden.
+
+834
+01:47:24,560 --> 01:47:28,560
+Und das sind schon mal Kandidaten dafür, die mein Akkumulator-Array erhöhen.
+
+835
+01:47:31,560 --> 01:47:36,560
+Und dann habe ich diesen großen Kreis, der relativ viele unterstützende Punkte findet.
+
+836
+01:47:36,560 --> 01:47:40,560
+Der kommt mir dann womöglich, wenn ich den Haftraum generalisiere,
+
+837
+01:47:40,560 --> 01:47:48,560
+kommt dieser große Kreis, der kein Kreis ist, viel eher durch als dieser kleine Kreis,
+
+838
+01:47:48,560 --> 01:47:54,560
+der, weil er klein ist, nur wenige Punkte mir liefern kann, der aber wenigstens ein Kreis ist.
+
+839
+01:47:54,560 --> 01:48:01,560
+Und diese Problematik haben Sie natürlich bei diesem Verfahren umso mehr.
+
+840
+01:48:01,560 --> 01:48:12,560
+Verkehrsteilchenerkennung, Linienerkennung wird auch gerne mit der Hafttransformation gemacht.
+
+841
+01:48:12,560 --> 01:48:15,560
+Vor allen Dingen eine Vorauswahl.
+
+842
+01:48:15,560 --> 01:48:27,560
+Sie machen statt des Template Matchings, machen Sie jetzt erstmal eine Detektion von Kreisen, Achtecken, Quadraten oder Dreiecken.
+
+843
+01:48:32,560 --> 01:48:37,560
+Das liefert Ihnen noch nicht das Stoppschild, aber es liefert Ihnen die Aussage,
+
+844
+01:48:37,560 --> 01:48:40,560
+hier ist erstmal eine achteckige Struktur.
+
+845
+01:48:40,560 --> 01:48:45,560
+Das Schöne ist, wir haben jetzt eine modellbasierte Beschreibung.
+
+846
+01:48:45,560 --> 01:48:54,560
+Wir beschreiben unsere primitive Gleichung und da ist es erstmal egal, wie groß die sind.
+
+847
+01:48:55,560 --> 01:49:01,560
+Das heißt, mit diesem Stoppschild haben wir eine Chance, dass wir das erkennen, wenn es so aussieht, wie es da ist.
+
+848
+01:49:01,560 --> 01:49:05,560
+Wir werden es aber auch erkennen, wenn es dichter dran ist, also größer im Bild ist.
+
+849
+01:49:05,560 --> 01:49:11,560
+Wir werden es auch ab einem gewissen Höchstabstand, wenn es dann näher kommt, auch schon erkennen.
+
+850
+01:49:11,560 --> 01:49:19,560
+Und das macht den Vorteil dieser Hafttransformation gegenüber dem Template Matching aus.
+
+851
+01:49:20,560 --> 01:49:27,560
+Was dann immer für Ihre Anwendung das Schnellere, Sichere ist, ob Sie das über die Hafttransformation machen,
+
+852
+01:49:27,560 --> 01:49:30,560
+oder ob Sie eine Bildpyramide bauen, auf der Sie dann Template Matching machen.
+
+853
+01:49:30,560 --> 01:49:34,560
+Das hängt dann immer so ein bisschen vom Anwendungsfall ab.
+
+854
+01:49:34,560 --> 01:49:42,560
+Aber wenn Sie keine Tricks anwenden, liefert Ihnen die Hafttransformation auf alle Fälle eine Skalierungsvariante.
+
+855
+01:49:42,560 --> 01:49:49,560
+Eine Möglichkeit, um geometrische Primitive zu finden.
+
+856
+01:49:49,560 --> 01:49:56,560
+Und als geometrische Primitive sollten Sie letztendlich nur Geraden und Kreise in Betracht.
+
+857
+01:49:56,560 --> 01:50:06,560
+Also mit der Hafttransformation können wir auf alle Fälle sicher Linien detektieren.
+
+858
+01:50:06,560 --> 01:50:11,560
+Wir transformieren jeden Bildpunkt in einen Parameterraum.
+
+859
+01:50:11,560 --> 01:50:16,560
+Und im Parameterraum haben wir die Parameter, die die geometrischen Primitive beschreiben.
+
+860
+01:50:16,560 --> 01:50:25,560
+Wir brauchen eine implizite Darstellung, also für Geraden wäre es der normalen Winkel und der Abstand zum Koordinatenursprung.
+
+861
+01:50:25,560 --> 01:50:33,560
+Und in diesem Parameterraum machen wir dann letztendlich eine Abstimmung, welches ist denn die längste Gerade.
+
+862
+01:50:34,560 --> 01:50:40,560
+Das kann man auch auf Kreise umsetzen. Kreise erhöht erstmal die Dimensionalität.
+
+863
+01:50:40,560 --> 01:50:57,560
+Aber mit ein bisschen Nachdenken, Ausnutzung der Gravientenrichtung, kommt man wieder dazu, dass man jeden Bildpunkt im Bild auf eine Gerade im dreidimensionalen Raum abbilden kann.
+
+864
+01:50:57,560 --> 01:51:05,560
+Während man bei der Linientransformation jeden Bildpunkt im Bild auf eine Kurve im zweidimensionalen abbildet.
+
+865
+01:51:05,560 --> 01:51:16,560
+Man kann auch beliebige analytische Kurven damit detektieren, das ist aber nicht immer etwas ganz Zuverlässiges.
+
+866
+01:51:16,560 --> 01:51:22,560
+Und hier sehen Sie noch ein paar Beispiele von dem, was man mal mit dieser Hafttransformation gemacht hat.
+
+867
+01:51:22,560 --> 01:51:40,560
+Damit sind wir mit dem Template Matching und dem Suchen nach Pyramiden fertig.
+
+868
+01:51:40,560 --> 01:51:52,560
+Und jetzt bin ich also erstmal am Ende von dem, was ich für heute hochgeladen habe.
+
+869
+01:51:52,560 --> 01:52:10,560
+Das letzte Mal haben einige von Ihnen sich beschwert, dass ich zu lange gehe.
+

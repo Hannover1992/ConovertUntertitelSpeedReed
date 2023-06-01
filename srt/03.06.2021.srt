@@ -1,0 +1,4016 @@
+1
+00:00:00,000 --> 00:00:07,000
+Wir wollen die Filterung jetzt im Frequenzbereich betrachten. Während wir beim letzten Mal ein
+
+2
+00:00:07,000 --> 00:00:12,000
+Eingangssignal im Ortsbereich hatten oder wenn wir ein Audiosignal hätten im Zeitbereich,
+
+3
+00:00:12,000 --> 00:00:19,880
+was wir dann mit Hilfe einer Filterfunktion f von n, das wäre zum Beispiel so ein Gaussfilter
+
+4
+00:00:19,880 --> 00:00:28,240
+gewesen, gefaltet haben, um dann ein Ausgangssignal h von n zu erzeugen. Machen wir das Ganze jetzt
+
+5
+00:00:28,400 --> 00:00:34,080
+im Frequenzbereich. Das hier ist das Symbol für die Transformation vom Ortsbereich in den
+
+6
+00:00:34,080 --> 00:00:41,360
+Frequenzbereich. Aus g von n wird g von j Omega, aus h von n h von j Omega und unsere
+
+7
+00:00:41,360 --> 00:00:50,360
+Übertragungsfunktion ist jetzt f von j Omega. In vielen Büchern wird die Übertragungsfunktion
+
+8
+00:00:50,360 --> 00:00:59,200
+mit h bezeichnet. Der Name ist letztendlich egal. Die Funktion ist klar. Hier ist die
+
+9
+00:00:59,200 --> 00:01:16,200
+Filterfunktion mit f bezeichnet. Wir sprechen also an dieser Stelle vom Ortsraum. Die Operation,
+
+10
+00:01:16,280 --> 00:01:22,200
+die ein Filter durchführt, ist eine Faltung. Im Frequenzbereich wird diese selbe Operation
+
+11
+00:01:22,200 --> 00:01:30,240
+nun dargestellt durch eine Multiplikation. Eben hat man das Ganze im Eindimensionalen,
+
+12
+00:01:30,240 --> 00:01:33,200
+jetzt haben wir es im Zweidimensionalen. Also wir haben die Ortskoordinaten x und y,
+
+13
+00:01:33,200 --> 00:01:40,280
+die typischerweise diskret sind. Statt g von n haben wir dann g von x, y und Frequenzen haben
+
+14
+00:01:40,280 --> 00:01:49,120
+wir dann die Horizontalen und die Vertikalen in x- und y-Richtung. Und das Faltungskörnerl hier,
+
+15
+00:01:49,120 --> 00:01:55,480
+die Filterfunktion, heißt dann im Frequenzbereich Transferfunktion oder auch Übertragungsfunktion.
+
+16
+00:01:55,480 --> 00:02:10,440
+Hier mal ein Beispiel, wie man im Frequenzbereich filtern könnte. Das geht im Frequenzbereich
+
+17
+00:02:10,440 --> 00:02:17,880
+vielleicht viel intuitiver als im Zeitbereich. Wenn ich Ihnen eine Impulsantwort eines Filters
+
+18
+00:02:17,880 --> 00:02:24,320
+oder eine Point Spread Fraction, wie sie ja manchmal auch genannt wird, gebe, also irgendwelche
+
+19
+00:02:24,320 --> 00:02:29,440
+Filterkoeffizienten. Mit ein bisschen Erfahrung kann man dann vielleicht erkennen, ob es sich um
+
+20
+00:02:29,440 --> 00:02:36,880
+einen Hochpass oder einen Tiefpass handelt. Aber wenn das ein Bandpass ist, schwer. Im Frequenzbereich
+
+21
+00:02:36,880 --> 00:02:40,200
+geht das viel einfacher, weil wir ja nach Frequenzen filtern. Das ist also etwas, was wir
+
+22
+00:02:40,200 --> 00:02:45,680
+konzeptionell gut erfassen können. Wir haben hier oben jetzt mal ein Beispiel. Wir haben links das
+
+23
+00:02:45,680 --> 00:02:53,080
+Originalbild und rechts das gleiche Bild im Frequenzbereich. Wir haben als erstes ein Spektrum,
+
+24
+00:02:53,080 --> 00:03:02,440
+das Amplitudenspektrum und dann die Phase. Einfach nur zur Darstellung. Wenn wir jetzt eine
+
+25
+00:03:02,440 --> 00:03:08,680
+Tiefpassfilterung durchführen wollen, dann bedeutet das im Frequenzbereich werden alle hohen Frequenzen
+
+26
+00:03:08,680 --> 00:03:17,600
+und zwar sowohl die Amplituden als auch die Phasen zu Null gesetzt. Damit sieht das Spektrum
+
+27
+00:03:17,600 --> 00:03:26,360
+dieses Bildes, wenn wir es Tiefpass filtern wollen, so aus. Sie setzen also alle Frequenzen, die Sie
+
+28
+00:03:26,360 --> 00:03:30,760
+nicht haben wollen, zu Null und wenn Sie dann die Rücktransformation machen, dann kriegen Sie das
+
+29
+00:03:30,760 --> 00:03:41,080
+Originalbild aber Tiefpass gefiltert. Die scharfen Kanten sind weg, alles ist flau. Umgekehrt, ein Hochpass.
+
+30
+00:03:45,080 --> 00:03:51,000
+Da setzen Sie eben die Tiefenfrequenzen zu Null und wenn Sie das Spektrum dann zurück transformieren,
+
+31
+00:03:51,000 --> 00:03:55,880
+dann sind die Tiefenfrequenzen weg. Tiefe Frequenzen zum Beispiel gleich Anteil und
+
+32
+00:03:55,880 --> 00:04:04,760
+dieses Ergebnis hier sieht näherungsweise so aus, wie ein Kantenbild. Hochpass verstärkt Kanten oder kann
+
+33
+00:04:04,760 --> 00:04:09,440
+man nutzen, um Kanten zu detektieren. Wenn Sie nur an gewissen Frequenzen interessiert sind,
+
+34
+00:04:09,440 --> 00:04:14,000
+dann sieht Ihr Filter im Frequenzbereich so aus. Sie setzen die hohen Frequenzen und die
+
+35
+00:04:14,000 --> 00:04:20,440
+tiefen Frequenzen zu Null und den Bereich, der Sie interessiert, den setzen Sie nicht zu Null. Wir
+
+36
+00:04:20,440 --> 00:04:26,240
+haben hier zweidimensionale Filter, das heißt das, was sich hier auf einem Kreis befindet mit
+
+37
+00:04:26,240 --> 00:04:34,400
+konstantem Radius, das sind dann alles die gleichen Frequenzen in X-Richtung und in Y-Richtung ist
+
+38
+00:04:34,400 --> 00:04:39,960
+klar und bei den diagonal ausgerichteten ist es dann eben alles, was auf dem Kreis in den
+
+39
+00:04:39,960 --> 00:04:46,040
+verschiedenen Richtungen liegt. Unten sehen Sie das Bandpass gefilterte Bild. Ja, was soll ich
+
+40
+00:04:46,040 --> 00:04:52,320
+dazu sagen? Also scharfe Kanten haben wir offensichtlich in diesem Bild nicht. Wir haben
+
+41
+00:04:52,320 --> 00:04:59,120
+aber auch irgendwie keine flauen Kanten, wie wir sie vom Tiefpass haben, sondern da ist
+
+42
+00:04:59,120 --> 00:05:03,560
+irgendwo ein Frequenzbild drin. Ja, wenn wir dieses Bild sehen, können wir sehen, das hat mit dem
+
+43
+00:05:03,560 --> 00:05:08,560
+wahrscheinlich etwas zu tun, aber je nachdem, wie Sie den Bandpass auslegen, ist der Zusammenhang mehr
+
+44
+00:05:08,560 --> 00:05:16,800
+oder weniger offensichtlich. Auf alle Fälle, das, was Sie machen wollen, welche Frequenzen Sie haben
+
+45
+00:05:16,800 --> 00:05:21,080
+wollen, das können Sie im Frequenzbereich ganz leicht beschreiben und dann ist die Filterung
+
+46
+00:05:21,080 --> 00:05:27,880
+letztendlich so, Sie nehmen Ihr Originalbild, transformieren das in den Frequenzbereich, dort manipulieren Sie
+
+47
+00:05:27,880 --> 00:05:34,640
+das Spektrum und die Phase entsprechend der Frequenzen, die Sie haben wollen und das Ergebnis
+
+48
+00:05:34,960 --> 00:05:42,320
+transformieren Sie zurück. In diesem Beispiel hier haben wir letztendlich gesagt, Tiefpass, alles Null
+
+49
+00:05:42,320 --> 00:05:47,880
+außer die tiefen Frequenzen, Hochpass, alles Null außer den hohen Frequenzen. Das können Sie natürlich
+
+50
+00:05:47,880 --> 00:05:54,120
+beliebig gewichten. Sie müssen bei einem Tiefpass nicht sich entscheiden, ob das Filter letztendlich
+
+51
+00:05:54,120 --> 00:06:01,320
+einen Koeffizienten des Spektrums mit 0 oder 1 multipliziert. Da können Sie sich auch über die Gewichtung überlegen.
+
+52
+00:06:01,320 --> 00:06:15,760
+Letztendlich können Sie entweder im Zeitbereich filtern oder im Frequenzbereich. Wir könnten
+
+53
+00:06:15,760 --> 00:06:23,600
+auch dieses Filter hier, das ist ja letztendlich ein Filter, das ist das Tiefpassfilter wäre überall
+
+54
+00:06:23,720 --> 00:06:31,480
+0 und in der Mitte hat es eine 1. Dieses Filter können Sie auch in den Ortsbereich transformieren
+
+55
+00:06:31,480 --> 00:06:39,320
+und dann haben Sie die Impulsantwort dieses Filters. Das heißt, wo Sie nun filtern im
+
+56
+00:06:39,320 --> 00:06:44,160
+Ortsbereich oder im Frequenzbereich bleibt Ihnen überlassen. Im Frequenzbereich ist es definitiv
+
+57
+00:06:44,160 --> 00:06:51,920
+anschaulicher, aber im Ortsbereich ist es vielleicht schneller, weil Sie nicht zweimal eine Fourier-Transformation
+
+58
+00:06:51,920 --> 00:06:56,840
+brechen müssen. Was für Eigenschaften hat die Fourier-Transformation? Das ist natürlich wichtig, wenn wir im
+
+59
+00:06:56,840 --> 00:07:00,840
+Zeitbereich mehrere Filter hintereinander haben wollen. Wir wollen das im Frequenzbereich beschreiben, also
+
+60
+00:07:00,840 --> 00:07:07,680
+Linearität. Das hatten wir gezeigt, wenn wir einfach so eine Filterung durchführen, dann kann man
+
+61
+00:07:07,680 --> 00:07:14,440
+natürlich Signale miteinander addieren und man kann sie auch vorher gewichten. Wenn Sie das jetzt im
+
+62
+00:07:14,440 --> 00:07:19,760
+Frequenzbereich machen wollen, dann die Multiplikation mit einer Konstanten ist eine Multiplikation mit
+
+63
+00:07:19,760 --> 00:07:28,120
+einer Konstanten. Die Addition eines Signals ist eine Addition. Wenn Sie das Signal verschieben,
+
+64
+00:07:31,120 --> 00:07:38,440
+dann müssen Sie im Frequenzbereich die Fourier-Transformierte letztendlich mit
+
+65
+00:07:38,440 --> 00:07:45,920
+diesem Fourier-Koeffizienten, der letztendlich ein Punkt auf dem Einheitskreis ist, drehen.
+
+66
+00:07:45,920 --> 00:08:00,360
+Wenn Sie im Ortsbereich das Signal mit einer Exponentialfolge multiplizieren wollen, dann
+
+67
+00:08:00,360 --> 00:08:06,920
+entspricht das im Frequenzbereich einer Verschiebung. Das heißt, das ganze Spektrum wird um ein paar
+
+68
+00:08:07,080 --> 00:08:22,280
+Kilohertz, Megahertz verschoben. Im Zeitbereich die Faltung im Ortsbereich ist dann im Frequenzbereich
+
+69
+00:08:22,280 --> 00:08:29,960
+die Multiplikation und entsprechend eine Multiplikation im Orts- oder Zeitbereich
+
+70
+00:08:29,960 --> 00:08:33,160
+entspricht dann einer Faltung im Frequenzbereich.
+
+71
+00:08:37,920 --> 00:08:44,040
+Also bei den linearen Systemen verarbeiten wir normalerweise die Signale mithilfe von Faltungen.
+
+72
+00:08:44,040 --> 00:08:49,800
+Bei Fourier-Transformationen können wir die Faltung ersetzen durch Multiplikationen der entsprechenden
+
+73
+00:08:49,800 --> 00:08:57,080
+Spektra. Wir können damit Systeme beschreiben, wir können sie modellieren. Sie können zum Beispiel
+
+74
+00:08:57,080 --> 00:09:02,600
+auch sagen, ich habe jetzt mir überlegt im Frequenzbereich, wie soll das Filter aussehen.
+
+75
+00:09:02,720 --> 00:09:10,360
+Sie transformieren dieses Filter zurück in den Ortsbereich. Dann haben Sie vielleicht zu viele
+
+76
+00:09:10,360 --> 00:09:16,160
+Filterkoeffizienten. Zu viele im Sinne von der Rechenaufwand erscheinen Ihnen zu groß. Dann
+
+77
+00:09:16,160 --> 00:09:22,760
+können Sie zum Beispiel die Pulse-Answort-Point-Spread-Function im Ortsbereich verkleinern
+
+78
+00:09:22,760 --> 00:09:29,400
+und gucken, transformieren wieder zurück, sehen, was gibt das für ein Filter. Das können Sie also
+
+79
+00:09:29,400 --> 00:09:34,280
+nutzen, um Filter zu entwerfen und natürlich kann man die Filter komplett im Frequenzbereich entwerfen.
+
+80
+00:09:34,280 --> 00:09:47,680
+Jetzt wollen wir uns mit Abtastung beschäftigen. Das kennen Sie schon, analoge Signale werden
+
+81
+00:09:47,680 --> 00:09:56,240
+diskretisiert, indem wir sie abtasten und das Gleiche gilt auch für Bilder.
+
+82
+00:09:56,240 --> 00:10:19,120
+Wir entwickeln erstmal ein Modell von der Abtastung. Wir schauen uns an, was bedeutet
+
+83
+00:10:19,120 --> 00:10:23,760
+das im Frequenzbereich. Dann wollen wir von diesen abgetasteten Werten wieder das Signal
+
+84
+00:10:24,240 --> 00:10:28,720
+rekonstruieren und zum Schluss letztendlich als Wiederholung das Abtast-Theorem.
+
+85
+00:10:28,720 --> 00:10:38,480
+Die Beschreibung hier geht jetzt erstmal von einem eindimensionalen Signal aus. Wir könnten sagen,
+
+86
+00:10:38,480 --> 00:10:44,880
+das wäre eine Bildseile, aber Sie können das auch sicherlich dann leicht erweitern in den
+
+87
+00:10:44,880 --> 00:10:49,680
+zweidimensionalen Bereich. Wir haben ein analoges Signal, das tasten wir ab, dann haben wir ein
+
+88
+00:10:49,760 --> 00:10:59,800
+diskretes Signal. Dieses diskrete Signal, das hier jetzt mal gd heißt, das analoge Signal,
+
+89
+00:10:59,800 --> 00:11:08,080
+sei mal g von x. Hier sei x eine kontinuierliche Ortskoordinate, im diskreten i dann die entsprechende
+
+90
+00:11:08,080 --> 00:11:16,600
+diskrete Ortskoordinate. Wir wandeln letztendlich dieses Signal in so eine Folge von Impulsen ab.
+
+91
+00:11:16,760 --> 00:11:25,960
+Die Abtastung muss nicht, wird aber typischerweise immer equidistant erfolgen, equidistant in der
+
+92
+00:11:25,960 --> 00:11:35,160
+Zeit oder im Ort. In der Zeit bedeutet, dass Sie mit einer gewissen Frequenz werden diese
+
+93
+00:11:35,160 --> 00:11:44,400
+Abtastwerte vom analogen Signal ausgelesen. Im zweidimensionalen bedeutet das, dass Sie ein
+
+94
+00:11:44,440 --> 00:11:51,000
+Gitter haben, auf dem Sie das Bild abtasten. Also letztendlich ein Kamerachip, so ein Sensorchip,
+
+95
+00:11:51,000 --> 00:11:56,520
+der hat quadratische Pixel und das quadratische Sensorelement und das sind dann Ihre Abtastpunkte.
+
+96
+00:11:56,520 --> 00:12:05,600
+Nun sind wir Menschen ja eher analog gewesen, das heißt, das diskrete Signal hier ist eher
+
+97
+00:12:05,600 --> 00:12:13,160
+eine Zwischenstufe, die wir entwickelt haben, weil wir digitale Signale besonders gut manipulieren
+
+98
+00:12:13,160 --> 00:12:15,920
+können, aber zum Schluss wollen wir wieder ein analoges Signal haben. Die Frage ist also, wie
+
+99
+00:12:15,920 --> 00:12:21,920
+komme ich vom diskreten Signal zum rekonstruierten Signal, was ist die Rekonstruktion, was muss
+
+100
+00:12:21,920 --> 00:12:32,040
+gelten, damit ich von diesem diskreten Signal das rekonstruierte Signal wieder rekonstruieren kann
+
+101
+00:12:32,040 --> 00:12:34,960
+und dieses rekonstruierte Signal soll identisch sein zu dem Eingangssignal.
+
+102
+00:12:35,960 --> 00:12:49,560
+Im Eingangssignal gehen wir davon aus, dass wir ein Signal haben, das stetig ist, also es hat keine
+
+103
+00:12:49,560 --> 00:13:00,400
+Sprünge und wir tasten dieses Signal dann ab mit einer Abtastfrequenz und der Zeitabstand zwischen
+
+104
+00:13:00,520 --> 00:13:06,080
+zwei aufeinander folgenden Abtastungen ist T, das ist dann auch das Abtasten dabei.
+
+105
+00:13:10,080 --> 00:13:19,680
+Das analoge Signal können wir aus diesem digitalen Signal nur rekonstruieren, wenn das analoge Signal
+
+106
+00:13:19,680 --> 00:13:27,640
+bandbegrenzt ist, also wir nicht Frequenzen haben von 0 bis unendlich, sondern nur von 0 bis 5
+
+107
+00:13:27,680 --> 00:13:36,000
+Megahertz oder von 1,5 Gigahertz bis 1,6 Gigahertz. Wir brauchen also ein bandbegrenztes Signal und
+
+108
+00:13:36,000 --> 00:13:43,680
+weil man das braucht, haben dann viele Analog-Digital-Wandler als erstes mal ein Tiefpassfilter
+
+109
+00:13:43,680 --> 00:13:46,320
+drin oder ein Bandpassfilter, um diese Bandbegrenzung sicherzustellen.
+
+110
+00:13:46,320 --> 00:14:01,760
+Diese Bandbreite, die wir dann haben, wird dann auch dargestellt als Kreisfrequenz. Der Zusammenhang
+
+111
+00:14:01,760 --> 00:14:11,960
+zwischen Omega und f ist einfach der Faktor 2pf und bandbegrenzt heißt, wir haben eine Grenzfrequenz
+
+112
+00:14:12,120 --> 00:14:21,600
+und das Spektrum des Signals ist 0 für Frequenzen oberhalb dieser Grenzfrequenz und die Grenzfrequenz
+
+113
+00:14:21,600 --> 00:14:25,800
+ergibt sich aus dem Abtasten dabei durch T.
+
+114
+00:14:25,800 --> 00:14:42,040
+Wenn wir also so ein Signal gA von T haben, sollte das im Frequenzbereich letztendlich
+
+115
+00:14:42,040 --> 00:14:49,560
+bandbegrenzt sein, also in einem Bereich minus W bis plus W haben wir Energie und außerhalb nicht.
+
+116
+00:14:49,560 --> 00:14:55,480
+Hier haben wir das Spektrum zentriert um 0. Das Abtasterium für Fortgeschrittene erlaubt
+
+117
+00:14:55,480 --> 00:15:01,320
+es auch, dass sie irgendwo ein bandbegrenztes Signal haben zwischen zum Beispiel 1,5 und 1,6
+
+118
+00:15:01,320 --> 00:15:06,080
+Mhz und dann auch auf der negativen Seite. Das können sie dann auch abtasten mit dieser
+
+119
+00:15:06,080 --> 00:15:13,480
+Bandbreite W, die in dem Beispiel dann 100 Mhz wäre.
+
+120
+00:15:13,480 --> 00:15:24,200
+Im Zweidimensionalen gilt das gleiche wie im Eindimensionalen. Unser analoges Signal hängt
+
+121
+00:15:24,320 --> 00:15:35,200
+von zwei Koordinaten ab. Wir tasten auf der Fläche ab. Da haben wir jetzt Bilder und der Abstand
+
+122
+00:15:35,200 --> 00:15:40,520
+zwischen zwei Bildpunkten ist in der hohen Zentrale Delta U und in der vertikalen Delta V.
+
+123
+00:15:40,520 --> 00:15:48,680
+Wir bekommen ein digitales Signal gD und auch hier gilt, das analoge Signal können wir nur
+
+124
+00:15:48,680 --> 00:15:59,200
+aus dem digitalen Signal rekonstruieren, wenn das analoge Signal im Foyer-Bereich bandbegrenzt
+
+125
+00:15:59,200 --> 00:16:10,320
+ist. Heißt also, oberhalb einer gewissen Frequenz muss das Spektrum unseres analogen Signals 0 sein.
+
+126
+00:16:10,320 --> 00:16:24,520
+Und diese Frequenzen, ab der das Signal 0 sein muss im Spektrum, können wir für U und V getrennt wählen.
+
+127
+00:16:24,520 --> 00:16:41,200
+Und wir haben das nochmal zusammengefasst. Die Abtastfrequenz in horizontaler und vertikaler
+
+128
+00:16:41,200 --> 00:16:46,560
+Richtung kann dann abhängig davon, wie sie dieses Delta U und Delta V beenden, unterschiedlich sein.
+
+129
+00:16:46,680 --> 00:16:56,480
+Industrielle Kameras haben Delta U und Delta V gleich. Fernsehkameras haben nicht. Also wenn
+
+130
+00:16:56,480 --> 00:17:01,480
+sie U und V gleich machen, dann sind ihre Bildpunkte quadratisch. Wenn sie es unterschiedlich machen,
+
+131
+00:17:01,480 --> 00:17:07,000
+dann sind sie nicht mehr quadratisch. Für den Fernseher sind die Bildpunkte nicht ganz quadratisch.
+
+132
+00:17:07,000 --> 00:17:32,080
+Hier haben wir G von XY im Frequenzbereich und G von UV im Frequenzbereich. Das digitale Signal
+
+133
+00:17:32,200 --> 00:17:40,160
+GD bekommt man letztendlich, in dem man analog zum eindimensionalen Fall das analoge Signal mit
+
+134
+00:17:40,160 --> 00:17:48,680
+unserer Abtastfunktion S von XY multipliziert. S von XY ist überall 0, außer an den Stellen,
+
+135
+00:17:48,680 --> 00:17:52,720
+an denen wir abtasten wollen. Und da ist S von XY 1.
+
+136
+00:17:52,720 --> 00:18:05,880
+Wenn wir uns das so vorstellen, hier ist das S von XY einmal visualisiert. Es ist überall 0 und
+
+137
+00:18:05,880 --> 00:18:17,680
+an vierfachen von Delta X bis Delta Y haben wir Deltaimpulse. Dann haben wir im Frequenzbereich
+
+138
+00:18:18,040 --> 00:18:27,640
+letztendlich das Spektrum unseres analogen Signals und wir falten mit der Fourier-transformierten
+
+139
+00:18:27,640 --> 00:18:32,400
+unserer Abtastfunktion. Das 1 durch 4 Pi Quadrat haben wir dann noch zur Normierung.
+
+140
+00:18:32,400 --> 00:18:42,160
+Und diese Faltung, die kann man dann auch noch ausrechnen oder ausschreiben.
+
+141
+00:18:42,160 --> 00:18:49,200
+Hier sehen Sie, wie Sie es im Frequenzbereich ausrechnen können.
+
+142
+00:18:49,200 --> 00:18:58,920
+Die Voraussetzung ist, dass das Spektrum von G von UV begrenzt ist. Also in U und V-Richtung
+
+143
+00:18:58,920 --> 00:19:04,440
+sehen Sie, haben wir in diesem Beispiel ein bandbegrenztes Signal. Außerhalb dieser
+
+144
+00:19:04,440 --> 00:19:18,320
+Frequenzen ist das Signal des Spektrum 0. Und wenn wir jetzt diese Faltung hier berechnen,
+
+145
+00:19:18,320 --> 00:19:26,240
+die dieser Multiplikation entspricht, dann bekommen wir letztendlich im Spektrum,
+
+146
+00:19:26,240 --> 00:19:35,840
+der Koordinatenursprung ist hier, das Spektrum, was wir haben wollen. Wir bekommen aber auch noch
+
+147
+00:19:35,840 --> 00:19:52,160
+Vielfache davon. Mit dem entsprechenden Abstand, der vom Abtastintervall abhängt. Das Schöne ist,
+
+148
+00:19:52,160 --> 00:20:01,560
+diese Vielfachen sind alle identisch. Das heißt, wir brauchen nur eins zu betrachten.
+
+149
+00:20:02,560 --> 00:20:14,200
+Was nicht so schön ist, wenn Sie die Bandbegrenzung nicht ordentlich durchführen,
+
+150
+00:20:14,200 --> 00:20:31,200
+dann überlappen sich diese Kegel. Die Abtastung wird durch S von XY, also durch Delta Y und
+
+151
+00:20:31,240 --> 00:20:37,040
+Delta X beschrieben. Und Sie können jedes Signal abtasten. Das muss nicht bandbegrenzt sein.
+
+152
+00:20:39,520 --> 00:20:50,320
+Wenn Ihr Signal aber zu breitbandig ist, dann sind diese Kegel breiter, ohne dass sich der
+
+153
+00:20:50,320 --> 00:20:56,920
+Abstand zwischen den Kegeln verbreitert. Das heißt, die Frequenzen überlagern sich. Und dann können
+
+154
+00:20:56,920 --> 00:21:00,920
+Sie nicht sagen, ich gucke mir diesen Frequenzbereich an, habe ich alles, was ich habe.
+
+155
+00:21:00,920 --> 00:21:05,080
+Nein, dann haben Sie nämlich das, was Sie haben wollen und von den Nachbarn auch noch Frequenzen
+
+156
+00:21:05,080 --> 00:21:10,880
+dazugemischt. Das heißt, das können Sie dann nicht mehr so ganz rekonstruieren. Wenn Sie diese
+
+157
+00:21:10,880 --> 00:21:14,960
+Bandbegrenzung nicht haben, wenn Ihre Kegel also zu breit sind und sich damit gegenseitig überlappen,
+
+158
+00:21:14,960 --> 00:21:31,520
+dann haben wir Aliasing. Ein Beispiel. Hier haben wir eine Sinuswelle, ganz normal und die
+
+159
+00:21:31,520 --> 00:21:42,240
+tasten wir jetzt ab. Und zwar das hier ist unser Delta U. Das heißt, wir kriegen ein Abtastwert
+
+160
+00:21:42,400 --> 00:21:55,960
+hier, hier und so weiter. Jetzt wollen wir rekonstruieren. Wenn man sich überlegt, was man
+
+161
+00:21:55,960 --> 00:22:01,560
+hier so will, dann will man ja eigentlich dieses Signal rekonstruieren. Dieses Spektrum will man
+
+162
+00:22:01,560 --> 00:22:09,240
+haben und will daraus das entsprechende Signal rekonstruieren. Das bedeutet, was unterscheidet
+
+163
+00:22:09,240 --> 00:22:15,960
+dieses Spektrum von diesem hier? Naja, alle Frequenzen, die wir hier haben, sind niedriger.
+
+164
+00:22:15,960 --> 00:22:20,880
+Oder auch anders ausgedrückt, die digitalen Abtastwerte, die ich habe, die versuche ich zu
+
+165
+00:22:20,880 --> 00:22:29,720
+interpretieren mit der niedrigsten Frequenz, die möglich ist. Wenn ich die Abtastwerte nehme,
+
+166
+00:22:29,720 --> 00:22:34,720
+die ich hier oben habe, dann kann ich da einfach so eine Kurve durchlegen.
+
+167
+00:22:40,240 --> 00:22:44,760
+Ich habe also das Original-Signal nicht rekonstruiert. Warum ist das so? Weil die
+
+168
+00:22:44,760 --> 00:22:47,320
+Abtastfrequenz hier oben zu niedrig ist.
+
+169
+00:22:55,600 --> 00:23:01,480
+Wenn ich dafür sorgen würde, dass ich innerhalb von so einem Zug mindestens zwei Abtastwerte
+
+170
+00:23:01,520 --> 00:23:08,960
+habe, dann würde mir das nicht passieren. Wo sehen Sie das heute? Man kann ja sagen,
+
+171
+00:23:08,960 --> 00:23:18,920
+dass die Menschen, die uns ein Video bringen, wissen, was sie tun. Das heißt,
+
+172
+00:23:18,920 --> 00:23:25,800
+die Signalverarbeitung wird ordentlich gemacht. Ja und nein. Die Bildfolge,
+
+173
+00:23:25,800 --> 00:23:32,520
+Bildfrequenz, die Bildwiederholfrequenz von 25 Hertz oder 50 Hertz, je nachdem,
+
+174
+00:23:32,520 --> 00:23:40,200
+wie Sie es sehen wollen, oder 30 Hertz und 60 Hertz, die ist fest. Und eine zeitliche
+
+175
+00:23:40,200 --> 00:23:47,120
+Filterung eines Signals, eines bewegten Signals, ist extrem schwierig, wird also nicht gemacht.
+
+176
+00:23:47,120 --> 00:23:53,680
+Damit wird also eine bewegte Folge, egal wie sie sich bewegt, ein bewegtes Objekt,
+
+177
+00:23:54,640 --> 00:24:05,680
+mit 25 Hertz abgetastet. Das führt dann dazu, dass wir Aliasing sehen. Das ganz klassische
+
+178
+00:24:05,680 --> 00:24:11,640
+Beispiel der Westernwagen mit dem Speichenrad. Die Kutsche fährt los, das Rad dreht sich vorwärts,
+
+179
+00:24:11,640 --> 00:24:16,840
+die Kutsche wird schneller, das Rad dreht sich plötzlich rückwärts. Die Kutsche wird noch
+
+180
+00:24:16,840 --> 00:24:23,040
+schneller, dann dreht sich das Rad wieder vorwärts. Wir als Mensch kriegen die einzelnen Bilder
+
+181
+00:24:23,160 --> 00:24:29,840
+gezeigt und wir interpretieren sie mit der geringstmöglichen Frequenz. Und die Abtastwerte,
+
+182
+00:24:29,840 --> 00:24:34,360
+die wir bekommen, zu Anfang ist die beste Interpolation mit den niedrigsten Frequenzen
+
+183
+00:24:34,360 --> 00:24:42,040
+eine Vorwärtsbewegung und irgendwann verändert sich das Bild so schnell, sodass die Rückwärtsbewegung
+
+184
+00:24:42,040 --> 00:24:46,320
+das schnellere ist. Das sehen wir hier auch in diesem Beispiel. Wir haben hier eine hohe
+
+185
+00:24:46,400 --> 00:24:56,040
+Frequenz und interpretiert wird es als tiefe Frequenz. Das wäre zeitliches Aliasing. Hier
+
+186
+00:24:56,040 --> 00:25:04,680
+auf den Folien lässt sich ein örtliches Aliasing besser darstellen. Ein ganz überraschendes
+
+187
+00:25:04,680 --> 00:25:16,320
+Resultat sehen wir hier. Wir haben hier auf der linken Seite ein Bild mit zum Rand hin steigenden
+
+188
+00:25:16,320 --> 00:25:25,160
+Frequenzen. Hier ist eher Tieffrequenz und dann nimmt die Frequenz zu in Richtung Rand. Das ist
+
+189
+00:25:25,160 --> 00:25:32,840
+unser Bildsignal, das analoge Bildsignal. Das tasten wir jetzt mal ab und zwar mit 30 Punkten
+
+190
+00:25:33,000 --> 00:25:37,960
+in horizontaler Richtung und 30 Punkte in vertikaler Richtung, also mit 900 verschiedenen Punkten. Da
+
+191
+00:25:37,960 --> 00:25:47,880
+kriegen wir jetzt die Abtastwerte und wenn wir dann das Signal aus diesen Abtastwerten wieder
+
+192
+00:25:47,880 --> 00:25:54,400
+rekonstruieren, bekommen wir dieses Bild. Die tiefen Frequenzen hier, die sind noch ordentlich
+
+193
+00:25:54,400 --> 00:25:58,720
+rekonstruiert. Die hohen Frequenzen nicht, weil die Signale bei den hohen Frequenzen werden
+
+194
+00:25:58,720 --> 00:26:03,680
+entsprechend der Abtastfrequenz, die sich aus diesem Muster ergibt, mit möglichst niedrigen
+
+195
+00:26:03,680 --> 00:26:19,200
+Frequenzen interpretiert wird. Die Frequenzen bei der digitalen Signalverarbeitung, wenn Sie jetzt
+
+196
+00:26:19,200 --> 00:26:27,600
+mal so eindimensional betrachten, dann würden Sie die eindimensional auf diesem Einheitskreis
+
+197
+00:26:27,600 --> 00:26:36,840
+darstellen und dieses Bild, jetzt nur in der horizontalen Achse, würde dann dazu führen, dass
+
+198
+00:26:36,840 --> 00:26:43,640
+wir hier 30 equidistante Punkte auf diesem Einheitskreis darstellen. Das wäre dann die
+
+199
+00:26:43,640 --> 00:26:50,120
+Frequenzauflösung. Letztendlich bestimmt also die Größe eines Bildes, die Anzahl der Bildpunkte in
+
+200
+00:26:50,120 --> 00:26:54,840
+horizontaler oder vertikaler Richtung, wie viele Punkte ich hier im Frequenzbereich habe und das
+
+201
+00:26:54,840 --> 00:27:05,320
+ist dann auch die Wandbreite des Signals. Im digitalen macht es dann auch nicht mehr so
+
+202
+00:27:05,320 --> 00:27:13,600
+fürchterlich viel Sinn, diesen Frequenzen, die ja auf einem Kreis im Umfang 2 Pi angeordnet sind,
+
+203
+00:27:13,600 --> 00:27:18,640
+physikalische Frequenzen zuzuordnen. Das ergibt sich dann immer letztendlich, wenn Sie das Signal
+
+204
+00:27:18,800 --> 00:27:31,920
+rekonstruieren. Hier sehen Sie auch, wissen Sie nicht, aber wenn man so einen Bogen gesehen hat,
+
+205
+00:27:31,920 --> 00:27:40,640
+dann weiß man, das sieht eher so aus, die Wände und das hier scheint wohl ein Effekt der Digitalisierung
+
+206
+00:27:40,640 --> 00:27:46,760
+zu sein, beziehungsweise der Abtastung und der anschließenden Rekonstruktion. Hier wurde das
+
+207
+00:27:46,800 --> 00:27:53,080
+Abtastheorien verletzt. Die Frequenz, die wir hier sehen, die dort in der Realität ist,
+
+208
+00:27:53,080 --> 00:28:00,480
+wir sehen sie hier nicht, die ist zu hoch für das Bildpunkt Abtastraster und bei der Rekonstruktion
+
+209
+00:28:00,480 --> 00:28:05,560
+entstehen jetzt diese Muster. Wie können Sie das verhindern? Sie können das, wenn Ihnen das
+
+210
+00:28:05,560 --> 00:28:11,480
+passiert, Sie können das einfach verhindern, indem Sie das Bild etwas unscharf stellen. Nur ein
+
+211
+00:28:11,480 --> 00:28:14,960
+bisschen. Muss nicht so sein, dass man den Eindruck hat, das ganze Bild ist flammend. Ein
+
+212
+00:28:14,960 --> 00:28:20,000
+bisschen und schon ist das weg. Unscharf stellen bedeutet ja, Sie machen eine Bandbreite.
+
+213
+00:28:20,000 --> 00:28:41,640
+Nun gibt es Kameras, die haben 20 Megapixel auf dem Sensor und jetzt wollen Sie irgendwas
+
+214
+00:28:41,640 --> 00:28:47,880
+auf diesen Bildern erkennen. Sie haben eine teure Grafikkarte, zahlen zurzeit 3.000 Euro für eine
+
+215
+00:28:47,880 --> 00:28:56,400
+Grafikkarte mit 24 Gigabyte Speichern und Sie wollen jetzt was weiß ich, irgendwas mit neuronalen
+
+216
+00:28:56,400 --> 00:29:01,600
+Netzen machen, was schnell lernen. Sie wollen da Menschen erkennen, was auch immer. Und da stellen
+
+217
+00:29:01,600 --> 00:29:11,000
+Sie fest, dass diese teure Grafikkarte, wenn Sie da neuronale Netz drauf rechnen wollen, Bilder
+
+218
+00:29:11,160 --> 00:29:18,640
+der Größe 256x256, vielleicht 512x512, aber das ist auch langsam das Ende der Fahnenstange. Sie
+
+219
+00:29:18,640 --> 00:29:30,320
+kriegen da kein 20 Megapixel Bild rein. Was machen Sie nun? Eine Möglichkeit ist, das meist im Bild
+
+220
+00:29:30,320 --> 00:29:33,920
+interessiert sich nicht. Sie wollen vielleicht irgendwie Gesichter erkennen, dann haben Sie
+
+221
+00:29:33,920 --> 00:29:37,160
+irgendwie einen Detektor, der sagt, wo die Gesichter sind und die Gesichter sind ja meistens nicht 20
+
+222
+00:29:37,160 --> 00:29:40,880
+Megapixel, sondern irgendwie was Kleines. Wenn Sie das ganze Bild interpretieren wollen,
+
+223
+00:29:40,880 --> 00:29:47,400
+müssen Sie es kleiner machen. Man spricht dann auch von einer Abtastraten-Reduktion.
+
+224
+00:29:52,400 --> 00:29:58,240
+Das bedeutet, wenn wir die Abtastrate reduzieren, müssen wir erstmal eine Bandbilder durchführen.
+
+225
+00:29:59,240 --> 00:30:10,320
+Unser Signal X, wenn Sie das Idealband begrenzt haben, kritisch abgetastet haben,
+
+226
+00:30:10,320 --> 00:30:15,680
+kritisch heißt mit der niedrigstmöglichen Abtastfrequenz, sodass die Rekonstruktion
+
+227
+00:30:15,680 --> 00:30:22,480
+noch klappt, sieht dann so aus. Hier haben wir den Kreis wieder von 0 bis 2P. Das Spektrum ist
+
+228
+00:30:22,480 --> 00:30:29,760
+letztendlich dann von minus P bis P oder hier ist es eine Hälfte des Spektrums und das, was auf
+
+229
+00:30:29,760 --> 00:30:37,120
+der negativen Seite ist, haben wir jetzt mal hier dargestellt. Wenn wir jetzt die Abtastrate
+
+230
+00:30:37,120 --> 00:30:43,080
+reduzieren, dann müssen wir dafür sorgen, dass die hohen Frequenzen wegkommen. Wir filtern also
+
+231
+00:30:43,080 --> 00:30:50,920
+erstmal auf die neue Grenzfrequenz, die ist dann P durch M. Wenn wir eine Abtastraten-Reduktion
+
+232
+00:30:51,160 --> 00:30:57,000
+mit dem Faktor M machen wollen, unser Bild soll zum Beispiel nach der Abtastraten-Reduktion horizontal
+
+233
+00:30:57,000 --> 00:31:03,160
+und vertikal nur noch ein Drittel der Bildpunkte beinhalten. Dann haben wir also nur noch ein
+
+234
+00:31:03,160 --> 00:31:06,960
+Neuntel der Bildpunkte. Ein Drittel in der Horizontalen, ein Drittel in der Vertikalen,
+
+235
+00:31:06,960 --> 00:31:17,200
+das ist praktisch nur ein Neuntel. Dann würden wir also von P auf P Drittel eine Bandbegrenzung
+
+236
+00:31:17,320 --> 00:31:28,600
+vornehmen müssen. Das heißt, dieser Bereich muss im negativen natürlich auch bis zu Null gesetzt
+
+237
+00:31:28,600 --> 00:31:35,800
+werden. Wir brauchen also einen Tiefpassfilter, der eine Grenzfrequenz hat, P durch M. Das wird
+
+238
+00:31:35,800 --> 00:31:42,960
+hier implementiert und dann führen wir eine Abtastraten-Reduktion durch. Das ist dann ganz
+
+239
+00:31:42,960 --> 00:31:48,160
+einfach. Wenn wir jetzt den Faktor 3 horizontal und vertikal unterabtasten wollen, dann schmeißen
+
+240
+00:31:48,160 --> 00:31:55,560
+sie zwei Bildpunkte weg, einen behalten sie, zwei weg, einen behalten. Das hier geht also ganz schnell.
+
+241
+00:31:55,560 --> 00:32:02,320
+Wir nehmen einfach die Daten, die hier reinkommen, schmeißen das meiste weg und die Filterung,
+
+242
+00:32:02,320 --> 00:32:08,960
+die ist dann gegebenenfalls rechenaufwendig, je nachdem wie kritisch das Erlässigen wird.
+
+243
+00:32:08,960 --> 00:32:28,680
+Eingangssignal, das ist das Signal nach der Tiefpassfilterung. Hier steht H dran, das ist
+
+244
+00:32:28,680 --> 00:32:37,560
+jetzt die Übertragungsfunktion unseres Tiefpassfilters. Im Spektrum wird das mit dem multipliziert und
+
+245
+00:32:37,680 --> 00:32:46,880
+das hier das Spektrum unseres Ausgangssignals W und durch die Abtastaten-Ratenreduktion wird
+
+246
+00:32:46,880 --> 00:32:57,200
+letztendlich der Bereich von 0 bis P durch M wieder abgebildet auf 0 bis P. Dann gibt es diese
+
+247
+00:32:57,200 --> 00:33:14,800
+periodischen Fortsätze. Hier sehen wir noch mal ein paar Beispiele zum Thema Erlässigen. Links
+
+248
+00:33:14,800 --> 00:33:34,840
+das hoch aufgelöste Bild. B unterabgetastet mit einem Boxfilter. Wir haben jetzt letztendlich
+
+249
+00:33:34,840 --> 00:33:39,960
+den Faktor 4 unterabgetastet und dann wird das Bild ja eigentlich kleiner und dann haben wir
+
+250
+00:33:39,960 --> 00:33:45,480
+den Bildpunkt durch ein 4x4 Block ersetzt. Dann ist das Bild wieder groß genug zur Visualisierung.
+
+251
+00:33:53,480 --> 00:33:57,880
+Hier haben wir einen Boxfilter genommen, 25%
+
+252
+00:33:58,200 --> 00:34:03,040
+Füllfaktor, also hier ist eine 1 drin und hier sind Mullen.
+
+253
+00:34:08,040 --> 00:34:17,320
+Hier sehen wir ein Boxfilter, da sind zum Beispiel 4 Einsen drin, Mittelwertfilter. Dann sehen sie
+
+254
+00:34:20,320 --> 00:34:26,840
+aber diese Probleme nicht mehr. So ein besseres Filter sorgt dafür, dass wir weniger Erlässigen
+
+255
+00:34:26,840 --> 00:34:35,880
+haben. Wenn wir jetzt eine ordentliche Bandbegrenzung machen, natürlich alles relativ,
+
+256
+00:34:35,880 --> 00:34:45,040
+aber wir nehmen jetzt mal einen Filter mit 9 Tabs, also eine Impulsantwort der Länge 9. Das ist
+
+257
+00:34:45,040 --> 00:34:52,760
+sicherlich ein besseres Filter als so ein Boxfilter, der nur den Mittelwert berechnet. Dann bekommen wir
+
+258
+00:34:52,760 --> 00:34:58,640
+das Signal hier und da ist dann Erlässig kaum noch zu sehen.
+
+259
+00:35:05,640 --> 00:35:11,680
+Wir neigen in der Bildverarbeitung dazu, immer mit möglichst einfachen Filtern zu arbeiten oder auch
+
+260
+00:35:11,680 --> 00:35:19,520
+sie ganz wegzulassen. Sie sehen hier die Erlässig-Effekte, die man da kriegen kann, können bei
+
+261
+00:35:19,520 --> 00:35:23,440
+manchen Anwendungen stören, bei manchen können sie es nicht, aber wenn sie so Merkwürdigkeiten
+
+262
+00:35:23,440 --> 00:35:28,000
+bekommen, überlegen sie nochmal, ob sie richtig ihr Signal gefiltert haben.
+
+263
+00:35:28,000 --> 00:35:37,720
+Okay, also wir wissen jetzt, was Abtastung ist. Wir haben unser analoges kontinuierliches Signal
+
+264
+00:35:37,720 --> 00:35:48,520
+und da wird an einzelnen diskreten Orten letztendlich gemessen, was der Wert dieser
+
+265
+00:35:48,520 --> 00:35:54,640
+Funktion ist. Wir haben das im Frequenzbereich gesehen. Wichtig ist, wenn wir im digitalen sind,
+
+266
+00:35:54,640 --> 00:35:59,800
+wenn wir abgetastet haben, dann wird aus dem einen Spektrum, was das analoge Signal hat,
+
+267
+00:35:59,800 --> 00:36:07,520
+im digitalen werden viele Spektren, die repliziert sind, mit einem Abstand
+
+268
+00:36:07,520 --> 00:36:11,480
+entsprechender Abtastfrequenz. Wenn sie vorher nicht ordentlich eine Bandbegrenzung gemacht
+
+269
+00:36:11,480 --> 00:36:16,800
+haben, dann überlappen sich diese Spektren und sie kriegen bei der Rekonstruktion Erlässig-Fehler.
+
+270
+00:36:19,520 --> 00:36:25,240
+Wenn sie dann Bilder in ihrer Größe reduzieren wollen, müssen sie vorher eine Bandbegrenzung
+
+271
+00:36:25,240 --> 00:36:30,400
+machen, sonst bekommen sie wieder Erlässig-Fehler in das Bild rein, obwohl das Originalbild gar kein Erlässig-Fehler hat.
+
+272
+00:36:30,400 --> 00:36:40,880
+Damit sind wir an diesem Punkt. Tiefpassfilterung vor und unter Abtastung vermeidet Erlässig-Fehler.
+
+273
+00:36:41,360 --> 00:36:50,920
+Was wir in diesem ganzen Zusammenhang nicht erwähnt haben, ist die Abtastung,
+
+274
+00:36:50,920 --> 00:36:55,000
+so wie sie hier beschrieben wurde. Wir haben ein analoges Signal. Wir multiplizieren das mit
+
+275
+00:36:55,000 --> 00:37:01,520
+dieser Delta-Impulsfolge oder dieser Delta-Ebene, um es abzutasten. Das liefert uns eigentlich dann
+
+276
+00:37:01,520 --> 00:37:07,040
+ein ortsdiskretes, wertkontinuierliches Signal. Nur wenn wir dieses wertkontinuierliche Signal
+
+277
+00:37:07,120 --> 00:37:14,640
+haben, können wir das Original wiederherstellen. Im Digitalen kommt neben der örtlichen Abtastung
+
+278
+00:37:14,640 --> 00:37:19,640
+oder zeitlichen Abtastung immer noch eine Quantisierung dazu. Wenn sie ihr Signal quantisieren,
+
+279
+00:37:19,640 --> 00:37:23,600
+dann können sie das Original, also das digitale Signal quantisieren, können sie das Original nicht
+
+280
+00:37:23,600 --> 00:37:31,680
+mehr herstellen. Wenn sie diese Quantisierung sehr feinstufig machen, dann kann man als Mensch
+
+281
+00:37:31,840 --> 00:37:41,200
+das rekonstruierte Signal, das aus den quantisierten digitalen Werten rekonstruierte
+
+282
+00:37:41,200 --> 00:37:44,720
+Signal, nicht vom Original unterscheiden, weil die Unterschiede so minimal sind,
+
+283
+00:37:44,720 --> 00:38:01,160
+dass unsere Sensoren das nicht wahrnehmen. Die Quantisierung, was da heute typisch gemacht wird,
+
+284
+00:38:01,360 --> 00:38:14,080
+wird glaube ich schon mal erzählt. Acht Bit pro Komponente, moderne Kameras und alle Fernseher,
+
+285
+00:38:14,080 --> 00:38:19,640
+die sie zu Hause haben, also die, die sie in den letzten fünf Jahren gekauft haben,
+
+286
+00:38:20,360 --> 00:38:37,000
+haben 10 Bit. Der Wert 0 ist dunkel und der Wert 1023 ganz hell. Bei Farbbildern dann eben dreimal
+
+287
+00:38:37,000 --> 00:38:53,720
+8 Bit und bei einem Fernseher zu Hause dreimal 10 Bit. Kommen wir jetzt zum Filter des Bildes.
+
+288
+00:38:53,720 --> 00:39:05,600
+Wir können im Ortsbereich filtern, wir können natürlich auch im Frequenzbereich filtern. Wenn
+
+289
+00:39:05,600 --> 00:39:10,960
+sie es im Ortsbereich machen, dann können sie sicherlich lokal adaptiv filtern. Wenn sie es im
+
+290
+00:39:10,960 --> 00:39:16,360
+Frequenzbereich machen, dann haben sie typischerweise das ganze Bild im Frequenzbereich vorliegen. Dann
+
+291
+00:39:16,360 --> 00:39:22,760
+können sie das nur global filtern und zum Schluss haben wir dann auch noch ein paar Beispiele, was
+
+292
+00:39:22,760 --> 00:39:32,680
+man mit diesen Filtern macht. Warum wollen wir filtern? Ihre Kamera, auch auf dem Handy,
+
+293
+00:39:32,800 --> 00:39:40,760
+filtert das, was sie vom Sensor bekommt, um die Bilder schön zu rechnen. Visuelle Verbesserung,
+
+294
+00:39:40,760 --> 00:39:46,960
+das ist was Subjektives. Da geht es nicht darum, dass das Bild dann eine höhere Aussagekraft hat.
+
+295
+00:39:46,960 --> 00:39:54,080
+Also es ist höchstens für den Menschen leichter zu interpretieren. Zum Beispiel, wenn man den
+
+296
+00:39:54,080 --> 00:40:01,120
+Kontrast verbessern, Unterschied zwischen hell und dunkel, Variationen an irgendwelchen Kanten,
+
+297
+00:40:01,120 --> 00:40:07,280
+das ist auch etwas, was sie an ihrem Fernseher einstellen können. Wenn sie an der Kontrastschraube
+
+298
+00:40:07,280 --> 00:40:13,520
+drehen, dann modifizieren sie letztendlich die Filter, die ihr Fernseher auf das Bildsignal
+
+299
+00:40:13,520 --> 00:40:21,840
+anwendet, nachdem es am Bildsignal wird ja digital übertragen, kodiert mit HVC beim Fernsehen. Das
+
+300
+00:40:21,840 --> 00:40:25,840
+wird dekodiert und dann haben sie ein digitales Bild und dann kommt die Bildverbesserung ihres
+
+301
+00:40:25,840 --> 00:40:31,880
+Fernsehers. Sie drehen an der Kontrastschraube, dann wird das Bild, was aus dem Dekoder herauskommt,
+
+302
+00:40:31,880 --> 00:40:39,040
+anders gefiltert. Rauschunterdrückung machen unsere digitalen Kameras alle. Bilder will man
+
+303
+00:40:39,040 --> 00:40:45,800
+vielleicht auch anschärfen, sollen schärfer erkannt werden. Das sind so typische Beispiele
+
+304
+00:40:45,800 --> 00:40:51,920
+für die Verbesserung von Bildern. Manchmal will man die Bilder auch filtern, weil man sie hinterher
+
+305
+00:40:52,040 --> 00:40:58,560
+mit einem Computer auswerten will. Wenn sie jetzt mit einem Computer auswerten wollen, was ist denn
+
+306
+00:40:58,560 --> 00:41:03,800
+in dem Bild drin, dann sind lokale Strukturen typischerweise sehr hilfreich. Kanten, Ecken,
+
+307
+00:41:03,800 --> 00:41:10,920
+Linien, einfarbige Bereiche, Detektion einfarbiger Bereiche. Das ist etwas Sinnvolles oder vielleicht
+
+308
+00:41:10,920 --> 00:41:18,040
+Berechnung von Texturmerkmalen, dass sie von irgendwelchen Flächen eine Frequenzanalyse
+
+309
+00:41:18,040 --> 00:41:25,600
+durchführen wollen. Das wären dann auch Filter. Wir werden jetzt ein paar Filter betrachten,
+
+310
+00:41:25,600 --> 00:41:32,560
+sowohl im Zeitbereich, im Ortsbereich und im Frequenzbereich. Schauen uns an, wie man im
+
+311
+00:41:32,560 --> 00:41:38,920
+Frequenzbereich filtern kann und wir werden dann auch ein Beispiel haben zum Thema inverse
+
+312
+00:41:38,920 --> 00:41:44,400
+Filterung. Manchmal wird ein Signal gefiltert, obwohl sie es eigentlich gar nicht wollen. Dann
+
+313
+00:41:44,560 --> 00:41:51,600
+versuchen sie, diese Filterung zurückzubringen. Macht ihr Handy, der Sendemast sendet ein Signal
+
+314
+00:41:51,600 --> 00:41:56,840
+aus und eigentlich wollen sie genau dieses Signal haben. Die Übertragungsstrecke dämpft dieses
+
+315
+00:41:56,840 --> 00:42:02,160
+Signal und zwar nicht alle Frequenzen gleich. Dann gibt es Reflektionen, auch nicht für alle
+
+316
+00:42:02,160 --> 00:42:09,240
+Frequenzen gleich. Diese Filterung letztendlich macht ihr Handy dann rückgängig, versucht sie
+
+317
+00:42:09,240 --> 00:42:13,920
+rückgängig zu machen, um dann das Signal zu rekonstruieren. So etwas macht man auch bei
+
+318
+00:42:14,000 --> 00:42:28,040
+Bildern. Wir haben auf alle Fälle ein Eingangsbild. G von XY oder G von Omega X, Omega Y im Ortsbereich
+
+319
+00:42:28,040 --> 00:42:33,680
+oder im Frequenzbereich. Im Frequenzbereich haben wir dann mit dem großen Buchstaben
+
+320
+00:42:33,680 --> 00:42:42,920
+bezeichnet die Filterfunktion und dann haben wir das Ausgangsbild. Wir haben kennengelernt,
+
+321
+00:42:42,920 --> 00:42:51,200
+Punktoperationen, ein Bildpunkt am Ausgang hängt genau von einem Bildpunkt am Eingang ab,
+
+322
+00:42:51,200 --> 00:43:00,400
+von einem Eingangsbildpunkt. Damit können sie ein Bild skalieren zum Beispiel. Lokale Operationen,
+
+323
+00:43:00,400 --> 00:43:06,560
+das war die Filterung mit einer Maske, einem Boxfilter oder einem Gaussfilter. Ein Bildpunkt
+
+324
+00:43:06,800 --> 00:43:14,040
+an der Stelle XY hängt ab vom Eingangsbild an der Stelle XY und der Nachbarschaft um XY herum
+
+325
+00:43:14,040 --> 00:43:20,760
+im Eingangsbild. Und dann gibt es globale Operationen. Da hängt ein Bildpunkt von allen
+
+326
+00:43:20,760 --> 00:43:29,080
+Bildpunkten des Eingangsbildes ab. Wenn sie zum Beispiel eine Fourier-Transformation berechnen,
+
+327
+00:43:29,080 --> 00:43:32,960
+dann nehmen sie das gesamte Bild, transformieren das im Frequenzbereich und wenn sie dann da
+
+328
+00:43:32,960 --> 00:43:39,200
+etwas machen, dann wird ja alles was sie machen von allen Bildpunkten beeinflusst und entsprechend
+
+329
+00:43:39,200 --> 00:43:50,240
+haben sie dann eine globale Operation für jeden Bildpunkt durchgeführt. Es gibt Filter, mit denen
+
+330
+00:43:50,240 --> 00:44:00,160
+man das Bildsignal glättet oder auch anders gesagt, man entfernt hohe Frequenzen. Das ist also
+
+331
+00:44:00,160 --> 00:44:13,280
+letztendlich ein Tiefpassfilter. Damit werden sie auch rauschen, wenn sie eine einfarbige Bildfläche
+
+332
+00:44:13,280 --> 00:44:19,320
+haben. Dann fluktuieren die Grauwerte, die eben die Kamera gibt, typischerweise aufgrund des Rauschens.
+
+333
+00:44:19,320 --> 00:44:27,240
+Und mit einem Glättungsfilter können sie jetzt versuchen, dieses Rauschen wegzubekommen. Wenn
+
+334
+00:44:27,320 --> 00:44:33,920
+sie so ein Bild glätten, dann wollen sie es typischerweise nicht verschieben. Das kriegen
+
+335
+00:44:33,920 --> 00:44:39,880
+sie hin, indem ihr Impuls am Wort im Eindimensionalen symmetrisch ist. Also f von i ist gleich f von
+
+336
+00:44:39,880 --> 00:44:54,000
+minus i. Wir haben also f von i ist hier ein Wert und dann ist das ganze symmetrisch.
+
+337
+00:44:54,000 --> 00:45:06,360
+Das bedeutet, ihr Filterkörner muss eine ungerade Anzahl von Werten haben.
+
+338
+00:45:06,360 --> 00:45:19,120
+Beim Zweidimensionalen gelten dann diese beiden Symmetrie-Eigenschaften. Das bedeutet, ihr Filterkörner
+
+339
+00:45:19,120 --> 00:45:26,760
+muss eine ungerade Kantenlänge haben. Also zum Beispiel 3 mal 5 als Filterkörner oder 5 mal 3.
+
+340
+00:45:26,760 --> 00:45:37,080
+7 mal 7 geht natürlich genauso. Nur dann führt die Filterung dazu, dass der Bildinhalt an der
+
+341
+00:45:37,080 --> 00:45:41,440
+gleichen Stelle bleibt. Ansonsten verschieben sie das Bild. Vielleicht auch nur in den Bruchteil
+
+342
+00:45:41,440 --> 00:45:49,920
+eines Bildpunktes, aber sie verschieben es. Bei den Filtern will man typischerweise auch,
+
+343
+00:45:49,920 --> 00:45:55,200
+dass der Mittelwert des Signals erhalten bleibt. Also die Summe über alle Filterkoeffizienten
+
+344
+00:45:55,360 --> 00:46:04,880
+muss 1 sein. Das bedeutet dann im Frequenzbereich an der Stelle 00 ist der Filterkoeffizient 1.
+
+345
+00:46:10,880 --> 00:46:16,880
+Also Erhaltung des Mittelwertes, das wollen wir für Glättungsfilter haben. Im Mittel ist das
+
+346
+00:46:16,880 --> 00:46:20,880
+Bild hinterher genauso hell wie vorher. Das wollen wir nicht für Hochpassfilter.
+
+347
+00:46:25,880 --> 00:46:30,880
+Wenn wir das Bild glätten wollen, dann wollen wir eine Übertragungsfunktion haben,
+
+348
+00:46:30,880 --> 00:46:37,240
+die monoton fallend ist. Das heißt, tiefe Frequenzen werden wenig gefiltert und je
+
+349
+00:46:37,240 --> 00:46:41,000
+höher die Frequenz wird, desto mehr werden sie unterdrückt. Das heißt also,
+
+350
+00:46:41,000 --> 00:46:43,840
+feinere Strukturen werden stärker abgeschweckt als gröbere.
+
+351
+00:46:43,840 --> 00:46:56,040
+Das könnte zum Beispiel so sein, dass wir uns ein f0 definieren und dann haben wir hier eine
+
+352
+00:46:56,040 --> 00:47:01,840
+Cosinuswelle. Hier haben wir die Frequenz und je höher wir in der Frequenz sind,
+
+353
+00:47:01,840 --> 00:47:06,360
+desto kleiner wird der Koeffizient, mit dem wir filtern.
+
+354
+00:47:06,360 --> 00:47:17,440
+Ja und dann, wenn man das Bild glättet, sollten die Filtereigenschaften unabhängig
+
+355
+00:47:17,440 --> 00:47:23,240
+von der Richtung von irgendwelchen Rauschen oder Kanten sein. Wir wollen also ein isotropes Filter
+
+356
+00:47:23,240 --> 00:47:36,200
+haben. Wenn wir jetzt an einen Faltungsfilter denken, isotrop heißt dann, die Box sollte
+
+357
+00:47:36,200 --> 00:47:43,120
+quadratisch sein. Wenn Sie ein 3x5 Filter haben, dann kriegen Sie keine Isotropie hin. Aber mit einem
+
+358
+00:47:43,120 --> 00:47:48,840
+5x5 oder 7x7 Filter können Sie eine Isotropie erreichen.
+
+359
+00:47:48,840 --> 00:47:57,960
+So, damit wissen wir jetzt also, Glättungsfilter müssen symmetrisch, also sie müssen quadratisch
+
+360
+00:47:57,960 --> 00:48:04,840
+sein und sie sollten eine ungerade Punktzahl haben. Das einfachste Filter wäre ein Boxfilter
+
+361
+00:48:04,840 --> 00:48:12,040
+in unterschiedlichen Größen. 3x3 wäre das hier. Wenn Sie sich das angucken,
+
+362
+00:48:12,040 --> 00:48:17,680
+das ist auch Mittelwert erhalten. 5x5 wäre dieses Filter. Diese Filter sind separierbar,
+
+363
+00:48:17,840 --> 00:48:23,960
+also statt jeden Bildpunkt mit 9 Multiplikationen zu versehen, können Sie das hier auch mit 6
+
+364
+00:48:23,960 --> 00:48:32,760
+Multiplikationen hinbekommen. Oder hier statt 25 Multiplikationen mit 10. Diese Filter lassen
+
+365
+00:48:32,760 --> 00:48:36,400
+sich natürlich ganz leicht berechnen. Sie summieren auf und teilen durch die Anzahl der
+
+366
+00:48:36,400 --> 00:48:41,720
+Filterkoeffizienten. Jetzt können wir uns im Frequenzbereich noch angucken, was sind denn
+
+367
+00:48:41,720 --> 00:48:48,720
+das für Filter. Da haben wir hier die Frequenz
+
+368
+00:48:55,160 --> 00:49:07,720
+und nach oben die Amplitude dieses Filters. Jetzt sehen Sie die Amplitude der Übertragungsfunktion.
+
+369
+00:49:07,720 --> 00:49:14,760
+Wenn wir jetzt erstmal nur so hier hingucken, wenn Sie das Filter größer machen, wird die
+
+370
+00:49:14,760 --> 00:49:20,720
+Bandbegrenzung stärker und die Grenzfrequenz des Filters sinkt. Das ist erstmal eine nette
+
+371
+00:49:20,720 --> 00:49:31,840
+Eigenschaft. Aber was wir auch sehen ist, dass wenn wir dieses 9x9 Filter zum Beispiel nehmen,
+
+372
+00:49:31,880 --> 00:49:40,240
+dass die Frequenzen hier unterdrückt werden, dann ist hier die Übertragungsfunktion negativ. Das
+
+373
+00:49:40,240 --> 00:49:44,520
+heißt, das Signal, diese gewissen Frequenzen tauchen auch wieder auf im Bild. Die werden
+
+374
+00:49:44,520 --> 00:49:53,840
+nicht zu null gesetzt und gewisse Frequenzen werden wieder auch durchgelassen. Ein ideales
+
+375
+00:49:53,840 --> 00:50:06,840
+Tiefpassfilter würde ja so aussehen. Der Vorteil dieser Filter, die Übertragungsfunktion, ist ja
+
+376
+00:50:06,840 --> 00:50:12,080
+offensichtlich nicht so ganz ideal. Der Vorteil ist natürlich eine geringe Rechenkomplexität.
+
+377
+00:50:12,080 --> 00:50:25,840
+Hier sehen Sie jetzt ein Beispiel, was passiert. Das Eingangsbild sieht in allen vier Quadranten
+
+378
+00:50:25,840 --> 00:50:32,200
+so aus, wie wir es hier sehen. Wir haben jetzt letztendlich nur diesen und diesen Quadranten
+
+379
+00:50:32,200 --> 00:50:40,760
+gefiltert. Die Frequenz in diesem Bild nimmt ja zum Bildrand hin zu. Hier in der Mitte haben wir
+
+380
+00:50:40,760 --> 00:50:55,480
+die Frequenz 0 und dann steigt sie. Was sehen wir jetzt? Die Frequenz hier steigt auch nach außen
+
+381
+00:50:55,480 --> 00:51:00,880
+hin. Sie werden schwächer. Wenn wir in diese Richtung gucken, hier das scheint ideal zu sein. Die
+
+382
+00:51:00,880 --> 00:51:07,280
+Frequenzen werden immer schwächer und irgendwann sieht man sie nicht mehr. In dieser Richtung ist
+
+383
+00:51:07,280 --> 00:51:13,480
+das Verhalten anders. Sie sehen hier kommt Energie durch bei dieser Frequenz und wenn diese
+
+384
+00:51:13,480 --> 00:51:19,240
+gleiche Kante letztendlich auf der Diagonale liegt, dann wird sie mehr oder weniger perfekt unterdrückt.
+
+385
+00:51:19,240 --> 00:51:28,560
+Jetzt schauen wir noch mal an die Kanten hier, an den Übergang zwischen dem Originalbild und
+
+386
+00:51:28,560 --> 00:51:40,120
+dem gefilterten Bild. Sie sehen, diese Linie geht durch. Das ist gut. Im gefilterten Bild ist sie nicht
+
+387
+00:51:40,120 --> 00:51:47,160
+mehr ganz so scharf. Der Kontrast nimmt ab. Hier auch, hier auch, hier auch, hier auch. Es wird immer schwächer.
+
+388
+00:51:47,160 --> 00:51:54,160
+Hier haben wir es jetzt mal vergrößert. Sie sehen, diese Frequenz wird komplett unterdrückt
+
+389
+00:51:54,160 --> 00:52:02,320
+und dann sehen Sie hier, jetzt plötzlich ist die Phase verschoben. Da, wo vorher ein Wellenberg war,
+
+390
+00:52:02,320 --> 00:52:11,560
+ist im gefilterten Bild ein Wellental. Das liegt daran, dass hier unsere Übertragungsfunktion
+
+391
+00:52:11,560 --> 00:52:16,320
+negativ ist. Das ist etwas, was sie definitiv nicht wollen. Also wenn diese Frequenzen für
+
+392
+00:52:16,320 --> 00:52:23,160
+Sie interessant sind, dann brauchen Sie bessere Filter.
+
+393
+00:52:28,560 --> 00:52:34,840
+Sie sehen, hier ist das Signal jetzt im Phasensprung und je nachdem wie das Signal ist,
+
+394
+00:52:34,840 --> 00:52:49,520
+kehrt sich das auch wieder um. Es gibt Binominalfilter. Da wird ein ganz einfaches
+
+395
+00:52:49,520 --> 00:52:55,320
+Glättungsfilter genommen. Zwei Koeffizienten, halb mal eins, also eine Mittelwertbildung
+
+396
+00:52:55,320 --> 00:53:01,640
+zwischen zwei benachbarten Bildpunkten. Dieses Filter wird jetzt mehrfach auf das Bild angewendet.
+
+397
+00:53:05,320 --> 00:53:09,960
+Sie filtern das Bild mit diesem ganz kleinen Mittelwertfilter und dann noch mal, noch mal,
+
+398
+00:53:09,960 --> 00:53:20,600
+noch mal. Wenn Sie es zweimal filtern, bekommen Sie letztendlich einen Filterkörner der Breite 3
+
+399
+00:53:20,600 --> 00:53:29,440
+mit den Koeffizienten 1, 2, 1. Wenn Sie es dreimal filtern, haben Sie die Länge 4, 1, 3, 3, 1. Wenn Sie es viermal filtern,
+
+400
+00:53:29,760 --> 00:53:36,600
+haben Sie wieder ein symmetrisches Filter und gerade Zahl. Das sind jetzt die Beispiele im
+
+401
+00:53:36,600 --> 00:53:42,560
+Eindimensionalen. Im Zweidimensionalen gilt es dann entsprechend. Hier haben wir es mal für
+
+402
+00:53:42,560 --> 00:53:51,080
+dieses Filter B2. Wir haben hier 1, 2, 1. In der Mitte steht dann die 4. Ergibt sich durch
+
+403
+00:53:51,120 --> 00:54:01,400
+separierbare Filterung mit diesen beiden Filterkörnern. Wenn wir uns hier jetzt die
+
+404
+00:54:01,400 --> 00:54:10,600
+Wirthausfunktion angucken, dann sehen wir wieder, mit zunehmender Filterlänge sinkt die Grenzfrequenz,
+
+405
+00:54:10,600 --> 00:54:20,720
+aber wir kommen hier nicht in den negativen Bereich. Das heißt,
+
+406
+00:54:20,720 --> 00:54:24,720
+wir haben eine viel bessere Approximation des Tiefpassfilters und diese Phasensprünge, die wir
+
+407
+00:54:24,720 --> 00:54:35,840
+eben gesehen haben, kommen jetzt nicht vor. Hier sehen Sie das Bild. Sie sehen auch hier bei den
+
+408
+00:54:35,840 --> 00:54:43,800
+ganz hohen Frequenzen, der Übergang ist glatt. Wir haben keinen Phasensprung und wir sehen auch,
+
+409
+00:54:43,800 --> 00:54:48,440
+hier sind die hohen Frequenzen gedämpft. Sie kommen durch und hier sind die hohen Frequenzen
+
+410
+00:54:48,520 --> 00:54:53,600
+ebenfalls gedämpft. Sie kommen aber noch durch, genauso wie nah an der Horizontal- oder an der
+
+411
+00:54:53,600 --> 00:54:59,400
+Vertikalen. Also das ist schon ein viel besseres Filter. Vom Rechenaufwand her ist es jetzt auch
+
+412
+00:54:59,400 --> 00:55:08,400
+keine Katastrophe. Eine Multiplikation mit 2 bekommen Sie einfach, indem Sie das Bitmuster,
+
+413
+00:55:08,400 --> 00:55:12,680
+was Sie im Register haben, um 1 verschieben. Dann haben Sie das Signal mit 2 multipliziert.
+
+414
+00:55:12,680 --> 00:55:27,880
+Der Gauss-Filter, dieses Beispiel für den 4,5-Filter, hat man schon gesehen, hat ein Sigma
+
+415
+00:55:27,880 --> 00:55:37,680
+hier, mit dem man letztendlich die Breite des Filterkörners einstellt. Im Ortsbereich ist
+
+416
+00:55:37,680 --> 00:55:41,600
+das hier die Übertragungsfunktion und wenn Sie das in den Frequenzbereich transformieren,
+
+417
+00:55:41,960 --> 00:55:46,880
+sehen Sie letztendlich das gleiche Verhalten. Wir haben wieder eine E-Funktion und die hängt ab
+
+418
+00:55:46,880 --> 00:55:54,960
+von Omega 1² und Omega 2², also Omega x² und Omega y². Im Ortsbereich waren es eben die
+
+419
+00:55:54,960 --> 00:56:02,560
+Bildpunktkoordinaten. Das heißt, das transformierte Gauss-Filter sieht genauso aus wie im Ortsbereich.
+
+420
+00:56:02,560 --> 00:56:18,280
+Natürlich haben Sie noch die Phase dazu. So ein Gauss-Filter können Sie berechnen. Dann haben
+
+421
+00:56:18,280 --> 00:56:25,720
+Sie hier die Filterkoeffizienten. Es sind jetzt 25 Multiplikationen pro Bildpunkt dabei. Das
+
+422
+00:56:25,720 --> 00:56:30,280
+Gauss-Filter ist aber letztendlich auch kein ideales Tiefpassfilter. Daher können Sie auch
+
+423
+00:56:30,680 --> 00:56:35,200
+das vielleicht irgendwie approximieren. Ja, man kann ein Gauss-Filter sehr leicht durch
+
+424
+00:56:35,200 --> 00:56:44,400
+einen Binominalfilter approximieren und das können Sie dann separieren. Das heißt, statt der 25
+
+425
+00:56:44,400 --> 00:56:50,920
+Multiplikationen, die Sie dafür brauchen, brauchen Sie hier jetzt noch 10 Multiplikationen und die
+
+426
+00:56:50,920 --> 00:56:58,680
+Filterkoeffizienten sind, muss ich jetzt diese beiden vergleichen, sehr ähnlich. Damit das
+
+427
+00:56:58,680 --> 00:57:11,160
+Maximum, dann fällt es homogen ab in alle Richtungen. Hier sehen wir die Fourier-Transformierte eines
+
+428
+00:57:11,160 --> 00:57:20,800
+Gauss-Filters. Sie sollten sich vorstellen, dass dieses Ding in der Mitte des blauen Bildes
+
+429
+00:57:21,160 --> 00:57:24,600
+sitzt. Ich glaube, es ist nicht so ganz zu empfangen. Vielleicht liegt es auch an meinem
+
+430
+00:57:24,600 --> 00:57:38,920
+Blickwinkel. Hier unten sehen wir das Ergebnis. Die hochfrequenten Strukturen sind weg. Die
+
+431
+00:57:38,920 --> 00:57:46,880
+tieffrequenten Strukturen sind gut erhalten. Das Ergebnis einfach eines Tiefpassfilters.
+
+432
+00:57:46,880 --> 00:57:59,560
+Sie könnten jetzt auch einen Boxfilter nehmen, rechnet sich ein bisschen schneller. Hier sehen
+
+433
+00:57:59,560 --> 00:58:09,360
+Sie das Spektrum, die Filterfunktion eines Boxfilters im Frequenzbereich. Vergleichen
+
+434
+00:58:09,360 --> 00:58:18,800
+wir es hierzu. Hier haben wir außerhalb des Kernbereichs überall letztendlich null. Bei
+
+435
+00:58:18,800 --> 00:58:26,080
+diesem Boxfilter treten Rippel auf. Da gibt es also Frequenzen, bei denen Energie durchgelassen wird.
+
+436
+00:58:26,080 --> 00:58:33,160
+Wir sehen hier auch, das Ganze ist nicht isotrop. Das heißt, in horizontaler Richtung,
+
+437
+00:58:33,160 --> 00:58:41,240
+in vertikaler Richtung wird Energie durchgelassen, in diagonaler Richtung nicht. Das sehen wir dann
+
+438
+00:58:41,240 --> 00:58:46,560
+auch hier in dem Ergebnis. Sie haben den Eindruck, als wenn da eine Blockstruktur drauf ist. Das ist
+
+439
+00:58:46,560 --> 00:58:55,960
+das Ergebnis dieser beiden Nebenkeulen. Die hochfrequenten Details sind hier verschwunden.
+
+440
+00:58:56,800 --> 00:59:06,640
+Die breiten Strukturen bleiben erhalten. Aber wie gesagt, sehen Sie, da ist eine Blockstruktur drauf.
+
+441
+00:59:06,640 --> 00:59:15,320
+Das ist etwas, was wir nicht haben. Sie wollen ihr Bild kletten, Sie wollen ihr Bild vom Rauschen
+
+442
+00:59:15,320 --> 00:59:21,240
+befreien, dann brauchen Sie einen Tiefpassfilter. Das hört sich natürlich nicht gut an. In der
+
+443
+00:59:21,240 --> 00:59:27,120
+Literatur findet man vielleicht den Begriff eines Klettungsfilters, aber es ist letztendlich
+
+444
+00:59:27,120 --> 00:59:32,760
+ein Tiefpassfilter. Realisieren können Sie das mit einem Boxfilter. Das können Sie ganz schnell
+
+445
+00:59:32,760 --> 00:59:39,680
+berechnen, aber Sie können dann ganz leicht Artefakte kriegen, diese Phasensprünge. Boxfilter,
+
+446
+00:59:39,680 --> 00:59:55,000
+schnelle Berechnbarkeit bedeutet letztendlich, die Maske ist separierbar. Beim Gaussfilter haben
+
+447
+00:59:55,000 --> 01:00:02,200
+Sie einen Isotropesfilter. Sie können auch ein Bild mehrfach mit dem gleichen Gaussfilter
+
+448
+01:00:02,200 --> 01:00:10,520
+filtern. Das entspricht dann einer stärkeren Tiefpassfilterung. Dieses Gaussfilter können
+
+449
+01:00:10,520 --> 01:00:15,720
+Sie ganz gut durch einen Binominalfilter approximieren und dann ist das Ganze auch separierbar.
+
+450
+01:00:15,720 --> 01:00:28,200
+Dieses Binominalfilter gibt es in unterschiedlicher Länge. Wir haben verschiedene Maskenlängen,
+
+451
+01:00:28,440 --> 01:00:36,080
+1-2-1 war das kürzeste, also das, was eine ungerade Länge hatte. Das gibt es auch in der
+
+452
+01:00:36,080 --> 01:00:44,040
+Version 5x5 und so weiter. Sie können aber auch ein Bild mit einem kleinen Binominalfilter,
+
+453
+01:00:44,040 --> 01:00:48,800
+also 1-2-1, filtern und dann schauen Sie sich das an, noch nicht ausreichend gefiltert. Dann
+
+454
+01:00:48,800 --> 01:00:56,760
+nehmen Sie dieses Ergebnis und filtern das nochmal mit 1-2-1. Das ist dann einfacher,
+
+455
+01:00:56,760 --> 01:01:00,440
+als wenn Sie das Originalbild nehmen. Sie filtern das einmal mit 1-2-1, schauen sich an,
+
+456
+01:01:00,440 --> 01:01:03,840
+sind unzufrieden und dann nehmen Sie wieder das Originalbild und filtern es jetzt mit einem
+
+457
+01:01:03,840 --> 01:01:16,240
+Binominalfilter der Länge 5. Das ist dann rechenaufwendig. Bisher haben wir alles lineare
+
+458
+01:01:16,240 --> 01:01:21,280
+Filter betrachtet. Das ist auch das, was Sie aus der Signalverarbeitung kennen. Das ist das,
+
+459
+01:01:21,320 --> 01:01:27,240
+was man typischerweise macht, außer man macht Bildverarbeitung. In der Bildverarbeitung werden
+
+460
+01:01:27,240 --> 01:01:36,600
+auch gerne erfolgreich nicht lineare Filter eingesetzt mit sehr angenehmen, überraschend
+
+461
+01:01:36,600 --> 01:01:43,920
+guten Resultaten. Diese Glättungsfilter, die wir bisher besprochen hatten, das waren Tiefpassfilter.
+
+462
+01:01:43,920 --> 01:01:50,880
+Das bedeutet, Sprünge im Signal, stellen Sie sich vor, Sie haben ein Schachbrettmuster,
+
+463
+01:01:50,880 --> 01:01:56,120
+die Kanten werden verwaschen. Da führt kein Weg drum herum. Das ist das, was ein Tiefpassfilter
+
+464
+01:01:56,120 --> 01:02:01,560
+macht. Hat dann auch zur Folge, wenn Sie den einfarbigen Bereich haben im Schachbrettmuster,
+
+465
+01:02:01,560 --> 01:02:07,760
+dann wird da zum Schluss das Rauschen definitiv reduziert. Aber die Kanten werden verwaschen.
+
+466
+01:02:07,920 --> 01:02:15,800
+Ein nicht lineares Glättungsfilter ist der Medianfilter. Der Medianfilter hat eine
+
+467
+01:02:18,800 --> 01:02:28,720
+Körnelgröße, hier in diesem Beispiel 3x3. Das kann sich etwas beliebiges ausdenken. Die
+
+468
+01:02:28,720 --> 01:02:36,960
+Amplitudenwerte in diesem Fenster, in diesem Körnel, werden der Größe nach sortiert.
+
+469
+01:02:36,960 --> 01:02:47,000
+Und der mittlere Wert, das ist der Median. Der stellt das Ergebnis dar. Wir haben hier unser
+
+470
+01:02:47,000 --> 01:02:55,360
+Eingabebild. Für diese Koordinate wollen wir jetzt das gefilterte Ergebnis berechnen. Also
+
+471
+01:02:55,360 --> 01:03:01,440
+werden in diesem Filter, in dieser 3x3 Box, alle Grauwerte genommen. Sie werden der Größe nach
+
+472
+01:03:01,440 --> 01:03:08,520
+sortiert. In der Mitte, an der Position 5, steht dann 36. Das ist das Ergebnis.
+
+473
+01:03:13,200 --> 01:03:24,600
+Wenn Sie zum Beispiel ein Boxfilter angewendet hätten, dann wäre es 41,88. Das hätten Sie
+
+474
+01:03:24,600 --> 01:03:36,520
+100, dann wären es 42. Was ist da jetzt besser? Das ist natürlich Geschmackssache. Aber was uns
+
+475
+01:03:36,520 --> 01:03:43,360
+auffällt ist, hier sieht es doch so aus, dass wenn das Bild irgendwie einfarbig ist, die Grauwerte
+
+476
+01:03:43,360 --> 01:03:51,040
+sind alle in der Mitte der 30er. Und dann gibt es die 98, das ist ein Ausreißer. Diese 98 ist
+
+477
+01:03:51,040 --> 01:03:57,360
+im Ausgangsbild spurlos verschwunden. Im Ausgangsbild, dadurch dass wir sortieren und
+
+478
+01:03:57,360 --> 01:04:02,760
+dann die mittleren Grauwerte wählen und nicht berechnen, sondern wir wählen ihn, deswegen haben
+
+479
+01:04:02,760 --> 01:04:09,960
+wir im Ausgangsbild auch nur Amplitudenwerte, die im Eingangsbild vorkommen. Was dann hier eben dazu
+
+480
+01:04:09,960 --> 01:04:22,520
+führt, dass die 98 einfach weg ist. Wenn wir eine Kante hätten, einen Schwarz-Weiß-Übergang. Wir wissen
+
+481
+01:04:22,520 --> 01:04:28,240
+nicht, was das Medianfilter genau macht, aber klar ist, am Ausgang des Medianfilters gibt es
+
+482
+01:04:28,240 --> 01:04:41,840
+dann nur schwarze oder weiße Bildpunkte. Da gibt es kein Grau. Hier ein Beispiel, links ein verrauschtes
+
+483
+01:04:41,840 --> 01:04:52,120
+Bild. Warum ist die Bildqualität so schlecht? Naja, Röntgenbilder sind halt verrauscht. Röntgenbilder,
+
+484
+01:04:52,320 --> 01:05:00,120
+genauso auch Radarbilder, Saarbilder, die haben nicht ein überlagertes Rauschen, sondern die
+
+485
+01:05:00,120 --> 01:05:04,280
+haben sogenannten Sort-and-Pepper-Noise. Das ist also letztendlich ein Rauschsignal,
+
+486
+01:05:04,280 --> 01:05:14,080
+was entweder Null ist oder eine recht große Amplitude hat. Wenn wir jetzt einen Boxfilter
+
+487
+01:05:14,080 --> 01:05:20,720
+anwenden, 3x3 ist ja letztendlich eine Mittelwertbildung, dann sieht das Bild ein bisschen
+
+488
+01:05:20,720 --> 01:05:30,040
+unschärfer aus. Das Rauschen ist reduziert. Das kommt raus. Wenn wir jetzt ein Medianfilter
+
+489
+01:05:30,040 --> 01:05:36,040
+nehmen, 3x3, das heißt wir nehmen hier jeweils immer 9 Bildpunkte, gucken welcher
+
+490
+01:05:36,040 --> 01:05:43,480
+Bild, sortieren die der Größe, welcher Wert steht in der Mitte, kommt das hier raus. Was
+
+491
+01:05:43,480 --> 01:05:52,360
+sehen wir? Das Rauschen ist weg und die Kanten sind alle noch da. Ein Medianfilter ist ein
+
+492
+01:05:52,360 --> 01:06:04,360
+Glättungsfilter, das Kanten erhält und liefert uns damit häufig das gewünschte Ergebnis.
+
+493
+01:06:05,360 --> 01:06:16,920
+Wenn wir jetzt mehrkanalige Bilder haben, haben wir häufig bei Farbbildern, dann haben sie RGB oder
+
+494
+01:06:16,920 --> 01:06:23,160
+was weiß ich, haben sie eine Hyperspektralkamera, dann haben sie vielleicht 200 Kanäle, dann werden
+
+495
+01:06:23,160 --> 01:06:30,760
+die Kanäle eines Ausgangsbildes letztendlich berechnet, indem die Eingangskanäle unabhängig
+
+496
+01:06:30,760 --> 01:06:41,680
+voneinander mit einer Filterfunktion F gefaltet werden. Das ist das, was man typischerweise macht
+
+497
+01:06:41,680 --> 01:06:48,000
+mit diesen Glättungsfiltern, die werden kanalweise angewendet. Das ist auch klar,
+
+498
+01:06:48,000 --> 01:06:56,680
+sie können auch mehrere Kanäle miteinander verbinden, aber das macht man, wenn man es machen
+
+499
+01:06:56,680 --> 01:07:01,280
+muss. Aber typischerweise versucht man die Kanäle unabhängig voneinander zu arbeiten.
+
+500
+01:07:01,280 --> 01:07:08,800
+Das waren also die Glättungsfilter, damit kriegen wir ja so Rauschen weg und ja,
+
+501
+01:07:08,800 --> 01:07:12,160
+das können sie mit dem Tiefpassfilter machen, bevorzugt aber ein Medianfilter.
+
+502
+01:07:12,160 --> 01:07:21,320
+Häufig will man wissen, wo sind die Kanten im Bild. Das ist etwas, was wir nicht als Mensch
+
+503
+01:07:21,320 --> 01:07:26,080
+unbedingt wissen wollen. Wir gucken aufs Bild, wir sehen es, aber wir orientieren uns definitiv an den
+
+504
+01:07:26,080 --> 01:07:32,200
+Kanten und auch die erste Signalverarbeitung, die im Auge gemacht wird, verstärkt Kanten.
+
+505
+01:07:32,200 --> 01:07:37,880
+Die sind dann offensichtlich relevant, nicht nur für Computer, sondern auch für die Menschen.
+
+506
+01:07:37,880 --> 01:07:48,120
+Kantenfilter haben als Aufgabe, Kanten zu detektieren. Die sind dann häufig die
+
+507
+01:07:48,120 --> 01:07:56,000
+Vorverarbeitungsschritte für die Bildinterpretation. Es gibt die klassische Bildinterpretation,
+
+508
+01:07:56,320 --> 01:08:00,000
+das Bild erstmal vom Rauschen befreien, dann detektieren sie Kanten, Ecken und so weiter.
+
+509
+01:08:00,000 --> 01:08:07,480
+Es gibt auch die moderneren Verfahren, die mit neuronalen Netzen arbeiten. Da schieben
+
+510
+01:08:07,480 --> 01:08:13,560
+sie ein Bild rein und zum Schluss kommt hoffentlich das aus, was sie wissen wollen.
+
+511
+01:08:13,560 --> 01:08:21,840
+Also das Bauteil liegt an der Stelle, so und so orientiert. In diese neuronalen Netze kann
+
+512
+01:08:21,840 --> 01:08:28,640
+man reinschauen. Da wird letztendlich das Eingangsbild stufenweise verarbeitet und die
+
+513
+01:08:28,640 --> 01:08:33,280
+Information wird immer abstrakter, höherwertiger, wenn man so will. Irgendwann kommt dann raus,
+
+514
+01:08:33,280 --> 01:08:38,520
+da ist Hund, Katze, Maus auf dem Bild. In diese vereinigten Stufen kann man reingucken und dann
+
+515
+01:08:38,520 --> 01:08:45,120
+sieht man, dass auch die neuronalen Netze auf Kanten reagieren. Also das Kanten ist
+
+516
+01:08:45,320 --> 01:08:55,800
+schon etwas ganz Wichtiges in den Bildern. Das klassische Verfahren zur Kantendetektion ist
+
+517
+01:08:55,800 --> 01:09:03,200
+der Kanye Edge Detektor. Wir sehen hier ein Beispiel, was aus einem Bild herauskommt. Es
+
+518
+01:09:03,200 --> 01:09:08,960
+ist jetzt ein binäres Bild, schwarz keine Kante, weiß ist Kante. Die Kanten sind hier nur ein
+
+519
+01:09:08,960 --> 01:09:13,720
+Pixel dick. Das erwartet man auch als Mensch. Bei der Bildverarbeitung muss man sich anstrengen,
+
+520
+01:09:13,720 --> 01:09:26,320
+dass das auch passiert. Man kann auch versuchen, aus diesen Kanten gewisse Primitive zu extrahieren.
+
+521
+01:09:26,320 --> 01:09:32,680
+Mit der Hafttransformation können Sie zum Beispiel Kreise detektieren. Das ist wichtig,
+
+522
+01:09:32,680 --> 01:09:39,960
+wenn Sie zum Beispiel Verkehrszeichen erkennen wollen. Dann müssen wir erst mal den Suchraum
+
+523
+01:09:39,960 --> 01:09:43,720
+des gesamten Bildes einschränken. Erster Schritt könnte sein, Sie suchen nach Kreisen,
+
+524
+01:09:43,720 --> 01:09:58,960
+wenn Sie Verkehrsschilder lesen wollen. Ein anderes Verfahren, um Kanten zu detektieren,
+
+525
+01:09:58,960 --> 01:10:12,040
+Bilder zu beschreiben, ist, dass wir Gradienten berechnen. Steigung des Bildsignals und dann
+
+526
+01:10:12,040 --> 01:10:22,040
+bilden wir in lokalen Umgebungen Histogramme über die Richtung dieser Gradienten. Die Stärke
+
+527
+01:10:22,040 --> 01:10:31,160
+der Gradienten ist dann ein sehr erfolgreiches Merkmal, um Muster zu erkennen, um Menschen zu
+
+528
+01:10:31,160 --> 01:10:41,520
+erkennen, um Verkehrsschilder zu erkennen. Nicht ganz intuitiv, aber die lokale Verteilung von
+
+529
+01:10:41,520 --> 01:10:52,120
+Gradienten im Bild ist ein sehr erfolgreiches Merkmal, um Bilder zu analysieren. Also wir
+
+530
+01:10:52,120 --> 01:11:08,120
+brauchen Kanten. Kanten kann man über Ableitung des Signals bestimmen. Wir sehen hier als erstes
+
+531
+01:11:08,280 --> 01:11:17,080
+eine Bildzeile mit Bildpunkten von 0 bis 256. Die Amplitude skaliert auf 0 bis 1. Sie sehen,
+
+532
+01:11:17,080 --> 01:11:22,640
+im Dunklen ist 0, da ist ein bisschen Rauschen auf dem Signal drauf und im Hellen ist es fast 1,
+
+533
+01:11:22,640 --> 01:11:26,200
+da ist auch ein bisschen Rauschen auf dem Signal drauf. Wenn Sie jetzt die erste Ableitung bilden,
+
+534
+01:11:26,200 --> 01:11:31,680
+bei Kanten wollen wir ja letztendlich diesen Ort finden. Sie bilden die erste Ableitung,
+
+535
+01:11:31,680 --> 01:11:38,720
+dann haben Sie an den Orten Maxima. Das sagt sich jetzt so schön, prima, ich mache eine Ableitung
+
+536
+01:11:38,720 --> 01:11:46,720
+und suche die Maxima. Das reicht noch nicht ganz, denn an dieser Stelle haben Sie auch Maxima. Also
+
+537
+01:11:46,720 --> 01:11:52,480
+da müssen Sie irgendwie nach großem Maxima suchen. Sie können jetzt sich natürlich auch fragen,
+
+538
+01:11:52,480 --> 01:11:58,280
+okay ich habe jetzt dieses große Maximum gefunden, also dieses hier habe ich gefunden,
+
+539
+01:11:59,080 --> 01:12:06,760
+wo ist denn jetzt genau der Ort und welchen Bildpunkt ist jetzt das Maximum? Ganz einfach,
+
+540
+01:12:06,760 --> 01:12:13,000
+wir bilden die zweite Ableitung und da wo die zweite Ableitung ihren Nulldurchgang hat,
+
+541
+01:12:13,000 --> 01:12:26,840
+da ist dann der exakte Ort unseres Maximums, unserer Kante. In der ersten Ableitung detektieren
+
+542
+01:12:26,840 --> 01:12:30,160
+Sie Maxima und zwar nicht beliebige Maxima, Sie geben sich schon vor,
+
+543
+01:12:30,160 --> 01:12:38,680
+mein Maxima muss eine gewisse Mindestamplitude haben. Dann berechnen Sie an den Stellen die
+
+544
+01:12:38,680 --> 01:12:43,680
+zweite Ableitung. Dort wo die zweite Ableitung ist, sagen Sie, ist Ihre Kante, dann sind Sie
+
+545
+01:12:43,680 --> 01:12:55,960
+irgendwo mittig hier in diesem Sprung. Damit sind wir auch eigentlich fertig. Wir berechnen die
+
+546
+01:12:56,000 --> 01:13:00,440
+Ableitung, das steht ja auch hier. Die zweite Ableitung haben Sie alles schon in der Schule
+
+547
+01:13:00,440 --> 01:13:08,400
+gelernt. Prima und jetzt kommt die Realität. Sie kennen das GIFONICS nicht. Sie kennen nur
+
+548
+01:13:08,400 --> 01:13:15,760
+die Grauwerte der Bildpunkte, aber Sie haben keine funktionale Beschreibung. Sie haben da
+
+549
+01:13:15,760 --> 01:13:21,000
+nicht eine Datengleichung, Sie haben da keine Parabelgleichung, Polygongleichung, was auch
+
+550
+01:13:21,000 --> 01:13:26,520
+immer. Sie haben keine Funktion, Sie haben nur diese Abtaswerte. In der Bildverarbeitung hilft
+
+551
+01:13:26,520 --> 01:13:31,640
+man sich dadurch, dass man die Gradienten berechnet durch Differenzen von benachbarten
+
+552
+01:13:31,640 --> 01:13:42,600
+Bildpunkten. Wir können die Vorwärtsdifferenz zum Beispiel berechnen. Ein Beispiel hier wäre
+
+553
+01:13:42,600 --> 01:13:53,680
+dx. Wir wollen also die Differenz des Signals, den Gradienten an der Stelle x haben. Wir nehmen den
+
+554
+01:13:53,680 --> 01:14:08,720
+Wert des Bildsignals an der Stelle x plus delta x und y und ziehen ab den Wert des Bildsignals an
+
+555
+01:14:08,720 --> 01:14:16,760
+der Stelle x y. Wenn wir delta x jetzt als 1 nehmen, dann berechnen wir die Differenz zwischen
+
+556
+01:14:16,760 --> 01:14:26,640
+zwei benachbarten Grauwerten. Das ist dann unsere Vorwärtsdifferenz. Sie können natürlich auch
+
+557
+01:14:26,640 --> 01:14:31,040
+rückwärts berechnen. Warum nehmen Sie hier plus delta x? Sie können auch minus delta x nehmen,
+
+558
+01:14:31,040 --> 01:14:37,600
+dann haben Sie die Rückwärtsdifferenz. Beide Differenzen sind unsymmetrisch. Sie sehen unser
+
+559
+01:14:37,600 --> 01:14:45,760
+Filterkörner hat die Länge 2. Das ist unschön. Typischerweise berechnen wir dann die Gradienten
+
+560
+01:14:45,760 --> 01:14:53,840
+symmetrisch. Wir wollen den Gradienten an der Stelle x y haben. Dann berechnen wir die
+
+561
+01:14:53,840 --> 01:15:05,160
+Differenz der Grauwerte, einen davor und einen danach. Beide Grauwerte werden voneinander abgezogen.
+
+562
+01:15:06,160 --> 01:15:13,160
+Das wird dann noch durch den Abstand geteilt, also durch 2. Dann haben wir unsere symmetrische
+
+563
+01:15:13,160 --> 01:15:33,000
+Differenz berechnet. Das kann man eindimensional machen. Für Bilder brauchen wir es ja zweidimensional.
+
+564
+01:15:33,160 --> 01:15:39,840
+Dann berechnen Sie diese Differenzen in x und in y Richtung. Wir haben dann ein Vektor gx,
+
+565
+01:15:39,840 --> 01:15:52,280
+gy. Wenn Sie einen Würfel haben, also drei Dimensionen, dann leiten Sie nach den einzelnen Koordinaten ab.
+
+566
+01:15:52,280 --> 01:16:03,000
+Die zweite Ableitung ist im Eindimensionalen ganz einfach. Sie nehmen die erste Ableitung und leiten
+
+567
+01:16:03,000 --> 01:16:10,520
+die nochmal ab. Das ist das, was wir hier haben. Im Zweidimensionalen und dann auch im N-Dimensionalen
+
+568
+01:16:10,520 --> 01:16:16,520
+brauchen wir diese Ableitung, wo wir in einer Koordinate n mal ableiten, zum Beispiel jetzt
+
+569
+01:16:16,520 --> 01:16:23,240
+zweimal. Also die zweite Ableitung des Bildsignals nach x, die zweite Ableitung des Bildsignals nach
+
+570
+01:16:23,240 --> 01:16:30,720
+y. Aber wir brauchen auch die gemischten Ableitungen. Wir leiten also einmal nach x ab und dann einmal
+
+571
+01:16:30,720 --> 01:16:37,120
+nach y. Das ist dann die Hesse-Matrix, wo wir letztendlich die Gradienten gxx, gy, y und dann
+
+572
+01:16:37,120 --> 01:16:43,040
+auf der Nebendiagonale gxy haben. Die Ableitung ersten x, dann in y-Richtung oder umgekehrt.
+
+573
+01:16:46,520 --> 01:17:04,680
+Ein Kantenfilter, was gerne eingesetzt wird, ist das Robelfilter.
+
+574
+01:17:04,680 --> 01:17:11,600
+Das ist typischerweise 3x3.
+
+575
+01:17:15,240 --> 01:17:17,960
+Das ist separierbar.
+
+576
+01:17:26,520 --> 01:17:28,640
+Hier sehen Sie jetzt erstmal die nicht separierte Maske.
+
+577
+01:17:28,640 --> 01:17:33,360
+Was sehen wir?
+
+578
+01:17:37,120 --> 01:17:47,800
+In horizontaler Richtung wird offensichtlich die Differenz gebildet zwischen meinem linken
+
+579
+01:17:47,800 --> 01:17:52,680
+Nachbarn und meinem rechten Nachbarn und dann wird wahrscheinlich auch nochmal durch zwei geteilt
+
+580
+01:17:52,680 --> 01:18:08,200
+In vertikaler Richtung werden diese Bildpunkte gewichtet aufaddiert. Das ist eine Tiefpass-Filterung.
+
+581
+01:18:08,200 --> 01:18:15,440
+Also in diesem Beispiel haben wir in vertikaler Richtung eine Tiefpass-Filterung und in
+
+582
+01:18:15,440 --> 01:18:19,920
+horizontaler Richtung berechnen wir die zentrierten Differenzen.
+
+583
+01:18:25,200 --> 01:18:36,200
+Ohne dass ich jetzt hier das Originalbild zeige, sehen Sie, das sind die Gradienten in
+
+584
+01:18:36,320 --> 01:18:47,800
+horizontaler Richtung. Hier eine Kante, die ist in horizontaler Richtung ganz klar zu sehen. In
+
+585
+01:18:47,800 --> 01:18:53,040
+dieser Darstellung ist das Grau, der Wert 128 repräsentiert letztendlich 0. Wir haben die
+
+586
+01:18:53,040 --> 01:18:58,960
+Kanten in positiver und negativer Richtung. Das sehen Sie hier am Hut. Hier haben wir einen
+
+587
+01:18:58,960 --> 01:19:05,280
+Übergang, der wird als weiß dargestellt. Hier haben wir letztendlich den umgekehrten Übergang,
+
+588
+01:19:05,280 --> 01:19:14,720
+der wird als schwarz dargestellt. Es lässt sich vermuten, dass wir hier im Originalbild den
+
+589
+01:19:14,720 --> 01:19:22,040
+gleichen Übergang haben, aber den sehen wir im Kantenbild nicht, weil dieses Filter nur in
+
+590
+01:19:22,040 --> 01:19:27,040
+horizontaler Richtung die Kanten überzeugt. Wenn Sie dieses Filterkörner jetzt um 90 Grad drehen,
+
+591
+01:19:27,040 --> 01:19:37,720
+dann haben Sie Sobe-Filter in vertikaler Richtung. Sie sehen, dass jetzt an der Schulter
+
+592
+01:19:37,720 --> 01:19:49,760
+zum Beispiel hier diese Kante betont ist, während Sie hier die andere Kante haben. Sobe-Filter filtert
+
+593
+01:19:49,760 --> 01:19:55,440
+also Kanten in horizontaler oder in vertikaler Richtung heraus und er kombiniert diese
+
+594
+01:19:55,600 --> 01:20:00,240
+Kantenfilterung in der einen Richtung mit einer Tiefpassfilterung in der anderen Richtung.
+
+595
+01:20:00,240 --> 01:20:07,720
+Es führt letztendlich zu einer Entrauschung des Bildes in der einen Richtung und damit zu einem
+
+596
+01:20:07,720 --> 01:20:20,840
+besseren Kantenbild. Sie müssen das nicht genau so machen, wie der Sobel-Operator es macht,
+
+597
+01:20:20,920 --> 01:20:26,800
+aber letztendlich ist das der Operator, der am häufigsten verwendet wird. Hier sehen Sie noch
+
+598
+01:20:26,800 --> 01:20:36,840
+mal die beiden Masken. Warum glätten Sie in der einen Richtung mit einem Binominalfilter? Das war
+
+599
+01:20:36,840 --> 01:20:42,240
+zweimal Binominalfilter, also 1, 2, 1. Sie könnten auch ein Boxfilter nehmen in der Richtung. Das
+
+600
+01:20:42,240 --> 01:20:49,960
+nennt sich dann der Privet-Operator. Sie sehen hier haben wir in der nicht-Kanten-Detektionsrichtung
+
+601
+01:20:50,200 --> 01:20:59,760
+ein Boxfilter. Hier haben wir für diese beiden Filter eine Koordinate X, eine Koordinate Y. Was
+
+602
+01:20:59,760 --> 01:21:07,680
+ist, wenn Sie Kanten haben wollen, besonders gut detektieren wollen, die 45 Grad sind oder
+
+603
+01:21:07,680 --> 01:21:12,000
+irgendwelche anderen Winkel, dann nehmen Sie den Kirsch-Operator. Der liefert Ihnen den
+
+604
+01:21:12,000 --> 01:21:18,720
+Faltungs-Scanner für verschiedene Richtungen. Je nachdem, wie groß Sie dieses Filter machen,
+
+605
+01:21:18,880 --> 01:21:22,520
+können Sie auch mehr oder weniger viele Richtungen voneinander separieren.
+
+606
+01:21:22,520 --> 01:21:36,560
+Diese Kantenfilter haben erst mal das Ziel, die Kanten zu detektieren. Das können Sie
+
+607
+01:21:36,560 --> 01:21:39,600
+sicherlich nicht mit einem Tiefpassfilter. Da brauchen Sie einen Hochpassfilter oder
+
+608
+01:21:39,600 --> 01:21:47,120
+einen Bandpassfilter. Wir wollen auch die Kanten dort detektieren, wo sie sind. Das heißt,
+
+609
+01:21:47,120 --> 01:21:52,640
+wir wollen das Bild nicht verschieben. Das heißt, das hier ist ganz wichtig. Das Filter
+
+610
+01:21:52,640 --> 01:21:59,200
+muss irgendwo symmetrisch sein. Da es jetzt aber ein Hochpass ist, darf nicht gelten F von I gleich
+
+611
+01:21:59,200 --> 01:22:03,960
+F von minus I. Das hat man bei den Tiefpassfiltern. Hier muss jetzt gelten, es muss punktsymmetrisch
+
+612
+01:22:03,960 --> 01:22:32,080
+sein. Also F von I ist minus F von minus I. Der Mittelwert eines solchen Filters sollte Null
+
+613
+01:22:32,160 --> 01:22:45,240
+sein. Das gilt sowohl im Eindimensionalen als auch im Zweidimensionalen. Wenn wir das jetzt,
+
+614
+01:22:45,240 --> 01:22:50,280
+so wie wir es bei Plattungsfiltern gemacht hatten, mit einer Cosinusfunktion darstellen
+
+615
+01:22:50,280 --> 01:23:03,800
+wollen, dann hätten wir bei diesem Kantenfilter letztendlich eine Sinusfunktion. Die würde ja so
+
+616
+01:23:03,800 --> 01:23:12,920
+aussehen. Sie liefert uns also dann punktsymmetrische Gewichtungsfaktoren für unsere Abtastwerte.
+
+617
+01:23:21,280 --> 01:23:25,160
+Hier sehen wir jetzt das Ergebnis.
+
+618
+01:23:30,920 --> 01:23:33,800
+Filter in X oder in Y Richtung.
+
+619
+01:23:33,800 --> 01:23:51,000
+Wir sehen, dass die Frequenzen in dieser Richtung ziemlich stark unterdrückt werden. Da haben wir
+
+620
+01:23:51,000 --> 01:23:57,840
+also die Tiefpassfilterung und in dieser Richtung werden die tiefen Frequenzen unterdrückt. Die
+
+621
+01:23:57,840 --> 01:24:10,480
+hohen Frequenzen gehen durch. Mit einem einfachen Filter und einem 90 Grad gedrehten Filter sind die
+
+622
+01:24:10,480 --> 01:24:15,320
+Effekte genau anders. Hier haben wir ein ganz einfaches Filter, deswegen sehen wir auch,
+
+623
+01:24:15,320 --> 01:24:18,640
+dass wir hier Phasensprünge haben.
+
+624
+01:24:26,640 --> 01:24:30,600
+So, nun wollen wir aber eigentlich nicht Kanten in horizontaler und vertikaler Richtung haben,
+
+625
+01:24:30,600 --> 01:24:37,400
+sondern wir wollen alle Kanten haben. Wenn wir jetzt lineare Filter nehmen, dann würden wir sagen,
+
+626
+01:24:37,480 --> 01:24:47,200
+wir berechnen den Gradient in X-Richtung, in Y-Richtung und der Gradientenvektor besteht
+
+627
+01:24:47,200 --> 01:24:52,040
+aus diesen zwei Komponenten Dx und Dy. Wenn wir jetzt wissen wollen, wie stark ist denn die Kante
+
+628
+01:24:52,040 --> 01:24:58,040
+an dieser Stelle, wo wir die Ableitung in X- und Y-Richtung berechnet haben und die Ableitung
+
+629
+01:24:58,040 --> 01:25:07,600
+berechnen wir über die zentralen Differenzen, dann bilden wir einfach den Betrag und Bildpunkte
+
+630
+01:25:07,600 --> 01:25:14,760
+gibt es viele, Rechenleistung ist knapp. Häufig reicht es auch aus, näher ausweisend diesen Betrag
+
+631
+01:25:14,760 --> 01:25:18,680
+des Gradienten zu bestimmen. Sie sparen sich das Quadrieren und das Vorzuziehen.
+
+632
+01:25:18,680 --> 01:25:27,920
+Und die Richtung des Gradienten kriegen sie dann über X und Y.
+
+633
+01:25:31,320 --> 01:25:39,800
+Wenn sie das so berechnen, können sie jetzt den Ort der Kante bestimmen, letztendlich berechnen
+
+634
+01:25:39,800 --> 01:25:44,560
+den Betrag des Gradienten für alle Bildpunkte und wenn der Betrag des Gradienten eine gewisse
+
+635
+01:25:44,560 --> 01:25:51,160
+Größe überschreitet, dann sagen sie, hier tut sich was im Bild, hier interessiert mich der
+
+636
+01:25:51,160 --> 01:25:58,200
+Gradient, hier ist mein Ort. Die Stärke kriegen sie über Betrag D und die Richtung kriegen sie
+
+637
+01:25:58,200 --> 01:26:10,520
+über den Argus Tangens Dy nach Dx. Damit wissen wir jetzt also, wo ist eine Kante, Ort, wie stark
+
+638
+01:26:10,560 --> 01:26:16,160
+ist die Kante und wir kennen die Richtung. Aus diesen Informationen können wir uns dann ja das
+
+639
+01:26:16,160 --> 01:26:21,720
+heraussuchen, was wir wollen. Wir wollen Kanten 45 Grad haben, mit einer gewissen Stärke und den
+
+640
+01:26:21,720 --> 01:26:28,880
+Orten zum Beispiel bestimmen. Hier sehen wir die Gradienten Stärke.
+
+641
+01:26:33,440 --> 01:26:39,200
+Hier ein Bild, hier ist ein Federschweif, hier wieder die Schulter, hier sind ein paar Strukturen
+
+642
+01:26:39,200 --> 01:26:57,720
+im Hintergrund. Den genauen Ort der Kante könnte man nicht überstreiten, wo es sein soll. Wir haben
+
+643
+01:26:57,720 --> 01:27:04,280
+jetzt hier mal ein Bildsignal. Die erste Ableitung ist sicherlich hier in der Mitte am stärksten,
+
+644
+01:27:04,280 --> 01:27:10,840
+so wie es aussieht. Hier ist die zweite Ableitung stark negativ, hier ist die zweite Ableitung stark
+
+645
+01:27:10,840 --> 01:27:19,240
+positiv. Definiert wird der Ort der Kante nun letztendlich durch den Nulldurchgang der zweiten
+
+646
+01:27:19,240 --> 01:27:26,760
+Ableitung. Die zweite Ableitung von dieser schönen Kante, im Sinne von da ist jetzt gar kein Rauschen
+
+647
+01:27:26,760 --> 01:27:34,760
+auf die zweite Ableitung, sehen Sie hier. Die zweite Ableitung ist Null, springt. Hier geht es dann in den
+
+648
+01:27:34,760 --> 01:27:42,040
+positiven Bereich und dann springt es wieder zu Null. Hier definieren wir, sagen wir ist der Mittelpunkt der
+
+649
+01:27:42,040 --> 01:28:00,480
+Kante, dort ist die Kante. Wir berechnen die Ableitung durch zweimalige Anwendung des Ableitungsoperators,
+
+650
+01:28:00,480 --> 01:28:09,080
+während diese erste Ableitung so zu einer Verschiebung führt. Die Berechnung der zweiten Ableitung auf
+
+651
+01:28:09,080 --> 01:28:12,800
+diese Art und Weise ist jetzt wieder symmetrisch. Das ist das, was wir wollen.
+
+652
+01:28:19,720 --> 01:28:27,320
+Wir können auch den Laplace-Operator nehmen, um jetzt den Gradienten zu berechnen.
+
+653
+01:28:27,320 --> 01:28:32,520
+Wir können also zum Beispiel das Signal so berechnen, das hier wäre die Filtermaske,
+
+654
+01:28:32,520 --> 01:28:50,000
+liefert uns also die Stärke des Gradienten. Eine Alternative gleicht anderen Eigenschaften, sehen Sie hier.
+
+655
+01:28:50,000 --> 01:29:06,760
+Wir können jetzt mit diesem Operator unser Bild filtern. Dann bekommen wir dieses Ergebnis.
+
+656
+01:29:06,760 --> 01:29:19,120
+Nochmal zur Darstellungsform hier. Die Null als Ausgabe der Filteroperation haben wir hier mit
+
+657
+01:29:19,280 --> 01:29:26,480
+Grau 128 dargestellt. Damit ist es uns möglich, positive Werte heller als das mittlere Grau darzustellen
+
+658
+01:29:26,480 --> 01:29:31,960
+und negative Werte stellen wir dunkler als das mittlere Grau dar.
+
+659
+01:29:31,960 --> 01:29:49,480
+Wenn wir jetzt den Nulldurchgang haben wollen in der zweiten Ableitung, dann ist das jetzt hier in
+
+660
+01:29:49,480 --> 01:29:54,880
+diesem Bild, also die Null ist ja das Grau, der Nulldurchgang ist der Übergang von schwarz nach
+
+661
+01:29:54,880 --> 01:30:05,000
+weiß. Dieses Ausschnitt mal vergrößert und wir wollen jetzt die Null detektieren. Da gibt es viele
+
+662
+01:30:05,000 --> 01:30:12,920
+Bildpunkte, die irgendwie ziemlich grau aussehen. Das Bildrauschen hat letztendlich einen großen
+
+663
+01:30:12,920 --> 01:30:20,840
+Einfluss oder erschwert die zuverlässige Detektion des Nulldurchgangs. Letztendlich ist ja eine
+
+664
+01:30:20,840 --> 01:30:27,840
+Ableitung ein Hochpassfilter. Wenn sie zweimal ableiten, dann filtern sie zweimal hoch. Das heißt,
+
+665
+01:30:27,840 --> 01:30:34,200
+sie verstärken die hohen Frequenzen, sie verstärken das Rauschen. Damit ist es dann auch nicht ganz
+
+666
+01:30:34,200 --> 01:30:40,800
+überraschend, dass die Bestimmung des Nulldurchgangs hier schwierig wird.
+
+667
+01:30:40,800 --> 01:30:51,560
+Wie kann man das Problem versuchen etwas in den Griff zu kriegen? Naja, das Rauschen stört,
+
+668
+01:30:51,560 --> 01:30:57,600
+also wollen wir erst mal das Rauschen loswerden. Das heißt, wir glätten das Bild erst, zum Beispiel
+
+669
+01:30:57,600 --> 01:31:05,360
+mit einem Gaussfilter und anschließend berechnen wir den Laplace-Filter durch den Nulldurchgang.
+
+670
+01:31:05,520 --> 01:31:13,680
+Das hier ist unser Gaussfilter. Das ist der Laplace-Operator, analytisch beschrieben.
+
+671
+01:31:13,680 --> 01:31:25,920
+Und wenn man das jetzt einfach nur analytisch mal hintereinander ausführt, dann ist letztendlich das,
+
+672
+01:31:25,920 --> 01:31:30,120
+was wir jetzt machen wollen, also erst die Gaussfilterung, dann die Laplace-Filterung,
+
+673
+01:31:30,920 --> 01:31:39,560
+das hier die Übertragungsfunktion. Sie sehen hier den Gaussian-Anteil und das hier ist der
+
+674
+01:31:39,560 --> 01:31:51,680
+Hochpass-Anteil, wenn man so will, beim Laplace-Operator. Dieser Filter, Laplacian of Gaussian
+
+675
+01:31:51,680 --> 01:31:58,880
+Log-Filter, wir machen jetzt einen Gauss-Filter und daraus berechnen wir den Laplacian, wird als
+
+676
+01:31:58,880 --> 01:32:07,440
+Log-Filter bezeichnet oder auch als mal Mahl-Hildreth-Operator. Von der Visualisierung
+
+677
+01:32:07,440 --> 01:32:13,200
+sehen Sie es hier so. Es wird manchmal auch als Mexican-Hept- oder Sombrero-Filter bezeichnet.
+
+678
+01:32:13,200 --> 01:32:22,920
+Hier haben wir ein Beispiel. Das können Sie dann natürlich in verschiedenen großen Filterkörnern
+
+679
+01:32:22,920 --> 01:32:28,600
+realisieren. Ich nehme jetzt mal ein Beispiel für einen 9x9-Filter.
+
+680
+01:32:36,600 --> 01:32:41,600
+Wenn wir also dieses Bild, was wir jetzt schon die ganze Zeit betrachten, das Bild heißt Lena,
+
+681
+01:32:41,600 --> 01:32:47,320
+ist seit Jahrzehnten das Standardbild in der Bildverarbeitung, Standardreferenz für
+
+682
+01:32:47,480 --> 01:33:00,680
+mögliche Algorithmen. Wenn wir das jetzt noch mal betrachten, machen jetzt Log-Filter, also erst
+
+683
+01:33:00,680 --> 01:33:07,000
+die Tiefpass-Filterung, dann den Laplacian, dann haben wir ein viel glatteres Bild und wir können
+
+684
+01:33:07,000 --> 01:33:15,400
+hier die Nulldurchgänge sicherlich als Interessante Orte zwischen diesem Schwarz und Weiß identifizieren.
+
+685
+01:33:17,320 --> 01:33:22,040
+Das klappt auf alle Fälle besser als hier.
+
+686
+01:33:36,920 --> 01:33:38,920
+Wie könnte man jetzt Bandpass-Filter realisieren?
+
+687
+01:33:38,920 --> 01:33:54,760
+Sie könnten ein Signal Tiefpass-Filtern und Sie können das dann anschließend Hochpass-Filtern.
+
+688
+01:33:54,760 --> 01:34:04,480
+Was Sie auch machen können ist, Sie filtern ein Signal mit zwei verschiedenen Tiefpass-Filtern.
+
+689
+01:34:05,080 --> 01:34:12,760
+Wenn Sie dann die Differenz bilden, dann bleibt nur das über, was in dem breiteren Tiefpass-Filter
+
+690
+01:34:12,760 --> 01:34:24,720
+durchgelassen wurde und in dem schmaleren nicht. Dann sind wir bei diesem DOG, Difference of Gaussian-Filter.
+
+691
+01:34:24,720 --> 01:34:33,280
+Wir haben zum Beispiel hier einen Tiefpass-Filter.
+
+692
+01:34:33,280 --> 01:34:40,440
+Tiefe Frequenzen werden durchgelassen, eine relativ hohe Grenzfrequenz vielleicht dort.
+
+693
+01:34:40,440 --> 01:34:48,480
+Hier haben wir einen Tiefpass-Filter mit einer kleineren Differenzfrequenz. Wenn Sie diese beiden
+
+694
+01:34:48,480 --> 01:34:54,360
+Signale, diese beiden Filter voneinander abziehen, ist das hier die resultierende, ein Bandpass-Filter.
+
+695
+01:34:54,360 --> 01:35:08,800
+Und das können Sie dann auch durch Gauss-Filter beschreiben.
+
+696
+01:35:08,800 --> 01:35:21,440
+Wir haben dann letztendlich hier die Übertragungsfunktion. Wir haben Sigma, damit stellen wir die Breite ein.
+
+697
+01:35:21,440 --> 01:35:33,360
+Wir haben auch noch das K. Das erste Filter, das zweite Filter, das K ist letztendlich, also das erste Filter hat die
+
+698
+01:35:33,360 --> 01:35:40,040
+Bandbreite Sigma und das zweite Filter hat die Bandbreite K mal Sigma. Oder wenn wir jetzt
+
+699
+01:35:40,040 --> 01:35:46,240
+Wahrscheinlichkeitsdichtenfunktionen schreiben wollen, also das erste Filter hat die Standardabweichung Sigma,
+
+700
+01:35:46,240 --> 01:35:49,240
+das zweite Filter hat die Standardabweichung K mal Sigma.
+
+701
+01:35:49,240 --> 01:36:10,560
+Diese Filter, Differential of Gaussian, werden auch eingesetzt, wenn Sie Pyramiden haben wollen,
+
+702
+01:36:10,720 --> 01:36:15,840
+verschiedene Frequenzbänder von Bildern, aus den Bildern extrahieren wollen. Die werden auch
+
+703
+01:36:15,840 --> 01:36:18,360
+eingesetzt. Wir hatten vorhin dieses Histogramm of Gaussian.
+
+704
+01:36:18,360 --> 01:36:38,440
+Zur Charakterisierung von Bildern. Wenn Sie jetzt hier einen Menschen detektieren wollen,
+
+705
+01:36:38,520 --> 01:36:44,640
+ist der Mensch in diesem Bild so groß, wie er hier ist. Aber in einem anderen Bild könnte der
+
+706
+01:36:44,640 --> 01:36:50,200
+gleiche Mensch ja doppelt so groß sein. Was man dann typischerweise macht, man nimmt ein Bild und
+
+707
+01:36:50,200 --> 01:36:57,920
+skaliert es auf verschiedene Größen, berechnet dann diese Histogramm of Gradients für diese
+
+708
+01:36:57,920 --> 01:37:04,360
+verschiedenen Bildgrößen. Diese Bildgrößenvariation, die berechnet man auch mit
+
+709
+01:37:08,440 --> 01:37:23,000
+den gerade genannten Differential of Gaussian. Wenn wir jetzt Kanten in Mehrkanalbildern
+
+710
+01:37:23,000 --> 01:37:31,160
+bestimmen wollen, dann können wir ja sagen, eine Kante ist unabhängig von der Farbe.
+
+711
+01:37:32,160 --> 01:37:41,480
+Und das ist dann in einem RGB Bild auch vorstellbar, dass Sie im rot-grünen Kanal ein
+
+712
+01:37:41,480 --> 01:37:49,240
+einfarbiges Bild haben und im blauen Kanal haben Sie eine starke Veränderung. Wenn man jetzt für
+
+713
+01:37:49,240 --> 01:37:55,520
+so ein Farbbild die Kanten detektieren will, gibt es letztendlich zwei Möglichkeiten. Entweder Sie
+
+714
+01:37:55,520 --> 01:38:03,320
+berechnen dieses RGB Bild um in ein schwarz-weiß Bild und dann noch die Farbdifferenzkomponenten
+
+715
+01:38:03,320 --> 01:38:08,480
+und berechnen die Kante im schwarz-weiß Bild. Da wird diese Kante dann auch zu sehen sein. Oder
+
+716
+01:38:08,480 --> 01:38:13,760
+aber Sie berechnen in jeder Komponente dieses mehrkanaligen Bildes, also für rot, grün und
+
+717
+01:38:13,760 --> 01:38:19,680
+blau, die Kanten oder erst mal die Gradienten und summieren dann die Gradienten über die Kanäle auf.
+
+718
+01:38:19,840 --> 01:38:27,040
+Das ist hier letztendlich gemacht. Jetzt werden die Gradienten berechnet an der Stelle XY für
+
+719
+01:38:27,040 --> 01:38:34,360
+alle Kanäle und dann wird im Ausgabebild die Kanäle aufaddiert und das ist dann der Gradient.
+
+720
+01:38:34,360 --> 01:38:42,880
+Das ist letztendlich keine große Magie, wie man Kanten jetzt in mehrkanal Bildern bestimmt. Aber
+
+721
+01:38:42,880 --> 01:38:49,440
+man muss es kanalübergreifend machen. Glättungen werden ja häufig kanalseparat gemacht. Kanten
+
+722
+01:38:49,800 --> 01:38:59,920
+kanalübergreifend bestimmen. Bevor wir jetzt zu diesen schärferen Bildern gehen,
+
+723
+01:38:59,920 --> 01:39:16,440
+machen wir einmal kurz Pause. Dann machen wir um 10 Uhr weiter. Meine Damen und Herren,
+
+724
+01:39:16,480 --> 01:39:23,280
+jetzt wollen wir die Bilder etwas schärfer machen. Schärfer heißt, Kanten müssen deutlicher werden.
+
+725
+01:39:23,280 --> 01:39:31,600
+Kanten detektieren wir mit einem Laplace-Filter. Das Ergebnis des Laplace-Filters können wir hier
+
+726
+01:39:31,600 --> 01:39:35,840
+nochmal gewichten. Aber der Nachteil des Laplace-Filters war ja, das Bildsignal an sich ist
+
+727
+01:39:35,840 --> 01:39:41,880
+weg, weil der Mittelwert noch 0 ist. Aber wir könnten das Ergebnis dieses Laplace-Filters auf
+
+728
+01:39:41,880 --> 01:39:49,800
+das Originalbild drauf addieren. Das würde ja dann dazu führen, dass die Kanten verstärkt werden.
+
+729
+01:39:49,800 --> 01:39:56,760
+Das ist das, was ein Sharpening-Filter mit Laplace-Filtern macht. Er nimmt das Originalbildsignal
+
+730
+01:39:56,760 --> 01:40:04,880
+und addiert drauf das gewichtete Laplace-Filter. Also das hier wäre das Originalbildsignal,
+
+731
+01:40:04,880 --> 01:40:12,240
+das hier ein Laplace-Filter. Diese beiden Filtermasken können wir zusammenführen. Dann
+
+732
+01:40:12,240 --> 01:40:19,880
+haben sie hier 9 mal 1 da drauf, also 8 plus 9 sind 17. Das hier ist unser Sharpening-Filter,
+
+733
+01:40:19,880 --> 01:40:26,120
+wobei sie diese Szenen natürlich noch irgendwie variieren können.
+
+734
+01:40:26,120 --> 01:40:52,080
+Was man auch machen kann, wir glätten das Originalbild. Die Differenz zwischen dem
+
+735
+01:40:52,080 --> 01:41:05,040
+Originalbild und dem geglätteten Bild ist dann eine Maske. Da sind die hohen Frequenzen und das
+
+736
+01:41:05,040 --> 01:41:11,440
+addieren wir auf das Originalbild drauf. Also unsere Maske ist die Differenz zwischen dem
+
+737
+01:41:11,440 --> 01:41:18,520
+Originalbild und dem tiefpassgefilterten Bild. Da sind die hohen Frequenzen ja letztendlich
+
+738
+01:41:18,520 --> 01:41:28,400
+dann drin und gewichtet addieren wir das auf das Originalbild. Also wir könnten hier ein Binominalfilter
+
+739
+01:41:28,400 --> 01:41:35,960
+zur Glättung haben. Das hier ist ein Boxfilter, was einmal das Originalbild erhält. Wir kriegen
+
+740
+01:41:35,960 --> 01:41:47,520
+also das Maskenbild, so ist das Gesamtfilter und das geglättete Bild erhalten wir dann,
+
+741
+01:41:47,640 --> 01:41:53,520
+indem wir das Originalbild nehmen und diese Maske gewichtet drauf addieren.
+
+742
+01:41:53,520 --> 01:42:00,400
+Je nachdem, wie Sie es wählen, gibt es unterschiedliche Ergebnisse.
+
+743
+01:42:05,400 --> 01:42:15,760
+Ja und hier sehen sie den Effekt eines solchen Filters. Sie sehen, dass die Kanten hier irgendwie
+
+744
+01:42:15,760 --> 01:42:31,120
+alle verstärkt sind. Das Haar wirkt lebhafter. Das Ganze sieht dynamischer aus. Also subjektiv,
+
+745
+01:42:31,720 --> 01:42:35,880
+das ist natürlich Geschmackssache.
+
+746
+01:42:41,520 --> 01:42:51,880
+Wir haben an verschiedenen Filtern hier mal aufgelistet, was es so an linearen Filtern
+
+747
+01:42:51,880 --> 01:43:05,960
+gibt. Beim Boxfilter haben wir überall eine 1. Beim Binominalfilter in der einfachsten Form 1, 2, 1.
+
+748
+01:43:05,960 --> 01:43:17,160
+Wenn Sie das dann im zweidimensionalen haben, sieht es so aus. Das hier ist das Gaussche Filter im
+
+749
+01:43:17,200 --> 01:43:27,240
+eindimensionalen und im zweidimensionalen. Dann haben wir noch Sobeloperator und Corner-Detektor.
+
+750
+01:43:27,240 --> 01:43:40,640
+In dieser Reihe sehen Sie das Ergebnis der Filterung. Man kann näherungsweise erkennen,
+
+751
+01:43:40,640 --> 01:43:46,080
+was mit Herrn Einstein passiert. Besonders gut lassen sich die Effekte, meine ich,
+
+752
+01:43:46,080 --> 01:43:53,440
+an diesen geometrischen Formen erkennen. Wieder geglättet wird. Das hier ist vielleicht das
+
+753
+01:43:53,440 --> 01:44:02,280
+homogenste Bild. Aber auch das hier sieht schon gut aus. Hier sehen sie die Kanten und wenn sie
+
+754
+01:44:02,280 --> 01:44:14,880
+Kanten in beiden Richtungen berechnen und da gucken, wo sie maximal haben, dann haben sie hier das
+
+755
+01:44:14,880 --> 01:44:21,880
+Ergebnis eines Corner-Detektors. Ist in diesem Beispiel letztendlich nur der Betrachter skaliert.
+
+756
+01:44:30,480 --> 01:44:38,360
+Wir können uns das auch noch mal anschauen. Wie heißen die Filter? Wie ist die Implementierung
+
+757
+01:44:38,520 --> 01:44:47,600
+im Ortsbereich? Wie sieht es im transformierten Bereich aus? Hier sehen wir die Übertragungsfunktion,
+
+758
+01:44:47,600 --> 01:44:54,200
+und zwar nicht den Betrag der Übertragungsfunktion, sondern einfach die Abitude der Übertragungsfunktion.
+
+759
+01:44:54,200 --> 01:45:04,320
+Da haben wir den Boxfilter. Das hier, die negativen Bereiche, war das, was wir definitiv nicht haben
+
+760
+01:45:04,320 --> 01:45:12,800
+wollen. Das hier will man auch nicht haben, dass das Tiefpassfilter tiefe Frequenzen durchlässt und
+
+761
+01:45:12,800 --> 01:45:22,840
+hohe Frequenzen. Das ist dann schon fast eher ein Bandpassfilter. Hier das einfachste Binominalfilter.
+
+762
+01:45:22,840 --> 01:45:28,480
+Hier verstärkt sehen, da sieht alles schön aus, was die Übertragungsfunktion angeht. Der
+
+763
+01:45:28,480 --> 01:45:42,280
+Sobeloperator hat eine gewisse Tiefpasscharakteristik und hier die Übertragungsfunktion für den Kantendetektor.
+
+764
+01:45:42,280 --> 01:45:52,200
+Also wir haben jetzt gehabt, Glättungsfilter, Kantenfilter. Das sind letztendlich Tiefpassfilter,
+
+765
+01:45:52,200 --> 01:46:00,000
+Hochpassfilter, Sharpeningfilter. Die sind eine Mischung aus dem Ganzen, um das Bild visuell
+
+766
+01:46:00,000 --> 01:46:05,120
+ansprechend zu machen. Das sind die globalen Filter, die erzeugen, indem sie das ganze Bild in den
+
+767
+01:46:05,120 --> 01:46:11,760
+Frequenzbereich transformieren und dort dann etwas machen. Es geht darum, wenn sie Rauschen
+
+768
+01:46:11,760 --> 01:46:17,480
+beseitigen wollen, haben sie also Artefakte im Sensor oder zu wenig Licht wollen sie beseitigen.
+
+769
+01:46:17,480 --> 01:46:22,960
+Sie wollen die Bilder schöner machen. Vielleicht Kanten wollen sie detektieren, weil sie eine
+
+770
+01:46:22,960 --> 01:46:30,720
+anschließende Bildanalyse brauchen. Im Frequenzbereich kann man auch das eine oder andere in einem Bild erkennen.
+
+771
+01:46:30,720 --> 01:46:43,400
+Hier nochmal ein paar Beispiele. Ganz überraschend finde ich Möglichkeiten, die man hat, wenn man im
+
+772
+01:46:43,400 --> 01:46:52,560
+Frequenzbereich filtert und Annahmen macht über die Szenen. Wir haben hier rechts ein Bild.
+
+773
+01:46:52,560 --> 01:46:57,280
+Wir sehen, da ist ein Auto, eine Straße, aber so richtig Details erkennt man nicht. Mit ein bisschen Gefühl
+
+774
+01:46:57,280 --> 01:47:02,240
+könnte man sagen, das ist wahrscheinlich ein altes Auto. Wir wollen jetzt mal dieses Bild verbessern.
+
+775
+01:47:02,240 --> 01:47:08,520
+Und zwar wollen wir nicht nur den Kontrast verbessern, also die Kanten anschärfen, sondern wir wollen auch
+
+776
+01:47:08,520 --> 01:47:18,880
+die Beleuchtung verbessern. Dann könnte man jetzt sagen, wie unterscheide ich denn den Bildinhalt
+
+777
+01:47:18,880 --> 01:47:24,000
+von der Beleuchtung. Schwierig, aber ich könnte ja mal annehmen, die Beleuchtung variiert langsam
+
+778
+01:47:24,000 --> 01:47:31,000
+und der Szeneninhalt ist hochfrequenz, der variiert schnell.
+
+779
+01:47:31,000 --> 01:47:43,160
+Und mit dieser Annahme könnte man jetzt sagen, wir transformieren das Bild in den Frequenzbereich
+
+780
+01:47:43,160 --> 01:47:51,840
+und die Teile, die zur Beleuchtung gehören und die, die zum Szeneninhalt gehören,
+
+781
+01:47:51,840 --> 01:47:55,920
+unterscheiden sich in ihren Frequenzen aufgrund dieser Annahme. Die werden wir jetzt unterschiedlich
+
+782
+01:47:56,400 --> 01:48:07,200
+variieren. Die Annahme, dass Beleuchtung langsam variiert, ja die ist richtig, aber ich meine,
+
+783
+01:48:07,200 --> 01:48:14,720
+wenn sie irgendwo einen Schlagschatten haben, ist die natürlich falsch. Und dass der Inhalt der
+
+784
+01:48:14,720 --> 01:48:22,400
+Szeneninhalte, die Helligkeit in der Szene sich schnell ändert, wenn sie da irgendwo eine weiße
+
+785
+01:48:22,400 --> 01:48:28,240
+Plane aufhängen, dann ist diese Annahme auch falsch. Aber häufig ist die Annahme richtig.
+
+786
+01:48:28,240 --> 01:48:38,000
+Also wir gehen jetzt davon aus, unser Bild entsteht dadurch, dass wir eine Beleuchtung haben,
+
+787
+01:48:38,000 --> 01:48:44,480
+das Licht und wir haben eine Reflektion. Das ist das, was die einzelnen Elemente in der Szene
+
+788
+01:48:44,480 --> 01:48:49,920
+zurückwerfen. Und wie gesagt, wir gehen davon aus, die von x ist hauptsächlich Niederfrequenz,
+
+789
+01:48:49,920 --> 01:49:00,240
+R von x hauptsächlich Hochfrequenz. Jetzt wollen wir das filtern. In einem ersten Schritt werden
+
+790
+01:49:00,240 --> 01:49:08,920
+wir dieses Signal f von x logarithmieren. Das bedeutet dann letztendlich nur, dass dieses f'
+
+791
+01:49:08,920 --> 01:49:19,440
+von xy sich zusammensetzt aus der Addition eines Beleuchtungsanteils und eines Reflektionsanteils.
+
+792
+01:49:19,440 --> 01:49:26,240
+Und das können wir jetzt natürlich auch Fourier transformieren. Jetzt haben wir im
+
+793
+01:49:26,240 --> 01:49:31,400
+Frequenzbereich letztendlich die Addition von diesen zwei Komponenten.
+
+794
+01:49:31,400 --> 01:49:41,720
+Und im Frequenzbereich filtern wir nun.
+
+795
+01:49:41,720 --> 01:49:51,160
+Dann machen wir die Frequenzbereich, die Fourier Transformation rückgängig und dann machen wir den
+
+796
+01:49:51,160 --> 01:49:56,720
+Logarithmus rückgängig. So und im Frequenzbereich haben wir jetzt die Addition des Beleuchtungsanteils
+
+797
+01:49:56,720 --> 01:50:14,680
+und des Reflektionsanteils. Und da könnten wir jetzt sagen, dass wir letztendlich eine Filterfunktion
+
+798
+01:50:14,680 --> 01:50:25,360
+haben. Den Gleichanteil passen wir durch. Dann haben wir hier einen Bereich, den dämpfen wir und dann
+
+799
+01:50:25,360 --> 01:50:35,160
+gibt es einen Bereich, den verstärken wir. Und dann könnte man hoffen, dass diese beiden Bereiche
+
+800
+01:50:35,160 --> 01:50:44,200
+den unterschiedlichen Komponenten zuzuordnen sind. Und das Ganze machen wir dann rotationssymmetrisch.
+
+801
+01:50:44,200 --> 01:50:55,160
+Deswegen haben wir hier die Komponenten K und L quadratisch als Summe drinstehen. Und dann haben wir
+
+802
+01:50:55,160 --> 01:51:07,520
+hier noch diese drei Parameter, die man da einstellen kann. Was passiert jetzt? Also unser
+
+803
+01:51:07,520 --> 01:51:12,960
+Eingangsbild, das logarithmierte Eingangsbild mit der Beleuchtungskomponente und der Szenenkomponente
+
+804
+01:51:13,080 --> 01:51:22,960
+addiert. Die Tiefpassfilterung liefert uns nähersweise die Beleuchtungskomponente. Die
+
+805
+01:51:22,960 --> 01:51:36,800
+Hochpassfilterung liefert uns das Hochpassbild. Original, Beleuchtung GB und hier das Szenenbild.
+
+806
+01:51:36,800 --> 01:51:48,800
+Und jetzt sehen wir, das Auto hat sogar ein Kennzeichen und die Scheinwerfer scheinen auch
+
+807
+01:51:48,800 --> 01:51:59,280
+noch komplett da zu sein. Also hier haben wir eine Kombination von Logarithmierung des Bildes und dann
+
+808
+01:51:59,440 --> 01:52:07,640
+Filterung im Frequenzbereich. Und das Ganze funktioniert, weil die Annahme, Beleuchtung
+
+809
+01:52:07,640 --> 01:52:20,640
+variiert, tieffrequent und hochfrequent näherungsweise richtig ist. Dieses Bild, das sehen Sie, dass unsere
+
+810
+01:52:20,640 --> 01:52:24,840
+Annahmen nur näherungsweise stimmen. Wenn man sich das genauer anguckt, ist es ja ein bisschen merkwürdig.
+
+811
+01:52:25,160 --> 01:52:30,960
+Hier gibt es die Straße, die hat eine Farbe und um das Auto herum ist die Straße heller. Es ist fast so,
+
+812
+01:52:30,960 --> 01:52:38,480
+als wenn das Auto unten drunter noch Lampen hat, um den Boden anzustrahlen. Das sieht man abends auf
+
+813
+01:52:38,480 --> 01:52:44,000
+der Straße. Vielleicht haben die Entwickler sich das von diesem Filterungsverfahren angeguckt.
+
+814
+01:52:44,160 --> 01:52:53,920
+Etwas anderes, was sie im Frequenzbereich machen können, ist, sie können Störungen
+
+815
+01:52:53,920 --> 01:52:59,680
+eliminieren. Wir haben jetzt links mal ein Bild. Da ist dieses Schachbrettmuster drauf. Das ist
+
+816
+01:52:59,680 --> 01:53:05,360
+uns Menschen ganz klar, das gehört da nicht hin. Das will man dann ja vielleicht auch loswerden.
+
+817
+01:53:05,360 --> 01:53:11,200
+Jetzt kann man das ganze Signal in den Frequenzbereich transformieren und sich dann überlegen,
+
+818
+01:53:11,200 --> 01:53:21,040
+wo finde ich dieses Schachbrettmuster. Das Schachbrettmuster könnte auch hier oder hier
+
+819
+01:53:21,040 --> 01:53:27,040
+sein. Aber jetzt haben wir wieder das Wissen, dass normalerweise das Spektrum eines Bildes,
+
+820
+01:53:27,040 --> 01:53:30,480
+das Amplitudenspektrum so aussieht, sie haben um 0 herum die meiste Energie und dann flacht
+
+821
+01:53:30,480 --> 01:53:43,920
+das alles ab. Das bedeutet, das hier ist ein Artefakt. Da können sie jetzt im Frequenzbereich
+
+822
+01:53:43,920 --> 01:53:50,720
+hingehen und sagen, diese Maxima entferne ich mal. Da setze ich im Spektrum einfach mal 0 rein und
+
+823
+01:53:50,720 --> 01:54:03,600
+dann transformiere ich zurück. Hier haben wir das Ergebnis. Sie sehen hier wurden Nullen ins
+
+824
+01:54:03,600 --> 01:54:10,560
+Spektrum gesetzt, nicht nur an einer Stelle, sondern Kreise. Hier haben wir jetzt das Bild.
+
+825
+01:54:10,560 --> 01:54:17,640
+Hier ganz am Rand sehen sie noch Reste von den Artefakten. Ansonsten in der Bildmitte ist es
+
+826
+01:54:17,640 --> 01:54:24,400
+weg. Das Bild ist jetzt natürlich nicht rauschfrei, aber diese Muster sind definitiv verschwunden.
+
+827
+01:54:24,400 --> 01:54:42,160
+Hier haben wir ein Bild mit Bewegungsunschärfe. Das heißt, das Objekt hat sich während die
+
+828
+01:54:42,160 --> 01:54:50,720
+Kamera gemessen hat, bewegt. In jedem Bildpunkt haben wir nicht nur einen Oberflächenpunkt des
+
+829
+01:54:50,720 --> 01:54:56,800
+Autos, sondern wir haben mehrere benachbarte Oberflächenpunkte des Bildes aufgenommen,
+
+830
+01:54:56,800 --> 01:55:03,160
+vermischt zu einem Bildpunkt und die Bewegungsrichtung und diese Verwischung
+
+831
+01:55:03,320 --> 01:55:11,880
+passierte nur in Bewegungsrichtung. Auch das kann man in Grenzen mit einem
+
+832
+01:55:11,880 --> 01:55:20,640
+Bilder rückgängig machen. Da sind wir letztendlich bei der Bildrestauration.
+
+833
+01:55:25,960 --> 01:55:30,440
+Wir gehen davon aus, dass wir das ungestörte Signal haben. Dann haben wir eine Übertragungsfunktion.
+
+834
+01:55:31,040 --> 01:55:39,600
+Die das Bild verändert. Das wäre jetzt bei uns dieses Filter, was benachbarte Bildpunkte in
+
+835
+01:55:39,600 --> 01:55:46,560
+der einen oder anderen Richtung aufaddiert, um dann hier das Bild zu haben, was wir am Sensor
+
+836
+01:55:46,560 --> 01:55:51,720
+aufgrund der Bewegung des Objektes erwarten würden. Dann gibt es vielleicht noch ein Rauschsignal,
+
+837
+01:55:51,720 --> 01:55:57,080
+was darauf addiert wird und das ist dann das Signal, was sie wirklich in der Kamera haben.
+
+838
+01:56:00,440 --> 01:56:14,120
+Ja, wie könnten die Spektren aussehen? Das hier könnte das Spektrum des Eingangsbildes sein.
+
+839
+01:56:14,120 --> 01:56:20,240
+Das hier die Übertragungsfunktion. Sieht jetzt hier nach einer Tiefpassfilterung aus,
+
+840
+01:56:20,240 --> 01:56:30,160
+wobei es hier auch diese Nebenkeulen gibt. Wenn wir das Spektrum des gefilterten Signals sehen,
+
+841
+01:56:30,480 --> 01:56:36,840
+wir multiplizieren diese beiden Funktionen miteinander. Wenn wir jetzt noch Rauschen drauf
+
+842
+01:56:36,840 --> 01:56:42,600
+addieren und wir nehmen mal an, dass es weiß ist, Rauschen. Das heißt, wir haben ein konstante
+
+843
+01:56:42,600 --> 01:56:47,680
+Energieverteilung bei allen Frequenzen. Dann wird letztendlich dieses Spektrum f'2 noch mal
+
+844
+01:56:47,680 --> 01:56:52,720
+etwas angehoben. Das ist f'3 Quadrat und das ist dann das, was wir hier haben.
+
+845
+01:56:52,720 --> 01:57:05,320
+Wir haben also unser Signalmodell. Wir filtern das Eingangsbild mit H und addieren das Rauschen
+
+846
+01:57:05,320 --> 01:57:11,120
+drauf. Im Frequenzbereich haben wir also die vorher transformierte Übertragungsfunktion.
+
+847
+01:57:11,120 --> 01:57:17,000
+Wir haben unser Eingangssignal und das Rauschen. Die Faltung wird durch die Multiplikation
+
+848
+01:57:17,160 --> 01:57:25,760
+dargestellt. Die Addition des Rauschens wird im Frequenzbereich auch durch Addition dargestellt.
+
+849
+01:57:25,760 --> 01:57:32,240
+Bildrestauration, inverse Filterung, heißt jetzt, wir suchen einen Filter,
+
+850
+01:57:32,240 --> 01:57:43,800
+das wir anwenden auf unser Signal, was wir aus der Kamera kriegen. Wir wollen das Q so
+
+851
+01:57:43,800 --> 01:57:56,440
+bestimmen, dass das f' dach dem f entspricht. Ziel f' dach minus f, typischerweise quadratische Fehler,
+
+852
+01:57:56,440 --> 01:58:10,840
+soll minimal sein. Wir können jetzt versuchen, mit dem inversen Filter zu filtern und das Rauschen
+
+853
+01:58:10,840 --> 01:58:19,040
+lassen wir mal außen vor. Wir gehen jetzt also davon aus, f'' ist h mal f' minus y. Im
+
+854
+01:58:19,040 --> 01:58:26,280
+Frequenzbereich haben wir dieses Produkt. Inverse Filterung bedeutet letztendlich, wir filtern f''
+
+855
+01:58:26,280 --> 01:58:40,920
+mit 1 durch h. Wenn wir jetzt das Rauschen mit einbeziehen wollen, dann ist das geschätzte
+
+856
+01:58:40,920 --> 01:58:50,280
+Filtersignal, das wir hier sagen ist f' durch h, wird dann eben h von u mal f plus r. Das ist das
+
+857
+01:58:50,280 --> 01:59:02,600
+f'' durch h oder auch, wir kriegen raus, f von v plus das gefilterte Rauschen. Das Rauschen selbst
+
+858
+01:59:02,600 --> 01:59:11,200
+war weiß. Wir filtern das jetzt mit unserem inversen Filter 1 durch h. Das führt zu einer
+
+859
+01:59:11,200 --> 01:59:18,840
+Verfärbung des Rauschens, typischerweise. Das Problem an diesem Ganzen ist, wenn Sie bei der
+
+860
+01:59:18,920 --> 01:59:24,760
+ursprünglichen Filterung, die Sie ja nicht unbedingt bewusst vornehmen, irgendwelche
+
+861
+01:59:24,760 --> 01:59:29,240
+Frequenzen komplett unterdrücken, dann sind die weg. Die können Sie nicht wieder hervorzaubern.
+
+862
+01:59:29,240 --> 01:59:40,800
+Also das ist ein gewisses Problem. Wenn Sie irgendwo starke dämpfen mit Ihrem Filter h,
+
+863
+01:59:40,800 --> 01:59:48,840
+wird das inverse Filter dort sehr stark verstärken müssen. Das führt dann aber auch dazu,
+
+864
+01:59:48,840 --> 02:00:03,400
+dass dieses Rauschen sehr stark verstärkt wird. Das bedeutet, diese intuitive Vorgehensweise,
+
+865
+02:00:03,400 --> 02:00:08,120
+ich berechne einfach ein inverses Filter, führt dazu, dass das Ergebnis in der Praxis häufig
+
+866
+02:00:08,120 --> 02:00:13,200
+nicht zu gebrauchen ist. Hier haben wir jetzt mal die Übertragungsfunktion dargestellt,
+
+867
+02:00:13,200 --> 02:00:22,560
+die dieses h hat. Dann wäre 1 durch h das inverse dieses Filter mit unendlicher Verstärkung.
+
+868
+02:00:22,560 --> 02:00:38,280
+Und unser Eingangssignal, was das Spektrumbetrag f zum Quadrat hatte, Nachfilterung und Rauschen
+
+869
+02:00:38,280 --> 02:00:43,680
+aufaddieren. Wenn wir dieses Spektrum dann durch dieses Filter stecken, dann kriegen wir das hier
+
+870
+02:00:43,680 --> 02:00:56,120
+raus. Nicht zu gebrauchen. Wir brauchen andere Ansätze. Hier gehen wir jetzt mal ein Beispiel
+
+871
+02:00:56,120 --> 02:01:03,520
+durch. Wir haben ein Originalbild und das Tiefpass gefilterte Bild sehen Sie im Spektrum wurden
+
+872
+02:01:03,520 --> 02:01:16,560
+einfach die Frequenzen zu 0 gesetzt. Mit einem guten inversen Filter konnten sie so ein Ergebnis
+
+873
+02:01:16,560 --> 02:01:26,960
+erzeugen. Im Spektrum haben wir Punkte, die zu einem natürlichen Spektrum nicht dazugehören.
+
+874
+02:01:26,960 --> 02:01:35,320
+Das sehen wir auch hier. Hier sind Blockstrukturen überall zu sehen. Wir brauchen also ein inverses Filter, wo wir
+
+875
+02:01:35,320 --> 02:01:46,560
+auch diese Poolstellen, die sich hier ergeben, unterdrücken können. Wir wollen jetzt die Nullstellen
+
+876
+02:01:46,560 --> 02:01:54,520
+der Transferfunktion H von U von V irgendwie umgehen. Unsere inverse Filterung, sagen wir jetzt,
+
+877
+02:01:59,520 --> 02:02:05,680
+wir nehmen die inverse Übertragungsfunktion, wenn das ursprüngliche Filter größer als Epsilon ist.
+
+878
+02:02:05,680 --> 02:02:12,960
+Wenn es kleiner ist, also wenn es ganz ganz stark irgendeine Frequenz unterdrückt, dann erzeugen wir
+
+879
+02:02:12,960 --> 02:02:18,120
+diese Frequenzen auch nicht. Dann verstärken wir an der Stelle nichts. Wenn irgendeine Frequenz fehlt oder nur noch
+
+880
+02:02:18,120 --> 02:02:23,240
+minimal da ist, aufgrund der ursprünglichen Filterung, dann wird sie nach der inversen Filterung auch
+
+881
+02:02:23,240 --> 02:02:31,720
+weiterhin praktisch nicht da sein. Das heißt, Fourier-Koeffizienten mit zu kleinem Betrag werden bei den
+
+882
+02:02:31,720 --> 02:02:37,600
+Berechnungen des inversen Filters nicht berücksichtigt. Damit sind wir das Problem mit diesen Poolstellen einfach los.
+
+883
+02:02:37,600 --> 02:02:47,320
+Es ist klar, wenn unser Filter irgendwelche Signalanteile löscht, dann können wir auch durch
+
+884
+02:02:47,320 --> 02:02:54,440
+eine inverse Filterung nicht so richtig was machen. Das wird jetzt berücksichtigt. Eine andere
+
+885
+02:02:54,440 --> 02:03:02,520
+Möglichkeit wäre das Wiener Filter. Man geht davon aus, dass wir einen Zuwachsprozess haben, sowohl für
+
+886
+02:03:02,520 --> 02:03:10,960
+das Bild als auch für das Rauschen. Wir suchen jetzt wieder das Filter Q, das den mittleren
+
+887
+02:03:10,960 --> 02:03:17,840
+quadratischen Fehler zwischen dem gemessenen Bild und unserem Originalbild minimiert.
+
+888
+02:03:17,840 --> 02:03:27,760
+Also hier f von xy, das ist das Originalbild. Das hier ist jetzt das inverse gefilterte aufgenommene Bild.
+
+889
+02:03:27,760 --> 02:03:34,120
+Wir wollen, dass der mittlere quadratische Fehler da minimiert wird. Jetzt brauchen wir, wenn wir das
+
+890
+02:03:34,120 --> 02:03:43,120
+machen wollen, dass wir Rauschen und Bild trennen oder beschreiben können. Das funktioniert beim
+
+891
+02:03:43,120 --> 02:03:55,880
+Wiener Filter mit Hilfe der Autokorrelationsfunktion. Wir gehen davon aus, dass das Rauschen und das
+
+892
+02:03:56,000 --> 02:04:02,280
+Bildsignal unkorreliert sind. Sie müssen nicht statistisch unabhängig sein, aber sie sind unkorreliert.
+
+893
+02:04:02,280 --> 02:04:10,760
+Eigentlich sollten sie statistisch unabhängig sein. Das ist, wenn das Bild nicht zu dunkel ist,
+
+894
+02:04:10,760 --> 02:04:15,080
+auch wenn sie nicht zu wenig Licht haben, wenn sie mit der Kamera aufheben, ist das auch erfüllt.
+
+895
+02:04:15,080 --> 02:04:22,640
+Dann gibt es letztendlich einen Rauschenprozess, der ist unabhängig davon, was sie aufnehmen.
+
+896
+02:04:22,640 --> 02:04:36,280
+Die Autokorrelationsfunktion, mit der wir das Wiener Filter bestimmen wollen, beschreibt die
+
+897
+02:04:36,280 --> 02:04:44,040
+statistischen Abhängigkeiten zwischen benachbarten Bildpunkten eines Bildes in Abhängigkeit davon,
+
+898
+02:04:44,200 --> 02:04:57,840
+wie weit die auseinander sind. Wir haben also den Erwartungswert, den wir berechnen. Das hier ist
+
+899
+02:04:57,840 --> 02:05:03,520
+der Mittelwert des Signals. Das hier ist der Mittelwert des verschobenen Signals. Wenn wir
+
+900
+02:05:03,520 --> 02:05:07,600
+uns mal vorstellen, unser Bild ist unendlich groß, dann sind diese beiden Zahlen gleich groß.
+
+901
+02:05:07,600 --> 02:05:16,400
+Das hier ist jetzt das Signal an der Stelle XY und das hier ist das Signal,
+
+902
+02:05:16,400 --> 02:05:22,320
+das Bild an der Stelle um I und J in horizontaler beziehungsweise vertikaler Richtung verschoben.
+
+903
+02:05:22,320 --> 02:05:36,920
+Und diese Autokorrelationsfunktion, die können sie auch berechnen, indem sie jeweils das Bild
+
+904
+02:05:37,920 --> 02:05:43,160
+normal verschoben, dann multiplizieren sie die Bildpunkte, die übereinander liegen und
+
+905
+02:05:43,160 --> 02:05:52,200
+addieren alles auf und teilen durch. Diese Multiplikation der 20 Megapixel-Bilder,
+
+906
+02:05:52,200 --> 02:05:58,680
+der 20 Millionen Bildpunkte, müssen sie für jede Verschiebung I und J machen.
+
+907
+02:05:59,680 --> 02:06:08,160
+Wenn sie diese Autokorrelationsfunktion haben, dann können sie diese
+
+908
+02:06:08,160 --> 02:06:12,720
+Autokorrelationsfunktion auch in den Frequenzbereich transformieren. Dann haben wir das
+
+909
+02:06:12,720 --> 02:06:15,960
+Leistungsdichte-Spektrum. Das Leistungsdichte-Spektrum sagt uns letztendlich, wie viel
+
+910
+02:06:15,960 --> 02:06:25,400
+Leistung, wie viel Energie haben wir bei welchen Frequenzen. Die Autokorrelationsfunktion realer
+
+911
+02:06:25,400 --> 02:06:33,600
+Bilder, die Autokorrelationsfunktion überhaupt, ist symmetrisch. Hier haben wir 0, also das Bild
+
+912
+02:06:33,600 --> 02:06:39,200
+mit sich selbst multipliziert und aufaddiert. Das gibt uns hier letztendlich die Energie des Bildes.
+
+913
+02:06:39,200 --> 02:06:49,520
+Und dann ist die Funktion symmetrisch. So wie die Autokorrelationsfunktion eben definiert wurde,
+
+914
+02:06:49,520 --> 02:06:59,760
+als mittelwertbefreites Signal, geht sie dann für I gegen 0. Hier haben wir dann das
+
+915
+02:06:59,760 --> 02:07:17,640
+Leistungsdichte-Spektrum. Rauschen, vor allem wenn sie weißes, gausches Rauschen haben. Da haben sie
+
+916
+02:07:17,640 --> 02:07:21,800
+zwischen aufeinanderfolgenden oder benachbarten Bildpunkten abgefasst werden, keine statistischen
+
+917
+02:07:21,800 --> 02:07:27,600
+Abhängigkeiten. Da ist die Autokorrelationsfunktion einfach ein Deltaimpuls oder im Frequenzbereich
+
+918
+02:07:27,600 --> 02:07:42,240
+eine Konstante. Das wäre jetzt unser Modell für das Bild. Wir nehmen da an, sowas ist ein Bildsignal
+
+919
+02:07:42,240 --> 02:07:52,000
+und das Rauschsignal gibt uns eine Konstante. Diese gleichen kennen wir schon. Das Wiener
+
+920
+02:07:52,000 --> 02:07:58,520
+Filter nimmt an. Wir haben Rauschen aufaddiert auf das gefilterte Originalsignal. Wir wollen
+
+921
+02:07:58,520 --> 02:08:06,600
+mittleren quadratischen Fehler minimieren. Wir nehmen an, das Filter, das wir invertieren wollen,
+
+922
+02:08:06,600 --> 02:08:13,760
+ist bekannt. Das hier kennen wir. Wir nehmen an, wir kennen die Autokorrelationsfunktion des Bildes.
+
+923
+02:08:13,760 --> 02:08:21,080
+Kennen sie ja in Wirklichkeit nicht, weil sie nur f'' kennen, aber sie können ja irgendwelche Modelle
+
+924
+02:08:21,080 --> 02:08:29,320
+annehmen oder sie können für dieses aktuelle Bild die Autokorrelationsfunktion berechnen und
+
+925
+02:08:29,480 --> 02:08:35,000
+das Rauschen versuchen daraus zu rechnen. Auf alle Fälle wissen wir,
+
+926
+02:08:35,000 --> 02:08:38,440
+auf alle Fälle, also das könnte man so ein bisschen hinterfragen,
+
+927
+02:08:38,440 --> 02:08:41,840
+wir nehmen an, dass wir die Autokorrelationsfunktion des Rauschens kennen.
+
+928
+02:08:41,840 --> 02:08:54,280
+Als Lösung für unser inverses Filter kommt dann heraus, dass die Übertragungsfunktion,
+
+929
+02:08:54,280 --> 02:09:06,520
+die wir kennen, also die Störfunktion, nehmen wir die Inverse und dann haben wir noch diesen
+
+930
+02:09:06,520 --> 02:09:10,760
+Faktor. Wir wissen ja, die Inverse an sich ist jetzt erstmal problematisch wegen der Nullstelle.
+
+931
+02:09:10,760 --> 02:09:25,480
+Wenn wir kein Rauschen hätten, dann würde hier einfach 1 stehen. Wenn wir an einer Stelle bei
+
+932
+02:09:25,480 --> 02:09:32,320
+einer Frequenz sehr viel Rauschleistung haben, aber unser Signal, das leistungsdichte Spektrum
+
+933
+02:09:32,320 --> 02:09:46,240
+unseres Signals ist klein, dann wird das hier groß. Dann wird dieser Term klein,
+
+934
+02:09:46,240 --> 02:09:57,280
+das heißt unser Q von U von V wird dort, wo wir aufgrund der Autokorrelationsfunktion annehmen
+
+935
+02:09:57,280 --> 02:10:03,600
+müssen, dass wir viel Rauschen haben, das Signal letztendlich nicht verstärken und dort,
+
+936
+02:10:03,600 --> 02:10:11,840
+wo wir wenig Rauschen haben, wird das Signal verstärkt. Für dieses leistungsdichte Spektrum
+
+937
+02:10:11,840 --> 02:10:16,760
+des Bildes können Sie einfach auch gemittelte leistungsdichte Spektren annehmen. Sie müssen
+
+938
+02:10:16,760 --> 02:10:20,840
+das gar nicht unbedingt für das aktuelle Bild kennen. Das funktioniert recht gut.
+
+939
+02:10:27,280 --> 02:10:43,360
+Ja, die Nullstellen führen dann dazu, dass unser Filter Null ist. Wir werden also nichts
+
+940
+02:10:43,360 --> 02:10:50,000
+dazu dazufügen. Wir haben diese Dipolstellen los. Die Filterantwort können Sie immer berechnen. Das
+
+941
+02:10:50,000 --> 02:11:01,120
+Rauschen wird nicht verstärkt. Hier sehen wir jetzt mal ein prinzipielles Verhalten des Wiener
+
+942
+02:11:01,120 --> 02:11:11,200
+Filters. Hier haben wir verschiedene Übertragungsfunktionen. Sie sehen, in Nähe der
+
+943
+02:11:11,200 --> 02:11:19,120
+Polstellen ist die Verstärkung durchaus dann auch mal hoch, in diesem Beispiel bei 100. An
+
+944
+02:11:19,120 --> 02:11:28,520
+den Polstellen selbst ist die Verstärkung Null. Für unser Bild bedeutet das, das hier war unser
+
+945
+02:11:28,520 --> 02:11:39,680
+Spektrum des Bildes, dass wir je nachdem, was wir für eine inverse Parameterisierung vornehmen,
+
+946
+02:11:39,680 --> 02:11:46,920
+haben wir hier dann diese gestrichelten oder die durchgezogenen Spektren als Ergebnis.
+
+947
+02:11:49,600 --> 02:11:59,480
+Warum sind wir hier bei den tiefen Frequenzen mit der Filterung sehr erfolgreich? Das Bildmodell
+
+948
+02:11:59,480 --> 02:12:02,720
+geht davon aus, dass ein normales Bild bei niedrigen Frequenzen viel Energie hat. Wir
+
+949
+02:12:02,720 --> 02:12:07,040
+hatten angenommen konstantes leistungsdichte Spektrum für das Rauschen. Das ist bei den
+
+950
+02:12:07,040 --> 02:12:11,360
+niedrigen Frequenzen relativ zu Bildenergie sehr, sehr wenig. Also können wir da komplett
+
+951
+02:12:11,360 --> 02:12:18,160
+rekonstruieren. Bei den hohen Frequenzen sagt die Autokorrelationsfunktion des Bildes,
+
+952
+02:12:18,160 --> 02:12:24,240
+da haben wir eher wenig Energie, also relativ zur Rauschenergie wenig. Dann wird auch nur
+
+953
+02:12:24,240 --> 02:12:30,520
+wenig verstärkt. Das heißt, die hohen Frequenzen werden dann dargestellt, aber eben haben wir einen
+
+954
+02:12:30,520 --> 02:12:36,560
+größeren Abstand zum Original. An den Polstellen haben wir natürlich einen ganz großen Abstand,
+
+955
+02:12:36,560 --> 02:12:39,600
+weil da wird nichts durchgelassen durch die inverse Filterung.
+
+956
+02:12:39,600 --> 02:12:53,360
+Hier haben wir dann nochmal die praktische Umsetzung. Das sind natürlich Parameter,
+
+957
+02:12:53,360 --> 02:12:57,680
+die Sie wählen können. Da müssen Sie sich vielleicht mal das Bild angucken. Wie groß
+
+958
+02:12:57,680 --> 02:13:07,360
+ist denn die Rauschleistung? Das leistungsdichte Spektrum des Bildes können Sie aus dem Bild
+
+959
+02:13:07,480 --> 02:13:17,800
+berechnen. Wenn Sie das machen, berechnen Sie das Bild, was Sie aufgenommen haben. Das muss
+
+960
+02:13:17,800 --> 02:13:23,320
+eigentlich Strichstrich heißen. Da ziehen Sie dann einfach die Rauschleistung, die Sie irgendwie
+
+961
+02:13:23,320 --> 02:13:27,640
+ermittelt haben, ab. Das wäre der leistungsdichte Spektrum. Sie nehmen ein allgemeines Modell,
+
+962
+02:13:27,640 --> 02:13:31,840
+was Sie aus den Bildern für Ihre Kamera, für Ihren Sender oder für Ihre Röntgenquelle
+
+963
+02:13:31,840 --> 02:13:41,200
+einfach mal ermittelt haben. Oder Sie haben dieses allgemeine Modell auch in einer mathematischen
+
+964
+02:13:41,200 --> 02:13:54,760
+Form vorliegen. Dieses H beschreibt letztendlich Ihr System. Es kann auch die Beschreibung der
+
+965
+02:13:54,760 --> 02:13:58,760
+Verschmierung sein. Angefangen hatten wir ja mit einem Bild, wo wir Bewegungsunschärfe hatten.
+
+966
+02:13:58,920 --> 02:14:03,200
+Die Bewegungsunschärfe können Sie auch durch einen Filter darstellen. Dann würden wir mithilfe
+
+967
+02:14:03,200 --> 02:14:07,200
+dieses Verfahrens einen Unvers-Filter haben, um das Bild wieder scharfzeichnen zu können.
+
+968
+02:14:07,200 --> 02:14:20,240
+Da gibt es verschiedene Vereinfachungen. Wir können auch annehmen, dass das Verhältnis von
+
+969
+02:14:20,240 --> 02:14:28,200
+Rauschleistung zu Signalleistung konstant ist. Da können Sie hier natürlich eine Konstante
+
+970
+02:14:28,200 --> 02:14:34,400
+hinsetzen. Das ist nicht so gut, aber lässt sich natürlich einfacher realisieren.
+
+971
+02:14:34,400 --> 02:14:46,000
+Jetzt zum Beispiel für den Wiener Filter. Links oben das Originalbild mit Spektrum. In der unteren
+
+972
+02:14:46,000 --> 02:14:50,800
+Reihe haben wir jetzt Rauschen draufvalidiert. Auch auf dem Spektrum ist das Rauschen drauf
+
+973
+02:14:50,800 --> 02:14:53,440
+zu sehen. Sie sehen jetzt auch bei hohen Frequenzen haben wir sehr viel Energie,
+
+974
+02:14:53,440 --> 02:15:07,040
+weil das Rauschen eben konstant ist. Restaurationsbeispiele jetzt aufgrund des berechneten
+
+975
+02:15:07,040 --> 02:15:15,000
+Leistungsdichte Spektrums. Unten aufgrund des geschätzten Leistungsdichte Spektrums.
+
+976
+02:15:15,960 --> 02:15:18,400
+Vergleichen wir es nochmal zu dem verrauschten Bild.
+
+977
+02:15:18,400 --> 02:15:31,640
+Das Rauschen haben Sie zum großen Teil losgeworden. Insgesamt haben Sie hier oben,
+
+978
+02:15:31,640 --> 02:15:39,120
+sehen Sie auch in dem Bild, mehr hohe Frequenzen als hier unten. Ganz einfach,
+
+979
+02:15:39,120 --> 02:15:43,040
+weil Sie hier das Leistungsdichte Spektrum aus dem gestörten Signal berechnet haben,
+
+980
+02:15:43,040 --> 02:15:50,880
+haben Sie Störungen durch das Rauschen. Zurückzukommen auf die Bewegungsunschärfe.
+
+981
+02:15:50,880 --> 02:16:02,440
+Das hier ist letztendlich das Filter. Da kriegen Sie die Bewegungsrichtung raus und auch die Länge,
+
+982
+02:16:02,440 --> 02:16:10,760
+wie viele verschiedene Szenenpunkte aufsummiert wurden, um einen Bildpunkt auf der Kamera zu
+
+983
+02:16:10,760 --> 02:16:22,320
+erzeugen. Hier sehen Sie dieses Bewegungsunschärfe-Filter im Frequenzbereich. Dann haben wir
+
+984
+02:16:22,320 --> 02:16:29,560
+hier das Inverse-Filter und plötzlich können wir das Kennzeichen lesen. Das Bild ist nicht
+
+985
+02:16:29,560 --> 02:16:37,160
+störungsfrei. Hier sind auch irgendwelche Macken drin, aber das Bild ist plötzlich viel wertvoller
+
+986
+02:16:37,160 --> 02:16:51,000
+gewesen. Was wir bisher angenommen haben ist, dass wir H von XY kennen. Häufig kennen Sie es
+
+987
+02:16:51,000 --> 02:17:00,080
+nicht. Es gibt auch Verfahren, die nennen sich Blind Motion Deblurring zum Beispiel. Da optimieren
+
+988
+02:17:00,080 --> 02:17:09,560
+Sie iterativ. Wir haben hier ein Eingangssignal. Das filtern Sie, kriegen ein geschätztes Signal
+
+989
+02:17:09,560 --> 02:17:17,040
+raus und dann schauen Sie sich dieses Ergebnis an und aufgrund dessen optimieren Sie Ihren Filter.
+
+990
+02:17:17,040 --> 02:17:24,040
+Zum Beispiel könnten Sie eine Kantenschärfe, ein Maß für die Kantenschärfe verwenden. Sie könnten
+
+991
+02:17:24,040 --> 02:17:30,880
+versuchen, glatte Bildbereiche zu detektieren und dort Störungen und Rauschen zu minimieren.
+
+992
+02:17:30,880 --> 02:17:38,920
+Es gibt iterative Verfahren, mit denen Sie das machen. Damit sind wir dann auch durch.
+
+993
+02:17:38,920 --> 02:17:47,920
+Bildverzerrung wird meistens durch ein lineares Modell beschrieben. Das heißt, wir haben lineare
+
+994
+02:17:47,920 --> 02:17:53,720
+Filter, zu denen können wir dann Inverse-Filter entwickeln. Die Inverse-Filter muss man aufpassen.
+
+995
+02:17:53,880 --> 02:18:02,040
+Sie werden an Polstellen der Bildverzerrung eine unendliche Verstärkung haben. Das muss man in
+
+996
+02:18:02,040 --> 02:18:11,000
+den Griff kriegen. Das muss man beim Inverse-Filter vermeiden. Ein häufig eingesetztes Filter zur
+
+997
+02:18:11,000 --> 02:18:16,160
+Inverse-Filterung ist das Wiener Filter. Das minimiert den mittleren quadratischen Filter
+
+998
+02:18:16,320 --> 02:18:23,840
+zwischen dem Bild, so wie es sein sollte, und dem Bild, was ich nun gerade bekommen habe. Das
+
+999
+02:18:23,840 --> 02:18:29,400
+geht natürlich nur unter Verwendung von gewissen Annahmen. Wir können die Signale, das Rauschen
+
+1000
+02:18:29,400 --> 02:18:38,200
+und das Bild durch Autokorrelationsfunktionen beschreiben und damit dann das Ganze optimieren.
+
+1001
+02:18:38,360 --> 02:18:46,000
+Es gibt die eine oder andere Vereinfachung für den praktischen Fall. Letztendlich müssen Sie sich,
+
+1002
+02:18:46,000 --> 02:18:50,760
+wenn Sie Inverse-Filterung und Bildrestauration betreiben wollen, das Ergebnis immer wieder
+
+1003
+02:18:50,760 --> 02:19:03,160
+angucken und sehen, ob es Ihren Ansprüchen genügt. Damit bin ich dann für heute durch.
+
+1004
+02:19:03,160 --> 02:19:06,360
+Herzlichen Dank und bis zum nächsten Mal.
+

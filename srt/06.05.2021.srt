@@ -1,0 +1,4132 @@
+1
+00:00:00,000 --> 00:00:16,240
+Wir haben uns mit Filtern beschäftigt und eine Klasse von Filtern, die in der Bildverarbeitung
+
+2
+00:00:16,240 --> 00:00:22,840
+viel mehr eingesetzt wird als in der klassischen Signalverarbeitung, sind die nicht linearen
+
+3
+00:00:22,840 --> 00:00:27,680
+Filter. Wir hatten das letzte Mal einen Medianfilter besprochen. Ein Medianfilter,
+
+4
+00:00:27,680 --> 00:00:31,920
+da haben sie ein Fenster. Das können sie beliebig definieren, in diesem Beispiel 3x3.
+
+5
+00:00:31,920 --> 00:00:39,040
+Mit dem gehen sie über das Bild und dann werden alle Werte, die sie in diesem Fenster vorfinden,
+
+6
+00:00:39,040 --> 00:00:45,840
+der Größe nach sortiert oder nach einem Ordnungskriterium, was sie definieren. Und
+
+7
+00:00:45,840 --> 00:00:51,240
+der Punkt, der Wert, der in der Mitte ist, in dieser Reihenfolge, das ist der, der dann
+
+8
+00:00:51,240 --> 00:01:05,480
+zugeordnet wird. Das ist dann ein sogenannter Rangfolgefilter. Da können sie neben dem
+
+9
+00:01:05,480 --> 00:01:11,360
+Medianfilter, der als Ergebnis den Wert in der Mitte nimmt, auch anderes definieren. Sie können
+
+10
+00:01:11,360 --> 00:01:14,280
+sagen, ich will den höchsten Wert haben, den tiefsten Wert, zweithöchstens, dritthöchstens.
+
+11
+00:01:14,280 --> 00:01:17,240
+Das sind dann eben die Rangfolgefilter, die letztendlich so was sind wie ein Medianfilter,
+
+12
+00:01:17,240 --> 00:01:20,280
+nur ein Parameter mehr, wo sie dann sagen, ich will nicht den ersten Wert haben,
+
+13
+00:01:20,360 --> 00:01:25,040
+vielleicht den zweiten oder den vorletzten. Dieses Beispiel hatten wir auch gesehen.
+
+14
+00:01:25,040 --> 00:01:34,800
+Hier haben wir schwarze und weiße Punkte und sie sehen, diese Punkte sind in diesem
+
+15
+00:01:34,800 --> 00:01:43,800
+mediangefilterten Bild überwiegend weg, was sie mit einem Tiefpassfilter nicht hinbekommen würden.
+
+16
+00:01:43,800 --> 00:01:49,760
+Mit einem klassischen Tiefpassfilter, da würde der dunkelste Punkt hier, auch hier immer noch
+
+17
+00:01:49,760 --> 00:01:53,800
+als der dunkelste Punkt auftauchen, er würde nicht so auffallen, weil sie die Kanten weg bügeln
+
+18
+00:01:53,800 --> 00:02:00,120
+und das heißt, ein Ausreißer nach oben, ein kleinerer Ausreißer nach oben, ein Ausreißer
+
+19
+00:02:00,120 --> 00:02:05,320
+nach unten, wird in seine Amplitude hochgehoben, fällt nicht mehr so auf. Was ein klassisches
+
+20
+00:02:05,320 --> 00:02:11,680
+Tiefpassfilter auch macht, das Tiefpassfilter filtert die Kanten weg. Kanten sind ja was
+
+21
+00:02:11,680 --> 00:02:20,800
+Hochfrequentes. Ein Medianfilter macht das nicht. Wenn Sie mal schauen, hier die Konturlinie, hier
+
+22
+00:02:20,800 --> 00:02:29,280
+die Kanten sind scharf. So ein Medianfilter ist kantenerhaltend. Das ist eine schöne Eigenschaft
+
+23
+00:02:29,280 --> 00:02:35,280
+eines solchen Medianfilters. Ein anderes Beispiel für nicht lineare Filter wäre zum Beispiel ein
+
+24
+00:02:35,320 --> 00:02:44,800
+Gradientenfilter. Wir sehen hier dieses Bild. Dieses Bild wird mit einem Kernel fx gefaltet.
+
+25
+00:02:44,800 --> 00:02:58,200
+Es gibt dieses Bild. Das Eingangsbild wird nicht nur mit diesem Ergebnis kommen, sondern es wird
+
+26
+00:02:58,200 --> 00:03:07,920
+auch noch mal mit einem weiteren Gradientenfilter gefiltert. Der eine Gradientenfilter berechnet die
+
+27
+00:03:07,920 --> 00:03:14,040
+Gradienten in horizontaler Richtung, der andere in vertikaler Richtung. Die Ergebnisse quadrieren
+
+28
+00:03:14,040 --> 00:03:20,120
+sie, sie addieren sie, sie ziehen die Wurzel und dann bekommen sie dieses Bild. Was sehen Sie in
+
+29
+00:03:20,120 --> 00:03:27,080
+dem Bild? Dunkel sind letztendlich die Kanten im Bild. Das ist auch ein wesentliches Element in der
+
+30
+00:03:27,160 --> 00:03:33,880
+Bildverarbeitung. Irgendwo wollen wir wissen, wo sind Kanten, Ecken, Geraden und Kurven. Das macht
+
+31
+00:03:33,880 --> 00:03:42,520
+man zum Beispiel mit einem Gradientenfilter. Zusammenfassend. Lokale Operationen bedeutet,
+
+32
+00:03:42,520 --> 00:03:48,800
+ein Ausgangswert im Ausgabebild wird berechnet aus einer lokalen Umgebung an der gleichen Stelle
+
+33
+00:03:48,800 --> 00:03:56,000
+im vorangegangenen Bild. Es gibt da die sogenannten Boxfilter. Das sind typischerweise
+
+34
+00:03:56,240 --> 00:04:04,560
+quadratische Filter-Templates, die Sie dann in das Bild schieben. 3x3, 5x5. Ungerade ist das
+
+35
+00:04:04,560 --> 00:04:14,080
+Wesentliche. Es kann auch ein Filter sein 5x7 oder 21x23. Mit diesen Filtern können Sie, wenn Sie eine
+
+36
+00:04:14,080 --> 00:04:22,480
+Hochpasscharakteristik dort realisieren, die Bilder schärfer erscheinen lassen. Sie können eine
+
+37
+00:04:22,520 --> 00:04:32,200
+Kantendetektion durchführen. Diese Filterung hat sehr viel mit der Faltung zu tun. Bei der Faltung
+
+38
+00:04:32,200 --> 00:04:41,440
+wird das Filterkörner letztendlich in der Reihenfolge nur invertiert. Wenn wir einfach
+
+39
+00:04:41,440 --> 00:04:45,760
+nur so ein Boxfilter anwenden und eine Filteroperation durchführen, dann haben wir ein
+
+40
+00:04:45,840 --> 00:04:55,600
+lineares, zeitinvariantes Filter. Manchmal kann man diese Filter auch separieren. Statt ein Bild
+
+41
+00:04:55,600 --> 00:05:04,600
+mit einem 3x3 Filter zu filtern, kann es möglich sein, dass Sie stattdessen einmal horizontal mit
+
+42
+00:05:04,600 --> 00:05:11,800
+einem 3x1 Filter filtern und dann das Ergebnis vertikal mit einem 3x1 Filter. Dann brauchen Sie
+
+43
+00:05:12,040 --> 00:05:18,760
+weniger Rechenoperationen. Das geht natürlich nur, wenn die Kombination dieser beiden Filteroperationen
+
+44
+00:05:18,760 --> 00:05:29,240
+genau das gewünschte Filterkörner ergeben. Aber wenn Sie das separieren können, dann macht es
+
+45
+00:05:29,240 --> 00:05:33,520
+definitiv Sinn. Beschleunigt die Rechenoperation oder reduziert die Anzahl der Operationen und
+
+46
+00:05:33,520 --> 00:05:38,600
+damit beschleunigt es die Rechenfolge. Dann gibt es die nicht linearen Filter, hatte ich schon gerade
+
+47
+00:05:38,720 --> 00:05:45,720
+gesagt. In der Bildverarbeitung viel relevanter als in der klassischen Signalverarbeitung. Als
+
+48
+00:05:45,720 --> 00:05:53,760
+ein Beispiel hatten wir den Medianfilter gesehen und eben auch den Gradientenfilter. Es gibt auch
+
+49
+00:05:53,760 --> 00:06:04,960
+globale Operationen. Das heißt, ein Ergebnisbildpunkt hängt von allen oder sehr sehr vielen Bildpunkten
+
+50
+00:06:05,000 --> 00:06:11,280
+des Eingabebildes an. Was ist das? Kennen Sie alle die Fourier-Transformation als ein Beispiel.
+
+51
+00:06:11,280 --> 00:06:21,120
+Hier haben wir das Bild, hier die Fourier-Transformierte. Das sieht jetzt aus nach dem Amplitudenspektrum.
+
+52
+00:06:21,120 --> 00:06:29,560
+Das Koordinatensystem wurde so gelegt, dass 0,0 in der Mitte des Bildes ist. Weiß bedeutet hier
+
+53
+00:06:29,680 --> 00:06:37,240
+hohe Amplitude, also viel Energie. Dunkel oder schwarz, keine Energie. Was wir hier sehen ist
+
+54
+00:06:37,240 --> 00:06:44,880
+letztendlich etwas typisches. Die meiste Energie haben wir um die Frequenzen 0 herum. Das gilt
+
+55
+00:06:44,880 --> 00:06:49,520
+für praktisch alle Bilder, zumindest für die natürlichen. Synthetisch können Sie natürlich
+
+56
+00:06:49,520 --> 00:06:58,800
+immer irgendwas erzeugen. Je nachdem, wie so die Bildstrukturen sind, sehen Sie manchmal eine
+
+57
+00:06:58,800 --> 00:07:06,160
+Ausprägung in horizontaler oder vertikaler Richtung oder in diagonaler Richtung. Hier könnte
+
+58
+00:07:06,160 --> 00:07:15,080
+man in einer diagonalen Richtung, wenn man will, durchaus etwas mehr Energie erkennen als in anderen
+
+59
+00:07:15,080 --> 00:07:20,680
+Winkeln. Das habe ich jetzt schief eingemalt. Das müsste eigentlich so eher 45 Grad parallel zu
+
+60
+00:07:20,680 --> 00:07:27,280
+dieser Linie sein. Als ein Beispiel für eine Transformation. Sie können auch andere Transformationen
+
+61
+00:07:27,280 --> 00:07:36,960
+berechnen, zum Beispiel die Hadamard-Transformation. Hier haben wir den Gleichanteil. Das ist also auch
+
+62
+00:07:36,960 --> 00:07:42,400
+eine Transformation, die den Gleichanteil berechnet. Oben links aufgetragen, rot, höchste Energie und
+
+63
+00:07:42,400 --> 00:07:48,720
+hier die niedrigste Energie. Also auch in der Hadamard-Transformation, was auch irgendwo eine
+
+64
+00:07:48,720 --> 00:07:52,560
+Frequenztransformation ist. Eine Transformation im Frequenzraum lässt sich aber viel schneller
+
+65
+00:07:52,560 --> 00:07:59,200
+berechnen, weil wir nur mit Additionen und Subtraktionen zurecht auskommen müssen. Auch bei
+
+66
+00:07:59,200 --> 00:08:02,880
+dieser Hadamard-Transformation sehen wir das Gleiche, letztendlich wie in der Fourier-Transformation.
+
+67
+00:08:02,880 --> 00:08:08,480
+Bei den niedrigen Frequenzen haben wir viel Energie und je höher die Frequenz wird, desto
+
+68
+00:08:08,480 --> 00:08:14,800
+weniger Energie haben wir. Das ist ein typisches Verhalten von natürlichen Bildern.
+
+69
+00:08:15,800 --> 00:08:24,640
+Dann gibt es noch geometrische Transformationen.
+
+70
+00:08:30,520 --> 00:08:37,560
+Das heißt, wir können nicht nur einen Punkt hier, einen Punkt hier abbilden und dann die
+
+71
+00:08:37,560 --> 00:08:42,400
+Grau- oder Farbwerte modifizieren, sondern wir können auch sagen, wir verschieben diesen Punkt.
+
+72
+00:08:42,560 --> 00:08:51,840
+Wir nehmen diesen Punkt G, modifizieren irgendwie seine Grau- oder Farbwerte und schieben ihn dann
+
+73
+00:08:51,840 --> 00:08:58,640
+an eine andere Stelle. Wenn wir also den Bildinhalt verschieben, ebenfalls auch verändern, aber eben
+
+74
+00:08:58,640 --> 00:09:06,000
+auch verschieben, dann sprechen wir von einer geometrischen Transformation. Jeder Video-Decoder
+
+75
+00:09:06,000 --> 00:09:20,040
+oder auch Encoder macht so etwas. Wenn Sie Bilder drehen, nehmen Sie den Bildinhalt und verschieben
+
+76
+00:09:20,040 --> 00:09:26,520
+ihn im Ort. Das wäre also eine geometrische Transformation. Genauso, wenn Sie ein Bild
+
+77
+00:09:26,520 --> 00:09:38,640
+vergrößern, ist das eine geometrische Transformation. Wenn Sie Kameras kalibrieren
+
+78
+00:09:38,640 --> 00:09:43,920
+oder Bilder kalibrieren, weil Sie in Bildsignalen messen wollen, dann müssen Sie letztendlich die
+
+79
+00:09:43,920 --> 00:09:56,440
+Verzerrung eines Kameraobjektives korrigieren. Da sehen wir hier Beispiele, wo wir wissen,
+
+80
+00:09:56,960 --> 00:10:02,960
+wir nehmen mal an, dass diese Linie hier, der obere Bild, der Rahmen oben gerade sein sollte.
+
+81
+00:10:02,960 --> 00:10:07,120
+Ist er dann in einem Bild nicht? Das sieht man manchmal, manchmal sieht man es auch nicht, je
+
+82
+00:10:07,120 --> 00:10:11,960
+nachdem, wie genau man hinguckt. Aber das sind typische Verzerrungen, hier jetzt etwas überzeichnet,
+
+83
+00:10:11,960 --> 00:10:20,840
+die Objektive erzeugen und die wollen Sie dann korrigieren, damit Sie dann im Bild letztendlich
+
+84
+00:10:20,840 --> 00:10:26,800
+zwischen zwei Bildpunkten, die fünf Bildpunkte auseinanderliegen, überall im gleichen Bild den
+
+85
+00:10:26,800 --> 00:10:33,480
+gleichen Abstand in der realen Welt haben. Sie da also im Bild messen können. Dann muss man diese
+
+86
+00:10:33,480 --> 00:10:42,960
+Bilder eben rektifizieren, so heißt es und das ist auch eine geometrische Transformation. Auch
+
+87
+00:10:42,960 --> 00:10:50,680
+die Luftbilder, die Sie typischerweise sehen bei Google oder wenn Sie die beim Amt für
+
+88
+00:10:50,680 --> 00:10:58,840
+Kartografie kaufen, Geometrie und Kartografie, sind das nicht die Bilder, die der Sensor unter
+
+89
+00:10:58,840 --> 00:11:03,520
+einem Flugzeug oder vom Satelliten aufnimmt, sondern diese Bilder werden auch, das nennt sich dann
+
+90
+00:11:03,520 --> 00:11:12,360
+rektifiziert, die werden also letztendlich erstmal erzerrt. Eine wichtige geometrische Transformation.
+
+91
+00:11:12,360 --> 00:11:25,920
+Anwendungsbeispiele neben dem ganz klassischen skalieren, drehen von Bildern ist hier zum
+
+92
+00:11:25,920 --> 00:11:35,840
+Beispiel auch die Korrektur von Schrift. Sie wollen das Schriftbild ändern. Sie sehen hier
+
+93
+00:11:35,960 --> 00:11:45,200
+schreibt jemand, die Schrift kippt nach rechts. Das können Sie mit einer einfachen geometrischen
+
+94
+00:11:45,200 --> 00:11:53,120
+Transformation korrigieren. Erst werden Sie hier versuchen den Winkel zu bestimmen, den die
+
+95
+00:11:53,120 --> 00:11:58,400
+Schrift hat und dann mit einer geometrischen Transformation richten Sie dann letztendlich
+
+96
+00:11:58,400 --> 00:12:15,960
+die Schrift auf. Es gibt viele verschiedene geometrische Transformationen. Letztendlich
+
+97
+00:12:15,960 --> 00:12:19,440
+alle Abbildungen, die Sie so aus der Mathematik kennen, die können Sie natürlich auch auf
+
+98
+00:12:19,440 --> 00:12:27,960
+Bilder anwenden. Wir haben hier mal ein zweidimensionales Koordinatensystem mit X und Y. Sie könnten so
+
+99
+00:12:28,040 --> 00:12:36,400
+ein Bild verschieben. Sie können das Bild drehen. Sie können eine affine Abbildung machen. Sie
+
+100
+00:12:36,400 --> 00:12:40,120
+können eine projektive Abbildung machen, eine Ähnlichkeitsabbildung. Diese ganzen Abbildungen
+
+101
+00:12:40,120 --> 00:12:48,400
+unterscheiden sich in den Freiheitsgraden, die Sie haben und in den Annahmen, die da gemacht
+
+102
+00:12:48,400 --> 00:12:54,200
+werden. Verschiebung können Sie nur mit zwei Parametern beschreiben. Projektive Abbildung,
+
+103
+00:12:54,200 --> 00:13:09,040
+da brauchen Sie dann schon eher acht. Eine affine Transformation sehen wir hier. Sie haben
+
+104
+00:13:09,040 --> 00:13:13,720
+Ihren Eingangsvektor. Bei Bildern sind das dann zweidimensionale Vektoren, also die Koordinaten
+
+105
+00:13:13,720 --> 00:13:22,600
+des Bildpunktes. Das multiplizieren Sie mit dieser Matrix und bekommen den abgebildeten Punkt.
+
+106
+00:13:24,200 --> 00:13:38,880
+Bei der projektiven Abbildung nehmen Sie die Koordinaten des Punktes und berechnen den
+
+107
+00:13:38,880 --> 00:13:48,480
+abgebildeten Punkt. Hier sehen Sie dann einmal die Rechnungsvorschrift für X und Y in Abhängigkeit
+
+108
+00:13:48,560 --> 00:13:57,160
+von diesen Freiheitsgraden dieser Matrix. Nun gibt es verschiedene Möglichkeiten, wie viel
+
+109
+00:13:57,160 --> 00:14:02,280
+Freiheitsgrade diese Matrix hat. Wenn wir uns die Matrix anschauen, dann sehen wir natürlich,
+
+110
+00:14:02,280 --> 00:14:08,120
+das sind neun Parameter, also neun Freiheitsgrade. Typischerweise versucht man mit einer projektiven
+
+111
+00:14:08,120 --> 00:14:18,000
+Abbildung eine Bewegung in der realen Welt zu beschreiben. Dann haben Sie eigentlich nur sechs
+
+112
+00:14:18,280 --> 00:14:25,320
+Freiheitsgrade. Sie haben die Translation eines Objektes in 3D. Das sind also drei Parameter. Sie
+
+113
+00:14:25,320 --> 00:14:29,480
+haben die Rotation. Das sind drei Rotationswinkel, also insgesamt sechs Freiheitsgrade. Wenn Sie
+
+114
+00:14:29,480 --> 00:14:34,520
+diese Rotation als Matrix darstellen und dann noch Translation dazu, dann bekommen Sie auch
+
+115
+00:14:34,520 --> 00:14:40,760
+eine 3x3 Matrix mit neun Elementen, die aber dann letztendlich nur sechs Freiheitsgrade hat. Wenn
+
+116
+00:14:40,760 --> 00:14:50,080
+Sie ein anderes Modell anwenden, Sie sagen, Sie haben eine Ebene im Raum und diese Ebene wollen
+
+117
+00:14:50,080 --> 00:14:58,640
+Sie an eine andere Stelle gedreht bewegen. Dann haben Sie für diese Bewegung auch wieder sechs
+
+118
+00:14:58,640 --> 00:15:04,800
+Freiheitsgrade, aber Sie müssen ja die Ausgangsebene irgendwie noch im Raum festlegen. Da kommen dann
+
+119
+00:15:04,800 --> 00:15:21,120
+noch mal zwei Freiheitsgrade dazu. Es wird gerne bei den Transformationen mit homogenen Koordinaten
+
+120
+00:15:21,120 --> 00:15:29,120
+gerechnet. Bei homogenen Koordinaten wird ein Skalierungsfaktor, den man typischerweise zu eins
+
+121
+00:15:29,120 --> 00:15:42,040
+setzt, an die Bildpunktkoordinaten drangesetzt. Wenn wir hier diese 2x3 Matrix arbeiten wollen,
+
+122
+00:15:42,040 --> 00:15:50,000
+dann brauchen wir hier für x drei Koordinaten und x, y und 1. Die 1 ermöglicht es dann auch,
+
+123
+00:15:50,000 --> 00:15:57,880
+in dieser Matrix eine reine Translation darzustellen. Das sind dann die homogenen Koordinaten. Wir nehmen
+
+124
+00:15:58,000 --> 00:16:04,680
+hier ein 3x1 Vektor, homogene Koordinaten x, y und 1 und daraus bekommen wir dann die
+
+125
+00:16:04,680 --> 00:16:11,300
+Bildpunktkoordinaten des Ergebnisses, aber nicht den homogenen Koordinaten, sondern nur zwei
+
+126
+00:16:11,300 --> 00:16:26,560
+komponentigen Vektor. Hier haben wir die ganzen Transformationen aufgelistet. Wir gehen im ersten
+
+127
+00:16:26,600 --> 00:16:33,840
+Schritt davon aus, dass wir hier eine affine Abbildung haben. Wir haben also eine 2x3 Matrix.
+
+128
+00:16:33,840 --> 00:16:42,160
+Wenn wir nur das Bild verschieben wollen, haben wir hier vorne die Identitätsmatrix und für die
+
+129
+00:16:42,160 --> 00:16:48,760
+homogene Ergänzung des Bildpunktes x, y für diese 1 haben wir dann hier den Translationsvektor, also
+
+130
+00:16:48,760 --> 00:16:56,320
+den Offset für die x- und y-Koordinaten. Dann haben wir zwei Freiheitsgrade und wenn sie jetzt
+
+131
+00:16:56,320 --> 00:17:05,160
+einen Quadrat haben, verschiedensten. Die starre Transformation wäre eine euklidische Transformation.
+
+132
+00:17:09,960 --> 00:17:16,520
+Da drehen wir und jetzt drehen wir nur im Bild. Da haben wir also zwei Freiheitsgrade. Entschuldigung,
+
+133
+00:17:16,520 --> 00:17:21,480
+Drehung im Bild, in der Bildebene haben sie einen Freiheitsgrad und Transformationen haben wir zwei
+
+134
+00:17:21,480 --> 00:17:26,400
+Freiheitsgrade. Wir haben dann also hier die Rotationsmatrix mit einem Freiheitsgrad,
+
+135
+00:17:26,400 --> 00:17:31,240
+Cosinus und Sinus vom Drehwinkel stehen da drin. Hier haben wir den Translationsvektor,
+
+136
+00:17:31,240 --> 00:17:39,680
+drei Freiheitsgrade und natürlich werden bei so einer Operation die Längen eines Objekts
+
+137
+00:17:39,680 --> 00:17:45,880
+erhalten bleiben, genauso wie bei der Translation, die Orientierung, Winkel und Längen erhalten.
+
+138
+00:17:46,880 --> 00:17:53,240
+Es gibt die Ähnlichkeits-Abbildung, die hier noch einen Skalierungsfaktor drin hat. Damit haben wir
+
+139
+00:17:53,240 --> 00:18:00,240
+dann einen Freiheitsgrad mehr, vier. Die Längen von irgendwelchen Objekten bleiben aufgrund der
+
+140
+00:18:00,240 --> 00:18:08,080
+Skalierung dann natürlich nicht erhalten, aber die Winkel bleiben erhalten. Bei der Affinen-Abbildung
+
+141
+00:18:08,080 --> 00:18:14,840
+da haben wir jetzt sechs Freiheitsgrade. Die Affine-Abbildung können sie also jetzt nicht
+
+142
+00:18:14,840 --> 00:18:23,600
+mehr in Rotation und Translation zerlegen. Bei der Affinen-Transformation bleibt ihnen was
+
+143
+00:18:23,600 --> 00:18:27,400
+erhalten, die Winkel bleiben nicht erhalten, die Längen bleiben nicht erhalten, aber parallele
+
+144
+00:18:27,400 --> 00:18:37,160
+Linien bleiben parallel. Dann gibt es auch die projektive Transformation, die beschreibt
+
+145
+00:18:37,160 --> 00:18:47,320
+letztendlich, wenn sie eine Ebene irgendwo haben und sie drehen diese Ebene, dann bleiben Linien
+
+146
+00:18:47,320 --> 00:18:55,600
+nicht parallel. Stellen Sie sich vor, wir haben zwei parallele Linien, so etwas und sie drehen
+
+147
+00:18:55,600 --> 00:19:02,280
+das jetzt so, dann sind diese oberen und unteren Kanten sicherlich nicht mehr parallel, aber gerade
+
+148
+00:19:02,280 --> 00:19:07,400
+Linien bleiben gerade. Das ist das, was uns die projektive Transformation erhält.
+
+149
+00:19:12,400 --> 00:19:20,120
+Noch mal ein paar Beispiele. Wir hatten eben schon die Kissen und Tonnenverzerrung, die uns typischerweise
+
+150
+00:19:20,120 --> 00:19:27,800
+die Glasobjektive liefern oder auch Plastikobjektive, ist völlig egal. Das heißt also ein Schachbrettmuster
+
+151
+00:19:27,800 --> 00:19:34,880
+zum Beispiel, was parallel zum Sensor ausgerichtet ist, wird, wenn sie sich das Bild angucken,
+
+152
+00:19:34,880 --> 00:19:40,320
+je nachdem wie ihr Objektiv ist, entweder tonnenförmig oder kissenförmig abgebildet.
+
+153
+00:19:43,320 --> 00:19:50,760
+Und mit so einer Radialentzerrung, bei der sie das optische Zentrum kennen müssen,
+
+154
+00:19:50,760 --> 00:19:58,920
+mit so einer Radialentzerrung können sie dann aus so einem Muster wieder ein Rechteckmuster
+
+155
+00:19:58,920 --> 00:20:06,520
+erzeugen, sodass das aufgenommene Bild oder das dann entzerrte Bild genauso aussieht wie die reale Welt.
+
+156
+00:20:06,520 --> 00:20:22,440
+Wenn wir Bilder nun geometrisch verarbeiten, unterscheidet man zwischen Vorwärts- und
+
+157
+00:20:22,440 --> 00:20:29,600
+Rückwärts-Transformation. Das klassische Vorgehen, was dann die Vorwärts-Transformation ist,
+
+158
+00:20:29,600 --> 00:20:36,080
+sie nehmen das Bild, sie nehmen ihr Eingangsbild, transformieren es und kriegen das Ausgangsbild.
+
+159
+00:20:36,920 --> 00:20:41,600
+Das ist das, was wir machen und wenn man das konzeptuell macht, zum Beispiel ein Objekt
+
+160
+00:20:41,600 --> 00:20:45,120
+bewegt sich von A nach B nach C nach D, das könnte man jetzt auch mit Bildern machen,
+
+161
+00:20:45,120 --> 00:20:49,240
+dann wird man feststellen, in dem neuen Bild gibt es plötzlich Löcher.
+
+162
+00:20:56,680 --> 00:21:02,560
+Weil es im neuen Bild Inhalte gibt, die im alten Bild vielleicht nicht zu sehen sind oder weil es
+
+163
+00:21:02,560 --> 00:21:11,440
+irgendwie nur so ein Zoom-In oder Zoom-Out gibt. Bei dieser Vorwärts-Transformation ist
+
+164
+00:21:11,440 --> 00:21:18,720
+letztendlich nicht sichergestellt, dass sie, wir gehen ja hier über alle X, das heißt sie tasten
+
+165
+00:21:18,720 --> 00:21:24,600
+das gesamte Eingangsbild ab. Es ist nicht sichergestellt, dass das Ausgangsbild an allen
+
+166
+00:21:24,600 --> 00:21:31,240
+Stellen definiert ist. Bei der Rückwärts-Transformation gehen sie umgekehrt vor. Sie gehen über alle
+
+167
+00:21:31,480 --> 00:21:39,080
+Bildpunktkoordinaten des Ausgangsbildes, des Bildes, was sie berechnen wollen. Sie nehmen die
+
+168
+00:21:39,080 --> 00:21:44,080
+inverse Transformation und gucken, wo ist denn der geometrische Ort im Eingangsbild, wo ich nachgucken
+
+169
+00:21:44,080 --> 00:21:50,840
+muss, was ist denn diese Bildpunktinformation. Sie sehen, dass hier Eingangsbild, Vorwärts-
+
+170
+00:21:50,840 --> 00:22:02,640
+Transformation, wird dieser Bildpunkt irgendwie verschoben. Bei der Rückwärts-Transformation nehme
+
+171
+00:22:02,640 --> 00:22:12,160
+ich ein Bild irgendwo an einer womöglich floating point Koordinate und schiebe ihn in das Ausgangsbild.
+
+172
+00:22:12,160 --> 00:22:20,560
+Neben der Frage, ist mein Ausgangsbild komplett definiert, das stelle ich sicher durch die
+
+173
+00:22:20,600 --> 00:22:25,120
+Rückwärts-Transformation. Es stellt sich natürlich noch die Frage, und das gilt für beide Transformationen,
+
+174
+00:22:25,120 --> 00:22:32,440
+wenn ich jetzt diesen Bildpunkt um einen halben Bildpunkt verschiebe, dann lande ich hier irgendwo
+
+175
+00:22:32,440 --> 00:22:39,160
+zwischen den Bildpunkten. Zwischen den Bildpunkten kann ich keine Grauwerte angeben.
+
+176
+00:22:39,160 --> 00:22:44,880
+Diesen Punkt verschiebe ich, der landet hier. Jetzt muss ich aus diesem Wert letztendlich
+
+177
+00:22:44,880 --> 00:22:48,360
+irgendwie versuchen, die Bildpunkte in der Nachbarschaft zu berechnen.
+
+178
+00:22:52,280 --> 00:23:02,000
+Genauso, aber umgekehrt gilt es auch für die rückwärtige Abbildung. Ich will diesen Punkt hier
+
+179
+00:23:02,000 --> 00:23:11,680
+bestimmen. Meine inverse Transformationsvorschrift sagt, ich soll an der Koordinate 1,8 2,3
+
+180
+00:23:11,800 --> 00:23:21,080
+nachschauen. An der Koordinate 1,8 2,3 ist genau nichts. Da muss ich also jetzt die Helligkeit,
+
+181
+00:23:21,080 --> 00:23:26,440
+die Farbe dieses Bildpunktes letztendlich mir besorgen durch Interpolation. Also ich gucke
+
+182
+00:23:26,440 --> 00:23:30,320
+in der Nachbarschaft nach, was sind dafür Grauwerte und berechne mir dann, interpoliere
+
+183
+00:23:30,320 --> 00:23:38,000
+den Grauwert für die Stelle, an der ich ihn brauche. Das heißt, diese Transformationen
+
+184
+00:23:42,680 --> 00:23:48,040
+letztendlich, alle Transformationen hier benötigen eine Interpolation. Die einzige
+
+185
+00:23:48,040 --> 00:23:53,600
+Transformation, wo sie vielleicht keine Interpolation brauchen, ist die Translation,
+
+186
+00:23:53,600 --> 00:24:03,880
+wenn sie das T auf ganzzahlige Vielfacher des Bildpunktabstandes begrenzen. Aber auch das wird
+
+187
+00:24:03,880 --> 00:24:07,840
+selten gemacht. Sie wollen durchaus mal Bilder um einen halben oder einen Viertelbildpunkt
+
+188
+00:24:08,000 --> 00:24:20,880
+bestimmen. Also brauchen wir diese Interpolation. Es gibt verschiedene Möglichkeiten, das Bildsignal
+
+189
+00:24:20,880 --> 00:24:28,320
+zu interpolieren. Das einfachste ist die nächste Nachbarinterpolation. Sie kriegen die Koordinate
+
+190
+00:24:28,320 --> 00:24:35,400
+2,3 1,7. Wer ist am dichtesten dran? Na, sie runden einfach. Dann gehen sie auf die Koordinate
+
+191
+00:24:35,400 --> 00:24:41,160
+2,2. Hier wird runter, 2,3 wird abgerundet, 1,7 wird aufgerundet und sie schauen nach,
+
+192
+00:24:41,160 --> 00:24:50,520
+was ist an dieser Koordinate für ein Grauwert. Das ordnen sie dann den Bildpunkt im Ausgangsbild zu.
+
+193
+00:24:50,520 --> 00:25:00,600
+Wenn sie so etwas machen, dann wird aus einem geraden schwarz-weiß-Übergang, also aus einer
+
+194
+00:25:00,600 --> 00:25:11,800
+Kante, letztendlich eine Treppenstufe. Das sieht unschön aus. Das nächstbessere Verfahren ist die
+
+195
+00:25:11,800 --> 00:25:27,480
+bilineare Interpolation. Wir schauen uns dieses Bild hier mal an. In rot sehen wir die vier
+
+196
+00:25:27,520 --> 00:25:34,720
+Bildpunkte, für die wir alles wissen. Das sind vier Bildpunkte in dem Eingabebild. Wir wollen
+
+197
+00:25:34,720 --> 00:25:39,560
+den Grauwert oder die Farbwert hier jetzt zwischen diesen Bildpunkten haben an der Koordinate p.
+
+198
+00:25:44,560 --> 00:25:48,800
+Bei der bilinearen Interpolation wird folgendes gemacht. Sie nehmen
+
+199
+00:25:49,520 --> 00:26:01,440
+die beiden Paare der horizontal benachbarten Bildpunkte und interpolieren zwischen Q1,2 und
+
+200
+00:26:01,440 --> 00:26:07,440
+Q2,2. Sie machen eine lineare Interpolation und bestimmen den Wert R2, der die Koordinate
+
+201
+00:26:07,440 --> 00:26:15,080
+entsprechend in p hat. Das machen sie für Q1,2 und Q2,2 und sie machen es für Q1,1 und Q2,1.
+
+202
+00:26:15,400 --> 00:26:24,360
+Sie bestimmen diesen Wert hier. Das ist eine einfache lineare Interpolation. Wenn sie bei
+
+203
+00:26:24,360 --> 00:26:32,600
+Q1,1 den Grauwert 10 haben und bei Q2,1 den Grauwert 110 und wir nehmen mal an,
+
+204
+00:26:32,600 --> 00:26:38,760
+wir wollen das genau in der Mitte wissen, dann würde da 60 herauskommen. Dann haben wir also
+
+205
+00:26:38,760 --> 00:26:43,480
+diese beiden Werte und jetzt in einem zweiten Schritt wird dann interpoliert zwischen diesen
+
+206
+00:26:43,520 --> 00:26:46,960
+beiden Werten. Da wird auch wieder eine lineare Interpolation gemacht. Sie haben einen Grauwert
+
+207
+00:26:46,960 --> 00:26:52,800
+hier, einen Grauwert hier. Sie wissen, wie weit weg sie von einem dieser beiden Stützpunkte sind.
+
+208
+00:26:52,800 --> 00:26:56,320
+Also kriegen sie eine gerade hin, lesen eine gerade ab. Das ist mein Grauwert.
+
+209
+00:26:56,320 --> 00:27:12,280
+Das hier ist dann die Formel. Sie sehen vier Multiplikationen, drei Additionen. Das lässt sich
+
+210
+00:27:12,280 --> 00:27:17,680
+relativ schnell rechnen und wenn sie daran denken, so ein Bild, das kommt dann 50 mal in der Sekunde,
+
+211
+00:27:17,680 --> 00:27:26,280
+kommen da zwei Megapixel an. Beim Video sind sie damit auch schon beschäftigt.
+
+212
+00:27:27,080 --> 00:27:35,360
+Dieses bilineare Filter ist ein letztendlich ein schlechtes Tiefpassfilter. Wenn sie irgendwelche
+
+213
+00:27:35,360 --> 00:27:38,880
+Geraden haben und sie drehen das Bild, dann brechen die typischerweise nicht auf,
+
+214
+00:27:38,880 --> 00:27:50,840
+aber das gesamte Bild verliert deutlich an Schärfe. Es gibt bessere Filter, die liefern
+
+215
+00:27:50,880 --> 00:27:56,600
+ihnen Bilder, die nicht so viel an Schärfe verlieren. Ganz einfach, weil es bessere
+
+216
+00:27:56,600 --> 00:28:01,920
+Interpolations- oder Tiefpassfilter sind. Die sind dann aber auch rechenaufwendiger.
+
+217
+00:28:06,200 --> 00:28:12,920
+Ein Filter, der in weiten Bereichen konfigurierbar ist, ist dieser Michel Netravalli Filter.
+
+218
+00:28:12,920 --> 00:28:25,040
+Es handelt sich um ein kubisches Filter. Die Filterfunktion wird bestimmt aus vier
+
+219
+00:28:25,040 --> 00:28:34,440
+Stützstellen oder vier Trägern. Wir haben zwei Parameter B und C und hier können wir jetzt
+
+220
+00:28:34,600 --> 00:28:47,280
+ausrechnen, wie das Signal aussieht. Sie sehen hier die Interpolationsfunktion und wenn sie
+
+221
+00:28:47,280 --> 00:28:54,080
+jetzt verschiedene Punkte interpolieren wollen, dann sehen sie hier unten, wie diese Interpolationsfunktion,
+
+222
+00:28:54,080 --> 00:29:01,200
+die sie an verschiedene Stellen setzen, sich überlagert. Jeder Bildpunkt liefert hier rot,
+
+223
+00:29:01,240 --> 00:29:05,040
+grün, blau, gelb seinen Beitrag zum gesamten Bild innerhalb der
+
+224
+00:29:05,040 --> 00:29:11,600
+Unterstützungsbreite, innerhalb der Breite dieses Filters und das addieren sie auf.
+
+225
+00:29:18,600 --> 00:29:23,200
+Sie sehen auch, die Koordinaten gehen hier in dritter,
+
+226
+00:29:23,200 --> 00:29:28,360
+zweiter und linearer Potenz ein. Das heißt, es ist durchaus rechenaufwendig.
+
+227
+00:29:31,400 --> 00:29:37,680
+Wenn wir jetzt für einen Punkt P interpolieren wollen, dann kann man seine Nachbarn einfach mal
+
+228
+00:29:37,680 --> 00:29:46,280
+durchnummerieren. 0 bis P3 und abhängig davon, wo unser Punkt jetzt nun in Bezug auf seine
+
+229
+00:29:46,280 --> 00:29:51,680
+Nachbarn liegt, haben wir dann hier verschiedene Möglichkeiten der Interpolationsfunktion.
+
+230
+00:29:51,680 --> 00:30:07,280
+Mit Wahl der Parameter B und C beeinflussen sie offensichtlich die Filterfunktion und die
+
+231
+00:30:07,280 --> 00:30:18,600
+Ergebnisse sehen dann entsprechend unterschiedlich aus. Also hier B gleich 1, C gleich 0. Dann haben
+
+232
+00:30:18,600 --> 00:30:28,040
+sie einfach eine kubische B-Spline Interpolation. Wird in Paint verwendet. Hier sehen sie das
+
+233
+00:30:28,040 --> 00:30:36,920
+Ergebnis. Das nehmen wir jetzt einfach erst mal so hin. Wenn sie B und C anders wählen,
+
+234
+00:30:36,920 --> 00:30:53,120
+sehen sie das Bild rechts. Was fällt auf? Buchstaben sind schärfer. Was auch auffällt,
+
+235
+00:30:53,120 --> 00:31:01,160
+wenn sie sich hier einmal diese Linie anschauen, ist auf der linken Seite glatter als auf der
+
+236
+00:31:01,160 --> 00:31:08,440
+rechten Seite. Die stärkere Tiefpasscharakteristik, die wir auf der linken Seite sehen, ist für die
+
+237
+00:31:08,440 --> 00:31:18,120
+Buchstaben sicherlich eher schlecht, für die Linien vielleicht positiv. Das ist Geschmackssache. Ich
+
+238
+00:31:18,120 --> 00:31:22,880
+glaube, da muss man nicht drüber streiten. Dem einen gefällt das eine besser, dem anderen gefällt das andere besser.
+
+239
+00:31:22,880 --> 00:31:35,640
+Wir können also jetzt zum Thema geometrische Transformation und eng verbunden ist damit dann
+
+240
+00:31:35,640 --> 00:31:40,640
+auch die Interpolation feststellen, während wir bei Punktoperationen letztendlich immer im
+
+241
+00:31:40,640 --> 00:31:49,480
+Bildpunktraster bleiben und das Ausgangsbild an einer Stelle XY beeinflusst wird von dem
+
+242
+00:31:49,480 --> 00:31:55,240
+Eingangsbild an der Stelle XY mit der Umgebung ist das bei der geometrischen Transformation so,
+
+243
+00:31:55,240 --> 00:32:00,040
+dass die Bildinhalte durchaus komplett verschoben werden können. Sie können sich auch vorstellen,
+
+244
+00:32:00,040 --> 00:32:08,080
+dass sie Translationen haben oder eine geometrische Transformation, zum Beispiel Translation, die sie
+
+245
+00:32:08,080 --> 00:32:13,680
+nicht auf das komplette Bild anwenden, sondern nur auf Teile des Bildes macht jeder Videodekoder.
+
+246
+00:32:13,800 --> 00:32:19,880
+Also wenn ich mich hier jetzt so bewege, dann wird von dem vorangegangenen Bild im statischen
+
+247
+00:32:19,880 --> 00:32:27,160
+Hintergrund der Inhalt nicht verschoben und da, wo ich mich bewege, wird dann der Inhalt mehr oder
+
+248
+00:32:27,160 --> 00:32:31,720
+weniger gleichmäßig in die eine Richtung bewegt. Wenn ich jetzt über die Hände gegenläufig bewege,
+
+249
+00:32:31,720 --> 00:32:36,640
+dann werden die Bildinhalte eben der einen Seite nach links und auf der anderen Seite nach rechts.
+
+250
+00:32:36,640 --> 00:32:45,840
+Vorwärts- und rückwärts Transformation haben wir besprochen. An sich ist es egal,
+
+251
+00:32:45,840 --> 00:32:53,200
+wie sie das machen. Es ist immer eine Frage, welches Bild durchlaufen sie vollständig.
+
+252
+00:32:53,200 --> 00:33:00,840
+Bei der Vorwärts-Transformation gehen sie über das gesamte Eingabebild und rechnen
+
+253
+00:33:00,840 --> 00:33:05,640
+den Bildpunkt für das Ausgangsbild. Bei der Rückwärts-Transformation laufen sie über das
+
+254
+00:33:05,640 --> 00:33:12,080
+gesamte Ausgangsbild und gucken, wo könnte dann der Bildpunkt im Eingangsbild gewesen sein. Egal,
+
+255
+00:33:12,080 --> 00:33:16,080
+welche Transformation sie anwenden, vorwärts oder rückwärts, sie müssen in der Lage sein,
+
+256
+00:33:16,080 --> 00:33:25,560
+zu interpolieren. Der nächste Nachbarfilter ist sicherlich der einfachste. Den würde ich
+
+257
+00:33:25,640 --> 00:33:35,440
+aber definitiv nicht empfehlen. Auch das bilineare Filter war vor 20 Jahren häufig
+
+258
+00:33:35,440 --> 00:33:41,760
+ein Filter, was eingesetzt wurde. Aber heute setzt man eigentlich schon mehr diese höherwertigen
+
+259
+00:33:41,760 --> 00:33:47,320
+Filter ein. Zum Beispiel ein Michel Netravalli-Filter mit einer von ihnen gewählten Kombination von B
+
+260
+00:33:47,320 --> 00:33:54,800
+und C. B und C, da können Sie in der Literatur nachschauen. Sie können das an sich beliebig
+
+261
+00:33:54,920 --> 00:34:00,640
+wählen, aber es gibt Bilder, wo man sehen kann, welche Kombinationen welche Effekte auf die
+
+262
+00:34:00,640 --> 00:34:12,040
+Interpolation haben. Die elementare Bildverarbeitung kommt zu einem Ende. Die Punktoperationen,
+
+263
+00:34:12,040 --> 00:34:18,200
+lokale Operationen, das waren die Punktoperationen, da addieren Sie nur was auf jeden Bildpunkt drauf.
+
+264
+00:34:18,440 --> 00:34:25,040
+Lokale Operationen, das war Filterung, Faltung, sind da die Begriffe. Globale Operationen,
+
+265
+00:34:25,040 --> 00:34:38,080
+das sind typischerweise Transformationen. Zu dem Punkt Operationen wichtig ist auch da der
+
+266
+00:34:38,080 --> 00:34:41,120
+Histogrammausgleich, den haben wir schon besprochen. Das macht man durchaus, um die
+
+267
+00:34:41,120 --> 00:34:48,880
+Bilder letztendlich für den Menschen attraktiver zu gestalten. Sie erinnern sich, wir haben ein
+
+268
+00:34:48,880 --> 00:34:56,200
+Histogramm. Beim Histogrammausgleich sind im Bild nur Grauwerte von 20 bis 50 drin und nach
+
+269
+00:34:56,200 --> 00:35:03,200
+einem Histogrammausgleich verteilen Sie diese 31 verschiedenen Grauwerte auf das Intervall 0 bis
+
+270
+00:35:03,200 --> 00:35:12,640
+250 oder 255. Wenn Sie jetzt auf die Bilder mit einem Computer losgehen, dann kann der
+
+271
+00:35:12,640 --> 00:35:18,920
+Computer 20 und 21 voneinander unterscheiden. In unserem Auge können wir das nicht. Deswegen ist
+
+272
+00:35:18,920 --> 00:35:25,400
+das Bild, für das wir einen Histogrammausgleich vorgenommen haben, für den Menschen durchaus
+
+273
+00:35:25,400 --> 00:35:28,680
+attraktiver. Für einen Computer ist das letztendlich egal. Es ist ja nur wichtig,
+
+274
+00:35:28,880 --> 00:35:36,120
+dass sich die Zahlen unterscheiden. Entrauschung durch Bildmittlung, haben wir darüber gesprochen.
+
+275
+00:35:36,120 --> 00:35:41,480
+Lokale Operationen, Filter hatten wir letztes Mal und heute nicht. Lineare Operationen,
+
+276
+00:35:41,480 --> 00:35:50,280
+Medianfilter, da werden wir sicherlich noch mal weiter reinschauen in diese Lokale Operationen,
+
+277
+00:35:50,280 --> 00:35:57,240
+weil das sind die nicht so ganz trivialen Dinge. Dann gibt es die globalen Transformationen,
+
+278
+00:35:57,400 --> 00:36:01,680
+typischerweise irgendwelche Transformationen, wo Sie versuchen, das Bild im Frequenzbereich
+
+279
+00:36:01,680 --> 00:36:06,520
+zu analysieren und wir haben geometrische Transformationen, wo Bildinhalte gegeneinander
+
+280
+00:36:06,520 --> 00:36:11,360
+zu verschieben oder zu verformen oder ein Bild auf eine andere Form abzubilden.
+
+281
+00:36:12,360 --> 00:36:21,040
+Dann gehen wir jetzt weiter zur signalorientierten Bildverarbeitung.
+
+282
+00:36:28,440 --> 00:36:36,280
+Wir haben den Begriff des Ortsbereichs. Wir befinden uns in den Bildkoordinaten.
+
+283
+00:36:37,280 --> 00:36:46,640
+Wie Sie es aus der Systemtheorie kennen, es gibt den Einheitsimpuls. Das gesamte Bild ist 0. An
+
+284
+00:36:46,640 --> 00:36:54,880
+einer Stelle haben wir eine 1. Es gibt Filterung und Falterung und wenn Sie so eine Filterung
+
+285
+00:36:54,880 --> 00:36:58,680
+oder Falterungsapparat haben, dann können Sie dann natürlich einen Einheitsimpuls drauf geben
+
+286
+00:36:58,680 --> 00:37:06,440
+und Sie kriegen dann die Impulsantwort. Diese Filterung im Ortsbereich.
+
+287
+00:37:11,120 --> 00:37:14,320
+Wir sind jetzt hier im zweidimensionalen Ortsbereich. Vorher in der Systemtheorie
+
+288
+00:37:14,320 --> 00:37:21,320
+hatten Sie wahrscheinlich eindimensional die Zeitachse. Diese Filterung im Ortsbereich,
+
+289
+00:37:21,320 --> 00:37:24,680
+zumindest solange es sich um eine lineare Filterung hat, können wir auch im Frequenzbereich
+
+290
+00:37:24,960 --> 00:37:28,040
+durchführen. Dann brauchen wir eine VE-Transformation, eine zweidimensionale
+
+291
+00:37:28,040 --> 00:37:33,880
+VE-Transformation und dann können wir auch im Frequenzbereich filtern. Von der Nomenklatur
+
+292
+00:37:33,880 --> 00:37:43,560
+her im Ortsbereich haben wir kleine Buchstaben, zum Beispiel ein Bild f von t. Das falten wir mit
+
+293
+00:37:43,560 --> 00:37:52,040
+unserem Filter g von t oder g von xy. Draus kommt h und im Frequenzbereich haben wir das
+
+294
+00:37:52,040 --> 00:37:58,480
+gleiche mit großen Buchstaben. Wir haben f von Omega oder j Omega bekommen, ein g von j Omega.
+
+295
+00:37:58,480 --> 00:38:10,080
+Okay, das hier ist ein Tippfehler. Das müsste ein h von j Omega sein. Aus der Impulsantwort g wird
+
+296
+00:38:10,080 --> 00:38:34,480
+dann die Übertragungsfunktion g von j Omega. Wir werden bei diesem Thema jetzt
+
+297
+00:38:34,800 --> 00:38:49,560
+das Bild als Signal darstellen, Transformationen bestimmen. In der Systemtheorie spricht man häufig
+
+298
+00:38:49,560 --> 00:38:55,280
+von linearen Zeitinvarianten-Systemen. Zeit haben wir zumindest bei Bildern nicht. Bei Videos haben
+
+299
+00:38:55,280 --> 00:39:02,120
+sie Zeit, bei Bildern nicht. Hier sprechen wir dann von Bildern von linearen Shift-Invarianten-Systemen.
+
+300
+00:39:02,240 --> 00:39:09,360
+Es gibt das Problem der Abtastung, der Rekonstruktion. Ein Abtastheorien gibt es.
+
+301
+00:39:09,360 --> 00:39:15,280
+Bilder werden wir transformieren, werden wir filtern und dann auch die ganzen Transformationen uns anschauen.
+
+302
+00:39:15,280 --> 00:39:30,920
+Okay, zu den Transformationen. Wir nehmen an f ist ein Vektor im Hilbert Raum und wir haben b
+
+303
+00:39:31,080 --> 00:39:40,240
+eine Orthonormalbasis in diesem Raum, die den Raum beschreibt und dann können wir f darstellen
+
+304
+00:39:40,240 --> 00:39:55,720
+als gewichtete Summe dieser Basis. Wir transformieren also ein Signal f in den
+
+305
+00:39:55,720 --> 00:40:05,080
+Frequenzbereich. Darstellung wird sein, kleine Buchstaben im Ortsbereich, große Buchstaben im
+
+306
+00:40:05,080 --> 00:40:12,120
+Frequenzbereich und hier dieses Transformationssymbol im Ortsbereich, den Kreis im Frequenzbereich,
+
+307
+00:40:12,120 --> 00:40:19,920
+den Punkt. Eigenschaft einer solchen Transformation ist, das Skalarprodukt bleibt erhalten.
+
+308
+00:40:19,920 --> 00:40:34,920
+Hier jetzt die Darstellung der Fourier-Transformation, hier Ortsbereich, hier Frequenzbereich. Sie erinnern
+
+309
+00:40:34,920 --> 00:40:40,080
+sich, die Fourier-Transformation liefert in Betrag und Phase oder die Fourier-Transformation ist eine
+
+310
+00:40:40,080 --> 00:40:50,560
+komplexe Transformation. Wir haben jetzt bei dieser Transformation, Fourier-Transformation
+
+311
+00:40:50,560 --> 00:40:57,400
+liefert Ihnen ja auch den gleichen Anteil, der die Koordinate 0,0 typischerweise hat.
+
+312
+00:40:57,400 --> 00:41:01,760
+Diesen gleichen Anteil oder diese Koordinate 0,0 haben wir in den Mittelpunkt geschoben,
+
+313
+00:41:01,760 --> 00:41:11,280
+sodass wir dann in diese Richtung steigende horizontale Frequenzen haben und in die
+
+314
+00:41:11,280 --> 00:41:24,920
+Richtung steigende vertikale Frequenzen. Wir sehen hier oben das Betragsbild und unten das Phasenbild.
+
+315
+00:41:24,920 --> 00:41:37,120
+Die niedrigen Frequenzen sind dann die, die um 0 herum liegen. Die hohen Frequenzen sind weiter
+
+316
+00:41:37,120 --> 00:41:45,880
+weg von 0. Hier ist jetzt ein Kreis eingezeichnet, nur zur Darstellung, also ein Kreis mit dem Wort
+
+317
+00:41:45,880 --> 00:41:53,440
+low. Wo sind diese tiefen Frequenzen? Der Übergang von tiefen zu hohen Frequenzen ist nicht klar
+
+318
+00:41:53,440 --> 00:41:57,040
+definiert. Es geht hier nur darum, Ihnen zu sagen, in der Mitte sind die tiefen Frequenzen.
+
+319
+00:42:01,720 --> 00:42:10,920
+Auf der Kreislinie liegen dann die Werte mit gleicher Frequenz. Hier haben wir eine horizontale
+
+320
+00:42:10,920 --> 00:42:14,080
+Frequenz, eine vertikale Frequenz und hier haben wir dann die Mischfrequenzen, die insgesamt die
+
+321
+00:42:14,080 --> 00:42:23,760
+gleiche Frequenz ergeben. In dem Betragsbild können Sie das eine oder andere erkennen. Sie
+
+322
+00:42:23,760 --> 00:42:30,800
+können zumindest erkennen, bei welchen Frequenzen Sie viel Energie haben. In dem Phasenbild sehe
+
+323
+00:42:30,800 --> 00:42:50,960
+ich persönlich nichts. Müsste es nicht in Kapitel 4.1 weitergehen? Ja, ich habe mich eben auch
+
+324
+00:42:50,960 --> 00:43:08,560
+gewundert. Ich gehe mal gucken. Wir betrachten das Bild also als Signal und damit können Sie aus
+
+325
+00:43:08,560 --> 00:43:15,000
+Systemtheorie oder Signaltheorie letztendlich alles verwenden, was Sie dort gelernt haben bei
+
+326
+00:43:15,000 --> 00:43:23,400
+der Filterung von Bildern. Zumindest alles, was lineare Operationen angeht. Das hatten wir gerade.
+
+327
+00:43:23,400 --> 00:43:38,720
+Hier, das muss ein H sein. Wenn wir ein Bild im Transformationsbereich darstellen wollen,
+
+328
+00:43:38,720 --> 00:43:48,400
+ist das häufig ein Hilfsmittel, um zu verstehen, was da passiert. Wir können letztendlich im
+
+329
+00:43:48,400 --> 00:43:54,520
+Transformationsbereich leichter die Eigenschaften von Filtern beschreiben. Wir werden diese
+
+330
+00:43:54,520 --> 00:44:02,480
+Bildverarbeitung einsetzen, um Bilder zu restaurieren, Störungen rückgängig zu machen. Störungen, weil
+
+331
+00:44:02,640 --> 00:44:09,360
+wir haben ein altes Foto, was gestört ist. Sie haben ein Bild, was Sie übertragen über einen
+
+332
+00:44:09,360 --> 00:44:18,680
+fehlerbehafteten Kanal und die Kanalkorrektur hat nicht ausreichend funktioniert. Wir können auch
+
+333
+00:44:18,680 --> 00:44:26,280
+mithilfe der ganz klassischen signalorientierten Bildverarbeitung Merkmale aus Bildern extrahieren,
+
+334
+00:44:26,280 --> 00:44:31,480
+die vielleicht für eine spätere, weitere Bildanalyse von Bedeutung sind. Was weiß ich,
+
+335
+00:44:31,480 --> 00:44:41,560
+Gradienten, Kanten, Ecken und so weiter. Das kontinuierliche Signal kennen Sie.
+
+336
+00:44:41,560 --> 00:44:53,120
+Die Zeit läuft seit immer bis in alle Ewigkeit. Manchmal ist die Zeit auch nur für ein gewisses
+
+337
+00:44:53,120 --> 00:44:59,680
+Intervall definiert. Sie können sich vorstellen, für Bilder sind sie örtlich begrenzt. Da wird
+
+338
+00:44:59,680 --> 00:45:09,320
+dieses f von xy dann sicherlich begrenzt sein. Wenn wir ein Zeit- oder Ortsdiskretessignal haben,
+
+339
+00:45:09,320 --> 00:45:17,600
+dann haben wir da einen Index i typischerweise statt einem t. Das i kann natürlich von minus
+
+340
+00:45:17,600 --> 00:45:25,160
+und endlich bis plus und endlich laufen. Für Bilder läuft es normalerweise von 0 bis n-1,
+
+341
+00:45:25,160 --> 00:45:32,720
+wenn wir dann n Bildpunkte in einer Zeile haben. Das kontinuierliche Signal könnte man so
+
+342
+00:45:32,720 --> 00:45:39,120
+visualisieren. Hier haben wir das diskrete Signal. Bei dem diskreten Signal in der Systemtheorie hat
+
+343
+00:45:39,120 --> 00:45:43,680
+man häufig von einem delta t gesprochen. Wir sprechen hier von einem delta x1. Das ist letztendlich der
+
+344
+00:45:43,680 --> 00:45:55,520
+Bildpunktabstand. Der ist erstmal durch ihren Sensor vorgegeben. Wenn wir ein periodisches
+
+345
+00:45:55,520 --> 00:46:02,720
+Signal haben, dann gilt, dass sich die Funktionswerte wiederholen mit der Periode.
+
+346
+00:46:02,720 --> 00:46:14,720
+Das kann man im diskreten dann auch so darstellen, dass f von i gleich f von i plus n mal n ist,
+
+347
+00:46:14,720 --> 00:46:24,720
+wobei groß n dann die Größe des Bildes wäre. Was sie aus der Systemtheorie normalerweise nicht
+
+348
+00:46:24,720 --> 00:46:29,360
+kennen, ist das mehrdimensionale Signal. Das ist jetzt aber konzeptionell nicht so schwer,
+
+349
+00:46:29,480 --> 00:46:33,600
+weil Bilder kennen wir schon lange. Die sind zweidimensional. Wir haben eine x-Koordinate,
+
+350
+00:46:33,600 --> 00:46:42,040
+eine y-Koordinate und die ist normalerweise begrenzt. Also die Laufindizes laufen von 0
+
+351
+00:46:42,040 --> 00:46:47,920
+bis n-1 und von 0 bis n-1. Die Bilder müssen ja nicht quadratisch sein, sondern die können ja auch
+
+352
+00:46:47,920 --> 00:46:57,280
+rechteckig sein. Das bedeutet dann, während wir im kontinuierlichen hier so eine liebig geformte
+
+353
+00:46:57,640 --> 00:47:03,760
+Funktion haben, haben wir dann im diskreten letztendlich an den Koordinaten Deltaimpulse,
+
+354
+00:47:03,760 --> 00:47:07,880
+denen wir das Signal repräsentieren oder gewichtete Einheitsimpulse.
+
+355
+00:47:13,320 --> 00:47:21,080
+Unsere Bilder typischerweise sind endlich und ortsdiskret. Das ist also die Beschreibung.
+
+356
+00:47:21,080 --> 00:47:33,840
+Schauen wir uns jetzt erstmal Transformationen an. Also was sehen wir im Frequenzbereich?
+
+357
+00:47:33,840 --> 00:47:45,800
+Grundlage liefert die Fourier-Transformation. Zu sehen gibt es schon lange. Das heißt,
+
+358
+00:47:46,600 --> 00:47:54,120
+jede Funktion, die nur von einer Variablen abhängt, kann als gewichtete Summe von Sinus- und
+
+359
+00:47:54,120 --> 00:48:01,240
+Kosinusfunktionen dargestellt werden. Das hat uns Herr Fourier erzählt. Das gilt auch im
+
+360
+00:48:01,240 --> 00:48:06,920
+zweidimensionalen. Dann haben wir eben Produkte von Sinus- und Kosinusfunktionen.
+
+361
+00:48:07,040 --> 00:48:23,360
+Die Fourier-Reihe, die ein Signal so darstellt, ist dann die Summe von diesen Fourier-Koeffizienten,
+
+362
+00:48:23,360 --> 00:48:29,320
+die diese Sinus- und Kosinusgewichteten Sinus- und Kosinuskomponenten enthalten.
+
+363
+00:48:29,320 --> 00:48:40,680
+Der Grund, warum das interessant ist, ist, wir können das Signal im Frequenzraum beschreiben und
+
+364
+00:48:40,680 --> 00:48:54,520
+das ist uns eigentlich einigängiger für den Menschen. Ist ein Signal eher hochfrequent oder
+
+365
+00:48:54,600 --> 00:49:02,040
+tieffrequent, das kann man natürlich in Grenzen auch einem Zeitsignal ansehen, aber im Frequenzbereich
+
+366
+00:49:02,040 --> 00:49:13,000
+wird das alles viel offensichtlicher. Hier wird gesprochen. Handelt sich das um eine hohe oder
+
+367
+00:49:13,000 --> 00:49:21,920
+eine tiefe Stimme? Das können Sie an diesem Spektrum sicherlich eher sehen, als wenn Sie
+
+368
+00:49:21,920 --> 00:49:31,400
+jetzt ein Sprachbeispiel von einem Mann und einer Frau sehen würden, würden die im Ortsbereich
+
+369
+00:49:31,400 --> 00:49:37,160
+letztendlich gleich aussehen. Aber im Frequenzbereich würden Sie dann einen deutlichen Unterschied sehen,
+
+370
+00:49:37,160 --> 00:49:42,800
+bei Männern typischerweise mehr tiefe Frequenzen, bei Frauen mehr hohe Frequenzen.
+
+371
+00:49:42,800 --> 00:49:54,200
+Wir brauchen jetzt, um an diesen Frequenzbereich zu kommen, ein paar Begriffe. Wir müssen wissen,
+
+372
+00:49:54,200 --> 00:50:02,000
+was im Linearraum ist, im Vektorraum. Lineare Unabhängigkeit, Orthogonalität von Vektoren,
+
+373
+00:50:02,000 --> 00:50:10,160
+ist da wichtig, das Skalarprodukt und allgemeiner Typologieentwicklung. Sind letztendlich alles
+
+374
+00:50:10,160 --> 00:50:16,240
+Begrifflichkeiten, die Sie zum großen Teil, denke ich, aus der Mathematik erkennen. Ein
+
+375
+00:50:16,240 --> 00:50:20,320
+linearer Raum, das ist letztendlich auch der Raum, den wir so als Mensch fühlen,
+
+376
+00:50:20,320 --> 00:50:30,760
+wird als Vektorraum bezeichnet und in diesem Vektorraum haben wir Vektoren. Zum Beispiel Vektoren im Raum,
+
+377
+00:50:30,920 --> 00:50:42,280
+x, y, z. Sie können aber auch ein zeitdiskretes Signal haben und dann nehmen Sie 1000 Abfasswerte,
+
+378
+00:50:42,280 --> 00:50:52,160
+dann haben Sie auch einen Vektor der Dimensionen 1000 mal 1. Sie können die Menge aller stetigen
+
+379
+00:50:52,160 --> 00:50:57,440
+Funktionen nehmen, die Sie auf einem Intervall definiert haben oder auch die Menge der Matrizen,
+
+380
+00:50:57,440 --> 00:51:09,600
+der ortsdiskreten Bildsignale. Also Sie können jedes Bild auch als Vektor darstellen.
+
+381
+00:51:09,600 --> 00:51:22,840
+Vektoren, das ist, wenn Sie einen Raum aufspannen, wichtig. Da müssen wir die Möglichkeit haben,
+
+382
+00:51:23,160 --> 00:51:29,800
+Unabhängigkeit von Vektoren zu bestimmen. Wenn wir hier einen linearen Raum haben und wir haben
+
+383
+00:51:29,800 --> 00:51:40,640
+die Vektoren x in diesem linearen Raum und hier ein paar Gewichtungsfaktoren, dann sind diese Vektoren
+
+384
+00:51:40,640 --> 00:51:54,880
+x1 bis xn linear unabhängig, wenn sie durch die gewichtete Überlagerung dieser Vektoren
+
+385
+00:51:54,880 --> 00:52:01,000
+kein Nullvektor erzeugen können. Es sei denn, alle Lambdas sind Null.
+
+386
+00:52:01,000 --> 00:52:12,320
+Die maximale Anzahl linear unabhängiger Vektoren ergibt dann die Dimension des Raumes an. Im
+
+387
+00:52:12,320 --> 00:52:16,920
+Zweidimensionalen klassisch haben wir dann zwei Vektoren, die das Lenkrecht aufeinander stehen,
+
+388
+00:52:16,920 --> 00:52:22,000
+die diesen Raum aufspannen und wenn Sie jetzt einen dritten Vektor haben, können Sie den immer
+
+389
+00:52:22,000 --> 00:52:28,360
+durch Kombination dieser anderen beiden Vektoren darstellen. Damit ist die Dimensionalität 2 und
+
+390
+00:52:28,520 --> 00:52:33,880
+das ähnliche können Sie auch im Raum machen. Dann sind Sie bei drei Dimensionen. Wir haben
+
+391
+00:52:33,880 --> 00:52:39,880
+Einheitsvektoren. Bei den Raumkoordinaten oder Bildkoordinaten haben wir dann an einer Stelle
+
+392
+00:52:39,880 --> 00:52:50,880
+eine 1 und ansonsten Nullen. Hier e1, e2, en. Das müsste dann groß en sein, weil wir, also hier
+
+393
+00:52:50,880 --> 00:52:56,880
+steht rn. Bei Bildern haben wir dann ja ein kleines n, typischerweise ein großes n für die
+
+394
+00:52:56,880 --> 00:53:05,280
+Dimensionalität und wir können auch mehrdimensional das aufziehen. Wir können Matrizen der Größe n
+
+395
+00:53:05,280 --> 00:53:13,720
+mal m definieren und bei diesen Matrizen haben wir dann Einheitsmatrizen, nicht Einheitsvektoren.
+
+396
+00:53:13,720 --> 00:53:18,320
+Die Einheitsmatrizen können Sie auch als Einheitsvektoren bezeichnen. Wichtig ist, diese
+
+397
+00:53:18,320 --> 00:53:23,120
+Matrix ist überall 0 und an einer Stelle ist die 1 und dann haben wir das nicht nur in einer
+
+398
+00:53:23,120 --> 00:53:30,880
+Reihe, wie hier, dass es laufen kann, sondern es läuft im Zweidimensionalen. Das ist also eine
+
+399
+00:53:30,880 --> 00:53:38,280
+irgendwo konsistente Erweiterung dessen, was wir aus dem Eindimensionalen können. Wir können jetzt
+
+400
+00:53:38,280 --> 00:53:47,960
+einen beliebigen Vektor x im Vektorraum als Summe der Einheitsvektoren darstellen, als gewichtete
+
+401
+00:53:48,000 --> 00:53:56,640
+Summe. Hier haben wir die Einheitsvektoren. Jeder Einheitsvektor kriegt einen entsprechenden
+
+402
+00:53:56,640 --> 00:54:04,760
+Gewichtungsfaktor. Das wird alles aufsummiert und damit können wir dann jeden Vektor x in
+
+403
+00:54:04,760 --> 00:54:15,960
+unserem Raum darstellen. Bei Bildern sind wir im Zweidimensionalen, typischerweise die Dimension
+
+404
+00:54:15,960 --> 00:54:26,480
+n mal m. Das heißt, ein Bild f stellen wir dar durch Gewichtung des Einheitsvektors oder der
+
+405
+00:54:26,480 --> 00:54:36,320
+Einheitsmatrix, die eine 1 an der Stelle xy hat, mit einem Faktor fxy. Das könnte der Grauwert an
+
+406
+00:54:36,320 --> 00:54:47,560
+der Stelle xy sein. Dann summieren wir auf über alle Bildpunkte. Da diese Einheitsvektoren an
+
+407
+00:54:47,560 --> 00:54:54,960
+einer Stelle 1 sind, wird auch jeder Einheitsvektor mit dem zugehörigen Gewichtungsfaktor nur einmal
+
+408
+00:54:55,160 --> 00:54:58,440
+berücksichtigt und so kriegen wir das Bild f zusammen.
+
+409
+00:54:58,440 --> 00:55:13,400
+Sie kennen das Skalarprodukt, definiert in einem linearen Raum über einem Körper,
+
+410
+00:55:13,400 --> 00:55:25,160
+wo die entsprechenden Operationen definiert sind. Für ein Skalarprodukt muss gelten,
+
+411
+00:55:25,160 --> 00:55:37,880
+wenn wir das Skalarprodukt von j mal g bilden, muss das größer als 0 sein für alle g in e,
+
+412
+00:55:37,880 --> 00:55:54,640
+ausgenommen für den Nullvektor. Das Skalarprodukt von f mal g
+
+413
+00:55:54,640 --> 00:56:05,200
+muss gleich dem konjugiert komplexen Skalarprodukt von g mal f sein.
+
+414
+00:56:05,200 --> 00:56:13,240
+Normalerweise sagen wir, das Skalarprodukt a mal b ist gleich b mal a. Das gilt aber nicht
+
+415
+00:56:13,240 --> 00:56:19,240
+für komplexe Zahlen oder komplexe Vektoren. Wenn wir komplexe Vektoren haben, müssen wir das hier
+
+416
+00:56:19,240 --> 00:56:28,960
+berücksichtigen. Ich war diese Woche in einer Doktorprüfung, da war das eine Frage, die zu
+
+417
+00:56:28,960 --> 00:56:37,600
+interessanten Einsichten führte. Dann handelt es sich hier um eine lineare Operation, also Skalarprodukt
+
+418
+00:56:37,600 --> 00:56:46,200
+von einem gewichteten Vektor, noch einem gewichteten Vektor mit einem Vektor h. Da können sie auch die
+
+419
+00:56:46,200 --> 00:56:57,280
+Summe hier auflösen, zwei Summen. Die Addition letztendlich nach der Skalarproduktbildung und
+
+420
+00:56:57,280 --> 00:57:00,360
+nach der Gewichtung mit diesen Faktoren Alpha und Beta durchführen.
+
+421
+00:57:06,840 --> 00:57:11,560
+Der Unterschied zwischen einem unitären und einem euclidischen Raum ist, der euclidische Raum, das ist das,
+
+422
+00:57:11,560 --> 00:57:22,520
+was wir in der Welt so erleben. Der ist ein linearer Raum definiert für reelle Zahlen mit Skalarprodukt.
+
+423
+00:57:22,760 --> 00:57:29,840
+Der unitäre Raum, das ist letztendlich das gleiche, nur dass da auch die komplexen Zahlen mit
+
+424
+00:57:29,840 --> 00:57:36,960
+berücksichtigt sind. Also im euclidischen Raum haben wir das konjugierte Komplexe nicht. Da gilt das Skalarprodukt
+
+425
+00:57:36,960 --> 00:57:43,240
+von A mal B ist im Skalarprodukt von B mal A identisch. Beim unitären Raum spielt das hier
+
+426
+00:57:43,240 --> 00:57:53,240
+dann eben das zu berücksichtigen. Das Skalarprodukt berechnen sie durch komponentenweise Multiplikation
+
+427
+00:57:53,240 --> 00:57:59,800
+und Aufsummation der Ergebnisse. Also hier sehen sie die Schreibweise für ein Skalarprodukt. Wir
+
+428
+00:57:59,800 --> 00:58:06,240
+haben das kleine und größere Zeichen dazwischen die beiden Vektoren, die wir miteinander multiplizieren
+
+429
+00:58:06,240 --> 00:58:15,480
+wollen. Im euclidischen Raum komponentenweise Multiplikation und Addition. Im unitären Raum,
+
+430
+00:58:15,480 --> 00:58:23,120
+wenn wir komplexe Zahlen haben, dann machen wir auch die komponentenweise Multiplikation und
+
+431
+00:58:23,120 --> 00:58:29,160
+Addition, wobei wir aber den einen Vektor konjugiert komplex berücksichtigen.
+
+432
+00:58:30,160 --> 00:58:40,880
+Sie können das auch für Funktionen definieren. Hier integrieren wir über das Intervall AB das
+
+433
+00:58:40,880 --> 00:58:48,360
+Produkt der Funktionen und wenn sie dann das Skalarprodukt in zweidimensionalen berechnen
+
+434
+00:58:48,360 --> 00:58:55,800
+wollen, dann nehmen sie hier für den euclidischen Raum diese Definition und erweitern sie auf
+
+435
+00:58:55,960 --> 00:59:02,280
+Zwei-Dimensionen. Das heißt wir müssen über beide Raumkoordinaten oder Ortskoordinaten
+
+436
+00:59:02,280 --> 00:59:09,640
+aufsummieren und da haben wir jeweils das Gewicht der Bildpunkte, die am gleichen Ort stehen.
+
+437
+00:59:16,320 --> 00:59:21,880
+Vektoren sind orthogonal, wenn das Skalarprodukt dieser beiden Vektoren 0 ergibt.
+
+438
+00:59:26,080 --> 00:59:30,080
+F und G sind orthogonal für Skalarprodukte gleich 0.
+
+439
+00:59:40,240 --> 00:59:48,600
+Ein Orthogonalsystem besteht, wenn wir hier
+
+440
+00:59:48,840 --> 00:59:59,520
+diese Vektoren F und G haben, die zu unserer Menge gehören. Sie seien unterschiedlich und
+
+441
+00:59:59,520 --> 01:00:08,200
+wenn das Skalarprodukt von F von G größer gleich 0 ist, dann gehören die zu einem
+
+442
+01:00:08,320 --> 01:00:20,520
+Orthogonalsystem. Das Null-Element, der Nullvektor gehört nicht dazu und wenn diese Vektoren
+
+443
+01:00:20,520 --> 01:00:28,920
+letztendlich alle normiert sind, also das Skalarprodukt 1 oder 0 ist, dann sprechen
+
+444
+01:00:28,920 --> 01:00:35,120
+wir von einer Orthonormalbasis. Das ist das, was wir typischerweise haben. Im euclidischen Raum werden
+
+445
+01:00:35,120 --> 01:00:43,560
+wir alle sagen die Koordinaten x, y, z. Die Einheiten werden gleich groß und damit haben wir
+
+446
+01:00:43,560 --> 01:00:50,960
+dann eine Orthonormalbasis. Bei Bildern muss das nicht so sein. Der Bildpunktabstand in
+
+447
+01:00:50,960 --> 01:01:00,240
+horizontaler Richtung und in vertikaler Richtung kann unterschiedlich sein. Kameras für industrielle
+
+448
+01:01:00,240 --> 01:01:05,160
+Anwendungen haben normalerweise quadratische Bildpunkte. Das heißt, die Bildpunkte haben den
+
+449
+01:01:05,160 --> 01:01:12,440
+gleichen Abstand in vertikaler und horizontaler Richtung. Bei manchen Fernsehkameras, Videokameras
+
+450
+01:01:12,440 --> 01:01:19,720
+sind die Bildpunkte rechteckig. Da hätten wir dann letztendlich keine Orthonormalbasis. Aber
+
+451
+01:01:19,720 --> 01:01:25,680
+der Unterschied zwischen den rechteckigen und den quadratischen Bildpunkten, der ist relativ klein.
+
+452
+01:01:25,800 --> 01:01:30,440
+Sie sehen es manchmal, wenn sie einen Computermonitor nehmen, der hat quadratische
+
+453
+01:01:30,440 --> 01:01:34,840
+Bildpunkte. Wenn sie da einen Kreis haben und den stellen sie dann auf dem Fernseher dar,
+
+454
+01:01:34,840 --> 01:01:41,240
+dann wird das eine Ellipse. Aber da müssen wir schon genau hinschauen. Auf den ersten Blick fällt das nicht auf.
+
+455
+01:01:41,240 --> 01:01:56,240
+Das hatten wir schon für die Definition der Fouillet-Transformation. Wir haben hier die
+
+456
+01:01:56,240 --> 01:02:04,520
+Fouillet-Reihe. Das Signal setzt sich zusammen aus den Basisfunktionen und den Fouillet-Koeffizienten.
+
+457
+01:02:04,520 --> 01:02:10,120
+Hier haben wir die Darstellung im Ortsbereich kleiner Buchstaben, im Frequenzbereich großer
+
+458
+01:02:10,120 --> 01:02:13,200
+Buchstaben, im Ortsbereich der Kreise, im Frequenzbereich der Punkte.
+
+459
+01:02:20,280 --> 01:02:25,720
+Jetzt mal ein Beispiel für eine unitäre Transformation. Wir haben hier jetzt mal ein
+
+460
+01:02:25,720 --> 01:02:31,320
+Bild fxy, vier Bildpunkte, ein kleines Bild mit drei verschiedenen Grauwerten.
+
+461
+01:02:31,320 --> 01:02:54,800
+Bei den Basisvektoren haben wir hier vier Stück und diese vier Vektoren stehen sicherlich alle
+
+462
+01:02:54,800 --> 01:03:00,640
+senkrecht aufeinander. Die Frage ist jetzt, wie können wir jetzt dieses Bild
+
+463
+01:03:01,640 --> 01:03:06,200
+f von xy durch diese Basisfunktionen darstellen.
+
+464
+01:03:15,040 --> 01:03:21,680
+Wir können jetzt als erstes mal gucken, ob wir hier eine unitäre Transformation überhaupt
+
+465
+01:03:21,680 --> 01:03:30,360
+vorliegen haben. Dazu muss das Skalarprodukt von einem Vektor mit sich selbst 1 ergeben
+
+466
+01:03:30,360 --> 01:03:35,120
+und alle anderen Skalarprodukte der Basisvektoren mit den anderen Basisvektoren muss 0 ergeben.
+
+467
+01:03:35,120 --> 01:03:45,400
+Wenn wir jetzt mal b0 mit sich selbst multiplizieren, dann werden wir 1 mal 1 rechnen,
+
+468
+01:03:45,400 --> 01:03:53,880
+4 mal kommt 4 raus und wir teilen durch und halb mal ein halb ist 1. Wenn Sie das mit dem
+
+469
+01:03:53,880 --> 01:03:58,320
+multiplizieren, dann können Sie sich vorstellen, hier haben wir zwei Minuszeichen, zwei mal ein
+
+470
+01:03:58,320 --> 01:04:05,440
+Pluszeichen, das wird dann 0 werden. Das gleiche gilt hier für die Kombination von b0 mit den
+
+471
+01:04:05,440 --> 01:04:16,800
+anderen Basisbildern. Sie können das auch sehen, wenn Sie b1 mit b2 multiplizieren,
+
+472
+01:04:16,800 --> 01:04:22,440
+Sie kriegen hier Minuszeichen, hier kriegen Sie Pluszeichen, hier kriegen Sie wieder Minuszeichen,
+
+473
+01:04:22,440 --> 01:04:25,840
+hier kriegen Sie Pluszeichen, zweimal Minuszeichen, zweimal Pluszeichen, wird auch 0 rauskommen.
+
+474
+01:04:26,000 --> 01:04:29,560
+Das kann man durchprobieren, kommt raus, das ist eine orthonormale Basis.
+
+475
+01:04:31,960 --> 01:04:40,760
+Wenn wir jetzt die Komponenten haben wollen für diese Transformation, dann berechnen wir das
+
+476
+01:04:40,760 --> 01:04:46,600
+Skalarprodukt unseres Bildes f von xy mit diesen verschiedenen Basisfunktionen.
+
+477
+01:04:47,200 --> 01:04:55,400
+Also wir nehmen unser Bild f von xy, multiplizieren es mit b0, rauskommt 7,5.
+
+478
+01:04:55,400 --> 01:05:06,160
+Wir multiplizieren es mit b1, b2, b3, damit haben wir diese Koeffizienten und wir können
+
+479
+01:05:06,160 --> 01:05:15,680
+jetzt umgekehrt durch gewichtete Überlagerung dieser Basisbilder unser Bild wieder rekonstruieren.
+
+480
+01:05:15,680 --> 01:05:29,320
+Also der Koeffizient für b0 war 7,5. Wir berechnen also 7,5 mal 1,5 mal diesen Basisbild plus 3,5 mal
+
+481
+01:05:29,320 --> 01:05:34,360
+dem nächsten Basisbild minus 1,5, dem nächsten Basisbild und so weiter. Rauskommt das Originalbild.
+
+482
+01:05:34,360 --> 01:05:45,160
+Wir können jetzt also auch sagen im Ortsbereich haben wir dieses Bild,
+
+483
+01:05:45,160 --> 01:05:49,160
+im Frequenzbereich sind das hier unsere Transformations-Koeffizienten.
+
+484
+01:05:49,160 --> 01:06:02,000
+Wenn wir uns nochmal anschauen, was zeigen diese Basisbilder?
+
+485
+01:06:02,000 --> 01:06:08,960
+Das hier, das scheint ja irgendwie einen Gleichanteil zu berechnen.
+
+486
+01:06:09,960 --> 01:06:14,880
+Da werden die einzelnen Grau-Werte aufsummiert.
+
+487
+01:06:21,080 --> 01:06:29,640
+Damit haben wir da letztendlich den Mittelwert. Gegebenenfalls müssten sie noch skalieren durch
+
+488
+01:06:29,680 --> 01:06:46,120
+die Anzahl der Bildpunkte. In diesem Falle 4. Hier werden letztendlich Kontraständerungen
+
+489
+01:06:46,120 --> 01:06:58,160
+in horizontaler und in vertikaler Richtung berechnet. Das heißt, da kriegen wir Aussagen
+
+490
+01:06:58,160 --> 01:07:04,040
+über horizontale und vertikale Kanten und hier geht es um die Diagonale.
+
+491
+01:07:04,040 --> 01:07:13,920
+Wir können diesen Basisbildern also durchaus auch gewisse Bedeutung zuordnen.
+
+492
+01:07:13,920 --> 01:07:27,840
+Diese Bedeutung ist abhängig davon, was für eine Transformation wir haben, leicht fassbar
+
+493
+01:07:27,840 --> 01:07:36,320
+oder auch nicht. Bei der diskreten Fourier-Transformation, dem Gleichanteil, dem
+
+494
+01:07:36,320 --> 01:07:42,360
+Koeffizienten 0,0, dem können wir eine Bedeutung zuordnen. Das ist eben der mittlere Grauwert in diesem Bild,
+
+495
+01:07:42,360 --> 01:07:51,960
+die mittlere Helligkeit. Bei den komplexwertigen anderen Basisbildern habe ich persönlich so meine
+
+496
+01:07:51,960 --> 01:07:58,440
+Probleme. Aus der Fourier-Transformation kann man die diskrete Kosinus-Transformation ableiten.
+
+497
+01:07:58,440 --> 01:08:05,240
+Da sind die Basisbilder alle reell. Bei der diskreten Fourier-Transformation sind sie sehr komplexwertig und
+
+498
+01:08:05,240 --> 01:08:10,720
+damit für uns schwierig zu verstehen. Bei der diskreten Kosinus-Transformation sind sie alle
+
+499
+01:08:10,720 --> 01:08:16,520
+reell und das sind letztendlich Sinuswellen unterschiedlicher Frequenz und man kann dann
+
+500
+01:08:16,520 --> 01:08:22,280
+sehen, dass man durch Überlagerung dieser Sinuswellen jedes beliebige Bild synthetisieren kann.
+
+501
+01:08:22,280 --> 01:08:33,120
+Damit hat man dann auch eine Vorstellung, was in dem Bild drin ist. Auch die Hadamard-Transformation,
+
+502
+01:08:33,120 --> 01:08:41,320
+die letztendlich ähnlich ist wie die Transformation, die wir beispielhaft berechnet haben.
+
+503
+01:08:41,320 --> 01:08:49,920
+Die hat nur Transformations-Koeffizienten 1 und Minus 1, ermöglicht eine Visualisierung der
+
+504
+01:08:49,920 --> 01:08:53,760
+Basisbilder, aus denen man ein Bild zusammensetzt, um dann ein Verständnis dafür zu bekommen,
+
+505
+01:08:53,760 --> 01:09:01,840
+was in dem Bild zu sehen ist. Dann gibt es noch andere Transformationen, die andere Eigenschaften
+
+506
+01:09:01,840 --> 01:09:09,600
+haben. Die Wavelet-Transformation zum Beispiel liefert Ihnen eine örtliche Zuordnung der
+
+507
+01:09:09,600 --> 01:09:16,400
+Frequenzen. Wenn Sie die Fourier-Transformation berechnen, dann haben Sie diese Überlagerung
+
+508
+01:09:16,400 --> 01:09:23,560
+dieser Fourier-Basisvektoren. Wenn Sie dabei in einer Frequenz sind, dann wird Ihnen letztendlich
+
+509
+01:09:23,560 --> 01:09:29,440
+gesagt, in dem Bild ist diese Frequenz drin. Keiner sagt Ihnen, wo im Bild Sie diese Frequenz
+
+510
+01:09:29,440 --> 01:09:37,920
+besonders stark finden. Eine Wavelet-Transformation macht eine räumliche oder örtliche Zuordnung
+
+511
+01:09:38,040 --> 01:09:43,360
+der Frequenzen, sodass Sie dann bei der Wavelet-Transformation durchaus erkennen
+
+512
+01:09:43,360 --> 01:09:49,440
+können, hier habe ich sehr viele hohe Frequenzen und in dem Bildbereich scheinen wohl eher die
+
+513
+01:09:49,440 --> 01:10:01,400
+niedrigen Frequenzen zu dominieren. Zur Fourier-Transformation. Im Eindimensionalen, das obere
+
+514
+01:10:01,400 --> 01:10:07,880
+Bild haben Sie schon gesehen, links die Sprache, rechts das Spektrum dazu. Wir haben also den
+
+515
+01:10:07,880 --> 01:10:17,880
+Betrag der Fourier-Koeffiziente aufgetragen. Im Zweidimensionalen, das Bild haben wir auch
+
+516
+01:10:17,880 --> 01:10:24,160
+schon gesehen, hier links Lena, rechts das Spektrum. Hier ist die Frequenz 0,0. Im Eindimensional war
+
+517
+01:10:24,160 --> 01:10:32,160
+die Frequenz 0,0 hier und hier die hohen Frequenzen. Hier steigen die Frequenzen mit
+
+518
+01:10:32,160 --> 01:10:46,520
+Abstand zum Nullpunkt an. Die Fourier-Transformation
+
+519
+01:10:46,520 --> 01:10:57,000
+benutzt das Skalarprodukt. Wir haben eine komplexe Fourier-Transformation, also das
+
+520
+01:10:57,000 --> 01:11:02,840
+Skalarprodukt ist zu berechnen über unser Intervall 0,t. x von t mal kommuniziert komplex.
+
+521
+01:11:02,840 --> 01:11:16,480
+y von t, die Basis der Fourier-Transformation ist komplex, 1 durch Wurzel t und dann haben wir
+
+522
+01:11:16,480 --> 01:11:28,120
+e hoch j2p k t durch t. Wir haben hier oben also zwei Laufvariablen und je nachdem, ob wir jetzt
+
+523
+01:11:28,120 --> 01:11:33,720
+vom Frequenzbereich in den Ortsbereich wollen oder umgekehrt integrieren oder summieren wir
+
+524
+01:11:33,720 --> 01:11:43,240
+über die Komponente, die wir nicht haben wollen. Also entweder k, was dann der Frequenzindex wäre
+
+525
+01:11:43,240 --> 01:11:52,920
+oder t, das wäre der Zeitindex. Wir können also f von t darstellen, indem wir die Fourier-Koeffizienten
+
+526
+01:11:52,920 --> 01:11:59,280
+nehmen und wir summieren über alle Ks, also über alle Fourier-Koeffizienten. Die Zeit bleibt uns
+
+527
+01:11:59,280 --> 01:12:06,920
+erhalten oder wenn wir vom Zeitbereich in den Frequenzbereich wollen, dann integrieren wir auch
+
+528
+01:12:06,920 --> 01:12:14,680
+wieder von 0 bis t und wir erhalten uns dadurch das k.
+
+529
+01:12:18,920 --> 01:12:31,280
+Diese Basisfunktion hier, j2p k t durch t, können sich nach der Euler'schen Formel in
+
+530
+01:12:31,280 --> 01:12:36,880
+einen realen und einen komplexen Teil umwandeln.
+
+531
+01:12:42,880 --> 01:12:52,720
+Im Eindimensionalen sind unsere Basiskoeffizienten hier dargestellt und das ist dann das, was wir
+
+532
+01:12:52,720 --> 01:12:59,040
+eben letztendlich schon mal hatten. Er gibt sich durch Summation für diskrete Signale hier einmal
+
+533
+01:12:59,200 --> 01:13:08,000
+von den Fourier-Koeffizienten, die bekannt sind, zum Signal, zum diskreten Signal oder hier vom
+
+534
+01:13:08,000 --> 01:13:16,360
+diskreten Signal. Wir summieren auf über alles und setzen das k auf den Fourier-Koeffizienten, den wir haben wollen.
+
+535
+01:13:16,360 --> 01:13:36,400
+Die fk's sind unser Frequenzspektrum oder auch Spektrum. Die sind komplex. Wenn wir jetzt uns
+
+536
+01:13:36,400 --> 01:13:42,040
+irgendwas anschauen wollen, ist es typischerweise so, dass wir uns das Amplitudenspektrum angucken.
+
+537
+01:13:42,200 --> 01:13:47,000
+An den Bildern, die wir eben gesehen hatten, das war das Amplitudenspektrum, das wir gesehen haben.
+
+538
+01:13:47,000 --> 01:13:52,560
+Das berechnen wir aus den Fourier-Koeffizienten, indem wir die Betragsbildung machen. Also Realteil
+
+539
+01:13:52,560 --> 01:13:58,240
+zum Quadrat plus Imaginärteil zum Quadrat aus der Summe die Wurzel ziehen. Das ist das, was
+
+540
+01:13:58,240 --> 01:14:01,120
+typischerweise dann als Amplitudenspektrum visualisiert wird.
+
+541
+01:14:01,120 --> 01:14:15,000
+Wenn sie die Wurzel nicht ziehen, haben sie das Leistungsspektrum und dann wird noch die Phase
+
+542
+01:14:15,000 --> 01:14:24,000
+visualisiert. Das ist der Argus von Imaginärteil durch Realteil. Das Phasenbild hatten wir heute
+
+543
+01:14:24,000 --> 01:14:32,040
+auch schon mal gesehen. Das war das Bild, zu dem ich sagte, ich sehe da nichts. Im Zweidimensionalen
+
+544
+01:14:32,040 --> 01:14:41,760
+machen wir das gleiche wie im Eindimensionalen, nur dass wir noch die zweite Komponente dazu tun.
+
+545
+01:14:41,760 --> 01:14:48,040
+Das Skalarprodukt ist jetzt nicht über eine Summe definiert, sondern über eine Doppelsumme. Wieder
+
+546
+01:14:48,040 --> 01:14:56,720
+das eine Signal, das konjugiert komplexe andere Signale. Also das eine Signal f und das andere
+
+547
+01:14:56,720 --> 01:15:04,200
+Signal g. Die Basisfunktionen sehen sie im Eindimensionalen, hatten wir 1 durch Wurzel n,
+
+548
+01:15:04,200 --> 01:15:14,560
+e hoch j2, p, i, n durch n. Das bleibt uns erhalten. Wir multiplizieren dazu noch die zweite Dimension,
+
+549
+01:15:15,040 --> 01:15:20,160
+das ist dann 1 durch Wurzel m. Und hier ist die Basisfunktion dazu.
+
+550
+01:15:25,000 --> 01:15:28,720
+Das heißt, die zweidimensionale Basisfunktion ergibt sich letztendlich durch Multiplikation
+
+551
+01:15:28,720 --> 01:15:33,360
+von zwei eindimensionalen Basisfunktionen. Mit n und m haben wir jetzt hier auch eine
+
+552
+01:15:33,360 --> 01:15:36,240
+Bilddimension von nicht quadratischen Bildern vorgesehen.
+
+553
+01:15:36,240 --> 01:15:46,880
+Die diskrete Fourier-Transformation im zweidimensionalen ist dann letztendlich genauso
+
+554
+01:15:46,880 --> 01:15:51,400
+wie im eindimensionalen, bloß eine zweite Dimension erweitert. Wir haben jetzt eine
+
+555
+01:15:51,400 --> 01:15:58,800
+Doppelsumme. Wir haben hier unser Bildsignal zweidimensional und wir haben die beiden
+
+556
+01:15:58,920 --> 01:16:04,280
+Komponenten, die horizontalen und die vertikalen Komponente der Basisfunktionen.
+
+557
+01:16:04,280 --> 01:16:10,800
+Und wenn sie zurück transformieren, haben wir auch wieder die Doppelsumme. Wir haben hier die
+
+558
+01:16:10,800 --> 01:16:16,680
+Fourier-Transformierte. Der Transformationskörner oder die Transformationsfunktion, die Basisfunktion,
+
+559
+01:16:16,680 --> 01:16:25,200
+Sie sehen hier haben wir ein Minuszeichen, das ist hier weg. Ansonsten ist die Berechnung
+
+560
+01:16:25,320 --> 01:16:36,080
+letztendlich genau die gleiche. Klar ist auch, hier summieren wir mit den i und k über die
+
+561
+01:16:36,080 --> 01:16:40,800
+Fourier-Transform-Koeffizienten und hier summieren wir mit x und y natürlich das
+
+562
+01:16:40,800 --> 01:16:55,400
+Bild über die Ortskoordinate. Das haben wir schon mal gesehen. Betrag der Fourier-Koeffizienten
+
+563
+01:16:55,400 --> 01:16:59,600
+sehen Sie hier. Hier sehen wir das Phasenspektrum.
+
+564
+01:17:11,120 --> 01:17:17,160
+Schauen Sie noch mal zurück. Wenn Sie sich dieses Bild hier anschauen, dann sieht es aus wie ein
+
+565
+01:17:17,160 --> 01:17:25,480
+normales Foto. Sie sehen hier, da ist jetzt ein Streifenmuster drauf gesetzt. Da gibt es hier
+
+566
+01:17:25,480 --> 01:17:35,480
+eine Linie, die horizontal verläuft. Hier auch und vertikal ist ein Linienmuster drauf. Die
+
+567
+01:17:35,480 --> 01:17:46,040
+Frequenzen dieses überlagerten Musters sehen Sie im Spektrum. In der Phase sehe ich es nicht.
+
+568
+01:17:46,040 --> 01:18:05,640
+Wenn Sie jetzt ein natürliches Bild haben und Sie sehen so etwas in dem Spektrum, dann wissen Sie,
+
+569
+01:18:05,640 --> 01:18:11,960
+da ist eine Störung drauf. Oder es kann ja auch ein natürliches Bild sein, wo einer vor einem
+
+570
+01:18:11,960 --> 01:18:18,880
+Gitterzaun steht. Das kann ja auch sein. Aber das sind Dinge, die typischerweise in rein natürlichen
+
+571
+01:18:18,880 --> 01:18:34,240
+Bildern nicht vorkommen. Auch wenn die Basisbilder der Fourier-Transformation typischerweise komplex
+
+572
+01:18:34,240 --> 01:18:44,440
+sind, kann man natürlich auch nur den Realteiler von sich anschauen und damit den Fourier-Koeffizienten,
+
+573
+01:18:44,440 --> 01:18:51,640
+die irgendwo in der Frequenz liegen, eine gewisse Bedeutung zu ordnen. Hier in der Mitte ist 00.
+
+574
+01:18:51,640 --> 01:18:58,400
+Das ist der Gleichanteil. Das heißt, damit wird die mittlere Helligkeit des Bildes eingestellt.
+
+575
+01:18:59,400 --> 01:19:07,880
+Dann haben wir hier eine Frequenz auf der horizontalen Achse. Die vertikale Frequenz an
+
+576
+01:19:07,880 --> 01:19:15,640
+dieser Stelle ist 0 und das hier ist das Basisbild dazu. In vertikaler Richtung ändert sich also in
+
+577
+01:19:15,640 --> 01:19:20,280
+den Spalten ändert sich das Signal nicht. Damit sind es in vertikaler Richtung die Frequenz 0.
+
+578
+01:19:20,280 --> 01:19:27,640
+In horizontaler Richtung sehen Sie diese Wellen. Damit haben wir da irgendwie eine Frequenz und
+
+579
+01:19:27,640 --> 01:19:32,280
+die Frequenz ist eben hier zu sehen. Wir haben da diese beiden Punkte. Die Frequenzen treten ja
+
+580
+01:19:32,280 --> 01:19:36,960
+immer positiv und negativ auf. Wir haben diese beiden Punkte in einem gewissen Abstand zu 0 auf
+
+581
+01:19:36,960 --> 01:19:43,480
+der horizontalen Achse. Also vertikale Frequenz 0, horizontale Frequenz von 0 verschieden.
+
+582
+01:19:43,480 --> 01:19:51,160
+Wir können das Ganze auch um 90 Grad drehen. Hier haben wir jetzt in horizontaler Richtung,
+
+583
+01:19:51,160 --> 01:19:57,000
+also in den Zeilen, keine Veränderung. Das heißt, die frequenz, die horizontale Frequenz ist 0.
+
+584
+01:19:57,360 --> 01:20:05,400
+Und in vertikaler Richtung haben wir eine Veränderung, haben wir diese Frequenz. Also
+
+585
+01:20:05,400 --> 01:20:15,160
+haben wir als Fourier-Koeffizienten diese beiden. Und wenn sich dieses Muster dreht,
+
+586
+01:20:15,160 --> 01:20:27,840
+dann kriegen wir eben Frequenzen, die auf den Diagonalen liegen. Wenn Sie dieses Bild nehmen
+
+587
+01:20:27,840 --> 01:20:39,000
+und nur das Bild in der Ebene drehen, dann bleibt der Abstand vom Fourier-Koeffizienten
+
+588
+01:20:39,200 --> 01:20:45,040
+zum Nullpunkt gleich. Letztendlich, wenn Sie das Bild drehen,
+
+589
+01:20:45,040 --> 01:20:47,440
+dann würden die Fourier-Koeffizienten auf dem Kreisland.
+
+590
+01:20:47,440 --> 01:21:00,360
+Ein Bild hat Amplitude und Phase.
+
+591
+01:21:09,000 --> 01:21:11,880
+In diesem Beispiel sehen wir hier Angela Merkel,
+
+592
+01:21:15,240 --> 01:21:21,200
+das Phasenbild, die Amplitude der Fourier-Koeffizienten. Sie sehen hier,
+
+593
+01:21:21,200 --> 01:21:25,440
+das ist ein typisches Bild. Um 0 herum haben wir die hohen Frequenzen und es flacht ab.
+
+594
+01:21:25,440 --> 01:21:36,320
+Auf der linken Seite sehen wir eine andere Person. Auch die hat ganz überraschend ein
+
+595
+01:21:36,400 --> 01:21:45,760
+normales Spektrum und ein Phasensignal. So, nun kann sie aus dem Frequenzbereich,
+
+596
+01:21:45,760 --> 01:21:53,120
+aus dem Fourier-Bereich, wieder das Bild rekonstruieren. Sie können die Fourier-Koeffizienten
+
+597
+01:21:53,120 --> 01:21:58,520
+ja auch erstmal verändern, bevor sie die inverse Transformation berechnen. Was hier jetzt gemacht
+
+598
+01:21:58,720 --> 01:22:08,320
+wurde, ist, es wurde von dieser Person das Amplitudenspektrum genommen und von Frau Merkel
+
+599
+01:22:08,320 --> 01:22:13,760
+die Phase. Dann wurde die inverse Transformation berechnet, die inverse Fourier-Transformation und
+
+600
+01:22:13,760 --> 01:22:28,240
+Sie sehen Frau Merkel. Wenn Sie dieses Spektrum nehmen würden und diese Phase und Sie berechnen
+
+601
+01:22:28,240 --> 01:22:31,480
+die inverse Fourier-Transformation, dann würden Sie natürlich wieder dieses Bild bekommen.
+
+602
+01:22:31,480 --> 01:22:41,880
+Wenn wir von dem linken Bild die Phase nehmen und von Frau Merkel die Amplitude, kommt
+
+603
+01:22:41,880 --> 01:22:53,440
+unglücklicherweise das linke Bild heraus. Wir als Menschen sehen in der Phase nichts. Was Sie hier
+
+604
+01:22:53,440 --> 01:23:06,880
+aber sehen, ist, die Phase des Signals scheint das Wichtige zu sein. Das heißt, wenn Sie im
+
+605
+01:23:06,880 --> 01:23:11,760
+Frequenzbereich etwas mit Bildern machen, achten Sie auf die Phase. Die dürfen Sie nicht vernachlässigen.
+
+606
+01:23:11,760 --> 01:23:23,400
+Wir hatten schon in einer der letzten Stunden festgestellt, wenn Sie eine zweidimensionale
+
+607
+01:23:23,400 --> 01:23:28,000
+Operation separieren können in zwei eindimensionale Operationen, dann rechnet sich alles viel
+
+608
+01:23:28,000 --> 01:23:33,520
+schneller. Damit ist die Frage natürlich auch interessant. Können Sie eine zweidimensionale
+
+609
+01:23:33,520 --> 01:23:41,880
+Fourier-Transformation separieren? Die Antwort ist ja. Hier haben wir die Funktion für die
+
+610
+01:23:41,880 --> 01:23:47,760
+zweidimensionale diskrete Fourier-Transformation.
+
+611
+01:23:52,480 --> 01:24:01,960
+Wir haben hier eine Summe über X und eine Summe über Y. Sie sehen, dieses Ding hängt nur von X ab.
+
+612
+01:24:03,560 --> 01:24:04,960
+Es hängt nicht von Y ab.
+
+613
+01:24:08,840 --> 01:24:21,320
+Und umgekehrt. Das macht man sich zunutze. Hier wird die Doppelsumme aufgeteilt. Im inneren Bereich
+
+614
+01:24:21,320 --> 01:24:26,840
+berechnen wir die Fourier-Koeffizienten über Y.
+
+615
+01:24:34,520 --> 01:24:37,040
+Also über die Spalten.
+
+616
+01:24:37,040 --> 01:24:48,600
+Und wenn Sie das berechnet haben, berechnen Sie die Fourier-Transformation über X, also über die
+
+617
+01:24:48,600 --> 01:25:02,040
+Zeile. Das heißt, die Transformation ist separierbar und damit können Sie dann auch schneller rechnen,
+
+618
+01:25:02,040 --> 01:25:03,440
+als wenn Sie es zweidimensional ausrechnen.
+
+619
+01:25:09,440 --> 01:25:21,120
+Wichtig nochmal vom Konzept. Sie haben Ihr Bild. Wir machen eine 1D-Transformation. Da kriegen Sie
+
+620
+01:25:21,120 --> 01:25:28,160
+dann genauso viel Fourier-Koeffizienten raus, wie Ihr Bild hat. Und dieses Ergebnis transformieren
+
+621
+01:25:28,160 --> 01:25:31,040
+Sie nochmal. Da machen Sie dann eine 1D-Transformation und dann haben Sie hier die
+
+622
+01:25:31,040 --> 01:25:41,560
+2D-Fourier-Transformation. Sie nehmen Ihr Bild, transformieren in vertikaler Richtung und das
+
+623
+01:25:41,560 --> 01:25:50,880
+Ergebnis transformieren Sie dann nochmal. Die Fourier-Transformation ist linear. Also die
+
+624
+01:25:50,880 --> 01:25:55,120
+Fourier-Transformation von diesem Operator. Da können Sie auch auf die Funktionen erst die
+
+625
+01:25:55,240 --> 01:26:01,000
+Fourier-Transformation anwenden und dann skalieren Sie und addieren Sie. Das ist das, was wir hier
+
+626
+01:26:01,000 --> 01:26:11,560
+stehen. Und die Fourier-Transformation, weil wir sie als monetäre Transformation aufgesetzt haben,
+
+627
+01:26:11,560 --> 01:26:18,720
+erfüllt dann auch die parsomalische Gleichung. Das heißt, die Energie im Frequenzbereich entspricht
+
+628
+01:26:18,720 --> 01:26:32,040
+der Energie im Zeitbereich oder im Bildbereich, im Ortsbereich. Die Basisfunktionen der diskreten
+
+629
+01:26:32,040 --> 01:26:43,320
+Fourier-Transformation sind periodisch. Da gibt es hier dieses große N und wenn Sie ein Vielfaches
+
+630
+01:26:43,320 --> 01:26:48,920
+davon im Zähler drauf addieren, ändert sich der Wert genau gar nicht. Das gilt im Eindimensionalen.
+
+631
+01:26:48,920 --> 01:27:00,080
+Das gilt aber auch im Zweidimensionalen. Hier die Periode N für die X-Komponente und M für die Y-Komponente.
+
+632
+01:27:00,080 --> 01:27:14,720
+Das bedeutet im Ortsbereich oder Zeitbereich nehmen wir an, dass f von i gleich f von i plus n
+
+633
+01:27:14,720 --> 01:27:29,320
+mal n ist. Oder f von xy ist gleich f von x plus n mal n, y plus n mal m. Ist das ein Problem? Ja,
+
+634
+01:27:29,320 --> 01:27:42,040
+nein. Also das Bild, was wir haben, typischerweise, ist ja nur n mal m Bildpunkte groß. Das heißt,
+
+635
+01:27:42,560 --> 01:27:54,200
+dieser Punkt unter der Annahme i läuft von 0 bis n-1. f von i ist im Bild. f von i plus n mal n ist außerhalb des Bildes.
+
+636
+01:27:56,200 --> 01:28:04,680
+Stört uns nicht weiter. Was wir aber berücksichtigen müssen, was angenommen wird bei der
+
+637
+01:28:04,800 --> 01:28:13,920
+Fourier Transformation ist, dass das Bild sich periodisch wiederholt. In der Realität haben wir
+
+638
+01:28:13,920 --> 01:28:20,600
+genau das hier. In der Berechnung gehen wir davon aus, dass dieses Bild sich periodisch wiederholt.
+
+639
+01:28:20,600 --> 01:28:28,240
+Also hier ist noch mal n mal m dran und hier und hier. Es ist also unendlich ausgedingt. Ist vielleicht
+
+640
+01:28:28,240 --> 01:28:35,800
+erst mal egal, aber wenn Sie dann gucken, was hier an den Stößen passiert, wo das Bild aneinander
+
+641
+01:28:35,800 --> 01:28:41,800
+kommt, wo also letztendlich die linke Seite des Bildes mit der rechten Seite zusammenstößt,
+
+642
+01:28:41,800 --> 01:28:47,760
+dann haben wir wieder das Problem, was wir hatten schon mal bei der Filterung. Bei der Filterung
+
+643
+01:28:47,760 --> 01:28:53,440
+wollten wir ja sagen, dass das gefilterte Bild genauso groß sein sollte wie das Eingangsbild.
+
+644
+01:28:53,640 --> 01:28:58,880
+Da mussten wir am Rand etwas tun und da hatten wir uns dann darauf geeinigt, eine Spiegelung des
+
+645
+01:28:58,880 --> 01:29:02,680
+Signals am Rand ist das Richtige. Also wir haben das Eingangsbild letztendlich vergrößert um
+
+646
+01:29:02,680 --> 01:29:08,120
+entsprechende Filtergröße. Eine Spiegelung ist das Richtige. Wir hatten aber auch das Prinzip der
+
+647
+01:29:08,120 --> 01:29:13,600
+periodischen Fortsetzung einmal uns angeschaut und festgestellt, das macht gar keinen Sinn,
+
+648
+01:29:13,600 --> 01:29:18,120
+weil sie ja womöglich auf der einen Seite das Bild ist rot und auf der anderen Seite ist es blau.
+
+649
+01:29:18,320 --> 01:29:23,680
+Dann würden Sie das rot an das blau kleben, das macht keinen Sinn. Die Fourier-Transformation
+
+650
+01:29:23,680 --> 01:29:32,760
+macht aber genau das. In vielen Anwendungen ist das irrelevant, aber manchmal führt es zu Effekten,
+
+651
+01:29:32,760 --> 01:29:36,920
+wie Sie sehen, die dann das eine oder andere merkwürdige Verhalten der Fourier-Transformation
+
+652
+01:29:36,920 --> 01:29:43,200
+erklären. Sollten Sie also im Hinterkopf behalten. Also das Bild, was wir haben,
+
+653
+01:29:43,200 --> 01:29:47,200
+ist einfach ein Rechteck mit Signal. Das Bildmodell für die Fourier-Transformation
+
+654
+01:29:47,200 --> 01:30:00,040
+ist aber dieses sich periodisch wiederholende Bild. Sie können sich, wenn Sie denn wollen,
+
+655
+01:30:00,040 --> 01:30:05,200
+die diskrete Fourier-Transformation dann auch periodisch vorstellen. Dann haben Sie letztendlich
+
+656
+01:30:05,200 --> 01:30:10,760
+so ein Torus. In der einen Richtung laufen Sie im Kreis. Da haben Sie dann die Frequenzen in der
+
+657
+01:30:10,760 --> 01:30:16,120
+einen Richtung, das weiß ich, in der horizontalen Richtung und in dieser Richtung dann in der
+
+658
+01:30:16,120 --> 01:30:32,440
+vertikalen Richtung. Die Fourier-Transformation wird aus einem Bild der Größe n mal m berechnet.
+
+659
+01:30:32,760 --> 01:30:41,000
+Wir kriegen n mal m Fourier-Koeffizienten, aber die sind komplex. Das heißt, wir haben am Eingang
+
+660
+01:30:41,000 --> 01:30:48,360
+n mal m Zahlen, am Ausgang haben wir zwei mal n mal m Zahlen. Das ist natürlich die Hoffnung,
+
+661
+01:30:48,360 --> 01:30:52,320
+dass wir nicht zwei mal n mal m verschiedene Zahlen haben, sondern dass es irgendwelche
+
+662
+01:30:52,320 --> 01:31:00,880
+Symmetrie-Eigenschaften gibt und die gibt es in der Tat. Wenn das Fi real ist, das wäre bei Bildern
+
+663
+01:31:00,880 --> 01:31:09,320
+der Fall, dann gilt, dass Fi gleich konjugiert komplex von Fn-i ist. Aufgrund dieser Symmetrie-Eigenschaften
+
+664
+01:31:09,320 --> 01:31:13,080
+werden wir dann also aus n Eingangszahlen auch nur n verschiedene Ausgangszahlen berechnen,
+
+665
+01:31:13,080 --> 01:31:18,480
+die dann komplexfertig sind auf diesen n Koeffizienten, aber wir haben eben diese Symmetrie-Eigenschaften.
+
+666
+01:31:18,480 --> 01:31:35,440
+Wenn wir diese Symmetrie im Ortsbereich haben und im Ortsbereich die Werte real sind,
+
+667
+01:31:35,440 --> 01:31:43,640
+dann sind unsere Fourier-Koeffizienten real und die Symmetrie-Eigenschaften,
+
+668
+01:31:43,640 --> 01:31:46,960
+die sich schon hier oben ergibt, bleibt erhalten.
+
+669
+01:31:52,240 --> 01:31:57,880
+Wenn wir statt der gleichen Werte hier ein Minuszeichen haben bei der Symmetrie und auch
+
+670
+01:31:57,880 --> 01:32:06,560
+wieder reale Werte, dann sind die Fourier-Koeffizienten imaginär, dann sind die realen Teile dabei.
+
+671
+01:32:06,560 --> 01:32:17,360
+Also bei dieser Spiegel-Symmetrie sind die Koeffizienten real und bei der Punkt-Spiegel-Symmetrie
+
+672
+01:32:17,360 --> 01:32:18,400
+sind sie imaginär.
+
+673
+01:32:22,840 --> 01:32:27,320
+Das kennen Sie aus dem Eindimensionalen. Im Zweidimensionalen haben wir auch ein reales Signal.
+
+674
+01:32:27,320 --> 01:32:34,520
+Das bedeutet, unsere Fourier-Koeffizienten f von ik sind konjugiert komplex zu f von n-i, n-k.
+
+675
+01:32:34,680 --> 01:32:39,400
+Das heißt auch im Zweidimensionalen gilt, sie gehen mit n verschiedenen Zahlenwerten rein und
+
+676
+01:32:39,400 --> 01:32:43,880
+kommen mit n verschiedenen Zahlenwerten raus, die dann eben aufgrund dieser Symmetrie-Eigenschaft
+
+677
+01:32:43,880 --> 01:32:46,480
+für n komplexe Zahlen reichen.
+
+678
+01:32:51,480 --> 01:32:57,880
+Hier jetzt mal so eine kleine Übung. Welches Bild ist wohl welches?
+
+679
+01:32:57,880 --> 01:33:07,080
+Also wir haben hier das Amplitudenspektrum. Steht jetzt nicht dabei, was die Farben bedeuten.
+
+680
+01:33:07,080 --> 01:33:15,240
+Rot bedeutet viel Energie, blau bedeutet wenig Energie und hier haben wir Bilder.
+
+681
+01:33:15,240 --> 01:33:21,240
+Die Frage ist, welches Bild ordnen wir welchem zu?
+
+682
+01:33:28,240 --> 01:33:30,240
+Können Sie mal überlegen.
+
+683
+01:33:48,240 --> 01:33:53,240
+Es ist auch nicht immer so ganz offensichtlich, wie das ist. Also ich persönlich würde da jetzt
+
+684
+01:33:53,600 --> 01:33:56,600
+einen iterativen Ansatz fahren.
+
+685
+01:33:59,600 --> 01:34:01,600
+Wir nehmen dieses Bild.
+
+686
+01:34:03,600 --> 01:34:10,600
+Das Bild ist kreissymmetrisch, das heißt alle Frequenzen mit gleicher Frequenz müssen auch
+
+687
+01:34:10,600 --> 01:34:13,600
+im Spektrum gleich vorkommen. Das kann dann nur d sein.
+
+688
+01:34:13,960 --> 01:34:31,960
+Das hier, A, ist auch ein synthetisches Bild, da können nicht alle Frequenzen vorkommen.
+
+689
+01:34:31,960 --> 01:34:35,960
+Da würden wir dann der 3 zuordnen.
+
+690
+01:34:43,960 --> 01:34:46,960
+Jetzt haben wir noch drei Bilder.
+
+691
+01:34:51,960 --> 01:34:55,960
+B, da kommen wohl alle Frequenzen vor.
+
+692
+01:34:58,960 --> 01:35:00,960
+Das spricht dann für zwei.
+
+693
+01:35:05,960 --> 01:35:07,960
+Dann noch diese beiden Bilder.
+
+694
+01:35:08,320 --> 01:35:10,320
+Schauen wir ins Spektrum.
+
+695
+01:35:10,320 --> 01:35:15,320
+Also wenn ich nur eins von den Bildern hätte und diese beiden Spektren, hätte ich wieder ein Problem.
+
+696
+01:35:15,320 --> 01:35:20,320
+Aber jetzt haben wir diese beiden Bilder, dann kann man überlegen, was ist denn wohl welches.
+
+697
+01:35:20,320 --> 01:35:25,320
+Die Spektren unterscheiden sich. Das eine hat horizontale und vertikale Frequenzen,
+
+698
+01:35:25,320 --> 01:35:28,320
+das andere hat dominant die vertikalen Frequenzen.
+
+699
+01:35:30,320 --> 01:35:36,320
+Hier in diesem Bild E haben wir horizontale Frequenzen, sie haben auch ein paar vertikale Frequenzen.
+
+700
+01:35:38,320 --> 01:35:43,320
+Hier haben wir horizontale Frequenzen und vertikale Frequenzen.
+
+701
+01:35:46,320 --> 01:35:55,320
+Ich würde jetzt beim Bild C nicht sagen, dass da die horizontalen Frequenzen die vertikalen Frequenzen dominieren, sondern umgekehrt.
+
+702
+01:35:56,320 --> 01:36:00,320
+Das heißt, hier werden wir wohl beide Frequenzen haben, die horizontalen und vertikalen.
+
+703
+01:36:00,320 --> 01:36:03,320
+Das spricht dann für fünf und dann bleibt das hier.
+
+704
+01:36:08,320 --> 01:36:12,320
+Es erwartet jetzt keiner von Ihnen, dass sie gegebenenfalls ein Bild ins Spektrum zeichnet.
+
+705
+01:36:12,320 --> 01:36:16,320
+Das ist einfach hier jetzt nochmal so eine Übung, um zu sehen,
+
+706
+01:36:16,320 --> 01:36:23,320
+naja, irgendwie ein bisschen kann man dann im Spektrum doch schon erkennen, was in dem Bild zu sehen sein könnte.
+
+707
+01:36:23,320 --> 01:36:25,320
+Also welche Frequenzen in dem Bild sein können.
+
+708
+01:36:25,680 --> 01:36:38,680
+Ja, im Eindimensionalen haben wir die Fourier-Reihe, die diskrete Fourier-Transformation.
+
+709
+01:36:38,680 --> 01:36:43,680
+Für unsere Bilder ist die zweidimensionale diskrete Fourier-Transformation interessant.
+
+710
+01:36:43,680 --> 01:36:53,680
+Wir haben festgestellt, die Fourier-Transformation hat Symmetrie-Eigenschaften für reelle Signale.
+
+711
+01:36:54,040 --> 01:37:03,040
+Dann gibt es da Fourier-Koeffizienten und auf der höheren Seite dann konjugierte komplexe Fourier-Koeffizienten.
+
+712
+01:37:04,040 --> 01:37:13,040
+Wir haben auch gehört, dass wenn wir eine Symmetrie haben, eine Spiegelung im Zeitbereich,
+
+713
+01:37:13,040 --> 01:37:19,040
+dann haben wir im Frequenzbereich nur reelle Transformations-Koeffizienten.
+
+714
+01:37:19,400 --> 01:37:23,400
+Das werden wir später nochmal aufgreifen, wenn es um die diskrete Kosinus-Transformation geht.
+
+715
+01:37:24,400 --> 01:37:29,400
+Und die Fourier-Transformation ist auch eine lineare Transformation.
+
+716
+01:37:32,400 --> 01:37:38,400
+Wir können die Fourier-Transformation benutzen als Hilfsmittel für die Beschreibung von Bildern.
+
+717
+01:37:39,400 --> 01:37:44,400
+Sie können natürlich auch im Frequenzbereich filtern.
+
+718
+01:37:44,760 --> 01:37:50,760
+Wir hatten jetzt diese Mischung von Amplitude und Phase von verschiedenen Bildern gesehen.
+
+719
+01:37:50,760 --> 01:37:55,760
+Das ist mehr ein pädagogisches Verfahren.
+
+720
+01:37:55,760 --> 01:38:01,760
+Aber wir könnten uns ja vorstellen, dass wir, wenn wir so ein Spektrum haben,
+
+721
+01:38:01,760 --> 01:38:06,760
+dass wir einfach sagen, alles was außerhalb dieses Quadrats ist, setzen wir mal zu Null.
+
+722
+01:38:06,760 --> 01:38:09,760
+Und wir transformieren das Bild zurück.
+
+723
+01:38:10,120 --> 01:38:15,120
+Das wird dann eine Tiefpass-Filterung sein, weil wir alle hohen Frequenzen zu Null gesetzt haben.
+
+724
+01:38:18,120 --> 01:38:21,120
+Das heißt, wir können im Frequenzbereich filtern.
+
+725
+01:38:21,120 --> 01:38:28,120
+Wir können aber auch eine Filter-Operation, genauso wie wir es aus der Systemtheorie kennen,
+
+726
+01:38:28,120 --> 01:38:35,120
+im Frequenzbereich beschreiben und dann sehen, was macht es mit den unterschiedlichen Frequenzen.
+
+727
+01:38:35,480 --> 01:38:45,480
+Natürliche Bilder haben die meiste Energie bei niedrigen Frequenzen.
+
+728
+01:38:45,480 --> 01:38:54,480
+Das ist etwas, was Sie so mitnehmen können, abhängig davon, was Sie für Bilder haben.
+
+729
+01:38:54,480 --> 01:38:59,480
+Also Fotos, da haben wir die Spektren gesehen.
+
+730
+01:38:59,840 --> 01:39:03,840
+Wenn Sie jetzt irgendwelche Radarbilder haben, dann haben Sie vielleicht in den hohen Frequenzen
+
+731
+01:39:03,840 --> 01:39:08,840
+nochmal einen Peak, weil auf diesen Radarbildern typischerweise sehr viel Rauschen drauf ist.
+
+732
+01:39:08,840 --> 01:39:13,840
+Das Spektrum von CT-Bildern sieht vielleicht manchmal auch ein bisschen anders aus,
+
+733
+01:39:13,840 --> 01:39:21,840
+aber trotzdem bleibt erhalten, die meiste Energie finden Sie in den niedrigen Frequenzen.
+
+734
+01:39:22,200 --> 01:39:44,200
+Dann kommen wir jetzt als nächstes zu den linearen Zeit-Invarianten oder Shift-Invarianten-Systemen,
+
+735
+01:39:44,560 --> 01:39:51,560
+Foliertransformationen und das machen wir nach einer kurzen Pause.
+
+736
+01:39:51,560 --> 01:40:01,560
+Jetzt ist es fast 10 Uhr, dann machen wir um 10.05 Uhr weiter.
+
+737
+01:40:01,920 --> 01:40:15,920
+Wir haben diskrete lineare Zeit-Invariante, Shift-Invariante-Systeme.
+
+738
+01:40:15,920 --> 01:40:21,920
+Eingangssignal G von N, Systemfunktion F von N, Ausgangssignal H von N.
+
+739
+01:40:21,920 --> 01:40:30,920
+Wichtig ist, dass Sie die Begriffe benutzen, ob die Systemfunktion F, G, H oder Karl-Otto heißt, ist ja egal.
+
+740
+01:40:31,280 --> 01:40:40,280
+Wichtig ist, dass die Systemfunktion und so ein lineares Zeit-Invariante-System, das können Sie durch die Faltung beschreiben,
+
+741
+01:40:40,280 --> 01:40:46,280
+also dieses Ausgangssignal ergibt sich durch Eingangssignal gefaltet, der Stern ist nicht die Multiplikation, das ist die Faltung,
+
+742
+01:40:46,280 --> 01:40:57,280
+mit der Systemfunktion oder auch Übertragungsfunktion oder auch Impulsantwort.
+
+743
+01:40:57,640 --> 01:41:02,640
+Es gibt verschiedene Begriffe für dasselbe.
+
+744
+01:41:02,640 --> 01:41:14,640
+Impulsantwort ergibt sich, indem Sie letztendlich einen Einheitsimpuls, sehen Sie hier, alles ist 0 bis auf den Index 0 auf das System geben.
+
+745
+01:41:14,640 --> 01:41:22,640
+Rauskommt dann aus dem System die Impulsantwort oder auch Systemfunktion.
+
+746
+01:41:23,000 --> 01:41:39,000
+Wenn wir jetzt ein System haben, das irgendwie das Eingangssignal transformiert, dann wollen wir typischerweise, dass dieses System linear ist.
+
+747
+01:41:39,000 --> 01:41:46,000
+Das bedeutet, Sie nehmen zwei Eingangssignale, Sie gewichten die, Sie addieren die und schicken sie durch das System.
+
+748
+01:41:46,360 --> 01:41:56,360
+Dann soll da dasselbe rauskommen, als wenn Sie die Eingangssignale durch das System schicken, die Systemantworten gewichten und addieren.
+
+749
+01:41:56,360 --> 01:41:59,360
+Das ist ein lineares System.
+
+750
+01:41:59,360 --> 01:42:03,360
+Das gleiche hatten wir schon für die Fourier-Transformation, die Fourier-Transformation ist linear.
+
+751
+01:42:03,360 --> 01:42:13,360
+Und wir wollen, dass so ein System Zeit-Invariant oder bei Bildern Shift-Verschiebungs-Variant ist.
+
+752
+01:42:13,720 --> 01:42:24,720
+Was bedeutet das? Sie können das Eingangssignal verschieben, verzögern und durch das System schicken.
+
+753
+01:42:24,720 --> 01:42:32,720
+Das soll identisch sein mit, Sie nehmen das Signal, schicken es durch das System und dann verzögern Sie.
+
+754
+01:42:32,720 --> 01:42:37,720
+Das heißt, wo die Verzögerung stattfindet, vor der Operation oder nach der Operation, ist egal.
+
+755
+01:42:37,720 --> 01:42:41,720
+Dann haben wir ein Verschiebe-Invariant-System.
+
+756
+01:42:42,080 --> 01:42:48,080
+Und im Zweidimensionalen wollen wir natürlich auch, dass die Filter linear sind und Verschiebungs-Invariant.
+
+757
+01:42:52,080 --> 01:42:55,080
+Die Faltungsdefinition kennen Sie.
+
+758
+01:42:56,080 --> 01:43:01,080
+Das Ergebnis einer Faltung, wir haben hier ja G gefaltet mit F.
+
+759
+01:43:01,080 --> 01:43:08,080
+Im Eindimensionalen, dann summieren wir auf über GK, F von I-K und summieren auf über alle K.
+
+760
+01:43:08,440 --> 01:43:16,440
+Mehr müssen wir da jetzt vielleicht auch gar nicht sagen.
+
+761
+01:43:21,440 --> 01:43:32,440
+Der Faltungsoperator F, der hier oben von 0 bis N-1 definiert ist, also letztendlich so groß wie das Eingangssignal.
+
+762
+01:43:32,800 --> 01:43:36,800
+Das Eingangssignal hat N-Werte, der Faltungsoperator hat N-Werte.
+
+763
+01:43:36,800 --> 01:43:40,800
+Das kann natürlich sein, aber es ist untypisch.
+
+764
+01:43:40,800 --> 01:43:49,800
+Typischerweise ist dieser Faltungsoperator viel kleiner, was weiß ich, von 0 bis 10 oder 0 bis 12.
+
+765
+01:43:49,800 --> 01:43:53,800
+Eine ungerade Anzahl von Operatoren, von Koeffizienten für die Bilder.
+
+766
+01:43:55,800 --> 01:44:00,800
+Und das hier ist das im Diskreten, Sie können das auch im Kontinuierlichen machen.
+
+767
+01:44:01,160 --> 01:44:05,160
+Definieren Sie die Faltung über das Integral.
+
+768
+01:44:11,160 --> 01:44:15,160
+Hier ein Beispiel für die eindimensionale Faltung.
+
+769
+01:44:15,160 --> 01:44:22,160
+Wir haben hier die Filtermaske, die zentriert ist auf dem Ursprung F0.
+
+770
+01:44:22,520 --> 01:44:36,520
+Und wenn Sie jetzt für diesen Punkt einen Faltungswert berechnen wollen, dann nehmen Sie eben F1 mit S3 wahr.
+
+771
+01:44:36,520 --> 01:44:42,520
+Multiplizieren Sie, Sie multiplizieren S4 mit F0 und F-1 mit S5.
+
+772
+01:44:42,520 --> 01:44:48,520
+Sie sehen hier, hier haben wir F1, F0, F-1, also genau die umgekehrte Reihenfolge von der Definition, die wir hier haben.
+
+773
+01:44:48,880 --> 01:44:52,880
+Das liegt an der Definition der Faltung, wir haben hier dieses I-K statt I-K.
+
+774
+01:44:54,880 --> 01:44:58,880
+Diese drei Dinge summieren Sie auf und dann bekommen Sie das Ergebnis.
+
+775
+01:45:00,880 --> 01:45:06,880
+Wenn Ihr Signal hier beginnt und hier aufhört, dann haben Sie, wenn Sie jetzt an dieser Stelle filtern wollen,
+
+776
+01:45:06,880 --> 01:45:10,880
+dann liegt die Filtermaske ja so, dann haben Sie das Problem mit den Randwerten.
+
+777
+01:45:10,880 --> 01:45:15,880
+Da hatten wir uns schon früher mal geeinigt, dann ist eine Spiegelung des Signals sinnvoll.
+
+778
+01:45:16,240 --> 01:45:20,240
+Sie denken sich dort ein S1 hin und rechnen entsprechend.
+
+779
+01:45:21,240 --> 01:45:26,240
+Entsprechend hier dann ein S7 oder ein S6.
+
+780
+01:45:26,240 --> 01:45:35,240
+Eigentlich müssen Sie hier, damit es konsistent ist, hier ein S6 dann haben, wenn das der Bildraum sein soll.
+
+781
+01:45:35,600 --> 01:45:48,600
+Ein Beispiel für die eindimensionale Faltung, Sie erinnern sich, wenn Sie zwei Rechtecke miteinander falten,
+
+782
+01:45:48,600 --> 01:45:53,600
+dann kommt ein Dreieck dabei raus.
+
+783
+01:45:53,600 --> 01:45:57,600
+Die Faltung liefert Ihnen ja, hier haben wir unser Signal,
+
+784
+01:46:01,600 --> 01:46:04,600
+hier haben wir unsere Filtermaske,
+
+785
+01:46:05,600 --> 01:46:08,600
+die wird hier invertiert, dann sehen wir sie hier,
+
+786
+01:46:08,600 --> 01:46:12,600
+und dann wird sie über das Signal geschoben und der Überlappungsbereich ist das Ergebnis.
+
+787
+01:46:13,600 --> 01:46:16,600
+Dann gibt es im Bereich der maximalen Überlappung, da haben wir das Maximum,
+
+788
+01:46:16,600 --> 01:46:20,600
+und dann wird es wieder kleiner und rauskommt so eine Dreiecksfunktion.
+
+789
+01:46:22,600 --> 01:46:25,600
+Im Zweidimensionalen funktioniert das im Prinzip ja genauso.
+
+790
+01:46:25,600 --> 01:46:30,600
+Wenn Sie das programmieren, dann setzen Sie letztendlich um die innere Schleife, die die Faltung beschreibt,
+
+791
+01:46:30,960 --> 01:46:35,960
+und dann eine äußere Schleife, die dann nicht in horizontaler Richtung läuft, sondern in vertikaler Richtung.
+
+792
+01:46:41,960 --> 01:46:44,960
+Dann ist das die Faltung.
+
+793
+01:46:45,320 --> 01:47:05,320
+Die äußere Schleife, die durchlaufen Sie einmal, die äußere Summe, die wird einmal ausgewertet.
+
+794
+01:47:05,320 --> 01:47:13,320
+Für jedes Auswerten der äußeren Summe wird die komplette innere Summe ausgewertet.
+
+795
+01:47:15,320 --> 01:47:20,320
+Die innere Summe ist Y.
+
+796
+01:47:21,320 --> 01:47:28,320
+Das heißt, der Index Y ist hier der Index, der am schnellsten läuft und das X läuft langsam.
+
+797
+01:47:29,320 --> 01:47:36,320
+Das ist einfach mal so hingeschrieben und hört sich gut an.
+
+798
+01:47:36,320 --> 01:47:38,320
+Implementieren sollten Sie das nicht.
+
+799
+01:47:38,680 --> 01:47:51,680
+Wenn Sie von einer CPU in den Speicher gehen und sagen, Sie wollen einen Bildpunkt haben,
+
+800
+01:47:51,680 --> 01:47:55,680
+dann wird Ihnen der Speicher typischerweise nicht nur den Wert dieses Bildpunktes geben,
+
+801
+01:47:55,680 --> 01:48:01,680
+sondern er liefert Ihnen gleich 64 Bit, also womöglich acht Bildpunkte.
+
+802
+01:48:04,680 --> 01:48:07,680
+Welche Bildpunkte sind die sieben Bildpunkte, die Sie nicht haben wollen?
+
+803
+01:48:08,040 --> 01:48:12,040
+Das sind die sieben Bildpunkte, die in der Bildzeile danach kommen.
+
+804
+01:48:14,040 --> 01:48:20,040
+Das heißt, wenn Sie von einem Bildpunkt in der Zeile zum nächsten Bildpunkt in der Zeile wandern,
+
+805
+01:48:20,040 --> 01:48:23,040
+dann haben Sie den womöglich schon bekommen. Sie haben noch nicht nachgefragt,
+
+806
+01:48:23,040 --> 01:48:27,040
+aber als Sie für die vorherigen gefragt haben, haben Sie wie gesagt acht Bildpunkte gekriegt.
+
+807
+01:48:27,040 --> 01:48:32,040
+Das heißt, X muss der Index sein, der schnell läuft.
+
+808
+01:48:32,040 --> 01:48:35,040
+Dann brauchen Sie nicht so oft auf den Speicher zu greifen.
+
+809
+01:48:35,400 --> 01:48:40,400
+Wenn Y der Index ist, der schnell läuft, dann wollen Sie einen Bildpunkt haben.
+
+810
+01:48:40,400 --> 01:48:43,400
+Sie kriegen acht Bildpunkte. Wenn Sie den nächsten Bildpunkt haben wollen,
+
+811
+01:48:43,400 --> 01:48:46,400
+in der Zeile darunter, dann ist der nicht unter den acht Bildpunkten dabei,
+
+812
+01:48:46,400 --> 01:48:50,400
+die Sie schon bekommen haben. Also die Indizes müssten hier andersrum laufen.
+
+813
+01:48:51,400 --> 01:48:58,400
+Idealerweise lassen Sie hier das Y laufen, das M-1 und das X bis M-1.
+
+814
+01:49:00,400 --> 01:49:04,400
+Das hat mit dem Ergebnis der Operation nichts zu tun, nur mit der Geschwindigkeit.
+
+815
+01:49:05,400 --> 01:49:08,400
+Was passiert jetzt bei dieser Faltung?
+
+816
+01:49:08,400 --> 01:49:13,400
+Es passiert das Gleiche wie im Eindimensionalen, nur eben im Zweidimensionalen.
+
+817
+01:49:13,400 --> 01:49:22,400
+Wir haben unser Eingangsbild und um einen Ausgangsbildpunkt zu berechnen,
+
+818
+01:49:22,400 --> 01:49:27,400
+werden alle diese Bildpunkte, die im Fenster sind, gewichtet.
+
+819
+01:49:27,760 --> 01:49:32,760
+Entsprechend dem gespiegelten, sowohl horizontal als auch vertikal,
+
+820
+01:49:32,760 --> 01:49:37,760
+gespiegelten Filterkörner gewichtet und auferliert.
+
+821
+01:49:38,760 --> 01:49:41,760
+Also wir haben die punktgespiegelte Filterfunktion.
+
+822
+01:49:42,120 --> 01:49:59,120
+Hier haben wir eine Filtermaske, hier haben wir die Nomenklatur,
+
+823
+01:49:59,120 --> 01:50:05,120
+die uns sagt, da können jetzt viele Nullen sein.
+
+824
+01:50:05,480 --> 01:50:18,480
+Und zwar soll jetzt die Filtermaske aufgebläht werden auf Bildgröße.
+
+825
+01:50:19,480 --> 01:50:24,480
+Und dann sehen Sie, dann werden die verschiedenen Koeffizienten
+
+826
+01:50:24,480 --> 01:50:29,480
+auf die Ränder dieses Bildes umgesetzt.
+
+827
+01:50:29,840 --> 01:50:32,840
+Das ist letztendlich unüblich.
+
+828
+01:50:32,840 --> 01:50:37,840
+Ich wüsste jetzt nicht, warum Sie eine Filtermaske auf Bildgröße haben wollen.
+
+829
+01:50:37,840 --> 01:50:40,840
+Ja, Sie brauchen eine Filtermaske auf Bildgröße,
+
+830
+01:50:40,840 --> 01:50:43,840
+wenn Sie die Fourier-Transformation, wo Sie für jeden Koeffizienten
+
+831
+01:50:43,840 --> 01:50:46,840
+das gesamte Bild gehen, wenn Sie die Fourier-Transformation
+
+832
+01:50:46,840 --> 01:50:49,840
+mit so einer Filtermaske beschreiben wollen.
+
+833
+01:50:49,840 --> 01:50:52,840
+Aber das braucht man normalerweise nicht.
+
+834
+01:50:52,840 --> 01:50:55,840
+Die Faltungsoperation ist kommutativ.
+
+835
+01:50:56,200 --> 01:51:03,200
+Und sie ist auch assoziativ.
+
+836
+01:51:03,200 --> 01:51:06,200
+Kommutativ ist natürlich schön.
+
+837
+01:51:06,200 --> 01:51:09,200
+Das ist vielleicht gut, wenn man irgendwie rechnet.
+
+838
+01:51:09,200 --> 01:51:12,200
+Die Assoziativität ist relevant.
+
+839
+01:51:14,200 --> 01:51:17,200
+Stellen Sie sich vor, Sie haben zwei Filter,
+
+840
+01:51:17,200 --> 01:51:20,200
+die Sie auf ein Bild anwenden wollen.
+
+841
+01:51:20,200 --> 01:51:23,200
+Das wäre ja der klassische Vorgang.
+
+842
+01:51:23,560 --> 01:51:26,560
+Sie nehmen ein Bild, Filter 1, kommt ein Bild raus
+
+843
+01:51:26,560 --> 01:51:29,560
+und dann Filter 2 haben Sie Ihr Ergebnis.
+
+844
+01:51:29,560 --> 01:51:32,560
+Dann müssen Sie dieses Bild zweimal durch den Speicher ziehen.
+
+845
+01:51:34,560 --> 01:51:37,560
+Die Assoziativität sagt uns aber,
+
+846
+01:51:39,560 --> 01:51:44,560
+wir können die beiden Filtermasken erst mal miteinander falten.
+
+847
+01:51:46,560 --> 01:51:49,560
+Und diese dann typischerweise größere Filtermaske
+
+848
+01:51:49,560 --> 01:51:52,560
+nutzen wir zur Filterung des Bildes.
+
+849
+01:51:52,920 --> 01:51:55,920
+Dann können wir das Bild nur einmal aus dem Speicher holen.
+
+850
+01:51:55,920 --> 01:51:58,920
+Und das Ganze geht viel schneller.
+
+851
+01:52:04,920 --> 01:52:07,920
+Dieses Bild, das lineare Zeit- oder Shift-Invariante-System
+
+852
+01:52:07,920 --> 01:52:10,920
+hatten wir schon für den einen dimensionalen Fall.
+
+853
+01:52:10,920 --> 01:52:13,920
+Im zweidimensionalen Fall haben wir ein G von XY.
+
+854
+01:52:13,920 --> 01:52:16,920
+Unsere Systemfunktion ist auch wieder von zwei Koordinaten
+
+855
+01:52:16,920 --> 01:52:19,920
+abhängig XY und unsere Ausgangssicherung auch.
+
+856
+01:52:20,280 --> 01:52:23,280
+Die Faltung beschreiben wir genauso wie im eindimensionalen Fall.
+
+857
+01:52:23,280 --> 01:52:26,280
+Bloß, dass wir statt X, X, Y stehen haben.
+
+858
+01:52:26,280 --> 01:52:29,280
+Sehen Sie hier.
+
+859
+01:52:29,280 --> 01:52:32,280
+Und auch die Impulsantwort bestimmen wir genauso wie vorher.
+
+860
+01:52:32,280 --> 01:52:35,280
+Wir haben jetzt natürlich ein zweidimensionales Filterkörner.
+
+861
+01:52:35,280 --> 01:52:38,280
+Und der Impuls, den wir senden,
+
+862
+01:52:38,280 --> 01:52:41,280
+ist jetzt ein zweidimensionaler Impuls.
+
+863
+01:52:41,280 --> 01:52:44,280
+Das heißt, wir haben eine Matrix,
+
+864
+01:52:44,280 --> 01:52:47,280
+in der überall Nullen stehen an einer Stelle.
+
+865
+01:52:47,640 --> 01:52:50,640
+An der Stelle 0,0 haben wir einen Einheitsimpuls.
+
+866
+01:52:50,640 --> 01:52:53,640
+Und wenn wir dieses Signal mit dem einen Impuls,
+
+867
+01:52:53,640 --> 01:52:56,640
+das zweidimensionale Signal mit dem einen Impuls,
+
+868
+01:52:56,640 --> 01:52:59,640
+alles andere ist Null, durch unser Filter schicken,
+
+869
+01:52:59,640 --> 01:53:02,640
+bekommen wir die Impulsantwort.
+
+870
+01:53:12,640 --> 01:53:15,640
+Sie kennen das aus der Systemtheorie.
+
+871
+01:53:16,000 --> 01:53:19,000
+Faltung und Foyertransformation hängen zusammen.
+
+872
+01:53:19,000 --> 01:53:22,000
+Sie können im Ortsbereich falten.
+
+873
+01:53:22,000 --> 01:53:25,000
+Sie können auch die Foyertransformierte
+
+874
+01:53:25,000 --> 01:53:28,000
+von dieser Faltung berechnen.
+
+875
+01:53:28,000 --> 01:53:31,000
+Und letztendlich kommt dann raus,
+
+876
+01:53:31,000 --> 01:53:34,000
+dass Sie statt im Ortsbereich zu falten,
+
+877
+01:53:34,000 --> 01:53:37,000
+Sie im Frequenzbereich zu falten.
+
+878
+01:53:37,000 --> 01:53:40,000
+Das heißt, Sie können im Frequenzbereich
+
+879
+01:53:40,000 --> 01:53:43,000
+im Ortsbereich zu falten.
+
+880
+01:53:43,360 --> 01:53:46,360
+Und Sie können im Frequenzbereich
+
+881
+01:53:46,360 --> 01:53:49,360
+die Foyertransformierten der beiden Signale,
+
+882
+01:53:49,360 --> 01:53:52,360
+also die Foyertransformierten der Hörertransformation
+
+883
+01:53:52,360 --> 01:53:55,360
+und des Signals miteinander multiplizieren können.
+
+884
+01:54:02,360 --> 01:54:05,360
+Das sehen Sie dann hier nach längerer Rechnung.
+
+885
+01:54:05,360 --> 01:54:08,360
+Das können Sie gerne zu Hause nachvollziehen.
+
+886
+01:54:13,360 --> 01:54:16,360
+Die Multiplikation ist natürlich viel weniger
+
+887
+01:54:16,360 --> 01:54:19,360
+rechenaufwendig als eine Faltung.
+
+888
+01:54:19,360 --> 01:54:22,360
+Aber Sie dürfen nicht vergessen,
+
+889
+01:54:22,360 --> 01:54:25,360
+zusätzlich brauchen Sie die Hintransformation
+
+890
+01:54:25,360 --> 01:54:28,360
+in dem Frequenzbereich
+
+891
+01:54:28,360 --> 01:54:31,360
+und die Rücktransformation.
+
+892
+01:54:34,360 --> 01:54:37,360
+Wenn Sie viele Filteroperationen durchführen,
+
+893
+01:54:37,360 --> 01:54:40,360
+dann kann es durchaus mal sein,
+
+894
+01:54:40,720 --> 01:54:43,720
+die Filterung im Frequenzbereich vorzunehmen,
+
+895
+01:54:43,720 --> 01:54:46,720
+wenn Sie lange Filterfunktionen haben.
+
+896
+01:54:49,720 --> 01:54:52,720
+Aber häufig wird diese Darstellung
+
+897
+01:54:52,720 --> 01:54:55,720
+und Multiplikation im Frequenzbereich
+
+898
+01:54:55,720 --> 01:54:58,720
+nur benutzt, um das Ganze anschaulich zu halten.
+
+899
+01:54:58,720 --> 01:55:01,720
+Die Implementierung wird typischerweise
+
+900
+01:55:01,720 --> 01:55:04,720
+im Zeitbereich durchgeführt.
+
+901
+01:55:05,080 --> 01:55:08,080
+Hier haben wir es jetzt in Transformationsdarstellung.
+
+902
+01:55:08,080 --> 01:55:11,080
+F gefaltet G ist F mal G im Frequenzbereich.
+
+903
+01:55:11,080 --> 01:55:14,080
+Wenn Sie im Frequenzbereich rechnen wollen,
+
+904
+01:55:14,080 --> 01:55:17,080
+dann brauchen Sie drei Foyertransformationen.
+
+905
+01:55:17,080 --> 01:55:20,080
+Die erste Foyertransformation für das Signal,
+
+906
+01:55:20,080 --> 01:55:23,080
+die zweite für die Filterfunktion
+
+907
+01:55:23,080 --> 01:55:26,080
+und die dritte für die Rücktransformation.
+
+908
+01:55:26,080 --> 01:55:29,080
+Von welchen Foyertransformationen
+
+909
+01:55:29,080 --> 01:55:32,080
+wollen Sie rechnen?
+
+910
+01:55:32,440 --> 01:55:35,440
+Von welchen her ist der Aufwand
+
+911
+01:55:35,440 --> 01:55:38,440
+der Hin- und Rücktransformation identisch?
+
+912
+01:55:38,440 --> 01:55:41,440
+Die Hin- und Rücktransformationen unterscheiden sich ja nur
+
+913
+01:55:41,440 --> 01:55:44,440
+durch einen Skalierungsfaktor vorneweg.
+
+914
+01:55:44,440 --> 01:55:47,440
+Im Transformationskörnern haben Sie E hoch minus J
+
+915
+01:55:47,440 --> 01:55:50,440
+oder E hoch plus J und so weiter.
+
+916
+01:55:55,440 --> 01:55:58,440
+Hier mal ein Beispiel für ein Filter,
+
+917
+01:55:58,440 --> 01:56:01,440
+das gerne in der Bildverarbeitung eingesetzt wird.
+
+918
+01:56:01,800 --> 01:56:04,800
+Ein Gauss-Filter.
+
+919
+01:56:06,800 --> 01:56:09,800
+Hat eigentlich mit Statistik gar nichts zu tun,
+
+920
+01:56:09,800 --> 01:56:12,800
+dieses Gauss-Filter.
+
+921
+01:56:12,800 --> 01:56:15,800
+Es wird einfach die Gauss-Funktion genommen,
+
+922
+01:56:15,800 --> 01:56:18,800
+diese Glockenkurve.
+
+923
+01:56:18,800 --> 01:56:21,800
+Das Filter ist dann
+
+924
+01:56:21,800 --> 01:56:24,800
+1 durch 2P Sigma-Quadrat
+
+925
+01:56:24,800 --> 01:56:27,800
+mal E hoch minus X-Quadrat
+
+926
+01:56:27,800 --> 01:56:30,800
+plus XY-Quadrat durch 2 Sigma-Quadrat.
+
+927
+01:56:31,160 --> 01:56:34,160
+Das ist letztendlich
+
+928
+01:56:34,160 --> 01:56:37,160
+die zweidimensionale Gauss-Funktion.
+
+929
+01:56:37,160 --> 01:56:40,160
+Als freien Parameter hier hat man das Sigma.
+
+930
+01:56:41,160 --> 01:56:44,160
+Mit einem großen Sigma,
+
+931
+01:56:44,160 --> 01:56:47,160
+hier sehen wir eine Visualisierung dieses Filters,
+
+932
+01:56:47,160 --> 01:56:50,160
+wird die Funktion breiter
+
+933
+01:56:50,160 --> 01:56:53,160
+und mit einem kleinen Sigma wird sie sehr schmal.
+
+934
+01:56:55,160 --> 01:56:58,160
+Hier sehen wir das Ganze
+
+935
+01:56:58,520 --> 01:57:01,520
+im Frequenzbereich.
+
+936
+01:57:03,520 --> 01:57:06,520
+Jetzt ist natürlich die Frage,
+
+937
+01:57:06,520 --> 01:57:09,520
+wenn wir jetzt filtern wollen mit so einem Gauss-Filter,
+
+938
+01:57:09,520 --> 01:57:12,520
+wie groß ist denn jetzt unser Filterkörner?
+
+939
+01:57:12,520 --> 01:57:15,520
+Das Ding dehnt sich ja unendlich aus.
+
+940
+01:57:15,520 --> 01:57:18,520
+Jetzt kommt der Ingenieur und sagt,
+
+941
+01:57:18,520 --> 01:57:21,520
+wenn die Filterkoeffizienten klein sind,
+
+942
+01:57:21,520 --> 01:57:24,520
+dann sehe ich das sowieso nicht mehr.
+
+943
+01:57:24,520 --> 01:57:27,520
+Hier als ein Beispiel Sigma gleich 1 gewählt,
+
+944
+01:57:27,880 --> 01:57:30,880
+kann man sich diese ganzen Funktionswerte anschauen.
+
+945
+01:57:32,880 --> 01:57:35,880
+Hier ist das Zentrum
+
+946
+01:57:35,880 --> 01:57:38,880
+und Sie sehen außen am Rand,
+
+947
+01:57:38,880 --> 01:57:41,880
+wir haben hier jetzt eine 5x5 Matrix,
+
+948
+01:57:41,880 --> 01:57:44,880
+sind die Koeffizienten maximal 2 Hundertstel.
+
+949
+01:57:47,880 --> 01:57:50,880
+Wenn wir noch weiter gehen,
+
+950
+01:57:50,880 --> 01:57:53,880
+wir gehen zu einem 7x7 Körner,
+
+951
+01:57:53,880 --> 01:57:56,880
+dann werden die Koeffizienten noch ein Tausendstel sein.
+
+952
+01:57:57,240 --> 01:58:00,240
+Die Pixel, die am Rand sind,
+
+953
+01:58:00,240 --> 01:58:03,240
+werden ein Gewicht von 2 Hundertstel mitbringen.
+
+954
+01:58:03,240 --> 01:58:06,240
+Stellen wir uns vor,
+
+955
+01:58:06,240 --> 01:58:09,240
+der Bildpunkt hier am Rand
+
+956
+01:58:09,240 --> 01:58:12,240
+hat den Grauwert 100.
+
+957
+01:58:14,240 --> 01:58:17,240
+Dann wird er das Filterergebnis
+
+958
+01:58:17,240 --> 01:58:20,240
+um 2 beeinflussen.
+
+959
+01:58:20,240 --> 01:58:23,240
+Das ist nicht mehr viel.
+
+960
+01:58:23,600 --> 01:58:26,600
+Hier haben wir eine Lösung gefunden
+
+961
+01:58:26,600 --> 01:58:29,600
+für einen Chaosfilter.
+
+962
+01:58:29,600 --> 01:58:32,600
+Das ist ein guter Kompromiss
+
+963
+01:58:32,600 --> 01:58:35,600
+zwischen der theoretisch unendlichen Größe dieses Filters
+
+964
+01:58:35,600 --> 01:58:38,600
+und einer praktischen Implementierung.
+
+965
+01:58:38,600 --> 01:58:41,600
+Natürlich, wenn Sie das Sigma größer machen,
+
+966
+01:58:41,600 --> 01:58:44,600
+müssen Sie dann auch das Filter größer machen,
+
+967
+01:58:44,600 --> 01:58:47,600
+weil sonst die Approximation, die Sie dadurch machen,
+
+968
+01:58:47,600 --> 01:58:50,600
+dass Sie das Filterkörner endlich begrenzen,
+
+969
+01:58:50,960 --> 01:58:53,960
+verschlechtern.
+
+970
+01:58:55,960 --> 01:58:58,960
+Wie sieht so das Ergebnis aus?
+
+971
+01:59:01,960 --> 01:59:04,960
+Hier haben wir ein Eingabebild.
+
+972
+01:59:04,960 --> 01:59:07,960
+Hier haben wir
+
+973
+01:59:07,960 --> 01:59:10,960
+das Chaosfilter.
+
+974
+01:59:12,960 --> 01:59:15,960
+Das Chaosfilter,
+
+975
+01:59:15,960 --> 01:59:18,960
+das sehen Sie hier,
+
+976
+01:59:19,320 --> 01:59:22,320
+das sind die E-Funktionen.
+
+977
+01:59:22,320 --> 01:59:25,320
+Wenn Sie das in den Fourierbereich transformieren,
+
+978
+01:59:25,320 --> 01:59:28,320
+bleibt das eine gausche Kurve.
+
+979
+01:59:28,320 --> 01:59:31,320
+Die verändert sich ein bisschen in der Breite.
+
+980
+01:59:31,320 --> 01:59:34,320
+Hier sehen wir die Filtermaske im zweidimensionalen,
+
+981
+01:59:34,320 --> 01:59:37,320
+im Ortsbereich, hier im Frequenzbereich.
+
+982
+01:59:37,320 --> 01:59:40,320
+Hier sehen Sie das gefilterte Bild.
+
+983
+01:59:40,320 --> 01:59:43,320
+Das Chaosfilter ist ein Tiefpassfilter.
+
+984
+01:59:43,320 --> 01:59:46,320
+Hier werden die Bildpunkte aufaddiert
+
+985
+01:59:46,680 --> 01:59:49,680
+und gewichtet aufaddiert.
+
+986
+01:59:49,680 --> 01:59:52,680
+Das heißt, es wird eine Mittelwertbildung geführt.
+
+987
+01:59:52,680 --> 01:59:55,680
+Das ist ein Tiefpass.
+
+988
+01:59:55,680 --> 01:59:58,680
+Das Bild sieht verschwommen aus.
+
+989
+02:00:01,680 --> 02:00:04,680
+Wenn wir dieses Bild in den Frequenzbereich transformieren,
+
+990
+02:00:04,680 --> 02:00:07,680
+sehen wir hier das Spektrum,
+
+991
+02:00:07,680 --> 02:00:10,680
+zwar logarithmisch dargestellt.
+
+992
+02:00:10,680 --> 02:00:13,680
+Durch die logarithmische Darstellung
+
+993
+02:00:14,040 --> 02:00:17,040
+sind die Bilder energiereicher als in Wirklichkeit.
+
+994
+02:00:20,040 --> 02:00:23,040
+Wenn wir dieses Spektrum
+
+995
+02:00:23,040 --> 02:00:26,040
+mit diesem Filter multiplizieren,
+
+996
+02:00:26,040 --> 02:00:29,040
+bleibt das hier über.
+
+997
+02:00:34,040 --> 02:00:37,040
+Das hier sind Effekte
+
+998
+02:00:37,040 --> 02:00:40,040
+der periodischen Wiederholung des Bildes.
+
+999
+02:00:40,040 --> 02:00:43,040
+Denn die Fourier-Transformation
+
+1000
+02:00:43,400 --> 02:00:46,400
+hat dieses Bild periodisch fortgesetzt.
+
+1001
+02:00:46,400 --> 02:00:49,400
+Das heißt, wir sehen dieses Schachbrettmuster.
+
+1002
+02:00:49,400 --> 02:00:52,400
+Deswegen haben wir hier diese Frequenzen noch über,
+
+1003
+02:00:52,400 --> 02:00:55,400
+obwohl dieses Filter sie ausschneiden sollte.
+
+1004
+02:00:55,400 --> 02:00:58,400
+Aber das Ergebnis ist dieses Bild
+
+1005
+02:00:58,400 --> 02:01:01,400
+auch wieder periodisch wiederholt.
+
+1006
+02:01:01,400 --> 02:01:04,400
+Da ist das Schachbrettmuster doch da.
+
+1007
+02:01:09,400 --> 02:01:12,400
+Wir können diese linearen Systeme
+
+1008
+02:01:12,760 --> 02:01:15,760
+im Frequenzbereich beschreiben.
+
+1009
+02:01:15,760 --> 02:01:18,760
+Eingangssignal, Systemfunktion oder Impulsantwort, Ausgangssignal.
+
+1010
+02:01:18,760 --> 02:01:21,760
+Wir beschreiben das Ganze mit der Faltung
+
+1011
+02:01:21,760 --> 02:01:24,760
+im Aus- oder Zeitbereich, im Frequenzbereich
+
+1012
+02:01:24,760 --> 02:01:27,760
+durch die Multiplikation im Spektralbereich,
+
+1013
+02:01:27,760 --> 02:01:30,760
+im Fourier-Bereich.
+
+1014
+02:01:30,760 --> 02:01:33,760
+Damit haben wir, glaube ich,
+
+1015
+02:01:33,760 --> 02:01:36,760
+das Wesentliche zu diesem Bild gesagt.
+
+1016
+02:01:36,760 --> 02:01:39,760
+Wir haben im Zweidimensionalen Omega X und Omega Y
+
+1017
+02:01:40,120 --> 02:01:43,120
+im Frequenzbereich.
+
+1018
+02:01:43,120 --> 02:01:46,120
+Im Ausbereich haben wir X und Y.
+
+1019
+02:01:46,120 --> 02:01:49,120
+Ansonsten ist die Beschreibung wirklich das Gleiche.
+
+1020
+02:01:49,120 --> 02:01:52,120
+Die Transfer- und Übertragungsfunktionen
+
+1021
+02:01:52,120 --> 02:01:55,120
+F und Omega X und Omega Y.
+
+1022
+02:01:55,120 --> 02:01:58,120
+Im Ausbereich nennt man sie auch
+
+1023
+02:01:58,120 --> 02:02:01,120
+Point Spread Function.
+
+1024
+02:02:01,120 --> 02:02:04,120
+Wenn Sie einen Punkt oder einen Impuls reingeben,
+
+1025
+02:02:04,120 --> 02:02:07,120
+dann kommt als Ausgabe etwas Zweidimensionales heraus.
+
+1026
+02:02:07,480 --> 02:02:10,480
+Dieser Punkt breitet sich aus.
+
+1027
+02:02:10,480 --> 02:02:13,480
+Deswegen gibt es hier den Begriff der Point Spread Function,
+
+1028
+02:02:13,480 --> 02:02:16,480
+den Sie auch durchaus öfter mal lesen
+
+1029
+02:02:16,480 --> 02:02:19,480
+im Bereich der Bildtransformation.
+
+1030
+02:02:19,480 --> 02:02:22,480
+Die Bildsignalverarbeitung ist aber nur der Begriff
+
+1031
+02:02:22,480 --> 02:02:25,480
+für die Impulsantwort.
+
+1032
+02:02:25,480 --> 02:02:28,480
+Dann danke Ihnen für heute
+
+1033
+02:02:28,480 --> 02:02:31,480
+und bis zum nächsten Mal.
+
