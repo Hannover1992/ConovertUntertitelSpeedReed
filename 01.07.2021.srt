@@ -1,0 +1,5476 @@
+1
+00:00:00,000 --> 00:00:09,360
+Gut, das letzte Mal haben wir die Zusammenhangsanalyse als letztes besprochen. Also wie können wir in
+
+2
+00:00:09,360 --> 00:00:16,880
+einem Bild zusammenhängende Regionen mit einem einheitlichen Wert, Kennzeichen, Label versehen
+
+3
+00:00:16,880 --> 00:00:26,040
+und dann nicht zusammenhängende Regionen trennen. Und Sie sehen hier das Ergebnis. Hier haben wir
+
+4
+00:00:26,040 --> 00:00:33,120
+jetzt letztendlich Objekte beschrieben. Sieht so aus, als wenn die Objektdefinition über die
+
+5
+00:00:33,120 --> 00:00:39,080
+Vierernachbarschaft definiert ist. Damit sind dann diese beiden Bildpunkte nicht miteinander
+
+6
+00:00:39,080 --> 00:00:43,200
+verbunden. Und wir haben hier zwei Objekte. Und was wir dann auch gesehen haben bei dieser
+
+7
+00:00:43,200 --> 00:00:49,480
+Zusammenhangsanalyse, bekommt jedes zusammenhängende Gebiet einen eindeutigen Label, typischerweise
+
+8
+00:00:49,480 --> 00:00:57,200
+eine Zahl. Aber das muss nicht unbedingt eine fortlaufende Nummerierung sein. Sie können also
+
+9
+00:00:57,200 --> 00:01:07,640
+aus der Existenz dieser drei nicht schließen, dass es da drei Objekte gibt. Gut, dann noch mal ein
+
+10
+00:01:07,640 --> 00:01:12,440
+anderes Verfahren, wie man Objekte beschreiben kann. Also man kann sie einmal in einem Bild,
+
+11
+00:01:12,440 --> 00:01:18,400
+jeder Bildpunkt kriegt ein Label, daraus erkenne ich zu welchem Objekt gehört das. Aber ich könnte
+
+12
+00:01:18,400 --> 00:01:26,760
+ja auch alternativ um ein Objekt herumlaufen. Das heißt wir beschreiben ein Objekt durch seinen
+
+13
+00:01:26,760 --> 00:01:48,200
+Rand. Und das geht dann typischerweise so, dass wir an der Kontur langlaufen. Wenn wir an einem
+
+14
+00:01:48,240 --> 00:01:58,280
+Bildpunkt sind, haben wir eine gewisse Anzahl von Richtungen, die wir gehen können. Wenn wir die
+
+15
+00:01:58,280 --> 00:02:07,600
+Kontur im Sinne der Vierernachbarschaft definieren, dann gibt es eben vier Richtungen. Wieder zurück,
+
+16
+00:02:07,600 --> 00:02:13,360
+hoch, geradeaus, nach unten. Oder wenn sie es jetzt aus der Richtung sehen, dann wäre es links,
+
+17
+00:02:13,360 --> 00:02:18,400
+geradeaus, rechts. Und wenn wir die Kontur im Sinne der Achternachbarschaft definieren,
+
+18
+00:02:18,400 --> 00:02:26,720
+dann haben wir letztendlich an jeder Stelle acht Richtungen. Typischerweise kommen wir aus
+
+19
+00:02:26,720 --> 00:02:31,040
+einer Richtung. Wenn wir in der Achternachbarschaft sind, dann gehen wir in eine andere Richtung
+
+20
+00:02:31,040 --> 00:02:42,720
+zurück. Diese Richtungen werden dann durchnummeriert.
+
+21
+00:02:43,720 --> 00:02:52,240
+Und dann können sie, wenn sie den Richtungscode haben, die Kontur rekonstruieren. Dann haben
+
+22
+00:02:52,240 --> 00:02:55,640
+sie den Rand des Objekts, sie füllen das und dann haben sie das gesamte Objekt.
+
+23
+00:02:55,640 --> 00:03:07,000
+Sehen wir das mal. Wir haben einen Startpunkt, den wir brauchen, um ein Objekt zu beschreiben.
+
+24
+00:03:07,080 --> 00:03:13,920
+Und dann gehen wir an der Kontur lang. Wir können im Grunde genommen sagen,
+
+25
+00:03:13,920 --> 00:03:21,040
+wir gehen immer an der Grenze, rein und raus. Hier haben wir den Kettencode. Nun gibt es für
+
+26
+00:03:21,040 --> 00:03:28,000
+diesen Kettencode verschiedene Möglichkeiten. Hier ist es jetzt erstmal so dargestellt,
+
+27
+00:03:28,000 --> 00:03:34,240
+dass nach oben auf dem Bild, das ist immer der Code 2 und nach rechts ist immer der Code 0.
+
+28
+00:03:37,360 --> 00:03:46,520
+Wir sehen im Beispiel A, da haben wir eher ein flächenhaftes Objekt, da ist die Kontur
+
+29
+00:03:46,520 --> 00:03:51,520
+relativ zur Fläche kurz. Stellen Sie sich vor, der Kreis wird immer größer, dann wissen wir,
+
+30
+00:03:51,520 --> 00:04:01,040
+der Umfang wächst proportional zum Radius und die Anzahl der Bildpunkte proportional zum
+
+31
+00:04:01,160 --> 00:04:07,920
+Quadrat des Radius. Das heißt, für große flächenhafte Objekte ist die Randbeschreibung
+
+32
+00:04:07,920 --> 00:04:13,760
+einfach effizienter. Wir brauchen weniger Daten, um das Ganze zu beschreiben. Bei
+
+33
+00:04:13,760 --> 00:04:18,800
+linienhaften Strukturen, so wie wir es hier sehen, sieht das natürlich anders aus.
+
+34
+00:04:18,800 --> 00:04:32,120
+Das heißt, letztendlich auch die Effizienz der Beschreibung im Vergleich zum Label-Bild
+
+35
+00:04:32,120 --> 00:04:39,520
+hängt davon ab, was für Strukturen beschrieben werden. Sind sie mehr flächenhaft oder mehr
+
+36
+00:04:39,520 --> 00:04:52,440
+feine Strukturen. Das sind jetzt zwei grundsätzliche Beschreibungsarten. Wie kann man das
+
+37
+00:04:52,440 --> 00:04:58,000
+jetzt im Rechner repräsentieren? Das ist ja das, was uns ja am meisten interessiert. Da ist jetzt
+
+38
+00:04:58,000 --> 00:05:01,600
+also das Label-Bild. Wie wir zu diesem Label-Bild kommen, wissen wir jetzt. Wir haben ein Binärbild,
+
+39
+00:05:01,600 --> 00:05:05,840
+wir machen eine Connected Component Analyse zum Beispiel, dann bekommt jedes Gebiet ein Label
+
+40
+00:05:05,920 --> 00:05:13,280
+und hier sehen wir, der größte Label ist die 12, aber das bedeutet nicht, dass wir zwölf Regionen
+
+41
+00:05:13,280 --> 00:05:26,840
+haben. Wir können dann also das über dieses Label-Bild darstellen. Wir können auch Farben
+
+42
+00:05:26,840 --> 00:05:32,000
+darstellen und dann vielleicht einen Startpunkt für jedes Objekt. Wir merken uns also für ein
+
+43
+00:05:32,000 --> 00:05:41,000
+Objekt Farbe 3 und der Punkt 00 gehört dazu. Dann wird man dieses Objekt finden können im Bild.
+
+44
+00:05:41,000 --> 00:05:45,440
+Sie brauchen also einen Zeiger und dann die Farbe. Dann gucken Sie sich an, welche Bildpunkte
+
+45
+00:05:45,440 --> 00:05:51,280
+gehören dazu durch Auswertung des Bildes. Genauso können Sie sich hier diese Koordinate merken und
+
+46
+00:05:51,280 --> 00:05:55,680
+die Farbe dazu oder die Farbe ist eigentlich impliziert. Sie brauchen nicht nur einen
+
+47
+00:05:55,680 --> 00:06:00,920
+Startpunkt wählen. Der Startpunkt hier ist immer oben links, muss aber nicht sein. Sie können ihn
+
+48
+00:06:01,000 --> 00:06:08,720
+bliebig wählen. Wenn Sie den Startpunkt als oben linken Punkt eines Segments wählen, dann ist das
+
+49
+00:06:08,720 --> 00:06:16,160
+Absuchen des Elementes einfacher. Wenn Sie jetzt hier wissen, A2 ist der erste Punkt und Sie wissen,
+
+50
+00:06:16,160 --> 00:06:20,360
+das ist oben links, dann müssen Sie das Bild nur noch ab hier durchsuchen, um alle anderen Punkte
+
+51
+00:06:20,360 --> 00:06:26,800
+zu finden. Wenn das hier der Startpunkt wäre, dann ist ganz klar, dann müssen Sie mit dem Bild hier ganz oben anfangen.
+
+52
+00:06:27,800 --> 00:06:34,360
+Und da hat die Wahl des Startpunktes einen gewissen Einfluss auf die Effizienz.
+
+53
+00:06:34,360 --> 00:06:43,960
+Ja, wir können so ein Objekt auch durch den Rand beschreiben.
+
+54
+00:06:43,960 --> 00:06:50,560
+Also da gibt es den Kettencode, den hatten wir schon gerade.
+
+55
+00:06:50,560 --> 00:07:00,200
+Das hat aber so ein bisschen den Nachteil, wenn wir die Kanten in absoluter Richtung beschreiben,
+
+56
+00:07:00,200 --> 00:07:05,320
+also waagerecht, waagerecht, waagerecht. Wenn sich dieses Objekt um 90 Grad dreht, dann kriegen wir eine ganz andere
+
+57
+00:07:05,320 --> 00:07:11,920
+Beschreibung, weil das, was vorher mal waagerecht war, ist jetzt plötzlich senkrecht. Die Variation des
+
+58
+00:07:11,960 --> 00:07:22,960
+Ganzen ist dann der sogenannte Freeman-Code, wo wir die Richtung immer relativ zum vorangegangenen Code angeben.
+
+59
+00:07:22,960 --> 00:07:32,360
+Das heißt, statt waagerecht, waagerecht, waagerecht, würden wir einmal, Sie müssen irgendwie eine
+
+60
+00:07:32,360 --> 00:07:36,600
+Startrichtung definieren, da gibt es eine Startrichtung, und dann heißt es nur geradeaus, geradeaus, geradeaus.
+
+61
+00:07:36,760 --> 00:07:45,440
+Und dann an einer Ecke, stellen wir uns vor, wir haben einen Quadrat, gehen wir nach unten, also dann ist der Code
+
+62
+00:07:45,440 --> 00:07:50,560
+der für nach unten, für 90 Grad nach rechts gilt, und dann gehen wir wieder geradeaus.
+
+63
+00:07:50,560 --> 00:07:55,000
+Und dann gehen wir 90 Grad nach rechts, wieder geradeaus, 90 Grad nach rechts, wieder geradeaus und kommen oben an.
+
+64
+00:07:57,240 --> 00:08:01,880
+Und so eine Beschreibung, diese differenzierte Beschreibung, ist zumindest, was Rotationen um 90 Grad angeht,
+
+65
+00:08:01,880 --> 00:08:13,400
+in Wahrheit, bleibt gleich. Theoretisch bleibt diese Beschreibung für jede Drehung gleich, aber Sie sehen ja,
+
+66
+00:08:13,400 --> 00:08:24,560
+wir haben hier nur acht Richtungen, und die Richtungen in horizontaler und vertikaler Richtung, die sind im
+
+67
+00:08:24,680 --> 00:08:32,800
+oikidischen Abstand hier gleich, wie auf der Diagonalen, da ist der Abstand größer. Das heißt also, wenn ich einen
+
+68
+00:08:32,800 --> 00:08:37,800
+Quadrat um 45 Grad drehe, dann bleibt die absolute Kantenlänge natürlich die gleiche, aber die Anzahl der
+
+69
+00:08:37,800 --> 00:08:44,080
+Bildpunkte verändert sich, und damit verändert sich dann auch wieder dieser Kettencode, oder auch der Freeman-Code,
+
+70
+00:08:44,080 --> 00:08:50,680
+auch der relative Code verändert sich ein bisschen. Aber nur ein bisschen. Das Dominante, ich gehe geradeaus,
+
+71
+00:08:50,680 --> 00:08:59,200
+und da kommt eine 90 Grad Drehung, bleibt im Beispiel des Quadrats erhalten. Nur die Anzahl der Geradeausbewegungen variiert.
+
+72
+00:09:03,880 --> 00:09:11,640
+Ja, das wäre also auch eine Beschreibung für binäre Objekte. Wir haben also die flächenhafte Beschreibung.
+
+73
+00:09:11,800 --> 00:09:22,560
+Diese Beschreibung hier bedeutet letztendlich viel Speicherplatz. Wir müssen das Label-Bild abspeichern, und das hier
+
+74
+00:09:22,560 --> 00:09:28,640
+sind ja dann nur die Zugangsdaten, wie komme ich zu meinem Objekt. Das heißt, wenn ihr Bild ein Megabyte braucht,
+
+75
+00:09:28,640 --> 00:09:34,080
+dann braucht der Speicher für das binäre Objekt auch ein Megabyte. Zugriff auf das Objekt ist extrem schnell.
+
+76
+00:09:36,560 --> 00:09:41,240
+Unter der Annahme, dass wir überwiegend flächenhafte Objekte haben, und ich denke, für die meisten Bilder
+
+77
+00:09:41,240 --> 00:09:51,520
+gilt das, ist dieser Freeman-Code hier natürlich viel speichereffizienter. Aber, wenn Sie den Freeman-Code haben,
+
+78
+00:09:51,520 --> 00:09:58,400
+und da wird so ein Objekt beschrieben, dann kriegen Sie die Kontur. Davon wissen Sie aber noch nicht, dass dieser Punkt
+
+79
+00:09:58,400 --> 00:10:07,200
+im Innern des Objektes liegt. Das müssen Sie dann noch in einem weiteren Schritt, indem Sie die Kontur füllen, herausfinden.
+
+80
+00:10:08,200 --> 00:10:22,960
+Damit ist der Ketten-Code speichereffizient, aber langsam in der Anwendung. Das Konzept des Quadtris ist irgendwo ein Kompromiss
+
+81
+00:10:22,960 --> 00:10:30,240
+zwischen speichereffizienter Darstellung einer Segmentierung der Objekte und schnellem Zugriff.
+
+82
+00:10:31,240 --> 00:10:41,240
+Bei dem Quadri wird das Bild oder eine Region, die man hat, eigentlich können wir auch sagen ein Block, wird, wenn er ein
+
+83
+00:10:41,240 --> 00:10:52,640
+Homogenitätskriterium nicht erfüllt, aufgeteilt. Wenn wir hier die Wurzel des Baumes haben, diese Wurzel repräsentiert
+
+84
+00:10:52,640 --> 00:11:05,640
+das gesamte Bild, und das gesamte Bild sei dieses hier, dann wird jetzt dieses Bild in vier Teile aufgeteilt.
+
+85
+00:11:05,640 --> 00:11:25,640
+Eins, zwei, drei, vier. Das entspricht dann diesen vier Quadranten. Ich habe jetzt nur die zwei linken eingezeichnet.
+
+86
+00:11:25,640 --> 00:11:35,640
+Und wenn so ein Quadrant das Homogenitätskriterium erfüllt, dann sind wir da fertig. Dann haben wir einen Endknoten.
+
+87
+00:11:35,640 --> 00:11:42,640
+Daraus können wir jetzt schließen, dass dieser Quadrant hier mit diesem Bildpunkt gemeint ist.
+
+88
+00:11:42,640 --> 00:11:49,640
+Wenn das gesamte Bild einfarbig wäre, dann hätten wir nur diesen Wurzelknoten und das wäre Schluss.
+
+89
+00:11:50,640 --> 00:11:58,640
+Die Blöcke, die jetzt nicht homogen sind, in denen wir also mehr als ein Objekt haben, die werden weiter aufgeteilt.
+
+90
+00:11:58,640 --> 00:12:10,640
+Und wenn wir uns diesen Anteil anschauen, dann sehen wir den hier.
+
+91
+00:12:10,640 --> 00:12:36,640
+Wir haben hier drei Quadranten, die sind homogen.
+
+92
+00:12:37,640 --> 00:12:50,640
+Diese beiden, zweimal schwarz, einmal weiß. Dieser hier ist nicht homogen, der wird dann also hier nochmal aufgeteilt in die einzelnen Bildpunkte.
+
+93
+00:12:50,640 --> 00:13:04,640
+Wir haben also mit dieser Struktur die Möglichkeit, das Bild der Blöcke aufzuteilen und jeder Block ist dann von seiner Größe her mindestens ein Pixel groß und jeder Block ist homogen.
+
+94
+00:13:05,640 --> 00:13:09,640
+Mit dieser Struktur haben sie letztendlich einen Kompromiss.
+
+95
+00:13:09,640 --> 00:13:18,640
+Sie können sehr schnell über so einen Baum auf eine gewisse Bildkoordinate zugreifen, weil wir hier bei der Aufteilung eine reguläre Struktur haben.
+
+96
+00:13:18,640 --> 00:13:24,640
+Sie gehen in diesem Baum so weit runter, bis sie auf dem Weg zu dem Bildpunkt, der sie interessiert, auf einen Endknoten stoßen.
+
+97
+00:13:24,640 --> 00:13:28,640
+Und dann wissen sie, das ist der Label dieses Punktes.
+
+98
+00:13:28,640 --> 00:13:41,640
+Quadris werden relativ oft verwendet, weil sie eben diesen guten Kompromiss darstellen, zwischen schnellem Zugriff auf das Bild und speichereffizienter darstellen.
+
+99
+00:13:41,640 --> 00:13:49,640
+Binäre Objekte werden typischerweise in einem Binärbild repräsentiert.
+
+100
+00:13:49,640 --> 00:13:57,640
+Wir haben festgestellt, wir definieren den Zusammenhang eines Objektes über die Nachbarschaft.
+
+101
+00:13:57,640 --> 00:14:00,640
+Es gibt die 4er- und die 8er-Nachbarschaft.
+
+102
+00:14:00,640 --> 00:14:08,640
+Der Zusammenhang einer Region und damit die Existenz eines binären Objektes wird über diese Nachbarschaft definiert.
+
+103
+00:14:08,640 --> 00:14:17,640
+Wir haben auch gesehen, dass es durchaus Sinn macht, zum Beispiel das Objekt über die 8er-Nachbarschaft zu definieren und den Hintergrund über die 4er-Nachbarschaft.
+
+104
+00:14:17,640 --> 00:14:28,640
+Damit an linienartigen Strukturen, wo wir eine einpixelbreite Linie haben, sich die beiden Objekte, also der Hintergrund und der Vordergrund, nicht durchschneiden.
+
+105
+00:14:28,640 --> 00:14:40,640
+Wir haben die Connected Component Analyse gehabt, um aus einem Binärbild, in dem wir mehrere Objekte haben, diese Objekte voneinander zu trennen.
+
+106
+00:14:40,640 --> 00:14:53,640
+Diese Objekte können Sie dann repräsentieren durch Ihre Reparatur, durch ein Label-Bild oder als Kompromiss zwischen Geschwindigkeit und Speichereffizienz mit einem QuadTree.
+
+107
+00:14:53,640 --> 00:15:03,640
+Damit haben wir jetzt die Objekte beschrieben. Sie sind für uns zugreifbar.
+
+108
+00:15:03,640 --> 00:15:11,640
+Jetzt wollen wir diese Objekte in ihrer Form verändern. Das macht man gerne mit morphologischen Operationen.
+
+109
+00:15:11,640 --> 00:15:17,640
+Die verändern die Gestalt eines Objektes.
+
+110
+00:15:17,640 --> 00:15:23,640
+Das will man zum Beispiel machen, weil man die Formen glätten will.
+
+111
+00:15:24,640 --> 00:15:29,640
+Weil Sie irgendwelche Störungen haben. Sie wissen, die Objekte, die Sie suchen, haben eine gewisse Mindestgröße.
+
+112
+00:15:29,640 --> 00:15:33,640
+Zumindest eine industrielle Bildverarbeitung können Sie das definitiv sagen.
+
+113
+00:15:33,640 --> 00:15:35,640
+Das können Sie auch in der Überwachungstechnik sagen.
+
+114
+00:15:35,640 --> 00:15:40,640
+Wenn Sie wissen wollen, ob da Menschen vorbeilaufen, dann haben die eine gewisse Größe.
+
+115
+00:15:40,640 --> 00:15:48,640
+Sie definieren eine gewisse Größe, damit Sie nicht durch Haustiere Alarm bekommen.
+
+116
+00:15:49,640 --> 00:15:55,640
+Manchmal sind Sie an Objekten interessiert, die eine bestimmte Form haben und alles andere interessiert Sie nicht.
+
+117
+00:15:55,640 --> 00:16:06,640
+Dann müssen Sie natürlich auch ein Binärbild vereinfachen und schauen, ob die gesuchte Form da drin ist oder nicht.
+
+118
+00:16:06,640 --> 00:16:13,640
+Das macht man mit morphologischen Operationen. Die sind hochgradig nicht linear.
+
+119
+00:16:13,640 --> 00:16:18,640
+Hier sehen wir das Grundprinzip. Wir haben hier mal ein Eingabebild.
+
+120
+00:16:18,640 --> 00:16:21,640
+Das ist ein Binärbild. Da ist unser Objekt drin.
+
+121
+00:16:21,640 --> 00:16:27,640
+Dann haben wir ein sogenanntes strukturierendes Element.
+
+122
+00:16:27,640 --> 00:16:29,640
+Das ist dieses Ding hier.
+
+123
+00:16:29,640 --> 00:16:34,640
+Dieses strukturierende Element hat irgendwo einen definierten Punkt.
+
+124
+00:16:34,640 --> 00:16:40,640
+Und dieses strukturierende Element hat eine Nachbarschaft.
+
+125
+00:16:41,640 --> 00:16:50,640
+Wir betrachten jetzt die Mengenrelation zwischen unserem Eingangsbild und dem strukturierenden Element B.
+
+126
+00:16:50,640 --> 00:16:55,640
+Wobei wir dieses strukturierende Element B über das Eingangsbild schieben.
+
+127
+00:16:55,640 --> 00:17:03,640
+Für jede Position, die das strukturierende Element einnehmen kann, machen wir unsere Betrachtung der Mengenrelation.
+
+128
+00:17:04,640 --> 00:17:16,640
+Während wir dieses strukturierende Element über das Bild schieben, ist dieser schwarz markierte Punkt in diesem Beispiel in der Mitte der relevante Punkt.
+
+129
+00:17:16,640 --> 00:17:23,640
+Wenn ich also dieses Element über dieses Bild schiebe, dann mache ich eine Auswertung.
+
+130
+00:17:23,640 --> 00:17:28,640
+Das Ergebnis schreibe ich dorthin, wo dieser Punkt auf diesem Bild zu liegen kommt.
+
+131
+00:17:28,640 --> 00:17:36,640
+Das machen Sie für alle Positionen, mit denen Sie dieses Element hier über das Bild schieben können.
+
+132
+00:17:36,640 --> 00:17:46,640
+Wenn das hier unser Eingangsbild ist, dann ist das hier das Ausgabebild.
+
+133
+00:17:46,640 --> 00:17:57,640
+Da sind jetzt dunkelgrau markiert alle Punkte, bei denen das strukturierende Element B im Eingangsbild vollständig enthalten ist.
+
+134
+00:17:58,640 --> 00:18:02,640
+Das hier ist ja unser Referenzpunkt.
+
+135
+00:18:02,640 --> 00:18:13,640
+Sie sehen also, alles was nur Bildpunkte, also Bildpunkte, die direkt am Rand vom Eingabeobjekt sind, gehören nicht dazu.
+
+136
+00:18:13,640 --> 00:18:17,640
+Weil dann dieser Teil des strukturierenden Elementes darüber hinausragt.
+
+137
+00:18:17,640 --> 00:18:21,640
+Das gilt für links, rechts und unten auch.
+
+138
+00:18:21,640 --> 00:18:32,640
+Das heißt also, Sie schneiden mit diesem strukturierenden Element einen pixelbreiten Rand ab von dem Objekt hier.
+
+139
+00:18:32,640 --> 00:18:35,640
+Und das sehen Sie auch hier.
+
+140
+00:18:35,640 --> 00:18:42,640
+Das sieht ja so nach einem Handel aus. In der Mitte haben wir einen dreipixelbreiten Steg.
+
+141
+00:18:42,640 --> 00:18:46,640
+Da wird oben ein Pixel abgeschnitten und unten wird ein Pixel abgeschnitten.
+
+142
+00:18:46,640 --> 00:18:50,640
+Übrig bleibt die Linie im Steg.
+
+143
+00:18:50,640 --> 00:18:58,640
+Der Steg ist auch etwas länger geworden, weil wir hier an den Gewichtsteilen jeweils auch etwas abgeschnitten haben.
+
+144
+00:18:58,640 --> 00:19:09,640
+Und der Trick ist jetzt letztendlich, welches strukturierende Element nehmen Sie.
+
+145
+00:19:09,640 --> 00:19:14,640
+Und wenn Sie dieses strukturierende Element auf das Objekt anbauen oder auf den Hintergrund.
+
+146
+00:19:14,640 --> 00:19:23,640
+Es gibt die Erosion.
+
+147
+00:19:23,640 --> 00:19:46,640
+Es gibt hier noch Fragen zu den Quadranten.
+
+148
+00:19:47,640 --> 00:19:57,640
+Noch Fragen zum Quadri. Wie Sie die einzelnen Quadranten in einem Quadri durchnummerieren, bleibt letztendlich Ihnen überlassen.
+
+149
+00:19:57,640 --> 00:20:00,640
+Das müssen Sie nur konsistent machen.
+
+150
+00:20:00,640 --> 00:20:04,640
+Manche machen das im Uhrzeigersinn, manche machen das zeilenweise.
+
+151
+00:20:04,640 --> 00:20:07,640
+Es ist egal, es muss aber konsistent sein.
+
+152
+00:20:07,640 --> 00:20:15,640
+Das heißt, wenn Sie eine Bibliothek verwenden, was man ja häufig tut, sollte man nachlesen in welcher Reihenfolge das gemacht wird.
+
+153
+00:20:15,640 --> 00:20:23,640
+Im Uhrzeigersinn oder zeilenweise hat beides Vor- und Nachteile.
+
+154
+00:20:23,640 --> 00:20:28,640
+Zurück zur Erosion.
+
+155
+00:20:28,640 --> 00:20:36,640
+Sie trennt Strukturen, weil sie Objekte verkleinert. Und wenn ein Objekt verkleinert wird, ist es womöglich irgendwann weg.
+
+156
+00:20:36,640 --> 00:20:42,640
+Und damit sind die kleinen Objekte weg.
+
+157
+00:20:43,640 --> 00:20:48,640
+Die Erosion nimmt von dem Objekt Punkte weg.
+
+158
+00:20:48,640 --> 00:20:54,640
+Deswegen können wir das merken. Erosion baut was weg. Das ist ein Minuszeichen mit Kreis.
+
+159
+00:20:54,640 --> 00:21:00,640
+Die Operatoren hier werden wir alle mit einem Kreis bezeichnen und darin ist dann ein Minuszeichen oder ein Pluszeichen zum Beispiel.
+
+160
+00:21:01,640 --> 00:21:07,640
+Also A erodiert bei B.
+
+161
+00:21:07,640 --> 00:21:15,640
+Es gibt dann die Menge aller Punkte Z, bei denen B komplett in A drin ist.
+
+162
+00:21:15,640 --> 00:21:21,640
+Das, was wir eben gesehen haben, sehen wir hier nochmal.
+
+163
+00:21:21,640 --> 00:21:28,640
+Von dieser Hand wird ein Rand abgeknabbert. Das hier ist also das erodierte Objekt A.
+
+164
+00:21:29,640 --> 00:21:39,640
+Bei der Erosion wird hier gerne von der Translation gesprochen.
+
+165
+00:21:39,640 --> 00:21:47,640
+Die ist aber irrelevant. Vom Konzept her ist sie natürlich relevant, aber das Ergebnis ist dieses hier.
+
+166
+00:21:47,640 --> 00:21:55,640
+Die dunkelgrauen Bildpunkte sind die Bildpunkte, in denen das Strukturierende Element B platziert wird.
+
+167
+00:21:55,640 --> 00:22:01,640
+Und das Strukturierende Element B ist dann komplett im Objekt A enthalten.
+
+168
+00:22:01,640 --> 00:22:06,640
+Die Z sind nur zur Erklärung dessen, was da passiert.
+
+169
+00:22:06,640 --> 00:22:10,640
+So, was können wir für strukturierende Elemente haben? Alles.
+
+170
+00:22:10,640 --> 00:22:16,640
+Das hier haben wir gesehen. Sie können natürlich auch das volle Rechteck nehmen.
+
+171
+00:22:16,640 --> 00:22:19,640
+Sie können das Rechteck beliebig groß machen.
+
+172
+00:22:19,640 --> 00:22:29,640
+Sie können aber auch eine Spalte haben, eine Zeile oder auch hier, das soll wahrscheinlich eine Approximation eines Kreises sein.
+
+173
+00:22:29,640 --> 00:22:34,640
+Oder einfach ein Quadrat, was auf der Spitze steht.
+
+174
+00:22:34,640 --> 00:22:46,640
+Man weiß, was gewisse Elemente machen. Das hier kann man sich auch vorstellen.
+
+175
+00:22:47,640 --> 00:22:55,640
+Aber letztendlich, wenn diese, ich sag mal, standardstrukturierenden Elemente ihr Problem nicht lösen,
+
+176
+00:22:55,640 --> 00:23:02,640
+dann können sie die auch anpassen, um Objekte so filtern zu können, dass sie das bekommen, was sie möchten.
+
+177
+00:23:02,640 --> 00:23:12,640
+Die strukturierenden Elemente kann man natürlich auch verändern.
+
+178
+00:23:12,640 --> 00:23:17,640
+Hier haben wir den Bezugspunkt. Dieser Bezugspunkt hier ist immer in der Mitte.
+
+179
+00:23:17,640 --> 00:23:21,640
+Das heißt, wenn sie das strukturierende Element hier spiegeln, ändert sich genau nichts.
+
+180
+00:23:21,640 --> 00:23:26,640
+Aber das muss nicht so sein. Sie könnten den Bezugspunkt hier an den Rand setzen.
+
+181
+00:23:26,640 --> 00:23:36,640
+Oder sie könnten hier das Objekt drehen, verschieben, haben sie viele Möglichkeiten.
+
+182
+00:23:36,640 --> 00:23:44,640
+Das sind jetzt letztendlich Operationen, die sie auf den strukturierenden Elementen ausführen können.
+
+183
+00:23:44,640 --> 00:23:56,640
+Der Bezugspunkt eines strukturierenden Elementes muss auch nicht unbedingt ein grauer Punkt sein.
+
+184
+00:23:56,640 --> 00:24:01,640
+Die könnten sie auch hier hinsetzen. Oder sie machen das ganze Ding noch viel größer und setzen ihn hier oben hin.
+
+185
+00:24:01,640 --> 00:24:05,640
+Das führt dann natürlich zu einer Verschiebung des Objektes.
+
+186
+00:24:05,640 --> 00:24:22,640
+Erosion. Was macht sie? Nehmen wir an, wir haben hier ein Quadrat der Größe D. Das ist unser Objekt A.
+
+187
+00:24:22,640 --> 00:24:32,640
+Wir haben hier unser strukturierendes Element B. Das habe jetzt mal eine Größe von D Viertel.
+
+188
+00:24:32,640 --> 00:24:41,640
+Wir wissen, die Erosion schneidet den Rand ab. Die Frage ist jetzt, wie viel?
+
+189
+00:24:41,640 --> 00:24:49,640
+Letztendlich die Hälfte der Breite des strukturierenden Elementes geht dem Objekt verloren.
+
+190
+00:24:49,640 --> 00:25:04,640
+Die Hälfte von D Viertel ist D Achtel. Hier haben wir gestrichelt das Objekt A und grau ist A erodiert mit B.
+
+191
+00:25:04,640 --> 00:25:11,640
+Es wird kleiner an allen Seiten um D Achtel. Um die Hälfte dieses strukturierenden Elementes.
+
+192
+00:25:12,640 --> 00:25:15,640
+Und dann sehen sie hier das Ergebnis.
+
+193
+00:25:20,640 --> 00:25:29,640
+Hier haben wir jetzt ein anderes strukturierendes Element. Es hat die gleiche Breite wie im oberen Beispiel.
+
+194
+00:25:29,640 --> 00:25:34,640
+Aber von der Höhe her ist es genauso groß wie unser Objekt A.
+
+195
+00:25:35,640 --> 00:25:53,640
+Diese Breite von D Viertel führt jetzt erstmal dazu, dass von diesem Objekt A auf der linken Seite und auf der rechten Seite jeweils etwas um D Achtel, halbe Struktur Breite, abgeschnitten wird.
+
+196
+00:25:53,640 --> 00:26:00,640
+Das heißt, von unserem Objekt A wird links und rechts D Achtel abgeschnitten.
+
+197
+00:26:04,640 --> 00:26:12,640
+In der Vertikalen wird auch die Hälfte der Struktur Breite abgeschnitten.
+
+198
+00:26:14,640 --> 00:26:19,640
+Also wird oben die halbe abgeschnitten und unten wird die halbe abgeschnitten.
+
+199
+00:26:20,640 --> 00:26:23,640
+Sodass dann nur noch diese Linie überbleibt.
+
+200
+00:26:24,640 --> 00:26:27,640
+Das können sie sich auch gut vorstellen.
+
+201
+00:26:29,640 --> 00:26:35,640
+Wenn sie dieses Rechteckelement hier oben drüber schieben, dann können sie das genau in der Mitte einmal drüber schieben.
+
+202
+00:26:35,640 --> 00:26:38,640
+Dann ist es komplett drin. Das hier bleibt drüber.
+
+203
+00:26:38,640 --> 00:26:42,640
+Nun fragen Sie sich natürlich, wieso soll was überbleiben, wenn ich oben die halbe und unten die halbe abschneide.
+
+204
+00:26:42,640 --> 00:26:43,640
+Dann ist D ja ganz weg.
+
+205
+00:26:43,640 --> 00:26:54,640
+Ja, deswegen sind typischerweise die Strukturelemente, haben sie Kantenlängen, die ungerade sind.
+
+206
+00:26:56,640 --> 00:26:59,640
+Dann bleibt die Hälfte von 3 ist 1.
+
+207
+00:26:59,640 --> 00:27:03,640
+Sie teilen durch 2, schneiden ab und dann bleibt eben 1 drüber.
+
+208
+00:27:03,640 --> 00:27:17,640
+Mit dieser Erosion bekommen wir nun dünne Strukturen weg.
+
+209
+00:27:19,640 --> 00:27:23,640
+Hier mal ein Beispielbild.
+
+210
+00:27:23,640 --> 00:27:25,640
+Hier haben wir das Original.
+
+211
+00:27:25,640 --> 00:27:36,640
+Das wird jetzt gefiltert mit strukturierenden Elementen, die sind quadratisch.
+
+212
+00:27:36,640 --> 00:27:49,640
+Hier haben wir 11x11 als Größe, hier 15x15 und hier 45x45.
+
+213
+00:27:49,640 --> 00:27:59,640
+Die Größe der strukturierenden Elemente ist nur noch ein bisschen schwer zu beurteilen, weil wir nicht wissen, wie groß die Bildpunkte sind.
+
+214
+00:27:59,640 --> 00:28:04,640
+Aber es steht da, dieses Bild hier ist 4,86x4,86.
+
+215
+00:28:04,640 --> 00:28:19,640
+Wenn wir dieses strukturierende Element 11x11 benutzen, dann werden die dünnen Strukturen, also dieses strukturierende Element passt in diese Linie oder in diese Linie nicht rein.
+
+216
+00:28:19,640 --> 00:28:24,640
+Das heißt, die verschwinden. Das sehen wir hier.
+
+217
+00:28:24,640 --> 00:28:38,640
+Offensichtlich passt dieses Muster, das strukturierende Element der Größe 11x11 in diese Struktur rein, sodass die hier dünn überbleibt.
+
+218
+00:28:38,640 --> 00:28:43,640
+Daraus können wir jetzt letztendlich schließen.
+
+219
+00:28:43,640 --> 00:28:49,640
+Die Breite dieses Stegs ist mindestens 11 Pixel.
+
+220
+00:28:49,640 --> 00:29:04,640
+Bei dem strukturierenden Element 15x15, das auf dieses Bild hier oben angewendet wird, auf das Originalbild, sind alle Bonträte weg.
+
+221
+00:29:04,640 --> 00:29:13,640
+Damit wissen wir, dieses hier ist mindestens 11 Pixel breit und maximal 14.
+
+222
+00:29:13,640 --> 00:29:16,640
+Damit kriegt man dann auch ein Gefühl dafür, wie groß die Bildpunkte sind.
+
+223
+00:29:16,640 --> 00:29:29,640
+Wenn wir das strukturierende Element 45x45 nehmen, dann sehen Sie, bleibt nur noch das Quadrat über. Auch die Anschlüsse hier für den Chip sind weg.
+
+224
+00:29:29,640 --> 00:29:41,640
+Was wir auch sehen ist natürlich, dass dieses Quadrat kleiner ist als das Quadrat im Ursprungsbild.
+
+225
+00:29:41,640 --> 00:29:46,640
+Das ist vielleicht nicht gewollt.
+
+226
+00:29:46,640 --> 00:29:50,640
+Höchstwahrscheinlich ist das nicht gewollt.
+
+227
+00:29:50,640 --> 00:29:56,640
+Ich könnte mir als Zielaufgabe hier vorstellen, die Bonträte sollen verschwinden, alles andere soll erhalten bleiben.
+
+228
+00:29:56,640 --> 00:30:07,640
+Das heißt, das was ich in diesem Bild hier jetzt sehe, ist alles ein bisschen zu klein. Ich müsste das eigentlich auf die ursprüngliche Größe wieder aufpusten wollen.
+
+229
+00:30:08,640 --> 00:30:13,640
+Hier sehen wir nochmal weitere Beispiele für die Erosion.
+
+230
+00:30:13,640 --> 00:30:19,640
+Das strukturierende Element ist hier jetzt nicht genannt, aber das wird sicherlich irgendein quadratisches Element sein.
+
+231
+00:30:19,640 --> 00:30:27,640
+Wir sehen, kleine Objekte verschwinden.
+
+232
+00:30:27,640 --> 00:30:35,640
+Der Schlüssel hier bleibt relativ wenig über, die Vasierklinge wird zu zwei Linien.
+
+233
+00:30:35,640 --> 00:30:40,640
+Rechts sehen Sie das Diransbild.
+
+234
+00:30:40,640 --> 00:30:45,640
+Alles was in dem rechten Bild rot ist, das ist das, was verschwunden ist.
+
+235
+00:30:45,640 --> 00:31:02,640
+Ich hatte eben schon mal angedeutet, vielleicht will man das, was nach der Erosion überbleibt, eigentlich in seiner Originalgröße erhalten.
+
+236
+00:31:02,640 --> 00:31:06,640
+Das heißt, wir müssen diese Strukturen irgendwie vergrößern können.
+
+237
+00:31:06,640 --> 00:31:10,640
+Das macht man mit der Dilatation.
+
+238
+00:31:10,640 --> 00:31:15,640
+Die vergrößert Objekte und deswegen haben wir da ein Pluszeichen als Operator.
+
+239
+00:31:15,640 --> 00:31:21,640
+Dadurch, dass die Objekte vergrößert werden, können Strukturen wieder zusammenwachsen.
+
+240
+00:31:21,640 --> 00:31:28,640
+Wenn sie kleine Löcher haben, dann werden die gefüllt.
+
+241
+00:31:28,640 --> 00:31:31,640
+Insgesamt werden die Objekte natürlich vergrößert.
+
+242
+00:31:31,640 --> 00:31:52,640
+Wenn wir A mit B vergrößern, wenn wir die Dilatation ausführen, dann gehören zum Ergebnis die Vereinigungsmenge von B und unserem Objekt A.
+
+243
+00:31:53,640 --> 00:31:59,640
+Alle Bildpunkte, die da ein dunkles Grau haben, gehören mit dazu.
+
+244
+00:31:59,640 --> 00:32:02,640
+Die Vereinigungsmenge muss ungleich Null sein.
+
+245
+00:32:02,640 --> 00:32:10,640
+Das heißt, sobald unser strukturierendes Element B sich mit dem Objekt A überlappt, gehört der Ausgabepunkt dazu.
+
+246
+00:32:10,640 --> 00:32:17,640
+Das heißt also, wenn wir mit diesem Punkt hier am Rand des Objektes lang gehen, dann kommt hier immer was dazu.
+
+247
+00:32:18,640 --> 00:32:19,640
+Durch diese Punkte.
+
+248
+00:32:19,640 --> 00:32:24,640
+Und zwar kommt horizontal und vertikal was dazu, aber nicht auf der Diagonalen.
+
+249
+00:32:24,640 --> 00:32:26,640
+Das sehen wir dann hier.
+
+250
+00:32:26,640 --> 00:32:29,640
+Hier diese Punkte kommen dazu, diese hier auch.
+
+251
+00:32:29,640 --> 00:32:31,640
+Der nicht.
+
+252
+00:32:31,640 --> 00:32:37,640
+Weil wir eben die Diagonalen in unserem strukturierenden Element nicht besetzt haben.
+
+253
+00:32:37,640 --> 00:32:41,640
+Deswegen haben wir hier diese Lücken und hier entsprechend auch.
+
+254
+00:32:41,640 --> 00:32:46,640
+Ja, das ist die Dilatation.
+
+255
+00:32:47,640 --> 00:32:49,640
+Da wird das Objekt im Grunde genommen aufgeblasen.
+
+256
+00:32:49,640 --> 00:32:54,640
+Jetzt wieder das Beispiel, was passiert mit unserem Objekt A.
+
+257
+00:32:54,640 --> 00:33:00,640
+In unserem Objekt A hatten wir schon mal in der Größe als Quadrat D mal D für die Erosion.
+
+258
+00:33:00,640 --> 00:33:02,640
+Jetzt für die Dilatation.
+
+259
+00:33:02,640 --> 00:33:08,640
+Wir haben wieder das strukturierende Element, das ein Quadrat ist, der Größe D Viertel.
+
+260
+00:33:09,640 --> 00:33:17,640
+Ja, jetzt wird letztendlich das ursprüngliche Objekt um die Hälfte der Strukturbreite unseres strukturierenden Elementes vergrößert.
+
+261
+00:33:17,640 --> 00:33:19,640
+Die Hälfte von D Viertel ist D Achtel.
+
+262
+00:33:19,640 --> 00:33:31,640
+Das heißt, das gestrichene hier ist das Objekt A und das wird jetzt erweitert rundherum durch einen Streifen der Breite D Achtel.
+
+263
+00:33:32,640 --> 00:33:38,640
+Wir haben jetzt auch an den Diagonalen hier die Erweiterung, anders als im vorherigen Beispiel.
+
+264
+00:33:38,640 --> 00:33:40,640
+Warum ist das hier der Fall?
+
+265
+00:33:40,640 --> 00:33:44,640
+Hier ist dieses Quadrat, unser strukturierendes Element, ein Quadrat.
+
+266
+00:33:44,640 --> 00:33:46,640
+Vollständig.
+
+267
+00:33:46,640 --> 00:33:54,640
+Während in diesem Beispiel unser strukturierendes Element eher ein Kreuz ist.
+
+268
+00:33:54,640 --> 00:34:03,640
+Wir haben hier unten das gleiche strukturierende Element wie vorhin.
+
+269
+00:34:03,640 --> 00:34:05,640
+Die Breite ist D Viertel.
+
+270
+00:34:05,640 --> 00:34:16,640
+Das heißt, auf das Quadrat kommen links und rechts D Achtel hinzu, sodass insgesamt das Quadrat in der Breite D Viertel breiter wird.
+
+271
+00:34:16,640 --> 00:34:21,640
+Und oben und unten kommt D Halbe dazu.
+
+272
+00:34:22,640 --> 00:34:25,640
+Sodass wir hier jetzt das Ergebnis haben.
+
+273
+00:34:25,640 --> 00:34:29,640
+Hier haben wir D Halbe dazu, hier haben wir D Halbe dazu und hier jeweils D Achtel.
+
+274
+00:34:32,640 --> 00:34:34,640
+Das ist die Dilatation.
+
+275
+00:34:36,640 --> 00:34:41,640
+Hier sehen wir den Effekt der Dilatation.
+
+276
+00:34:41,640 --> 00:34:45,640
+Wir haben links das gleiche Eingangsbild wie bei der Erosion.
+
+277
+00:34:45,640 --> 00:34:47,640
+Die Dilatation wird ausgeführt.
+
+278
+00:34:47,640 --> 00:34:52,640
+Sie sehen, dass Löcher verschwinden.
+
+279
+00:34:52,640 --> 00:35:01,640
+Sie sehen, dass Objekte sich miteinander verbinden.
+
+280
+00:35:01,640 --> 00:35:12,640
+Und hier sehen Sie das Differenzbild in Gelb, das was zu Anfang da war, in Rot das was dazu gekommen ist.
+
+281
+00:35:13,640 --> 00:35:23,640
+Auch der einzelne Punkt, der hier oben gar nicht zu sehen ist, wird jetzt deutlich sichtbar.
+
+282
+00:35:35,640 --> 00:35:38,640
+Was kann man damit machen?
+
+283
+00:35:38,640 --> 00:35:40,640
+Wir machen hier mal ein Beispiel.
+
+284
+00:35:40,640 --> 00:35:46,640
+Links ein Text mit Buchstaben, die aufgrund des Scans vielleicht irgendwie unterbrochen sind.
+
+285
+00:35:46,640 --> 00:35:57,640
+Wenn Sie da jetzt eine Dilatation durchführen mit diesem Stern, dann sieht der Text fetter aus.
+
+286
+00:35:57,640 --> 00:36:00,640
+Sieht er besser aus? Das ist vielleicht Geschmackssache.
+
+287
+00:36:00,640 --> 00:36:05,640
+Von dem Wort hier sind hier einmal zwei Buchstaben herausgegriffen, das E und das A.
+
+288
+00:36:05,640 --> 00:36:11,640
+Und Sie sehen, das E besteht aus drei Teilen.
+
+289
+00:36:11,640 --> 00:36:16,640
+Wir haben hier vier Teilen. 1, 2, 3, 4.
+
+290
+00:36:16,640 --> 00:36:21,640
+Das A besteht aus drei Teilen.
+
+291
+00:36:21,640 --> 00:36:30,640
+Und dadurch, dass wir jetzt eine Dilatation durchgeführt haben, besteht jeder Buchstabe nur noch aus einem Binärobjekt.
+
+292
+00:36:31,640 --> 00:36:37,640
+Und hier hat das Ganze auch irgendwie geklappt, im Sinne von, die Buchstaben sind nicht zusammengewachsen.
+
+293
+00:36:37,640 --> 00:36:45,640
+Verschiedene Buchstaben, aufeinanderfolgende Buchstaben sind nicht zusammengewachsen, sondern es ist das zusammengewachsen, was zu einem Buchstaben gehört.
+
+294
+00:36:45,640 --> 00:36:48,640
+Das hat hier geklappt.
+
+295
+00:36:48,640 --> 00:36:54,640
+Vielleicht müssten wir ein größeres strukturierendes Element nehmen oder kleiner geht ja nicht.
+
+296
+00:36:54,640 --> 00:36:56,640
+Das hängt so ein bisschen von Ihrem Anwendungsfall ab.
+
+297
+00:36:56,640 --> 00:37:01,640
+Also die Erosion ist für dieses Beispiel, wir haben Lücken in unseren Objekten, wir wollen sie schließen.
+
+298
+00:37:01,640 --> 00:37:06,640
+Ein Kandidat, um das ganze Problem, um das Schließen zu ermöglichen.
+
+299
+00:37:06,640 --> 00:37:13,640
+Sie müssen natürlich aufpassen, dass Objekte, die getrennt waren und getrennt bleiben sollen, nicht auch zusammenreißen.
+
+300
+00:37:13,640 --> 00:37:27,640
+Ja, die Eigenschaften von Erosion und Dilatation.
+
+301
+00:37:27,640 --> 00:37:33,640
+Wir haben eine Verschiebungs-Invarianz.
+
+302
+00:37:33,640 --> 00:37:39,640
+Also was soll das hier heißen?
+
+303
+00:37:39,640 --> 00:37:49,640
+Wir haben unser strukturierendes Element B und wenden das an auf das verschobene Objekt A.
+
+304
+00:37:49,640 --> 00:37:54,640
+Dann können Sie die Operationen auch umtauschen.
+
+305
+00:37:54,640 --> 00:38:01,640
+Sie strukturieren erstmal A mit dem Element B und dann verschieben Sie das Ergebnis.
+
+306
+00:38:01,640 --> 00:38:07,640
+Das gilt sowohl für die Erosion als auch die Dilatation.
+
+307
+00:38:07,640 --> 00:38:20,640
+Dann gibt es natürlich die Frage, ist das ganze kommutativ?
+
+308
+00:38:20,640 --> 00:38:25,640
+Ist es egal, ob ich B auf A anwende oder A auf B?
+
+309
+00:38:25,640 --> 00:38:31,640
+Bei der Erosion kann das nicht klappen.
+
+310
+00:38:31,640 --> 00:38:39,640
+Wenn ich ein kleines strukturierendes Element habe und erodiere das mit einem großen Objekt,
+
+311
+00:38:39,640 --> 00:38:43,640
+dann bleibt nichts über, weil das große Objekt ja nie in das kleine passt.
+
+312
+00:38:43,640 --> 00:38:46,640
+Das ist das, was hier steht.
+
+313
+00:38:46,640 --> 00:38:53,640
+Bei der Dilatation, da ist es allerdings egal, ob Sie das kleine Objekt mit dem großen vergrößern oder das große mit dem kleinen.
+
+314
+00:38:53,640 --> 00:39:05,640
+Hier haben wir eine Kommutativität für die Dilatation nicht gegeben und eine Kommutativität für die Erosion ist gegeben.
+
+315
+00:39:05,640 --> 00:39:15,640
+Assoziativität.
+
+316
+00:39:15,640 --> 00:39:30,640
+Was haben wir hier? Wir haben B dilatiert mit A1 und das Ergebnis wird nochmal mit Dilatation mit A2 ausgeführt.
+
+317
+00:39:30,640 --> 00:39:35,640
+Und da stellt sich heraus, die Reihenfolge ist egal.
+
+318
+00:39:35,640 --> 00:39:49,640
+Sie können auch B auf A1 erweitert mit A2 anwenden oder aber Sie wenden B auf A2 an und dann das ganze auf A1.
+
+319
+00:39:49,640 --> 00:40:06,640
+Bei der Erosion gilt letztendlich Ähnliches.
+
+320
+00:40:06,640 --> 00:40:21,640
+Wir haben hier die Erosion B mit A1 und das Ergebnis wird dann mit A2 erodiert.
+
+321
+00:40:21,640 --> 00:40:25,640
+Wir können die Klammer jetzt verschieben.
+
+322
+00:40:25,640 --> 00:40:32,640
+Jetzt müssen wir aber aufpassen. Hier wird ja B mit A1 verkleinert, das Ergebnis wird mit A2 verkleinert.
+
+323
+00:40:33,640 --> 00:40:41,640
+Wenn ich die Klammer verschiebe, dann werde ich B sowohl mit A1 verkleinern wollen als auch mit A2.
+
+324
+00:40:41,640 --> 00:40:46,640
+Das bedeutet, hier muss ich eine Dilatation durchführen.
+
+325
+00:40:46,640 --> 00:40:58,640
+Und hier wird hintereinander verkleinert. Ich verkleinere B mit A2 und dann das Ergebnis mit A1.
+
+326
+00:40:58,640 --> 00:41:03,640
+Das ist das gleiche, als wenn ich B mit A1 verkleinere und das Ergebnis dann mit A2.
+
+327
+00:41:03,640 --> 00:41:06,640
+Also hier müssen wir einmal aufpassen.
+
+328
+00:41:06,640 --> 00:41:11,640
+Warum ist das relevant?
+
+329
+00:41:11,640 --> 00:41:27,640
+Wir haben bisher ja mit B, das strukturierende Element, bezeichnet.
+
+330
+00:41:27,640 --> 00:41:31,640
+Stellen Sie sich das andersrum vor, sei A das strukturierende Element.
+
+331
+00:41:32,640 --> 00:41:43,640
+Dann bedeutet das, hier laufen Sie über das gesamte Bild B komplett rüber und machen Ihre Dilatation.
+
+332
+00:41:43,640 --> 00:41:53,640
+Und anschließend laufen Sie mit dem strukturierenden Element A2 wieder über das komplette Bild, das Ergebnisbild, und machen das, was Sie zu machen haben.
+
+333
+00:41:54,640 --> 00:42:04,640
+An dieser Stelle würden Sie erst die beiden strukturierenden Elemente, die sind typischerweise klein, miteinander verarbeiten.
+
+334
+00:42:04,640 --> 00:42:14,640
+Und dann laufen Sie mit diesem zugegebenermaßen größeren Operator nur einmal über das gesamte Bild.
+
+335
+00:42:14,640 --> 00:42:17,640
+Das geht natürlich schneller.
+
+336
+00:42:18,640 --> 00:42:26,640
+Von daher ist diese Assoziativität relevant, wenn wir mehrere morphologische Operationen hintereinander ausführen wollen.
+
+337
+00:42:26,640 --> 00:42:29,640
+Und typischerweise wollen Sie das.
+
+338
+00:42:29,640 --> 00:42:35,640
+Dann haben Sie also die Wahl, das Bild mehrfach mit kleinen Operatoren zu filtern.
+
+339
+00:42:35,640 --> 00:42:41,640
+Oder aber die ganzen Operatoren, die Sie anwenden wollen, die filtern Sie erst mal miteinander.
+
+340
+00:42:41,640 --> 00:42:45,640
+Und Sie sehen hier an dieser Stelle müssen Sie aufpassen.
+
+341
+00:42:46,640 --> 00:42:50,640
+Und dann haben Sie diesen großen Operator, den Sie einmal über das gesamte Bild schieben.
+
+342
+00:42:55,640 --> 00:43:04,640
+So, wenn wir jetzt eine Menge A haben, dann sei A quer das Gegenteil.
+
+343
+00:43:05,640 --> 00:43:18,640
+Und da gilt letztendlich, wenn ich A mit B erodiere und das Komplement bilde, dann ist das gleich.
+
+344
+00:43:19,640 --> 00:43:35,640
+Ich nehme das Komplement von A, also den Hintergrund des Objektes, und erodiere den mit dem gespiegelten strukturierenden Element b.
+
+345
+00:43:35,640 --> 00:43:45,640
+Und wenn b symmetrisch ist, weil b zum Beispiel ein Quadrat ist, oder weil b dieses Kreuz ist, dann ist das gespiegelte Element natürlich wieder dasselbe.
+
+346
+00:43:46,640 --> 00:44:06,640
+Und für die Erosion gilt, wenn ich A mit B erodiere und dann das Komplement bilde, dann kann ich auch das Komplement A nehmen und mache dann eine Erosion mit dem gespiegelten Element b.
+
+347
+00:44:06,640 --> 00:44:13,640
+Also, wir machen eine Punktspiegelung.
+
+348
+00:44:13,640 --> 00:44:25,640
+Also, wenn wir strukturieren, dass das Element so aussieht, dann haben Sie danach auch immer noch das.
+
+349
+00:44:36,640 --> 00:44:47,640
+Es gibt einige wenige Kombinationen von morphologischen Operationen, die einen neuen Namen bekommen haben.
+
+350
+00:44:47,640 --> 00:44:50,640
+Da haben wir das Opening.
+
+351
+00:44:50,640 --> 00:44:59,640
+Das ist eine Erosion, damit mache ich das Objekt kleiner, gefolgt von einer Dilatation, damit mache ich das Objekt größer.
+
+352
+00:45:00,640 --> 00:45:06,640
+Also, mit der Erosion werden wir kleine Teilstrukturen entfernen, die kleiner sind als unser Strukturelement.
+
+353
+00:45:06,640 --> 00:45:14,640
+Und mit der Dilatation wollen wir die Wiederherstellung der ursprünglichen Größe des Objektes mit Ausnahme der vollständig entfernten Steilstrukturen erreichen.
+
+354
+00:45:14,640 --> 00:45:25,640
+Das war das, was ich vorhin bei diesem Chip-Build sagte. Wir sind dann die Bond-Drähte durch Erosion losgeworden, aber das, was wir über hatten, war kleiner als das Original.
+
+355
+00:45:25,640 --> 00:45:31,640
+Mit dem Opening haben wir jetzt das Ziel, dass wir das, was übrig bleibt, in der ursprünglichen Größe wiederherstellen.
+
+356
+00:45:31,640 --> 00:45:44,640
+Das ist dann eigentlich das, was man sagt. Man will kleine Objekte weghaben, man will Löcher schließen.
+
+357
+00:45:44,640 --> 00:45:49,640
+Aber an sich sollen die Objekte, die überbleiben, auch in ihrer ursprünglichen Form wieder da bleiben.
+
+358
+00:45:49,640 --> 00:46:07,640
+Opening ist so beschrieben. Wir haben also A wird mit unserem strukturierenden Element B erodiert und das Ergebnis wird dann nochmal vergrößert mit der Dilatation.
+
+359
+00:46:11,640 --> 00:46:17,640
+Schauen wir uns hier das Ergebnis an. Das Bild kennen Sie schon von der Erosion und Dilatation.
+
+360
+00:46:19,640 --> 00:46:30,640
+Hier haben wir das Bild nach dem Opening und wir haben das Differenzbild.
+
+361
+00:46:31,640 --> 00:46:49,640
+So, was sehen wir jetzt? Wir sehen zum Beispiel, der Stift, Nagel, was auch immer dieses Ding hier sein mag, ist in großen Bereichen erhalten geblieben. Nur an den Spitzen hat es offensichtlich Probleme gegeben.
+
+362
+00:46:50,640 --> 00:47:12,640
+Der Schlüssel war anscheinend an dieser Stelle so dünn, dass die Erosion dieses Loch oder den Schlüssel aufgerissen hat. Das konnte dann durch die anschließende Dilatation nicht mehr geschlossen werden.
+
+363
+00:47:12,640 --> 00:47:17,640
+Ansonsten ist der Schlüssel mehr oder weniger perfekt erhalten. Hier haben wir kleine Unterschiede.
+
+364
+00:47:17,640 --> 00:47:40,640
+Dann haben wir das U hier, was auch immer das sein mag. Das ist komplett weg. Das war zu dünn, wurde durch die Erosion beseitigt. Dilatation hat es nicht wieder zum Vorschein gebracht.
+
+365
+00:47:40,640 --> 00:47:51,640
+Auch die kleinen Elemente hier und hier sind durch die Erosion weg und durch die Dilatation nicht mehr herzustellen.
+
+366
+00:47:52,640 --> 00:48:11,640
+Sie sehen, bei der Rasierklinge fehlen die Stege. Die Rasierklinge ist hier durch zwei Objekte zerfallen. Wir merken uns also, das Opening macht viele Dinge richtig.
+
+367
+00:48:12,640 --> 00:48:27,640
+Aber das Allheilmittel ist es sicherlich auch nicht. Die beiden Kreise hier zum Beispiel wurden sicherlich durch die Erosion getrennt. Durch die Dilatation kamen sie aber wieder zusammen. Das hat perfekt geklappt.
+
+368
+00:48:27,640 --> 00:48:46,640
+Es gibt auch die Operation des Closing. Opening war der offene Kreis als Operator. Beim Closing haben wir den gefüllten Kreis als Operator.
+
+369
+00:48:46,640 --> 00:48:56,640
+Das ist eigentlich das gleiche wie das Opening, nur dass die Operationen vertauscht sind. Wir machen erst eine Dilatation und dann kommt eine Erosion.
+
+370
+00:48:56,640 --> 00:49:17,640
+Mit der Dilatation schließen wir kleine Löcher. Je kleiner das Strukturelement, desto kleiner müssen die Löcher sein, damit sie geschlossen werden.
+
+371
+00:49:17,640 --> 00:49:35,640
+Die Erosion hat dann wieder das Ziel, die ursprüngliche Größe des Objektes, der Originalobjekte zu schließen. Sie wollen die Originalobjekte behalten, aber sie sollen keine Löcher mehr haben.
+
+372
+00:49:35,640 --> 00:49:52,640
+Wir haben also unser Eingangsbild A. Das wird erodiert mit unserem Strukturelement B und dann wird eine Erosion durchgeführt mit dem gleichen Strukturelement B.
+
+373
+00:49:52,640 --> 00:50:03,640
+Wir sehen hier das Beispiel. Wieder das gleiche Eingangsbild. Nach dem Closing sind alle Löcher geschlossen.
+
+374
+00:50:04,640 --> 00:50:07,640
+So, wenn wir uns jetzt die Unterschiede angucken.
+
+375
+00:50:16,640 --> 00:50:29,640
+Hier die Löcher sind geschlossen. Das Loch dieser Schraube ist auch geschlossen, nicht überraschend, aber die Schraube ist an den Stift dran gewachsen.
+
+376
+00:50:33,640 --> 00:50:37,640
+Das ist nicht unbedingt etwas, was man haben will.
+
+377
+00:50:40,640 --> 00:50:46,640
+Wir sehen auch hier, der Stift mit den beiden Kreisen hat sich verbunden.
+
+378
+00:50:50,640 --> 00:50:54,640
+Oder auch der Schlüssel ist an diesem Draht dran.
+
+379
+00:50:55,640 --> 00:51:02,640
+Wir haben das Ziel erreicht, dass separate Objekte keine Löcher mehr haben.
+
+380
+00:51:03,640 --> 00:51:15,640
+Die Rasierklinge ist in ihrem Rand erhalten geblieben, bis auf kleine Abweichungen hier. Das ist nicht mehr ganz so eckig, wie es mal im Original war.
+
+381
+00:51:16,640 --> 00:51:23,640
+Löcher sind weg. Die Rasierklinge wurde mit keinen anderen Objekten verbunden, weil sie genug Abstand hatte.
+
+382
+00:51:23,640 --> 00:51:28,640
+Was heißt genug Abstand? Na ja, der Abstand ist letztendlich auch wieder dekliniert über die größte Strukturelemente.
+
+383
+00:51:31,640 --> 00:51:37,640
+Auch kein Allheilmittel, aber durchaus ein wirkungsvolles Element, wenn Ihre Objekte schon separiert sind.
+
+384
+00:51:37,640 --> 00:51:43,640
+Hier sehen Sie, die Schraube wurde gelöscht.
+
+385
+00:51:45,640 --> 00:51:55,640
+Durch Variation des Strukturelements können Sie das eine oder andere erreichen.
+
+386
+00:51:55,640 --> 00:52:01,640
+Wir haben hier ein Bild, das sieht für mich so aus, wie ein schlecht gescannter Text.
+
+387
+00:52:01,640 --> 00:52:06,640
+Da kennen Sie das manchmal, dann gibt es da irgendwelche Probleme.
+
+388
+00:52:06,640 --> 00:52:12,640
+Da ist dann eine Linie über das gesamte Bild nicht gescannt, die ist komplett weiß.
+
+389
+00:52:13,640 --> 00:52:17,640
+Jetzt kann man so etwas gezielt nachbearbeiten.
+
+390
+00:52:17,640 --> 00:52:21,640
+Hier mit einem Strukturelement, das einen senkrechten Streifen hat.
+
+391
+00:52:21,640 --> 00:52:29,640
+Wir machen ein Closing und dann würden diese Dinge hier alle verbunden sein.
+
+392
+00:52:29,640 --> 00:52:39,640
+Das ist jetzt erstmal der Einsatz nach der Dilatation.
+
+393
+00:52:39,640 --> 00:52:46,640
+Wir haben den Text jetzt in FET, aber auch relevant.
+
+394
+00:52:46,640 --> 00:52:51,640
+Der Strich, der hier so einmal quer durchging, der ist jetzt geschlossen.
+
+395
+00:52:51,640 --> 00:52:56,640
+Jetzt machen wir noch die Erosion.
+
+396
+00:52:56,640 --> 00:53:00,640
+Da haben wir das Closing komplett erledigt.
+
+397
+00:53:00,640 --> 00:53:05,640
+Damit sieht es wieder einigermaßen normal aus.
+
+398
+00:53:05,640 --> 00:53:07,640
+Wir vergleichen mal mit dem Original.
+
+399
+00:53:07,640 --> 00:53:10,640
+Es ist immer noch ein bisschen dicker.
+
+400
+00:53:10,640 --> 00:53:17,640
+Das ist nicht ein Strukturelement, aber auf alle Fälle sind die Linien geschlossen.
+
+401
+00:53:18,640 --> 00:53:25,640
+Gezielter Einsatz von Closing heißt letztendlich, Sie haben sich das Bild angeguckt,
+
+402
+00:53:25,640 --> 00:53:30,640
+Sie haben überlegt, was kann ich da machen und sind zu dem Ergebnis gekommen,
+
+403
+00:53:30,640 --> 00:53:36,640
+ich brauche ein schmales, hohes Strukturelement, mit dem ich einmal über das Bild gehe
+
+404
+00:53:36,640 --> 00:53:39,640
+und ich will die Objekte verbinden, deswegen Closing.
+
+405
+00:53:39,640 --> 00:53:45,640
+Es sind zwei Dinge, Sie müssen sich überlegen, was für Operationen brauchen wir dann ungefähr
+
+406
+00:53:45,640 --> 00:53:48,640
+und was wäre dann das richtige Strukturelement, um das Ganze zu erreichen.
+
+407
+00:53:48,640 --> 00:53:57,640
+Dann wollen Sie vielleicht die Ränder von irgendwelchen Objekten haben.
+
+408
+00:53:57,640 --> 00:54:09,640
+Dann könnten Sie ein Objekt verkleinern und dann das Differenzbild bilden.
+
+409
+00:54:10,640 --> 00:54:17,640
+Das Ursprungsbild, hier das Objekt, in diesem Fall die Schrift, erodieren wir,
+
+410
+00:54:17,640 --> 00:54:26,640
+das heißt mit einem kleinen Strukturelement, mit einem 3x3 Strukturelement,
+
+411
+00:54:26,640 --> 00:54:30,640
+in dem entweder das Kreuz gesetzt oder das Ganze ist komplett gesetzt.
+
+412
+00:54:30,640 --> 00:54:37,640
+Damit wird dann die Schrift kleiner, aber es wird maximal ein Bildpunkt am Rand abgeknabbert.
+
+413
+00:54:37,640 --> 00:54:44,640
+Wenn wir jetzt die Differenz zwischen dem Original und dem gefilterten Bild bilden,
+
+414
+00:54:44,640 --> 00:54:47,640
+dann kriegen wir genau diesen einen Bildpunkt am Rand.
+
+415
+00:54:47,640 --> 00:54:54,640
+Das ist das, was wir hier meinen.
+
+416
+00:54:54,640 --> 00:55:10,640
+Das ist also das Ursprungsbild G abzüglich des Bildes, was wir durch Erosion bekommen haben.
+
+417
+00:55:10,640 --> 00:55:18,640
+Sieht doch auch schön aus, oder?
+
+418
+00:55:18,640 --> 00:55:30,640
+Sie können den Rand vom Objekt erzeugen, Sie können aber auch den Rand vom Hintergrund erzeugen.
+
+419
+00:55:30,640 --> 00:55:36,640
+Das hängt davon ab, wenn Sie den Rand vom Hintergrund erzeugen,
+
+420
+00:55:36,640 --> 00:55:40,640
+dann liegt der Rand auf dem Hintergrund.
+
+421
+00:55:40,640 --> 00:55:45,640
+Dann sind die Linien, die den Buchstaben, die Schrift begrenzen, weiter auseinander,
+
+422
+00:55:45,640 --> 00:55:48,640
+als wenn Sie den Rand von dem Schriftzeichen erzeugen,
+
+423
+00:55:48,640 --> 00:55:56,640
+weil dann liegt der Rand ja auf dem Schriftzeichen, damit liegen die Linien dichter beieinander.
+
+424
+00:55:56,640 --> 00:56:02,640
+Das hier sieht jetzt so aus, als wenn der Rand auf dem Hintergrund liegt.
+
+425
+00:56:06,640 --> 00:56:17,640
+Wofür kann man das gebrauchen?
+
+426
+00:56:17,640 --> 00:56:25,640
+Man kann das zum Beispiel gebrauchen, um Fingerabdrücke vorzuverarbeiten.
+
+427
+00:56:25,640 --> 00:56:32,640
+Wenn Sie einen Fingerabdrucksensor haben, bekommen Sie ein verrauschtes Bild.
+
+428
+00:56:32,640 --> 00:56:35,640
+Da sind Linien drin, aber auch viele Punkte.
+
+429
+00:56:35,640 --> 00:56:40,640
+Diese einzelnen Punkte, Rauschpunkte, Streifen, die will man erstmal loswerden.
+
+430
+00:56:40,640 --> 00:56:45,640
+Das machen Sie durch Erosion.
+
+431
+00:56:45,640 --> 00:56:55,640
+Wenn wir das Eingangsbild A nehmen, wir nehmen dieses strukturierende Element, landen wir hier.
+
+432
+00:56:55,640 --> 00:57:00,640
+Wenn wir jetzt mit dem gleichen strukturierenden Element wieder eine Dilatation durchführen,
+
+433
+00:57:00,640 --> 00:57:07,640
+dann haben wir, bis auf kleine Abweichungen, wieder das Originalbild ohne die kleinen Punkte.
+
+434
+00:57:07,640 --> 00:57:15,640
+Wir haben letztendlich ein Opening durchgeführt.
+
+435
+00:57:15,640 --> 00:57:25,640
+Wenn wir dann dieses Bild nehmen und machen eine Dilatation wieder mit unserem 3x3 Strukturelement,
+
+436
+00:57:25,640 --> 00:57:33,640
+dann sind die ganzen gebrochenen Linien, die wir haben, viel besser zusammengeführt.
+
+437
+00:57:33,640 --> 00:57:46,640
+Wenn wir anschließend eine Erosion machen, dann haben wir letztendlich hier ein Bild,
+
+438
+00:57:46,640 --> 00:57:50,640
+das dann typischerweise weiterverarbeitet wird.
+
+439
+00:57:51,640 --> 00:58:00,640
+Und wenn Sie vergleichen dieses Bild mit dem Bild, dann ist zumindest in den einzelnen Strukturen,
+
+440
+00:58:00,640 --> 00:58:04,640
+zum Beispiel hier haben wir ein Loch, das ist hier nicht mehr zu sehen.
+
+441
+00:58:04,640 --> 00:58:11,640
+Die Linien sind vielleicht noch etwas unterbrochen, aber wir haben definitiv weniger Rauschen.
+
+442
+00:58:11,640 --> 00:58:19,640
+Wie kommt man darauf?
+
+443
+00:58:19,640 --> 00:58:22,640
+Probieren Sie.
+
+444
+00:58:22,640 --> 00:58:31,640
+Und wenn Sie Erfahrung haben, dann kommen Sie natürlich schneller zum Ziel, als wenn Sie es als Anfänger machen.
+
+445
+00:58:31,640 --> 00:58:38,640
+Es gibt keine mathematische Beschreibung, wo die Operatoren herausfallen,
+
+446
+00:58:38,640 --> 00:58:42,640
+die Sie anwenden müssen, um von hier nach hier zu kommen.
+
+447
+00:58:42,640 --> 00:58:46,640
+Das gibt es ja in der normalen Signalverarbeitung auch nicht.
+
+448
+00:58:46,640 --> 00:58:51,640
+Nur wir wissen, wenn wir Rauschen entfernen wollen, dann nehmen wir vielleicht ein Wiener Filter.
+
+449
+00:58:51,640 --> 00:58:54,640
+Das ist Erfahrungswissen, das hat uns irgendjemand erzählt.
+
+450
+00:58:54,640 --> 00:59:03,640
+Oder wenn Sie ein Rumpeln im Signal haben, dann wissen Sie, da müssen Sie ein Tiefmaßfilter anwenden.
+
+451
+00:59:04,640 --> 00:59:08,640
+Genauso gilt das in der Bildverarbeitung auch.
+
+452
+00:59:08,640 --> 00:59:27,640
+Es gibt die Hit- oder Miss-Transformation, die zum Beispiel sagt, finde alle Punkte, wo wir dieses Element einsetzen können.
+
+453
+00:59:28,640 --> 00:59:32,640
+Also Sie geben sich eine Struktur vor, die Sie suchen.
+
+454
+00:59:32,640 --> 00:59:40,640
+Und hoffentlich liefert Ihnen diese Operation die Punkte, wo Sie diese Struktur finden.
+
+455
+00:59:46,640 --> 00:59:49,640
+Wie geht das?
+
+456
+00:59:49,640 --> 00:59:52,640
+Wir nehmen hier unser Eingangsbild.
+
+457
+00:59:52,640 --> 01:00:01,640
+Wir machen eine Erosion mit einem Strukturelement, was wir jetzt ableiten aus dem, was wir suchen.
+
+458
+01:00:01,640 --> 01:00:06,640
+Und Sie sehen, unser Strukturelement ist definitiv nicht symmetrisch.
+
+459
+01:00:09,640 --> 01:00:14,640
+Diese Struktur, die wir hier haben, die passt hier rein.
+
+460
+01:00:14,640 --> 01:00:18,640
+Die Frage ist jetzt, wo ordnen wir es zu?
+
+461
+01:00:18,640 --> 01:00:21,640
+Die Zuordnung ergibt sich durch diesen Punkt.
+
+462
+01:00:21,640 --> 01:00:26,640
+Von diesen beiden Punkten, einer muss es ja sein, an einer Stelle kann ich mein Strukturelement platzieren.
+
+463
+01:00:26,640 --> 01:00:29,640
+Das ist dann dieser hier.
+
+464
+01:00:29,640 --> 01:00:35,640
+Der repräsentiert dann ja letztendlich, dass das Strukturelement so liegend im Originalbild zu finden ist.
+
+465
+01:00:37,640 --> 01:00:43,640
+Dieses Strukturelement finden wir auch an dieser Stelle.
+
+466
+01:00:43,640 --> 01:00:46,640
+Das ist das.
+
+467
+01:00:46,640 --> 01:00:49,640
+Und hier finden wir es zweimal.
+
+468
+01:00:55,640 --> 01:01:02,640
+Parallel dazu bearbeiten wir den Hintergrund.
+
+469
+01:01:02,640 --> 01:01:10,640
+Hier ist jetzt der Hintergrund, also das Nicht-Objekt-Gebiet, dunkel markiert.
+
+470
+01:01:11,640 --> 01:01:22,640
+Wir haben ein Strukturelement, das um das, was wir suchen, rundherum einen Streifen enthält und in der Mitte ein Loch.
+
+471
+01:01:27,640 --> 01:01:37,640
+Das Ergebnis der Erosion ist jetzt, wir erodieren den Hintergrund, dass wir diese beiden Punkte haben.
+
+472
+01:01:40,640 --> 01:01:53,640
+Wir haben also hier die Punkte, wo wir dieses Ding unterbringen können.
+
+473
+01:01:53,640 --> 01:01:57,640
+Hier haben wir die Punkte, wo wir das Komplement im Hintergrund nicht unterbringen können.
+
+474
+01:01:57,640 --> 01:02:03,640
+Und die Schnittmenge von beiden liefert uns das gewünschte Ergebnis.
+
+475
+01:02:11,640 --> 01:02:20,640
+Wir können mit dieser Transformation verschiedene Operatoren definieren.
+
+476
+01:02:20,640 --> 01:02:26,640
+Wir haben hier die Hit-Operation hiermit erodiert.
+
+477
+01:02:26,640 --> 01:02:30,640
+Hier haben wir die Erosion im Hintergrund mit diesem Operator durchgeführt.
+
+478
+01:02:30,640 --> 01:02:38,640
+Man kann jetzt verschiedene Operatoren definieren.
+
+479
+01:02:38,640 --> 01:02:46,640
+Hier haben wir z.B. einen Hit-Operator, der uns auf alle Fälle Linien erzeugt.
+
+480
+01:02:46,640 --> 01:02:52,640
+Oder die Punkte erzeugt, wo wir Linien-Segmente haben, der Länge 3.
+
+481
+01:02:52,640 --> 01:03:02,640
+Da schlägt er an und dieser Operator verhindert, dass wir Linien haben, die länger sind als wir.
+
+482
+01:03:08,640 --> 01:03:18,640
+Damit haben wir jetzt eine Hit- oder Miss-Transformation, die uns alle Linien gibt, die die Länge 3, 4 oder 5 Bildpunkte hat.
+
+483
+01:03:18,640 --> 01:03:29,640
+Die Notation, die man manchmal findet, um zu beschreiben, was hier passieren soll.
+
+484
+01:03:29,640 --> 01:03:36,640
+Das wäre dieser Operator, der sagt jetzt, diese Elemente müssen da sein.
+
+485
+01:03:36,640 --> 01:03:43,640
+Überall wo eine 0 ist, die Elemente dürfen nicht im Bild sein.
+
+486
+01:03:43,640 --> 01:03:47,640
+Und diese beiden sind optional.
+
+487
+01:03:47,640 --> 01:03:54,640
+Das bedeutet also, wir haben eine Mindestlinienlänge von 3.
+
+488
+01:03:54,640 --> 01:03:57,640
+Linienlänge 4 oder 5 ist aber auch möglich.
+
+489
+01:03:57,640 --> 01:04:14,640
+Wir können verschiedene Operatoren definieren.
+
+490
+01:04:14,640 --> 01:04:23,640
+Mit diesem Operator können wir einzelne Pixel entfernen.
+
+491
+01:04:23,640 --> 01:04:39,640
+Mit diesem Operator haben wir jetzt letztendlich vorgegeben, dass wir an einer rechten Ecke des Bildes interessiert sind.
+
+492
+01:04:39,640 --> 01:04:42,640
+Das kann eines Objektes.
+
+493
+01:04:42,640 --> 01:04:47,640
+Das kann eine Linienstruktur sein, weil da drei einzeln sind.
+
+494
+01:04:47,640 --> 01:04:56,640
+Es kann aber auch die Kante eines Rechtecks oder Quadrats sein, denn dieser Punkt darf auch zum Objekt gehören, muss aber nicht.
+
+495
+01:04:56,640 --> 01:05:02,640
+Es detektiert also die unteren rechten Ecken eines Objektes.
+
+496
+01:05:02,640 --> 01:05:16,640
+Mit diesem Operator finden wir jetzt alle Randpunkte von oben.
+
+497
+01:05:16,640 --> 01:05:20,640
+0, also oben ist Hintergrund.
+
+498
+01:05:20,640 --> 01:05:27,640
+Und darunter haben wir dann das Objekt.
+
+499
+01:05:27,640 --> 01:05:35,640
+Bei dem Objekt wird gesagt, es kann ein einzelner Punkt sein oder es kann auch eine komplette Linie sein.
+
+500
+01:05:35,640 --> 01:05:47,640
+Wenn man hier jetzt genau überlegt, dann findet man damit alle Randpunkte, die ein Objekt nicht teilen würde, wenn man sie entfernt.
+
+501
+01:05:47,640 --> 01:06:02,640
+Wir haben hier das Objekt. Das Objekt ist alles was nicht weiß ist.
+
+502
+01:06:02,640 --> 01:06:15,640
+Mit diesem Operator würden wir jetzt die grünen Punkte finden, den aber nicht.
+
+503
+01:06:15,640 --> 01:06:24,640
+Warum finden wir den Punkt nicht? Weil an dieser Stelle eine 1 ist. Das wäre hier nicht gegeben.
+
+504
+01:06:24,640 --> 01:06:38,640
+Damit ist das hier jetzt ein Operator, mit dem wir ein Objekt erodieren.
+
+505
+01:06:38,640 --> 01:06:41,640
+Aber wir würden das Objekt nicht zerteilen.
+
+506
+01:06:41,640 --> 01:06:55,640
+Warum würden wir den unteren grünen Punkt finden?
+
+507
+01:06:55,640 --> 01:07:00,640
+Den würden wir finden, weil das Objekt hier weiter geht.
+
+508
+01:07:00,640 --> 01:07:09,640
+Mit den morphologischen Operatoren haben sie immer ein Randproblem.
+
+509
+01:07:09,640 --> 01:07:13,640
+Hier ist es jetzt ein bisschen unglücklich, dass das Bild nicht größer dargestellt ist.
+
+510
+01:07:13,640 --> 01:07:24,640
+Sie können hier letztendlich nur eine Aussage treffen, wenn das strukturierende Element komplett in das Objekt reinpasst.
+
+511
+01:07:24,640 --> 01:07:26,640
+Oder in das Bild reinpasst.
+
+512
+01:07:26,640 --> 01:07:35,640
+Hier müssen wir uns jetzt den Bildrand entsprechend sinnvoll ergänzt vorstellen.
+
+513
+01:07:36,640 --> 01:07:43,640
+Diese Punkte hier oben finden wir auch, nur weil darüber eine 0 ist.
+
+514
+01:07:53,640 --> 01:07:56,640
+Was haben wir denn hier noch?
+
+515
+01:07:57,640 --> 01:08:10,640
+Wir haben Rangfolgefilter. Das haben wir schon mal gehabt als Medienfilter.
+
+516
+01:08:10,640 --> 01:08:20,640
+Der Unterschied ist jetzt, wir haben ein strukturierendes Element, was beliebig geformt sein kann.
+
+517
+01:08:20,640 --> 01:08:31,640
+Innerhalb dieses beliebig geformten strukturierenden Elementes führen wir jetzt eine Ordnung der Grauwerte durch.
+
+518
+01:08:31,640 --> 01:08:35,640
+Der Grauwert, der in der Mitte ist, ist dann das Ergebnis.
+
+519
+01:08:35,640 --> 01:08:41,640
+Hier ist jetzt das strukturierende Element wieder ein Quadrat, so wie wir das schon hatten.
+
+520
+01:08:41,640 --> 01:08:43,640
+Aber Sie können es auch anders wählen.
+
+521
+01:08:50,640 --> 01:08:56,640
+Wir haben also hier die Sortierung. Wir haben ein Minimum, wir haben ein Maximum.
+
+522
+01:08:56,640 --> 01:09:00,640
+Und jedem Bildpunkt können wir dann einen Rang zuordnen.
+
+523
+01:09:03,640 --> 01:09:10,640
+Medien hatten wir schon besprochen. Natürlich können Sie sich auch für einen anderen Rang interessieren.
+
+524
+01:09:10,640 --> 01:09:16,640
+Für das Minimum, für das Maximum oder auch irgendeine beliebige Zahl dazwischen.
+
+525
+01:09:16,640 --> 01:09:25,640
+Wenn Ihr strukturierendes Element sieben Bildpunkte hat, die ausgewertet werden, dann kann der Rang letztendlich alles sein zwischen 1 und 7.
+
+526
+01:09:33,640 --> 01:09:40,640
+Bisher haben wir die morphologischen Operationen auf Binärbildern durchgeführt.
+
+527
+01:09:41,640 --> 01:09:48,640
+Wir können diese morphologischen Operationen auch auf Grauwertbildern durchführen. Man muss dann nur wissen, wie sind sie definiert.
+
+528
+01:09:52,640 --> 01:09:58,640
+Also wir haben hier ein Bild F. Da wollen wir eine Erosion durchführen.
+
+529
+01:09:59,640 --> 01:10:10,640
+Dann wird letztendlich als Ergebnis geschaut. Ich lege mein strukturierendes Element auf das Bild.
+
+530
+01:10:10,640 --> 01:10:14,640
+An der Stelle, die durch das strukturierende Element vorgegeben ist.
+
+531
+01:10:14,640 --> 01:10:24,640
+Das strukturierende Element markiert dann in dem Eingangsbild F eine gewisse Anzahl von Bildpunkten und davon suche ich mir das Minimum.
+
+532
+01:10:24,640 --> 01:10:26,640
+Das ist das Ergebnis.
+
+533
+01:10:28,640 --> 01:10:31,640
+Deutet, dunkle Bereiche werden vergrößert.
+
+534
+01:10:31,640 --> 01:10:48,640
+Dilatation ist ähnlich, nur dass die hellen Bereiche vergrößert werden, weil ich in diesem Suchbereich, der durch das strukturierende Element gegeben ist, das Maximum suche.
+
+535
+01:10:49,640 --> 01:10:58,640
+Wenn wir eine Erosion und eine Dilatation haben, dann können wir natürlich auch das wieder für Opening und Closing anwenden.
+
+536
+01:11:02,640 --> 01:11:10,640
+Hier sehen wir die Beispiele. Wir sprechen jetzt von einer morphologischen Glättung.
+
+537
+01:11:10,640 --> 01:11:20,640
+Das ist offensichtlich eine nicht lineare Operation auf Grauwertbilder.
+
+538
+01:11:20,640 --> 01:11:25,640
+Wir haben hier das Originalbild.
+
+539
+01:11:25,640 --> 01:11:38,640
+Wir führen eine Glättung durch mit Kreisstrukturen in Größen 1, 3 und 5.
+
+540
+01:11:38,640 --> 01:11:41,640
+Wir radienen 1, 3 und 5.
+
+541
+01:11:41,640 --> 01:11:48,640
+Also Radius 1, dann haben Sie ein 3x3 Element und in diesem 3x3 Element zeichnen Sie jetzt einen Kreis ein.
+
+542
+01:11:48,640 --> 01:11:51,640
+Sie müssen den Kreis approximieren, dann haben Sie wieder das Kreuz.
+
+543
+01:11:51,640 --> 01:12:01,640
+Beim Radius 3 haben Sie dann ein 7x7 Fenster, in das Sie versuchen einen Kreis reinzumalen.
+
+544
+01:12:01,640 --> 01:12:06,640
+Und beim 11x11 Fenster Radius 5 wird der Kreis sicherlich etwas runder.
+
+545
+01:12:07,640 --> 01:12:17,640
+Wir sehen jetzt hier das Ergebnis Kreisradius 1, Kreisradius 3, Kreisradius 5.
+
+546
+01:12:21,640 --> 01:12:27,640
+Je größer der Kreis ist, desto mehr kleine Objekte fallen weg.
+
+547
+01:12:30,640 --> 01:12:35,640
+Das Rauschen, was wir hier drumherum haben, wird immer weniger.
+
+548
+01:12:35,640 --> 01:12:45,640
+Sie sehen auch, dass das Rauschen im Inneren immer weniger wird.
+
+549
+01:12:45,640 --> 01:12:55,640
+Also diese morphologische Glättung führt nicht nur dazu, dass einzelne Punkte verschwinden,
+
+550
+01:12:55,640 --> 01:13:00,640
+sondern dass auch in der Textur irgendwelche dunklen oder hellen Bereiche geglättet werden.
+
+551
+01:13:00,640 --> 01:13:05,640
+Das ist in den dunklen Bereichen besonders gut, aber das gleiche gilt natürlich auch für die hellen Bereiche.
+
+552
+01:13:19,640 --> 01:13:25,640
+So, jetzt haben wir hier das Prinzip des morphologischen Gradienten.
+
+553
+01:13:26,640 --> 01:13:28,640
+Wir haben unser Bild F.
+
+554
+01:13:33,640 --> 01:13:37,640
+Da wird eine Erosion durchgeführt.
+
+555
+01:13:39,640 --> 01:13:46,640
+Das hier ist dann F plus B, eine Dilatation.
+
+556
+01:13:47,640 --> 01:13:57,640
+Und diese beiden Bilder voneinander abgezogen, liefern uns dann letztendlich die Randbereiche verstärkt.
+
+557
+01:13:59,640 --> 01:14:05,640
+Da wir das hier auf Grauwertbildern machen, erhalten wir natürlich auch kein Binärbild.
+
+558
+01:14:05,640 --> 01:14:17,640
+Sie sehen hier, die weißen Bereiche sind größer geworden.
+
+559
+01:14:17,640 --> 01:14:21,640
+Hier sind die dunklen Bereiche größer geworden.
+
+560
+01:14:21,640 --> 01:14:26,640
+In der Differenz erkennt man das zum Beispiel hier an dem Loch in der Mitte.
+
+561
+01:14:26,640 --> 01:14:42,640
+Okay, soviel als Beispiele für morphologische Operatoren.
+
+562
+01:14:42,640 --> 01:14:46,640
+Also morphologische Operatoren verändern irgendwie das Bild.
+
+563
+01:14:46,640 --> 01:14:49,640
+Typischerweise häufig werden sie auf Binärbildern angewendet.
+
+564
+01:14:49,640 --> 01:14:52,640
+Die Objekte werden größer, kleiner, werden geglättet.
+
+565
+01:14:53,640 --> 01:15:03,640
+Was auch häufig von Interesse ist, ist die Differenz zwischen zwei morphologisch veränderten Bildern.
+
+566
+01:15:03,640 --> 01:15:06,640
+Hier der morphologische Gradient.
+
+567
+01:15:06,640 --> 01:15:08,640
+Damit bekommen Sie die Ränder von Objekten.
+
+568
+01:15:08,640 --> 01:15:10,640
+Sie bekommen natürlich auch das, was Sie weggefiltert haben.
+
+569
+01:15:10,640 --> 01:15:19,640
+Da gibt es vielerlei Anwendungen, die Sie durch morphologische Filterung und anschließende Differenzbildung bearbeiten können.
+
+570
+01:15:23,640 --> 01:15:29,640
+Manchmal wollen Sie wissen, wenn Sie in einem Objekt sind, wie weit es eigentlich bis zum Objektrand ist.
+
+571
+01:15:29,640 --> 01:15:35,640
+Das wäre dann das Thema, was wir jetzt als nächstes besprechen.
+
+572
+01:15:35,640 --> 01:15:38,640
+Distanzen und Distanztransformation.
+
+573
+01:15:44,640 --> 01:15:47,640
+Was ist der Abstand?
+
+574
+01:15:47,640 --> 01:15:56,640
+In unserer realen Welt gehen wir typischerweise davon aus, dass man den Abstand per Luftlinie als euklidischen Abstand misst.
+
+575
+01:15:56,640 --> 01:16:11,640
+Wenn Sie in einer schachbrettartig aufgebauten Stadt wie zum Beispiel New York und aber auch bei der Topologie letztendlich überraschend San Francisco
+
+576
+01:16:11,640 --> 01:16:17,640
+von einer Stelle A zu einer Stelle B gehen, dann müssen Sie letztendlich auf diesem Schachbrettrand langlaufen.
+
+577
+01:16:17,640 --> 01:16:20,640
+Wir haben dann den Cityblockabstand.
+
+578
+01:16:20,640 --> 01:16:26,640
+Wir müssen so und so viele Blöcke nach links gehen und dann so und so viele Blöcke nach rechts.
+
+579
+01:16:30,640 --> 01:16:33,640
+Es gibt auch den Schachbrettabstand.
+
+580
+01:16:35,640 --> 01:16:40,640
+Der schaut sich die beiden Komponenten des Cityblockabstands an.
+
+581
+01:16:41,640 --> 01:16:43,640
+Und nimmt das Maximum davon.
+
+582
+01:16:47,640 --> 01:16:50,640
+Die Abstände werden bezeichnet mit DE.
+
+583
+01:16:50,640 --> 01:16:58,640
+Der euklidische Abstand, der Cityblockabstand ist als D4 bezeichnet und der Schachbrettabstand als D8.
+
+584
+01:16:59,640 --> 01:17:06,640
+Den euklidischen Abstand, den haben wir jetzt hier mal nicht eingezeichnet.
+
+585
+01:17:06,640 --> 01:17:14,640
+Da müssen Sie selber, der euklidische Abstand zwischen diesen beiden Bildpunkten wäre 1 und der euklidische Abstand über die Diagonale wäre Wurzel 2.
+
+586
+01:17:14,640 --> 01:17:16,640
+Und entsprechend.
+
+587
+01:17:19,640 --> 01:17:23,640
+So, jetzt Frage. Wir sitzen hier.
+
+588
+01:17:23,640 --> 01:17:25,640
+Welche Punkte haben den gleichen Abstand?
+
+589
+01:17:25,640 --> 01:17:33,640
+Wenn wir den Cityblockabstand nehmen, dann haben genau diese vier Nachbarn den gleichen Abstand 1.
+
+590
+01:17:33,640 --> 01:17:41,640
+Und den Abstand 2 haben wir, indem wir zweimal hier nach links gehen oder wir gehen einmal nach links und einmal nach oben.
+
+591
+01:17:45,640 --> 01:17:51,640
+Das heißt, das hier sind die Punkte, die den Abstand 2 zum Zentrum haben.
+
+592
+01:17:56,640 --> 01:18:05,640
+Beim Schachbrettabstand nehme ich den maximalen Abstand in horizontaler und vertikaler Richtung.
+
+593
+01:18:07,640 --> 01:18:18,640
+Und damit ist der Kreisring um mich herum die Menge aller Punkte, die den gleichen Abstand haben.
+
+594
+01:18:18,640 --> 01:18:24,640
+Also hier 1 Kreis ist vielleicht nicht richtig, der Quadratring.
+
+595
+01:18:24,640 --> 01:18:27,640
+Das ist letztendlich der Abstand in der 8er Nachbarschaft.
+
+596
+01:18:29,640 --> 01:18:34,640
+Und hier durften wir uns von einem Bildpunkt zum anderen nur im Sinne der 4er Nachbarschaft bewegen.
+
+597
+01:18:35,640 --> 01:18:49,640
+Mit unserem natürlichen Empfinden haben beide Abstandsmaße vielleicht nicht so ganz viel zu tun, weil wir ja eher im akklytischen Maße denken.
+
+598
+01:18:49,640 --> 01:18:57,640
+Wenn dieser Punkt den Abstand 2 hat, dann müsste dieser hier doch eigentlich einen größeren Abstand haben.
+
+599
+01:18:58,640 --> 01:19:07,640
+Man kann diese Abstandsmaße Cityblock und Schachbrett, also D4 und D8, auch abwechselnd anwenden.
+
+600
+01:19:07,640 --> 01:19:18,640
+Dann bekommt man etwas, was vielleicht den menschlichen Empfinden etwas näher kommt, aber trotzdem auf dem Bildpunkt zu sehen ist.
+
+601
+01:19:18,640 --> 01:19:25,640
+Wir wenden zuerst den Cityblock-Abstand an, das heißt wir bewegen uns hier in der 4er Nachbarschaft.
+
+602
+01:19:25,640 --> 01:19:33,640
+Ausgehend von diesen Punkten, die den Abstand 1 haben, wenden wir jetzt den Schachbrett-Abstand an.
+
+603
+01:19:33,640 --> 01:19:43,640
+Das heißt zu diesem Punkt, wo wir den Abstand 1 haben, wenden wir jetzt den Schachbrett-Abstand an.
+
+604
+01:19:43,640 --> 01:19:57,640
+Das heißt zu diesem Punkt, nur einen Schritt weiter und bisher nicht betrachtet, haben wir diese Punkte mit dem gleichen Abstand.
+
+605
+01:19:57,640 --> 01:20:11,640
+Und wir haben für diesen Punkt mit dem gleichen Abstand diese Punkte, sodass wir jetzt die Probleme, die ich hier identifiziert hatte, dieser Punkt ist angeblich genauso weit wie dieser hier, beseitigt haben.
+
+606
+01:20:11,640 --> 01:20:18,640
+Wir würden jetzt im nächsten Schritt wieder D4 anwenden und dann hätte das hier den Abstand 3.
+
+607
+01:20:18,640 --> 01:20:23,640
+Das würde unserem Empfinden, glaube ich, etwas näher kommen.
+
+608
+01:20:23,640 --> 01:20:31,640
+Wir können also verschiedene Möglichkeiten anwenden, um Abstände zu messen.
+
+609
+01:20:31,640 --> 01:20:36,640
+Jetzt haben wir die Distanzen, jetzt gibt es auch noch eine Distanztransformation.
+
+610
+01:20:37,640 --> 01:20:48,640
+Wir erweitern die Suche nach dem Rand eines binären Objektes und wir wollen jetzt nicht nur den Rand haben, sondern wir wollen die Distanz zum Rand haben.
+
+611
+01:20:48,640 --> 01:20:52,640
+Und dann spricht man von einer Distanz- oder Abstandstransformation.
+
+612
+01:20:52,640 --> 01:21:07,640
+Formal bedeutet das letztendlich, Sie machen eine Erosion des Bildes und der Rand, den Sie dann jeweils neu bekommen, liefert Ihnen den Abstand.
+
+613
+01:21:07,640 --> 01:21:15,640
+Also wir haben ein Bild IK-1, I0 wäre das Originalbild.
+
+614
+01:21:15,640 --> 01:21:26,640
+Wir machen eine Erosion, kriegen IK raus und der Rand ist die Differenz zwischen diesen beiden Bildern.
+
+615
+01:21:26,640 --> 01:21:32,640
+Und in diesen Rand schreiben wir rein, in welche Iterationsstufe handelt es sich.
+
+616
+01:21:32,640 --> 01:21:38,640
+I0 ist das Originalbild. Wir machen einmal eine Erosion.
+
+617
+01:21:38,640 --> 01:21:46,640
+Es hängt natürlich von Ihrem strukturierenden Element ab, aber jetzt empfiehlt sich hier das 3x3-strukturierende Elementenkreuz.
+
+618
+01:21:46,640 --> 01:21:52,640
+Sie knabbern das mit dem Rand ab, mit diesem strukturierenden Element.
+
+619
+01:21:52,640 --> 01:22:00,640
+Und in die Differenz, die Sie hier bekommen, schreiben Sie das K rein, nämlich eine 1, weil alle Bildpunkte gehen auf Stand 1 zum Rand haben.
+
+620
+01:22:00,640 --> 01:22:03,640
+Und dann machen Sie das Ganze weiter.
+
+621
+01:22:03,640 --> 01:22:14,640
+Sehen wir hier. Grün ist das, was noch das Objektinnere ist.
+
+622
+01:22:14,640 --> 01:22:30,640
+Wenn wir jetzt von dem Originalbild den Rand abbauen, mit der Hilfe einer Erosion, und da dann reinschreiben, was ist weniger geworden.
+
+623
+01:22:30,640 --> 01:22:35,640
+Dann haben wir die 1. Von dem, was hier jetzt grün ist, machen wir das gleiche nochmal.
+
+624
+01:22:35,640 --> 01:22:41,640
+Bleiben diese beiden Punkte über. Das, was wir gerade abgebaut haben, schreiben wir eine 2 rein und hier eine 3.
+
+625
+01:22:41,640 --> 01:22:51,640
+Damit wissen wir jetzt, in diesem Objekt gibt es nur Punkte, die maximal drei Bildpunkte vom Rand entfernt sind.
+
+626
+01:22:51,640 --> 01:22:54,640
+Und das sind diese beiden.
+
+627
+01:23:00,640 --> 01:23:03,640
+Das gibt auch irgendwie schöne Bilder.
+
+628
+01:23:03,640 --> 01:23:07,640
+Hier haben wir unser Objekt.
+
+629
+01:23:07,640 --> 01:23:15,640
+Und hier haben wir jetzt eine Distanztransformation für das Objekt.
+
+630
+01:23:15,640 --> 01:23:22,640
+Und je größer die Distanz zum Rand ist, desto heller ist das Bild.
+
+631
+01:23:22,640 --> 01:23:27,640
+Der Abstand hier skaliert in Helligkeit.
+
+632
+01:23:27,640 --> 01:23:34,640
+Und was man hier dann so sieht, das Maximum irgendwie, das sieht so ein bisschen nach Skelettstrukturen aus.
+
+633
+01:23:34,640 --> 01:23:37,640
+Das hier ist die vorzeichenlose Distanztransformation.
+
+634
+01:23:37,640 --> 01:23:41,640
+Also wir geben die Distanz zum Rand nur im Inneren des Objektes an.
+
+635
+01:23:41,640 --> 01:23:46,640
+Sie können das aber auch nach außen hin machen.
+
+636
+01:23:46,640 --> 01:23:51,640
+Sie können sich auch fragen, wie weit ist denn dieser Punkt hier vom Rand entfernt.
+
+637
+01:23:51,640 --> 01:23:53,640
+Gleiches Prinzip.
+
+638
+01:23:53,640 --> 01:23:57,640
+Und das haben wir dann in diesem rechten Bild dargestellt.
+
+639
+01:23:57,640 --> 01:24:01,640
+Da haben wir die Distanz im Objekt und außerhalb des Objektes dargestellt.
+
+640
+01:24:01,640 --> 01:24:03,640
+Und fragen sich, wieso ist das vorzeichenhaft.
+
+641
+01:24:03,640 --> 01:24:11,640
+Also Sie lesen hier die Distanz aus und durch Vergleich mit dem Originalbild wissen Sie dann,
+
+642
+01:24:11,640 --> 01:24:14,640
+ob Sie innerhalb des Objektes oder außerhalb des Objektes sind.
+
+643
+01:24:14,640 --> 01:24:18,640
+Innerhalb wäre dann Plus und außerhalb Minus.
+
+644
+01:24:23,640 --> 01:24:36,640
+Hier ein Algorithmus zur Berechnung der Distanztransformation.
+
+645
+01:24:36,640 --> 01:24:40,640
+Wir nehmen an, dass wir uns mit einer Vierer-Nachbarschaft beschäftigen.
+
+646
+01:24:40,640 --> 01:24:55,640
+Wir definieren uns das Objekt und setzen das erstmal auf die maximal mögliche Distanz.
+
+647
+01:24:55,640 --> 01:24:59,640
+Also wenn Sie jetzt Grauwertbilder haben, 8 Bit, würden Sie sagen, da schreibe ich hier 255 rein.
+
+648
+01:24:59,640 --> 01:25:02,640
+Und in den Hintergrund schreiben Sie eine Null rein.
+
+649
+01:25:02,640 --> 01:25:11,640
+Die Distanztransformation machen Sie mit zwei strukturierenden Elementen.
+
+650
+01:25:11,640 --> 01:25:14,640
+Filter 1 und Filter 2.
+
+651
+01:25:14,640 --> 01:25:28,640
+In der ersten Iteration gehen Sie mit diesem Filter 1 über das Bild von links oben nach rechts unten.
+
+652
+01:25:28,640 --> 01:25:36,640
+Sie schieben dieses strukturierende Element beginnend hier über das Bild bis Sie zum Schluss hier unten sind.
+
+653
+01:25:40,640 --> 01:25:53,640
+Der neue Wert des Zentralpixels ist das Minimum dessen, was Sie in diesem strukturierenden Element finden.
+
+654
+01:25:53,640 --> 01:26:03,640
+Sie können auch sagen, das ist ein Rangfolgefilter mit Rang 1.
+
+655
+01:26:03,640 --> 01:26:13,640
+In einem zweiten Schritt gehen Sie nochmal über das Bild und fangen wir unten rechts an.
+
+656
+01:26:13,640 --> 01:26:22,640
+Sie gehen dann rüber bis Sie hier oben gelandet sind.
+
+657
+01:26:22,640 --> 01:26:31,640
+Und auch hier ist der neue Wert das Minimum dessen, was Sie da im Strukturelement haben.
+
+658
+01:26:31,640 --> 01:26:41,640
+Das Strukturelement hat ja hier die Koordinate rc, r plus 1c und hier rc plus 1.
+
+659
+01:26:42,640 --> 01:26:55,640
+Nach der ersten Iteration haben wir dieses Ergebnis.
+
+660
+01:26:55,640 --> 01:27:07,640
+Diese Spalte und diese Zeile sind nicht mit Werten belegt, weil Sie das Strukturelement an dieser Stelle nicht komplett auf das Bild legen können.
+
+661
+01:27:07,640 --> 01:27:11,640
+Deswegen wird der Bereich nicht ausgewertet.
+
+662
+01:27:11,640 --> 01:27:18,640
+Wenn Sie das aus irgendwelchen Gründen stört, weil die Objekte zu dicht am Bildrand sind, dann müssen wir das Bild vergrößern.
+
+663
+01:27:18,640 --> 01:27:29,640
+Das hatten wir ja auch schon bei der Filterung von Bildern, bei der Faltung, dass wir die Ränder irgendwie vergrößert haben.
+
+664
+01:27:30,640 --> 01:27:45,640
+Das kriegen Sie nach der ersten Iteration raus und nach der zweiten Iteration bekommen wir dieses Ergebnis.
+
+665
+01:27:45,640 --> 01:28:02,640
+Die erste Iteration liefert uns letztendlich oben und an der Seite des Objektes die richtigen Werte.
+
+666
+01:28:02,640 --> 01:28:14,640
+Mit der zweiten Iteration werden letztendlich die Fehler, die wir hier unten haben, korrigiert.
+
+667
+01:28:14,640 --> 01:28:22,640
+Und damit haben wir das Ergebnis.
+
+668
+01:28:22,640 --> 01:28:34,640
+Wir sind zweimal über das Bild gelaufen und wissen jetzt für jeden Bildpunkt, welchen Abstand er zum Objektrand hat.
+
+669
+01:28:34,640 --> 01:28:50,640
+Eine Distanztransformation misst Abstände zum Objektrand.
+
+670
+01:28:50,640 --> 01:29:08,640
+Wenn Ihr Objekt jetzt nicht das ist, was Sie haben wollten, sondern Störungen enthält, Rauschen, dann wird die Distanztransformation dieses Rauschen als relevant betrachten und den Abstand zu dem verrauschten Signal verwenden.
+
+671
+01:29:08,640 --> 01:29:17,640
+Wir haben alle eine Vorstellung, wenn wir so ein Rechteck haben, dann müssten wir als Distanztransformation letztendlich sowas kriegen.
+
+672
+01:29:17,640 --> 01:29:22,640
+Das, was ich hier in das Innere gezeichnet habe, wäre die Linie der Maxima, die wir da finden.
+
+673
+01:29:22,640 --> 01:29:32,640
+Wenn wir jetzt in dem Rechteck hier an dieser Stelle eine Störung haben, dann bekommen wir dieses Ergebnis.
+
+674
+01:29:32,640 --> 01:29:38,640
+Die Abdeckung von hier nach hier als Distanztransformation ist sicherlich richtig, aber weit weg von dem, was wir wahrscheinlich haben wollten.
+
+675
+01:29:39,640 --> 01:29:56,640
+Während das hier für uns jetzt noch nachvollziehbar ist, wenn wir da Rauschen drin haben, der Übergang von dem verrauschten Objektbild zur Distanztransformation, das können wir nachrechnen, kommt das raus, aber mit dem Ergebnis können Sie gar nichts anfangen.
+
+676
+01:29:57,640 --> 01:30:12,640
+Wichtig also, bevor Sie so eine Distanztransformation ausführen, sollten Sie Ihre Bilder morphologisch glätten, also das Rauschen entfernen, damit Sie dann das gewünschte Ergebnis bekommen.
+
+677
+01:30:12,640 --> 01:30:34,640
+Diese Distanztransformation wird gerne in der Objekterkennung verwendet, damit können wir zum Beispiel Konturen auch vergleichen.
+
+678
+01:30:34,640 --> 01:30:47,640
+Das Objektmodell ist ein binäres Template. Also das Objektmodell ist letztendlich ein Bild, wo das Objekt dargestellt ist und drumherum braucht es ein bisschen Rahmen.
+
+679
+01:30:47,640 --> 01:31:01,640
+Wir vergleichen jetzt nicht direkt die Bilder, sondern wir machen den Vergleich auf unseren Distanzkarten.
+
+680
+01:31:02,640 --> 01:31:15,640
+Also, hier sehen wir das Beispiel. Wir haben hier oben ein Bild und in diesem Bild wollen wir das Template, das Dreieck bilden.
+
+681
+01:31:15,640 --> 01:31:31,640
+Aus unserem Szenenbild, nach der Glättung, wir detektieren die Objekte, binarisieren das Ganze, auf alle Fälle berechnen wir dann ein Distanzbild.
+
+682
+01:31:31,640 --> 01:31:39,640
+Von unserem Template können wir auch ein Distanzbild berechnen.
+
+683
+01:31:39,640 --> 01:31:53,640
+Jetzt schieben wir dieses Template über dieses Distanzbild und berechnen für jede Position über Lagerung die Korrelation.
+
+684
+01:31:53,640 --> 01:32:06,640
+Dort wo die Korrelation besonders groß ist, da haben wir unser Objekt gefunden.
+
+685
+01:32:07,640 --> 01:32:21,640
+Wenn wir das machen, sind wir aufgrund von kleinen Störungen, die sich dadurch ergeben, dass wir hier unser Objekt wahrscheinlich optimal in Pixelraster positioniert haben.
+
+686
+01:32:21,640 --> 01:32:26,640
+In der realen Welt, in der Szene, das aber leicht anders ist, leicht verschoben ist.
+
+687
+01:32:26,640 --> 01:32:35,640
+Diese Probleme haben wir dadurch, dass wir jetzt die Korrelation berechnen und eine Schwellwertoperation auf der Korrelation anwenden, beseitigt.
+
+688
+01:32:35,640 --> 01:32:51,640
+Das wäre also eine Anwendung einer Distanztransformation, um den Vergleich eines Templates, eines Objekts, das wir suchen, mit dem Bild, mit der Szene zu ermöglichen, um das Objekt zu finden.
+
+689
+01:32:51,640 --> 01:33:09,640
+Hier ein anderes Beispiel, links ein Bild, da wollen wir jetzt Menschen finden, also Objekte.
+
+690
+01:33:09,640 --> 01:33:21,640
+Das hier ist unser Template. Wir können jetzt aus dem Bild Konturen erzeugen, die sehen wir hier.
+
+691
+01:33:21,640 --> 01:33:43,640
+Auf dem Bild wenden wir eine Distanztransformation an. Wir messen also überall den Abstand zum Objektrand und dann könnten wir das mit diesem Template korrelieren.
+
+692
+01:33:43,640 --> 01:33:48,640
+Wir würden dann letztendlich hier die größte Ähnlichkeit finden.
+
+693
+01:33:48,640 --> 01:34:03,640
+Hier ist das nochmal aufgeschrieben. Sie lassen das Template über das Bild laufen. Sie ermitteln die Übereinstimmung zwischen Template und Bildaufschnitt.
+
+694
+01:34:04,640 --> 01:34:15,640
+Für alle Konturpunkte im Template würden Sie die Distanzwerte addieren und wenn Sie dann eine ausreichende Übereinstimmung haben, wird es erkannt.
+
+695
+01:34:15,640 --> 01:34:20,640
+Das kann man machen zur Erkennung von Verkehrszeichen.
+
+696
+01:34:20,640 --> 01:34:33,640
+Das entspricht einem achteckigen Template oder von Fußgängern. Dann brauchen Sie natürlich die Silhouette von Fußgängern und zwar in verschiedenen Positionen.
+
+697
+01:34:33,640 --> 01:34:40,640
+Einmal hier das Beispiel, die Beine sind auseinander. Vielleicht wollen Sie noch andere Modelle haben, wo die Beine zusammen sind.
+
+698
+01:34:41,640 --> 01:34:46,640
+Auch das feilt Sie nicht vor Fehldetektionen.
+
+699
+01:34:46,640 --> 01:34:57,640
+Aber wenn man genau hinschaut, dann ist das hier kein Fußgänger, das hier ist ein Fußgänger, hier auch ein Fußgänger.
+
+700
+01:34:57,640 --> 01:35:01,640
+Da brauchen Sie sicherlich noch eine zweite Stufe, um das Ganze zu beobachten.
+
+701
+01:35:02,640 --> 01:35:11,640
+In der realen Welt, das heißt in einem Jahr hoffentlich, dann gibt es diese Vorlesung live, dann können Sie auch ein Video dazu sehen,
+
+702
+01:35:11,640 --> 01:35:20,640
+wie diese einfachen Template-Matching-Verfahren dafür sorgen, dass Sie so einen Kreis finden können.
+
+703
+01:35:20,640 --> 01:35:26,640
+Da würde man dann sehen, dass wenn das Schild noch weit weg ist, wird es nicht detektiert, aber irgendwann wird es dann detektiert.
+
+704
+01:35:27,640 --> 01:35:32,640
+Das Schild wird hier nur in seiner Form detektiert.
+
+705
+01:35:32,640 --> 01:35:43,640
+Das heißt, ob da jetzt eine Geschwindigkeitsbegrenzung auf 50, 30 oder 120 draufsteht, das wäre dann ein zweiter Schritt der Bearbeitung.
+
+706
+01:35:43,640 --> 01:35:49,640
+Hier wäre es jetzt erstmal nur die Aufgabe, Formen zu finden, die unserem Template entsprechen.
+
+707
+01:35:49,640 --> 01:35:53,640
+Mit einer Distanztransformation finden Sie Formen.
+
+708
+01:35:56,640 --> 01:36:01,640
+Gut, da gibt es das hier auch noch als Video.
+
+709
+01:36:01,640 --> 01:36:07,640
+Sie können sich das auch hier herunterladen und einmal anschauen.
+
+710
+01:36:07,640 --> 01:36:22,640
+Wir können jetzt diese Distanztransformation auch benutzen, um das Skelett eines Objektes zu finden.
+
+711
+01:36:22,640 --> 01:36:30,640
+Letztendlich stellen Sie sich vor, wir wissen ja alle, wie ein Mensch aussieht, aber es gibt auch die Strichmännchen.
+
+712
+01:36:30,640 --> 01:36:36,640
+Die Strichmännchen sind ja eigentlich ein Skelett des Menschen und das kann man auch in der Bildverarbeitung erzeugen.
+
+713
+01:36:36,640 --> 01:36:41,640
+Das nennt sich dann Skelettierung oder Medialachsen-Transformation.
+
+714
+01:36:42,640 --> 01:36:48,640
+Dann stellt sich die Frage, was sind jetzt Skelettpunkte?
+
+715
+01:36:48,640 --> 01:36:51,640
+Naja, das ist ja irgendwie was in der Mitte.
+
+716
+01:36:51,640 --> 01:36:55,640
+Mitte können Sie gut definieren über Kreise.
+
+717
+01:36:55,640 --> 01:37:00,640
+Skelettpunkte sind die Zentren maximal eingeschriebener K-Reise.
+
+718
+01:37:00,640 --> 01:37:02,640
+Sie haben ein Objekt.
+
+719
+01:37:02,640 --> 01:37:16,640
+In dieses Objekt legen Sie Kreise rein, sodass diese Kreise komplett im Objekt bleiben.
+
+720
+01:37:16,640 --> 01:37:23,640
+Und wenn Sie an einer Stelle den maximalen Kreis einbringen können,
+
+721
+01:37:23,640 --> 01:37:28,640
+links und rechts von dieser Stelle können Sie nur kleinere Kreise einbringen,
+
+722
+01:37:28,640 --> 01:37:36,640
+dann ist das ein Punkt, der zum Skelett des Objektes gehört.
+
+723
+01:37:36,640 --> 01:37:44,640
+Für ein Rechteck würden wir dann diese Struktur bekommen.
+
+724
+01:37:44,640 --> 01:37:54,640
+In der Mitte ist der maximale Abstand zum Rand durch R gegeben.
+
+725
+01:37:54,640 --> 01:37:58,640
+Also die halbe Breite dieses Rechtecks.
+
+726
+01:37:58,640 --> 01:38:00,640
+Das ist dann der Kreisdurchmesser.
+
+727
+01:38:00,640 --> 01:38:06,640
+Und diesen Kreis mit der Breite R können wir bis zum Abstand R an den Rand einbringen.
+
+728
+01:38:06,640 --> 01:38:12,640
+Danach spaltet sich das auf, die maximal einzuschreibenden Kreise werden kleiner.
+
+729
+01:38:22,640 --> 01:38:31,640
+Sie können jetzt hier für solche linienhaften Objekte zum Beispiel Skelette erzeugen.
+
+730
+01:38:31,640 --> 01:38:42,640
+Sie können vorschreiben, dass der minimale Kreis, den Sie einschreiben wollen, eine gewisse Größe hat.
+
+731
+01:38:42,640 --> 01:38:52,640
+Wenn der minimale Kreis so groß ist, dann bekommen Sie entsprechend ein Skelett, so wie Sie es hier sehen.
+
+732
+01:38:52,640 --> 01:38:54,640
+Aus diesem Y bekommen Sie ein Y-Skelett.
+
+733
+01:38:55,640 --> 01:39:02,640
+Wenn der minimale Kreis, den Sie einschreiben dürfen, kleiner ist, wie wir es hier sehen,
+
+734
+01:39:02,640 --> 01:39:07,640
+dann geht der Kreis offensichtlich bis zum Radius 0 runter,
+
+735
+01:39:07,640 --> 01:39:15,640
+dann bekommen Sie zusätzlich zu diesem Y noch in der Nähe des Endes dieses Objektes diese Verzweigung.
+
+736
+01:39:16,640 --> 01:39:22,640
+Wenn Sie jetzt Schrifterkennung zum Beispiel machen wollen, Sie haben eine gewisse Mindestschriftdicke,
+
+737
+01:39:22,640 --> 01:39:26,640
+dann können Sie sich damit einen Kreis, einen Mindestkreis definieren, Mindestkreisgröße,
+
+738
+01:39:26,640 --> 01:39:29,640
+und dann da das Skelett erzeugen.
+
+739
+01:39:29,640 --> 01:39:36,640
+Damit haben Sie schon eine sehr starke Abstraktion des Objekts von der wirklichen Form bekommen.
+
+740
+01:39:36,640 --> 01:39:40,640
+Und dieses Skelett können Sie dann ja auch noch kletten.
+
+741
+01:39:40,640 --> 01:39:43,640
+So definieren sich die Verzweigungspunkte und die Endpunkte.
+
+742
+01:39:43,640 --> 01:39:50,640
+Und die Abstände dazwischen bekommen eine sehr abstrakte Beschreibung der Originalform.
+
+743
+01:39:50,640 --> 01:39:57,640
+Natürlich abhängig davon, was Sie da machen wollen, kommen mehr oder weniger sinnvolle Skelettierungen heraus.
+
+744
+01:39:57,640 --> 01:39:59,640
+Hier haben wir ein Eingabebild, das wurde binarisiert.
+
+745
+01:39:59,640 --> 01:40:03,640
+Man fragt sich schon, wieso sieht der Telefonhörer dann so komisch aus.
+
+746
+01:40:03,640 --> 01:40:09,640
+Naja, das ist hier so ein typisches Problem, was man hat, wenn man mit realen Bildern arbeitet.
+
+747
+01:40:09,640 --> 01:40:15,640
+Reale Bilder bedeutet typischerweise, Sie haben eine Beleuchtung, die nicht diffus ist.
+
+748
+01:40:15,640 --> 01:40:21,640
+Das heißt, wir haben Schatten und wir haben Reflektionen.
+
+749
+01:40:21,640 --> 01:40:26,640
+Schatten führen hier zu Problemen, die Reflektionen hier.
+
+750
+01:40:27,640 --> 01:40:34,640
+Dieses Objekt, was jetzt einfach aus dem Eingabebild durch Binarisierung entstanden ist, anscheinend nicht großartig weiterverarbeitet,
+
+751
+01:40:34,640 --> 01:40:36,640
+liefert dann dieses Skelett.
+
+752
+01:40:36,640 --> 01:40:40,640
+Wenn man da genauer hinguckt und sich überlegt, kann das richtig sein, wird man zu einem Ergebnis kommen.
+
+753
+01:40:40,640 --> 01:40:45,640
+Ja, es ist richtig, ist aber weiter von entfernt von dem, was man sich erhofft hat.
+
+754
+01:40:45,640 --> 01:41:01,640
+Hier jetzt die Vorschrift, wie kann man das Skelett binden.
+
+755
+01:41:01,640 --> 01:41:06,640
+Der erste Schritt ist erstmal eine Distanztransformation.
+
+756
+01:41:07,640 --> 01:41:18,640
+Und auf dem Ergebnis dieser Transformation ist jetzt die Menge aller Punkte, deren Abstand vom Rand ein lokales Extremum aufweist,
+
+757
+01:41:18,640 --> 01:41:22,640
+der Punkt vom Skelett.
+
+758
+01:41:22,640 --> 01:41:27,640
+Lokales Extremum, das heißt, wir müssen wieder die Nachbarschaft definieren.
+
+759
+01:41:28,640 --> 01:41:36,640
+In diesen beiden Bildern, die Zahlenwerte, die da drinstehen, das ist jetzt einfach die Distanztransformation.
+
+760
+01:41:36,640 --> 01:41:43,640
+Wir sehen, wir haben hier dieses Y, was wir eben für das Rechteck auch schon gesehen hatten.
+
+761
+01:41:44,640 --> 01:41:57,640
+Und lokale Maxima im Sinne der Vierer-Nachbarschaft sind dann die Punkte, die wir hier mit dem Kreis haben.
+
+762
+01:41:57,640 --> 01:42:04,640
+Also im Sinne der Vierer-Nachbarschaft zum Beispiel, dieser Punkt ist kein Maximum, weil wir hier eine Vier haben.
+
+763
+01:42:14,640 --> 01:42:31,640
+Und wenn wir uns hier einmal die Zwei anschauen, dann sehen Sie, im Sinne der Vierer-Nachbarschaft ist das ein lokales Maximum.
+
+764
+01:42:31,640 --> 01:42:36,640
+Wenn wir das lokale Maximum aber im Sinne der Achternachbarschaft definieren,
+
+765
+01:42:36,640 --> 01:42:49,640
+dann würden wir hier schauen, weil die Zwei ist kein lokales Maximum.
+
+766
+01:42:49,640 --> 01:42:54,640
+Dann wären nur diese Punkte das Skelett.
+
+767
+01:42:55,640 --> 01:43:07,640
+Auch bei der Skelettierung haben wir verschiedene Möglichkeiten, wie wir das Skelett definieren, über die Vierer-Nachbarschaft, über die Achternachbarschaft.
+
+768
+01:43:07,640 --> 01:43:18,640
+Und wir können natürlich auch gegebenenfalls noch dieses Fenster, in dem wir das lokale Maximum definieren, variieren.
+
+769
+01:43:19,640 --> 01:43:29,640
+Da gibt es eine Frage. Ist Absicht, dass die Präsentation nicht mit der Online-Verfügbaren übereinstimmt?
+
+770
+01:43:29,640 --> 01:43:37,640
+Nein. Ich weiß jetzt nicht, ob das, was Sie online haben, mehr ist oder weniger als beim letzten Jahr.
+
+771
+01:43:37,640 --> 01:43:42,640
+Ich werde das hier einfach bei StudIP hochladen und dann haben Sie auch diese Version.
+
+772
+01:43:43,640 --> 01:43:53,640
+Okay, jetzt ist vielleicht mal kurz Zeit für eine Pause.
+
+773
+01:43:53,640 --> 01:44:03,640
+In fünf Minuten bin ich wieder da. Bis gleich.
+
+774
+01:44:03,640 --> 01:44:14,640
+Und dafür brauchen wir die Eigenschaften von Objekten.
+
+775
+01:44:14,640 --> 01:44:30,640
+Offensichtliche Merkmale eines Objektes können sein die Fläche, dann vielleicht der Umfang, Länge und Breite.
+
+776
+01:44:30,640 --> 01:44:40,640
+Das ist Länge und Breite schon etwas schwieriger, wie man das in einem Bild beschreiben will.
+
+777
+01:44:40,640 --> 01:44:54,640
+Zugenau darf man da nicht sein. Wenn Sie jetzt einen Quadrat drehen auf 45 Grad, ändert sich die Anzahl der Randbildpunkte.
+
+778
+01:44:55,640 --> 01:45:09,640
+Man verwendet neben den offensichtlichen Merkmalen Fläche und Umfang auch gerne etwas abstraktere Maße, zum Beispiel Formfaktor.
+
+779
+01:45:09,640 --> 01:45:18,640
+Umfang zum Quadrat durch Fläche. Kreis liefert 1, da haben wir am meisten Fläche für den Umfang.
+
+780
+01:45:18,640 --> 01:45:23,640
+Alle anderen Objekte haben weniger Fläche bei gleichem Umfang, da ist dann F größer 1.
+
+781
+01:45:23,640 --> 01:45:32,640
+Damit hat man ein Merkmal, das die Kreisartigkeit eines Objektes beschreibt.
+
+782
+01:45:32,640 --> 01:45:39,640
+Wie wollen wir die Länge eines Objektes definieren? Hier haben wir ein Beispiel. Wie lang ist denn dieses Objekt?
+
+783
+01:45:40,640 --> 01:45:43,640
+Kann man sich vortrefflich darüber streiten.
+
+784
+01:45:43,640 --> 01:45:54,640
+Was man hier typischerweise macht ist, man berechnet das umschreibende Achteck.
+
+785
+01:45:55,640 --> 01:46:03,640
+Und das sehen wir hier. Das umschreibende Achteck hat 8 Kantenlängen.
+
+786
+01:46:03,640 --> 01:46:13,640
+Und die Länge wird dann letztendlich berechnet aus dem Verhältnis von 4 Kantenstücken.
+
+787
+01:46:13,640 --> 01:46:28,640
+Wir nehmen zum Beispiel D1 und D5, beschreiben jetzt die horizontale Ausdehnung des Objektes und setzen das in Verhältnis zu D7 plus D3.
+
+788
+01:46:28,640 --> 01:46:39,640
+D1, D5 ist die vertikale Ausrichtung und D7, D3 ist die horizontale Ausrichtung und setzt das ins Verhältnis.
+
+789
+01:46:39,640 --> 01:46:44,640
+Und das machen wir jetzt für alle gegeneinander liegenden Kombinationen.
+
+790
+01:46:44,640 --> 01:46:47,640
+Und damit suchen wir das Maximum, das ist dann die Länge.
+
+791
+01:46:47,640 --> 01:46:59,640
+Wir können auch die Rundheit eines Objektes definieren, ob sie da diesen Faktor 4P dabei haben oder nicht, ist egal.
+
+792
+01:47:00,640 --> 01:47:03,640
+Sie müssen es nur konsistent machen.
+
+793
+01:47:03,640 --> 01:47:16,640
+Auf alle Fälle ist das das Verhältnis von Fläche geteilt durch die Länge des umschreibenden Achtecks zum Quadrat.
+
+794
+01:47:21,640 --> 01:47:26,640
+Das sind Merkmale, mit denen wir Objekte beschreiben können.
+
+795
+01:47:26,640 --> 01:47:37,640
+Wir können Objekte auch im statistischen Sinne, da gibt es ja diese Momente, auch durch Momente beschreiben.
+
+796
+01:47:38,640 --> 01:47:48,640
+Unser binäres Objekt habe den Wert 1, der Hintergrund den Wert 0.
+
+797
+01:47:48,640 --> 01:48:03,640
+Dann würde mpq definiert sein als xpy hoch q, aufaddiert für alle Punkte des Objektes, also überall da, wo xy da ist.
+
+798
+01:48:04,640 --> 01:48:17,640
+Und wenn wir x hoch 0, y hoch 0 rechnen, dann zählen wir letztendlich die Anzahl der Objektpunkte.
+
+799
+01:48:17,640 --> 01:48:19,640
+Das liefert uns also die Fläche.
+
+800
+01:48:19,640 --> 01:48:28,640
+Ansonsten sehen wir, dass dieses mpq stark von der Position des Objektes abhängt.
+
+801
+01:48:29,640 --> 01:48:34,640
+Ob das Objekt links oben ist, kleine Koordinaten oder rechts unten große Koordinaten.
+
+802
+01:48:34,640 --> 01:48:36,640
+Dasselbe Objekt liefert ganz unterschiedliche m's.
+
+803
+01:48:36,640 --> 01:48:40,640
+Also das Bildmoment an sich ist nicht sinnvoll.
+
+804
+01:48:41,640 --> 01:48:43,640
+Aber wir können die Zentralmomente berechnen.
+
+805
+01:48:43,640 --> 01:48:45,640
+Wir nehmen die Mittelwerte raus.
+
+806
+01:48:48,640 --> 01:48:54,640
+Mittelwerte, also die Schwerpunktkoordinaten des Objektes.
+
+807
+01:48:55,640 --> 01:49:02,640
+Also die mittlere x-Koordinate ist xs und die mittlere y-Koordinate ist ys.
+
+808
+01:49:02,640 --> 01:49:05,640
+Und dann haben wir den Zentralmoment, kennen Sie aus der Statistik.
+
+809
+01:49:05,640 --> 01:49:07,640
+Das ist nach dem Mittelwert unabhängig.
+
+810
+01:49:07,640 --> 01:49:15,640
+Und damit ist das Zentralmoment eines Objektes oben links und das Zentralmoment ist unten rechts gleich.
+
+811
+01:49:15,640 --> 01:49:25,640
+Wir können auch den Momententensor berechnen.
+
+812
+01:49:25,640 --> 01:49:29,640
+Der besteht aus Zentralmomenten.
+
+813
+01:49:29,640 --> 01:49:34,640
+µ2,0, das wäre also x².
+
+814
+01:49:34,640 --> 01:49:37,640
+µ0,2, da hätten wir dann das y² drin.
+
+815
+01:49:37,640 --> 01:49:42,640
+Und hier haben wir x und y jeweils linear drin.
+
+816
+01:49:43,640 --> 01:49:51,640
+Und aus diesem Momententensor können wir einen Winkel berechnen,
+
+817
+01:49:51,640 --> 01:49:55,640
+letztendlich die Ausrichtung des Objektes relativ zur x-Achse im Bild.
+
+818
+01:49:55,640 --> 01:50:01,640
+Die Ausrichtung des Objektes, wenn wir das Objekt mit einem Ellipsoiden beschreiben,
+
+819
+01:50:01,640 --> 01:50:05,640
+der irgendwo ein Zentrum hat, wenn wir den Schwerpunkt des Objektes setzen,
+
+820
+01:50:05,640 --> 01:50:07,640
+dann kriegen wir die Ausrichtung des Objektes.
+
+821
+01:50:08,640 --> 01:50:20,640
+Und wir können aus diesem Momententensor auch die Exzentrizität des Objektes berechnen,
+
+822
+01:50:20,640 --> 01:50:28,640
+die irgendwo zwischen 0 und 1 liegt. 0 für kreisförmige Objekte und 1 für längliche Objekte.
+
+823
+01:50:28,640 --> 01:50:32,640
+Damit kriegt man also eine Klassifikation der Objekte hin.
+
+824
+01:50:32,640 --> 01:50:39,640
+Man will zum Beispiel hier über die Exzentrizität herausfinden,
+
+825
+01:50:39,640 --> 01:50:43,640
+ich bin an länglichen Objekten oder an eher kreisförmigen Objekten interessiert.
+
+826
+01:50:43,640 --> 01:50:48,640
+Y ist eine kontinuierliche Größe, das heißt, wenn Sie einen Kreis suchen,
+
+827
+01:50:48,640 --> 01:50:51,640
+müssen Sie nicht sagen, das muss 100%ig ein Kreis sein, also Y muss 0 sein,
+
+828
+01:50:51,640 --> 01:50:55,640
+sondern Sie können sagen, naja, Y ist dann irgendwas zwischen 0 und 0,1 zum Beispiel.
+
+829
+01:50:55,640 --> 01:50:58,640
+Dann kriegen Sie alles, was kreis- und eiförmig aussieht.
+
+830
+01:50:59,640 --> 01:51:04,640
+Und Sie haben ja auch nur ein bisschen Erfahrung, wenn Sie einen Kreis in einem Bild haben
+
+831
+01:51:04,640 --> 01:51:09,640
+und binarisieren das Bild, dann haben Sie ja immer Abweichungen vom idealen Kreis.
+
+832
+01:51:09,640 --> 01:51:11,640
+Von daher helfen die Schwellwerte.
+
+833
+01:51:11,640 --> 01:51:15,640
+Und wenn Sie nur daran interessiert sind, dass die Objekte eine gewisse Ausrichtung im Bild haben,
+
+834
+01:51:15,640 --> 01:51:20,640
+dann können Sie natürlich noch den Winkel mit dazu nehmen.
+
+835
+01:51:28,640 --> 01:51:40,640
+Wir können aus den normierten zentralen Momenten, die wir Größen hier mal berechnen,
+
+836
+01:51:40,640 --> 01:51:47,640
+das µpq wird aus dem zentralen Moment µpq berechnet, geteilt durch µ00,
+
+837
+01:51:47,640 --> 01:51:55,640
+das ist letztendlich die Fläche, und dann hoch p±½±2.
+
+838
+01:51:55,640 --> 01:52:03,640
+Aus diesen normierten zentralen Momenten können wir jetzt Rotations-, Translations-
+
+839
+01:52:03,640 --> 01:52:06,640
+und Größeninvariante-Werkmale berechnen.
+
+840
+01:52:06,640 --> 01:52:14,640
+Das ist gut, denn manchmal in der industriellen Bildverarbeitung zum Beispiel haben Sie ein Förderband,
+
+841
+01:52:14,640 --> 01:52:16,640
+da kommen verschiedene Objekte, Sie wollen ein Objekt erkennen,
+
+842
+01:52:16,640 --> 01:52:18,640
+Sie wissen letztendlich nie, wie das Ding da drauf liegt.
+
+843
+01:52:18,640 --> 01:52:21,640
+Das heißt, Sie wollen eine Rotationsinvariante-Beschreibung haben.
+
+844
+01:52:22,640 --> 01:52:25,640
+Wenn Sie ein Objekt detektieren wollen, das auf die Kamera zukommt,
+
+845
+01:52:25,640 --> 01:52:28,640
+das sich frei im Raum bewegt, dann ist das Objekt mal klein, mal groß.
+
+846
+01:52:28,640 --> 01:52:31,640
+Dann wollen Sie dieses Objekt Größeninvariante haben,
+
+847
+01:52:31,640 --> 01:52:35,640
+und Sie wollen das natürlich auch Translationsinvariante haben.
+
+848
+01:52:35,640 --> 01:52:38,640
+Sie wollen das Objekt erkennen, egal ob es oben links oder unten rechts ist.
+
+849
+01:52:40,640 --> 01:52:46,640
+Diese Invarianten-Merkmale, die man da berechnen kann,
+
+850
+01:52:46,640 --> 01:52:48,640
+sehen Sie hier, gibt es eine ganze Reihe von Merkmalen,
+
+851
+01:52:48,640 --> 01:52:53,640
+mit denen Sie Ihre Objekte Rotations-, Translations- und Größeninvarianten beschreiben können,
+
+852
+01:52:53,640 --> 01:52:54,640
+die Sie dann auch nutzen können.
+
+853
+01:52:54,640 --> 01:52:57,640
+Sie berechnen sie aus einem Binärobjekt, das Sie haben,
+
+854
+01:52:57,640 --> 01:53:00,640
+und das nutzen Sie dann, vergleichen Sie mit dem, was Sie haben wollen,
+
+855
+01:53:00,640 --> 01:53:03,640
+und kommen dann zu der Entscheidung, ob das Objekt infrage kommt oder nicht.
+
+856
+01:53:11,640 --> 01:53:13,640
+Wie berechnen wir jetzt die Momente?
+
+857
+01:53:14,640 --> 01:53:20,640
+Da hilft uns wieder das Zeilen-Koinzidenz-Verfahren.
+
+858
+01:53:27,640 --> 01:53:30,640
+Das kennen wir schon, das hatten wir für die Connected-Component-Analyse.
+
+859
+01:53:30,640 --> 01:53:38,640
+Während Sie das berechnen, berechnen Sie letztendlich diese mpq.
+
+860
+01:53:38,640 --> 01:53:43,640
+Wir gehen hier über alle Objektpunkte, dann haben wir erstmal die Momente.
+
+861
+01:53:45,640 --> 01:53:56,640
+Sie berechnen gleichzeitig die mpqs für alle Momente, die Sie brauchen.
+
+862
+01:53:56,640 --> 01:54:03,640
+Also 0,0 brauchen Sie sicherlich, Sie brauchen 0,1, 1,0, 1,1, 2,0 und 0,2 als Minimum.
+
+863
+01:54:04,640 --> 01:54:12,640
+Die berechnen Sie also gleichzeitig, um dann zumindest erstmal die mittelwertfreien Momente zu berechnen,
+
+864
+01:54:12,640 --> 01:54:17,640
+um im ersten Schritt die Objekte beschreiben zu können.
+
+865
+01:54:19,640 --> 01:54:22,640
+So, jetzt haben wir das geschafft.
+
+866
+01:54:24,640 --> 01:54:29,640
+In diesem ganzen Foliensatz haben Sie das über Nachbarschaft, 4 oder 8er Nachbarschaft,
+
+867
+01:54:29,640 --> 01:54:37,640
+daraus zusammenhängend Zeilen-Koinzidenz-Verfahren zur Detektion von Connected-Components haben wir kennengelernt,
+
+868
+01:54:37,640 --> 01:54:39,640
+um die binären Objekte kennenzulernen.
+
+869
+01:54:40,640 --> 01:54:43,640
+Die binären Objekte, da gibt es drei Möglichkeiten, wie Sie sie repräsentieren.
+
+870
+01:54:43,640 --> 01:54:49,640
+Label-Bild, das heißt jeder Bildpunkt hat ein Label, wo drauf steht, welches Objekt bin ich denn.
+
+871
+01:54:49,640 --> 01:54:55,640
+Richtungscodes, das heißt Sie beschreiben ein Objekt durch den Rand, typischerweise durch einen Freeman-Code,
+
+872
+01:54:55,640 --> 01:54:59,640
+sodass die Randbeschreibung unabhängig davon ist, wie das Objekt gedreht ist.
+
+873
+01:55:00,640 --> 01:55:07,640
+Effizient, als guter Kompromiss zwischen Rechenaufwand, Richtungscode, Speicheraufwand, Label ist der Quadri.
+
+874
+01:55:09,640 --> 01:55:13,640
+Wenn wir binäre Bilder filtern, wollen wir eigentlich geometrische Operationen durchführen,
+
+875
+01:55:13,640 --> 01:55:19,640
+das machen wir mit morphologischen Operationen, da gibt es Erosion, Dilatation, Opening und Closing,
+
+876
+01:55:19,640 --> 01:55:23,640
+dass Sie beliebig oft miteinander verknüpfen können, diese können Sie beliebig oft miteinander verknüpfen
+
+877
+01:55:23,640 --> 01:55:27,640
+und Sie können da auch noch ein strukturierendes Element sich aussuchen,
+
+878
+01:55:28,640 --> 01:55:33,640
+das dann die Ergebnisse auch maßgeblich beeinflussen.
+
+879
+01:55:33,640 --> 01:55:36,640
+Mit diesen strukturierenden Elementen können Sie durchaus auch steuern,
+
+880
+01:55:36,640 --> 01:55:41,640
+dass das Bild in horizontaler Richtung anders verarbeitet wird, als in vertikaler Richtung, als ein Beispiel.
+
+881
+01:55:43,640 --> 01:55:49,640
+Um Objekte zu beschreiben, drei sind manchmal auch die Skelette relevant,
+
+882
+01:55:49,640 --> 01:55:53,640
+das ist die mediale Achsen-Transformation, die sich aus der Distanz-Transformation berechnet.
+
+883
+01:55:53,640 --> 01:55:58,640
+Die Distanz-Transformation gibt für jeden Bildpunkt eines Objektes oder auch des Hintergrunds an,
+
+884
+01:55:58,640 --> 01:56:02,640
+wie weit weg ist er denn zum Objektrand.
+
+885
+01:56:03,640 --> 01:56:09,640
+Dann haben wir jetzt zum Schluss gesehen, dass man Merkmale für digitale binäre Objekte berechnen kann,
+
+886
+01:56:09,640 --> 01:56:15,640
+Rundheit, Umfang, Fläche und damit hat man dann Merkmale,
+
+887
+01:56:15,640 --> 01:56:19,640
+mit denen man Objekte letztendlich in einem ersten Schritt klassifizieren kann.
+
+888
+01:56:27,640 --> 01:56:34,640
+Dann habe ich ja noch eine Viertelstunde, dann gehen wir nochmal weiter zu einem nächsten Foliensatz.
+
+889
+01:56:34,640 --> 01:56:39,640
+Diesen Foliensatz, der sich unterscheidet von dem, was Sie haben, habe ich bei StuttIP hochgeladen.
+
+890
+01:56:39,640 --> 01:56:42,640
+Sie haben sich den von StuttIP vielleicht in altem runtergeladen,
+
+891
+01:56:42,640 --> 01:56:54,640
+sie unterscheiden sich im Namen immer am Datum, Jahreszeit, Monat und Tag.
+
+892
+01:56:54,640 --> 01:57:00,640
+Die Veränderungen von einem Datum zum nächsten sind häufig eher kleiner Art,
+
+893
+01:57:00,640 --> 01:57:04,640
+aber eben haben Sie da ein paar Dinge gesehen.
+
+894
+01:57:05,640 --> 01:57:13,640
+Gut, jetzt wollen wir mal Bilder segmentieren.
+
+895
+01:57:13,640 --> 01:57:17,640
+Wenn wir so ein Grauwertbild wollen herausfinden, wo ist denn was?
+
+896
+01:57:17,640 --> 01:57:23,640
+Da stellt sich jetzt erstmal die Frage, was ist denn eine Segmentierung?
+
+897
+01:57:23,640 --> 01:57:31,640
+Eine Segmentierung ist letztendlich ein Bild, wobei jedem Bildpunkt einem Segment zugeordnet sind.
+
+898
+01:57:31,640 --> 01:57:36,640
+Die Bildpunkte eines Segments sollten zusammenhängend sein.
+
+899
+01:57:36,640 --> 01:57:40,640
+Wir machen jetzt eine Annahme für die Bildinterpretation.
+
+900
+01:57:40,640 --> 01:57:45,640
+Bildauswertung ist letztendlich die Segmentierung, ein Vorverarbeitungsschritt zur Bildinterpretation.
+
+901
+01:57:45,640 --> 01:57:50,640
+Wir gehen davon aus, dass zusammenhängende Pixel eines Segments die gleiche Bedeutung haben.
+
+902
+01:57:50,640 --> 01:57:54,640
+Nicht zusammenhängende Pixel haben unterschiedliche Bedeutungen.
+
+903
+01:57:55,640 --> 01:58:02,640
+Ein Beispiel für so eine Segmentierung könnte sein, was wir hier rechts sehen.
+
+904
+01:58:02,640 --> 01:58:06,640
+Wir haben dann hier, das hier scheint wohl Wasser zu sein.
+
+905
+01:58:06,640 --> 01:58:11,640
+Das hier ist wohl Grünfläche, aber eine andere Grünfläche als diese Grünfläche.
+
+906
+01:58:11,640 --> 01:58:17,640
+Hier ist das Grün wohl eher spärlich zu sehen.
+
+907
+01:58:17,640 --> 01:58:25,640
+Und dann gibt es noch den Tiger.
+
+908
+01:58:33,640 --> 01:58:37,640
+Hier ein anderes Beispiel, medizinische Bildverarbeitung.
+
+909
+01:58:37,640 --> 01:58:41,640
+Typischerweise werden die Zellen an vielen Orten noch manuell gezählt.
+
+910
+01:58:41,640 --> 01:58:46,640
+Aber es wäre natürlich schön, wenn man diese Zellen einzeln der Bildverarbeitung extrahieren kann.
+
+911
+01:58:46,640 --> 01:58:50,640
+Wir würden also segmentieren, was ist hellblau, was ist dunkelblau.
+
+912
+01:58:50,640 --> 01:58:55,640
+Nach Möglichkeit würde man dieses hier auch noch in zwei Objekte segmentieren.
+
+913
+01:58:55,640 --> 01:58:59,640
+Ich weiß jetzt nicht, warum Sie gerade meinen Stift nicht sehen.
+
+914
+01:59:03,640 --> 01:59:12,640
+Aber Sie sehen, hier sind Zellen zusammengewachsen und die will man natürlich dann aneinander tragen.
+
+915
+01:59:13,640 --> 01:59:19,640
+Hier auch aus dem Bereich der Medizin wollen wir ein Blutgefäß markieren.
+
+916
+01:59:19,640 --> 01:59:22,640
+Das Grüne könnte das Blutgefäß sein.
+
+917
+01:59:22,640 --> 01:59:29,640
+Man kann sich darüber streiten, Sie sehen unten links im grünen Bereich soll das Segment so verlaufen oder vielleicht ein bisschen tiefer.
+
+918
+01:59:29,640 --> 01:59:32,640
+Es ist ein Vorverarbeitungsschritt.
+
+919
+01:59:32,640 --> 01:59:39,640
+Im industriellen Bereich will man Objekte erkennen, man will Objekte beurteilen.
+
+920
+01:59:39,640 --> 01:59:47,640
+Man will Objekte auf Korrektheit untersuchen.
+
+921
+01:59:47,640 --> 01:59:50,640
+Hier ein Netz, in dem Fehler drin sind.
+
+922
+01:59:50,640 --> 01:59:57,640
+Wenn Sie Leiterplatten zum Beispiel bestücken, das macht eine hannoversche Firma,
+
+923
+01:59:57,640 --> 02:00:03,640
+die analysiert bestückte Leiterplatten, ob das alles richtig ist.
+
+924
+02:00:03,640 --> 02:00:06,640
+Auch dort werden Bilder segmentiert.
+
+925
+02:00:06,640 --> 02:00:10,640
+Das ist letztendlich eine wichtige industrielle Anwendung.
+
+926
+02:00:10,640 --> 02:00:13,640
+Bildverarbeitung ist auch gut. Sie interessieren sich hier für die Blume.
+
+927
+02:00:13,640 --> 02:00:16,640
+Die will man freischneiden.
+
+928
+02:00:16,640 --> 02:00:19,640
+Das sagt sich viel leichter als es ist.
+
+929
+02:00:19,640 --> 02:00:26,640
+Sie können sich vorstellen, der Bildrand der Blume hört nicht mit dem Bildpunkt Raster konsistent auf.
+
+930
+02:00:26,640 --> 02:00:32,640
+Das heißt, Sie haben viele Bildpunkte am Rand, die sowohl Hintergrundgrün beinhalten als auch das Rot.
+
+931
+02:00:33,640 --> 02:00:40,640
+Es gibt irgendwelche Playstations, glaube ich, die haben Tiefensensoren.
+
+932
+02:00:40,640 --> 02:00:46,640
+Da will man jetzt zum Beispiel in einem ersten Schritt wissen, wo sind denn die Menschen.
+
+933
+02:00:46,640 --> 02:00:51,640
+Was sind die nahen Objekte, um dann in einem zweiten Schritt die Bewegung zu analysieren.
+
+934
+02:00:51,640 --> 02:00:57,640
+Was ist denn nun eine Segmentierung?
+
+935
+02:00:58,640 --> 02:01:02,640
+Keiner weiß es. Sie definieren das für Ihren Anwendungsfall.
+
+936
+02:01:02,640 --> 02:01:05,640
+Wir sehen hier links einmal zwei Bilder.
+
+937
+02:01:05,640 --> 02:01:12,640
+Man hat drei Menschen gebeten, zusammenhängende Gebiete eindeutig zu segmentieren.
+
+938
+02:01:12,640 --> 02:01:20,640
+Der eine zum Beispiel links oben, der hat den Himmel in Wolken und Nichtwolken unterteilt.
+
+939
+02:01:20,640 --> 02:01:22,640
+Die anderen beiden haben das nicht gemacht.
+
+940
+02:01:22,640 --> 02:01:28,640
+Sie sehen, da gibt es unterschiedliche Detailgrade an den Segmentierungsgrenzen.
+
+941
+02:01:28,640 --> 02:01:37,640
+Und auch hier könnte man sagen, dass die beiden rechten Segmentierungen einen ähnlichen Detaillierungsgrad haben.
+
+942
+02:01:37,640 --> 02:01:39,640
+Die Kanten sind nicht immer identisch.
+
+943
+02:01:39,640 --> 02:01:46,640
+Also hier ist die Segmentierungsaufgabe abhängig.
+
+944
+02:01:46,640 --> 02:01:51,640
+Bei manchen Dingen ist man sich klar.
+
+945
+02:01:51,640 --> 02:01:56,640
+Wenn wir hier ein Bild sehen, das scheint wohl ein Reiter zu sein, der auf dem Pferd sitzt.
+
+946
+02:01:56,640 --> 02:02:02,640
+Links haben wir sicherlich eine Übersegmentierung im Sinne von, wir haben so viele Segmente, das kann nicht sein.
+
+947
+02:02:02,640 --> 02:02:06,640
+Warum besteht das Pferd aus 15 Segmenten? Macht vielleicht nicht so richtig Sinn.
+
+948
+02:02:06,640 --> 02:02:08,640
+Rechts haben wir eine Untersegmentierung.
+
+949
+02:02:08,640 --> 02:02:14,640
+Da sind wir uns glaube ich alle einig, da sind zu wenige Objekte markiert.
+
+950
+02:02:15,640 --> 02:02:20,640
+Und das, was man haben will, liegt typischerweise irgendwo dazwischen.
+
+951
+02:02:20,640 --> 02:02:26,640
+Man kann sich also viele Segmentierungen vorstellen mit unterschiedlichen Detailierungsgraden.
+
+952
+02:02:26,640 --> 02:02:35,640
+Diese Bildsegmentierung ist ein Vorverarbeitungsschritt für weitere Bildanalyse.
+
+953
+02:02:35,640 --> 02:02:43,640
+Wir nehmen an, dass Segmente im Bild, also zusammengehörende Pixel, zusammenhängende Pixel, eine einheitliche Bedeutung haben.
+
+954
+02:02:43,640 --> 02:02:47,640
+Einheitlich im Sinne der späteren Bildinterpretation.
+
+955
+02:02:47,640 --> 02:02:52,640
+Das heißt, Sie können nicht unbedingt ein Segmentierungsverfahren entwickeln, ohne dass Sie die Anwendung kennen.
+
+956
+02:02:52,640 --> 02:03:02,640
+Sie können natürlich viele Verfahren entwickeln, aber die Auswahl des Verfahrens, die Parametrisierung des Verfahrens, hängt von der späteren Aufgabe ab.
+
+957
+02:03:02,640 --> 02:03:11,640
+Auf alle Fälle sind die Pixel eines Segments durch ähnliche Eigenschaften der Pixel oder ihrer Umgebung charakterisiert.
+
+958
+02:03:11,640 --> 02:03:15,640
+Damit sehen Sie schon, es gibt da viele Anwendungsfälle.
+
+959
+02:03:15,640 --> 02:03:23,640
+Und typischerweise ist es so, dass Sie jedem Pixel nur ein Segment zuordnen.
+
+960
+02:03:27,640 --> 02:03:37,640
+Da wir nun das Bild verarbeiten aufgrund von den Eigenschaften des Bildes, spricht man dann hier auch von einer datengetriebenen Bildsegmentierung.
+
+961
+02:03:37,640 --> 02:03:45,640
+Es gibt drei große Ansätze zur Herangehensweise an die Bildsegmentierung.
+
+962
+02:03:45,640 --> 02:03:49,640
+Wir können uns einzelne Bildpunkte anschauen.
+
+963
+02:03:49,640 --> 02:03:54,640
+Dann berechnen wir irgendetwas und machen eine Überprüfung mit dem Schwellwert.
+
+964
+02:03:54,640 --> 02:03:56,640
+Das sind die einfachsten Verfahren im Schwellwertverfahren.
+
+965
+02:03:56,640 --> 02:03:59,640
+Wir können Regionen versuchen zu definieren.
+
+966
+02:03:59,640 --> 02:04:06,640
+Also homogene Bereiche und Homogenität müssen wir definieren, abhängig vom Anwendungsfall.
+
+967
+02:04:07,640 --> 02:04:11,640
+Das sind dann Verfahren wie Region Growing, da werden also Regionen wachsen.
+
+968
+02:04:11,640 --> 02:04:23,640
+Oder Split and Merge, da werden Regionen, die uneinheitlich sind, aufgeteilt und benachbarte Regionen, die wieder einheitlich sind, zusammen verschmolzen.
+
+969
+02:04:23,640 --> 02:04:26,640
+Dann gibt es Clustering-Methoden, die wir hier nicht besprechen.
+
+970
+02:04:26,640 --> 02:04:29,640
+Der dritte Ansatz wäre Kanten.
+
+971
+02:04:29,640 --> 02:04:35,640
+Ich suche Kanten im Bild und die Kanten liefern mir die Segmentgrenzen.
+
+972
+02:04:35,640 --> 02:04:40,640
+Also Kanten werden über Diskontinuitäten im Bild definiert.
+
+973
+02:04:40,640 --> 02:04:44,640
+Da gibt es viele Verfahren.
+
+974
+02:04:44,640 --> 02:04:51,640
+Hier ist der Kenny Edge Detektor als Kanten-Detektor genannt.
+
+975
+02:04:51,640 --> 02:04:54,640
+Die Watershed-Segmentierung werde ich Ihnen auch zeigen.
+
+976
+02:04:54,640 --> 02:04:59,640
+Schwellwertverfahren sind ganz einfach.
+
+977
+02:04:59,640 --> 02:05:06,640
+Sie haben ein Grauwert-Bild und alle Bildpunkte, die größer sind als ein gewisser Schwellwert, werden auf 1 gesetzt.
+
+978
+02:05:06,640 --> 02:05:08,640
+Alles andere ist 0, also Hintergrund.
+
+979
+02:05:08,640 --> 02:05:11,640
+Wo setzen Sie jetzt den Schwellwert hin?
+
+980
+02:05:11,640 --> 02:05:21,640
+Man könnte zum Beispiel aus dem Bild A, was wir hier haben, das Histogramm berechnen.
+
+981
+02:05:22,640 --> 02:05:25,640
+Das sehen Sie hier in B.
+
+982
+02:05:25,640 --> 02:05:36,640
+Und da wird man irgendwo um die 150 herum wahrscheinlich einen Schwellwert setzen, um die Zellen vom Hintergrund zu trennen.
+
+983
+02:05:36,640 --> 02:05:43,640
+Abhängig wie Sie den Schwellwert nun setzen, bekommen Sie auch unterschiedliche Ergebnisse.
+
+984
+02:05:43,640 --> 02:05:50,640
+Wir sehen im Bild C, da haben wir den Schwellwert 110 gesetzt.
+
+985
+02:05:50,640 --> 02:05:54,640
+Da scheint es in den Zellkernen in der Mitte etwas Helles zu geben.
+
+986
+02:05:54,640 --> 02:05:57,640
+Wenn man genau auf Bild A guckt, sieht man das auch.
+
+987
+02:05:57,640 --> 02:06:00,640
+Wir setzen den Schwellwert höher, 147.
+
+988
+02:06:00,640 --> 02:06:02,640
+Dann haben wir die Zellen als Ganzes.
+
+989
+02:06:02,640 --> 02:06:05,640
+Und wenn wir auf 185 gehen, werden die Zellen ein bisschen größer.
+
+990
+02:06:05,640 --> 02:06:09,640
+Und es kommt vielleicht auch schon der eine oder andere Rauschpixel mit dazu.
+
+991
+02:06:09,640 --> 02:06:19,640
+Wenn Sie irgendwelche Durchlichtverfahren haben, Röntgenaufnahmen oder Ähnliches,
+
+992
+02:06:19,640 --> 02:06:25,640
+da sind Schwellwertverfahren durchaus angebracht als Vorverarbeitungsstufe,
+
+993
+02:06:25,640 --> 02:06:30,640
+um dann hier zum Beispiel die Muttern zu klassifizieren in Abhängigkeit von ihrer Größe.
+
+994
+02:06:30,640 --> 02:06:34,640
+Oder rechts sehen Sie ein Beispiel, auch wieder Durchlicht.
+
+995
+02:06:34,640 --> 02:06:36,640
+Das sieht nach einer Leiterplatte aus.
+
+996
+02:06:36,640 --> 02:06:41,640
+Da wird jetzt kontrolliert, ob die Bohrungen alle sauber sind.
+
+997
+02:06:51,640 --> 02:06:54,640
+Wir haben links ein MR-Bild.
+
+998
+02:06:54,640 --> 02:07:05,640
+Wir können dann mit einem Schwellwert oder zwei Schwellwerte das Gehirn extrahieren.
+
+999
+02:07:05,640 --> 02:07:13,640
+Ich könnte jetzt sagen, alles was größer ist als 290 und kleiner als 410 sei das Gehirn.
+
+1000
+02:07:13,640 --> 02:07:16,640
+Dann bekommen wir das Bild unten links.
+
+1001
+02:07:16,640 --> 02:07:20,640
+Und wenn Sie jetzt noch morphologische Operationen drauf anwenden,
+
+1002
+02:07:20,640 --> 02:07:24,640
+dann können zum Beispiel die kleinen Punkte verschwinden.
+
+1003
+02:07:24,640 --> 02:07:28,640
+Das Bild wird rauschärmer und wir haben das Bild was rechts unten ist.
+
+1004
+02:07:28,640 --> 02:07:34,640
+Die meisten als objektdeklariertes Gebiet sind wirklich das Gehirn,
+
+1005
+02:07:34,640 --> 02:07:36,640
+aber wir haben natürlich kein Gehirn bei den Zähnen.
+
+1006
+02:07:36,640 --> 02:07:38,640
+Die sind ja hier auch noch weiß markiert.
+
+1007
+02:07:38,640 --> 02:07:40,640
+Das kriegen Sie aber jetzt raus.
+
+1008
+02:07:40,640 --> 02:07:44,640
+Sie könnten sagen in diesem Bild, das Gehirn muss ein großes Objekt sein.
+
+1009
+02:07:44,640 --> 02:07:49,640
+Sie schmeißen alle Objekte raus, die kleiner sind als der Bildpunkt.
+
+1010
+02:07:53,640 --> 02:07:57,640
+Damit das funktioniert, müssen sich die Grauwerte des gesuchten Objektes
+
+1011
+02:07:57,640 --> 02:07:59,640
+signifikant vom Hintergrund unterscheiden.
+
+1012
+02:07:59,640 --> 02:08:02,640
+Also wenn Sie ein Röntgenbild haben, Knochen zum Beispiel.
+
+1013
+02:08:03,640 --> 02:08:06,640
+Sie müssten einen Schwellwert bestimmen.
+
+1014
+02:08:06,640 --> 02:08:08,640
+Das können Sie automatisch machen.
+
+1015
+02:08:08,640 --> 02:08:12,640
+Dann schauen Sie sich das Histogramm an oder werten das Histogramm aus
+
+1016
+02:08:12,640 --> 02:08:14,640
+oder Sie machen das manuell.
+
+1017
+02:08:14,640 --> 02:08:18,640
+Und hier ist natürlich auch vieles Geschmackssache.
+
+1018
+02:08:18,640 --> 02:08:24,640
+Wir haben hier links das Röntgenbild und unten sehen Sie drei Binarisierungen
+
+1019
+02:08:24,640 --> 02:08:26,640
+dieses Röntgenbildes.
+
+1020
+02:08:26,640 --> 02:08:28,640
+Ziel ist es nun die Knochen zu bekommen.
+
+1021
+02:08:28,640 --> 02:08:32,640
+Ganz rechts würde man sagen, das ist vielleicht nicht das Richtige.
+
+1022
+02:08:32,640 --> 02:08:38,640
+Ob es nun das linke oder das mittlere Bild ist, das ist dann auch schon wieder
+
+1023
+02:08:38,640 --> 02:08:40,640
+Geschmackssache.
+
+1024
+02:08:46,640 --> 02:08:48,640
+Dieses Bild hatten wir schon mal.
+
+1025
+02:08:48,640 --> 02:08:53,640
+Die Schwellwertbildung, Binarisierung ist der erste Schritt in der Verarbeitung.
+
+1026
+02:08:54,640 --> 02:09:00,640
+Die Frage ist jetzt bei diesen Bildern zum Beispiel, wie wählt man den Schwellwert?
+
+1027
+02:09:02,640 --> 02:09:07,640
+Also manuell in der medizinischen Bildverarbeitung,
+
+1028
+02:09:09,640 --> 02:09:11,640
+als da Geschmackssache ist.
+
+1029
+02:09:13,640 --> 02:09:15,640
+In der industriellen Bildverarbeitung ist es manuell.
+
+1030
+02:09:15,640 --> 02:09:16,640
+Warum?
+
+1031
+02:09:16,640 --> 02:09:20,640
+Sie wissen, was Sie vor Ihrer Kamera haben.
+
+1032
+02:09:21,640 --> 02:09:23,640
+Sie kontrollieren die Beleuchtung.
+
+1033
+02:09:23,640 --> 02:09:26,640
+Sie können die Bilder so gestalten, dass man mit einem einfachen Verfahren
+
+1034
+02:09:26,640 --> 02:09:28,640
+mit der Schwellwertbildung zum Ziel kommt.
+
+1035
+02:09:31,640 --> 02:09:34,640
+Ansonsten bieten sich automatische Verfahren an.
+
+1036
+02:09:34,640 --> 02:09:37,640
+Die können Sie natürlich auch zur Initialisierung bei der industriellen
+
+1037
+02:09:37,640 --> 02:09:39,640
+Bildverarbeitung verwenden.
+
+1038
+02:09:39,640 --> 02:09:42,640
+Diese automatischen Verfahren, die werten das Histogramm aus.
+
+1039
+02:09:42,640 --> 02:09:45,640
+So wie ich zu Anfang das Histogramm gezeigt hatte und dann gesagt habe,
+
+1040
+02:09:45,640 --> 02:09:48,640
+okay, da bei 150 legen wir vielleicht den Schwellwert hin.
+
+1041
+02:09:50,640 --> 02:09:52,640
+Hier sehen Sie ein Beispiel.
+
+1042
+02:09:52,640 --> 02:09:56,640
+Und Sie sehen auch, dadurch, dass das Histogramm jetzt zwischen 100 und 200
+
+1043
+02:09:56,640 --> 02:09:59,640
+nicht null ist, ist es egal, wo Sie den Schwellwert hinsetzen,
+
+1044
+02:09:59,640 --> 02:10:03,640
+werden Sie die Objekte wohl nicht komplett und ideal voneinander trennen.
+
+1045
+02:10:08,640 --> 02:10:13,640
+Ein Beispiel hier für die automatische Schwellwertbestimmung ist,
+
+1046
+02:10:13,640 --> 02:10:17,640
+man macht die Annahme, wir haben zwei verschiedene Bereiche im Bild.
+
+1047
+02:10:17,640 --> 02:10:19,640
+Wir haben das Objekt und wir haben den Hintergrund.
+
+1048
+02:10:19,640 --> 02:10:26,640
+Und die Grauwerte dieser beiden Teile kann man durch Gaussverteilung beschreiben.
+
+1049
+02:10:26,640 --> 02:10:28,640
+Das ist die Annahme.
+
+1050
+02:10:28,640 --> 02:10:32,640
+So und jetzt berechnen wir die Parameter dieser beiden Gaussverteilungen
+
+1051
+02:10:32,640 --> 02:10:34,640
+in Abhängigkeit von der Schwelle.
+
+1052
+02:10:34,640 --> 02:10:40,640
+Der Hintergrund ist alles mit den Grauwerten zwischen 0 und S.
+
+1053
+02:10:40,640 --> 02:10:43,640
+Das Objekt ist zwischen S plus 1 und 255.
+
+1054
+02:10:44,640 --> 02:10:51,640
+Wenn wir dieses S wählen, dann können wir die Fläche berechnen.
+
+1055
+02:10:54,640 --> 02:10:57,640
+H von K ist das Histogramm.
+
+1056
+02:10:57,640 --> 02:11:00,640
+Das berechnen Sie als erstes.
+
+1057
+02:11:00,640 --> 02:11:02,640
+Sie können das natürlich auch immer über das Bild berechnen,
+
+1058
+02:11:02,640 --> 02:11:04,640
+aber dann dauert es alles viel länger.
+
+1059
+02:11:04,640 --> 02:11:10,640
+Sie berechnen das für N1 und für N2.
+
+1060
+02:11:14,640 --> 02:11:20,640
+Und Sie bekommen dann beim 8-Bit-Bild 256 Werte heraus.
+
+1061
+02:11:20,640 --> 02:11:23,640
+Abhängig davon, wie groß S ist.
+
+1062
+02:11:23,640 --> 02:11:25,640
+Sie berechnen den Mittelwert.
+
+1063
+02:11:25,640 --> 02:11:29,640
+Das ist dann µ1 von S und µ2 von S.
+
+1064
+02:11:29,640 --> 02:11:32,640
+Und Sie berechnen die Standardabweichung.
+
+1065
+02:11:32,640 --> 02:11:35,640
+Siebenmal 1 von S und siebenmal 2 von S.
+
+1066
+02:11:35,640 --> 02:11:42,640
+So, jetzt haben Sie zwei Gaussverteilungen.
+
+1067
+02:11:42,640 --> 02:11:45,640
+Jede Gaussverteilung ist beschrieben durch Mittelwert und Standardabweichung.
+
+1068
+02:11:45,640 --> 02:11:50,640
+Sie können diese Gaussverteilung auf das Histogramm einzeichnen.
+
+1069
+02:11:50,640 --> 02:11:53,640
+Und Sie wählen die Schwelle S jetzt so,
+
+1070
+02:11:53,640 --> 02:11:57,640
+dass der Fehler zwischen Ihren beiden Gaussverteilungen
+
+1071
+02:11:57,640 --> 02:12:00,640
+und dem Histogramm minimal wird.
+
+1072
+02:12:00,640 --> 02:12:08,640
+Da gibt es zum Beispiel das Verfahren nach OZU.
+
+1073
+02:12:09,640 --> 02:12:15,640
+Das hat jetzt als Ziel, eine Schwelle S zu suchen,
+
+1074
+02:12:15,640 --> 02:12:20,640
+sodass die Varianz zwischen den Klassen möglichst groß ist
+
+1075
+02:12:20,640 --> 02:12:25,640
+und die Varianz innerhalb der Klassen möglichst klein.
+
+1076
+02:12:25,640 --> 02:12:30,640
+Also die Varianz innerhalb der Klassen klein heißt,
+
+1077
+02:12:30,640 --> 02:12:33,640
+die Klassen sollen homogen sein.
+
+1078
+02:12:33,640 --> 02:12:36,640
+Varianz zwischen den Klassen groß heißt,
+
+1079
+02:12:36,640 --> 02:12:41,640
+die Verteilungen sollen maximal unähnlich sein.
+
+1080
+02:12:41,640 --> 02:12:46,640
+Und dann wird der Quotient berechnet
+
+1081
+02:12:46,640 --> 02:12:50,640
+aus der Varianz zwischen den Klassen und den Varianzen in den Klassen.
+
+1082
+02:12:50,640 --> 02:12:54,640
+Das ist dieses Q von S.
+
+1083
+02:12:54,640 --> 02:13:06,640
+Sie sehen, im Zähler wird N1 von S berechnet.
+
+1084
+02:13:06,640 --> 02:13:13,640
+Und da wird dann der Mittelwert des Segments 1
+
+1085
+02:13:13,640 --> 02:13:18,640
+von dem Gesamtmittelwert des Bildes abgezogen und zum Quadriert.
+
+1086
+02:13:18,640 --> 02:13:20,640
+Und das gleiche wird noch für das Segment 2 gemacht.
+
+1087
+02:13:21,640 --> 02:13:27,640
+Und geteilt wird es durch die Summe der Varianzen
+
+1088
+02:13:27,640 --> 02:13:31,640
+der beiden getrennten Verteilungen,
+
+1089
+02:13:31,640 --> 02:13:33,640
+jeweils gewichtet mit der Größe N1 und N2,
+
+1090
+02:13:33,640 --> 02:13:34,640
+mit der Anzahl der Bildpunkte.
+
+1091
+02:13:34,640 --> 02:13:36,640
+Und das ganz in Abhängigkeit von S.
+
+1092
+02:13:36,640 --> 02:13:42,640
+Wir sehen unten rechts,
+
+1093
+02:13:42,640 --> 02:13:49,640
+blau das Histogramm von einem Bild.
+
+1094
+02:13:50,640 --> 02:13:54,640
+Und unten links, das haben Sie jetzt vielleicht nicht in Ihrer Datei,
+
+1095
+02:13:54,640 --> 02:13:57,640
+das habe ich heute Morgen geändert, das müsste ich dann noch hochladen,
+
+1096
+02:13:57,640 --> 02:14:04,640
+sehen wir jetzt zusätzlich in rot den Verlauf von Q von S.
+
+1097
+02:14:04,640 --> 02:14:08,640
+Und da wo Q von S maximal ist, legen wir den Schwellwert hin.
+
+1098
+02:14:08,640 --> 02:14:11,640
+Wir sehen jetzt in rot den Verlauf von Q von S
+
+1099
+02:14:11,640 --> 02:14:14,640
+in Abhängigkeit von der Pixelintensität S,
+
+1100
+02:14:14,640 --> 02:14:17,640
+die horizontal aufgetragen ist von 0 bis 255
+
+1101
+02:14:17,640 --> 02:14:21,640
+und dann da irgendwo so bei 90 scheint das Maximum zu liegen,
+
+1102
+02:14:21,640 --> 02:14:23,640
+da legen wir den Schwellwert hin.
+
+1103
+02:14:23,640 --> 02:14:29,640
+Diese Schwellwertbestimmung nach OZO hat sich bewährt,
+
+1104
+02:14:29,640 --> 02:14:32,640
+also wenn Sie automatischen Schwellwert suchen,
+
+1105
+02:14:32,640 --> 02:14:35,640
+könnte das das Verfahren sein, das Sie als erstes ausprobieren.
+
+1106
+02:14:35,640 --> 02:14:40,640
+So, schön.
+
+1107
+02:14:40,640 --> 02:14:47,640
+Aber, wenn man da genauer hinguckt, doch nicht schön.
+
+1108
+02:14:47,640 --> 02:14:50,640
+Wir sehen hier das Bild A, das sieht so aus,
+
+1109
+02:14:50,640 --> 02:14:53,640
+da hat einfach einer eine Textseite fotografiert.
+
+1110
+02:14:53,640 --> 02:14:55,640
+Das ist alles ordentlich beleuchtet.
+
+1111
+02:14:55,640 --> 02:14:58,640
+Und das können wir doch jetzt mit einem Schwellwertverfahren,
+
+1112
+02:14:58,640 --> 02:15:00,640
+können wir doch jetzt die Buchstaben vom Hintergrund trennen.
+
+1113
+02:15:00,640 --> 02:15:04,640
+Das ist die Annahme, wenn man das macht,
+
+1114
+02:15:04,640 --> 02:15:08,640
+sehen Sie, das ist nicht so,
+
+1115
+02:15:08,640 --> 02:15:14,640
+weil die Beleuchtung für uns eigentlich unmerklich
+
+1116
+02:15:14,640 --> 02:15:19,640
+sich über diesen Bildausschnitt von links nach rechts verändert.
+
+1117
+02:15:19,640 --> 02:15:25,640
+Sodass dann ein globaler Schwellwert dazu führt,
+
+1118
+02:15:25,640 --> 02:15:30,640
+dass ein Bildausschnitt mal so binarisiert wird,
+
+1119
+02:15:30,640 --> 02:15:34,640
+wie das im Teilbild C aussieht,
+
+1120
+02:15:34,640 --> 02:15:37,640
+oder so wie im Teilbild D oder E.
+
+1121
+02:15:37,640 --> 02:15:40,640
+Abhängig davon, ob dieser Bildausschnitt nur links im Bild
+
+1122
+02:15:40,640 --> 02:15:44,640
+oder rechts im Bild zu finden ist.
+
+1123
+02:15:44,640 --> 02:15:47,640
+Man kann jetzt sagen, egal ob C, D oder E,
+
+1124
+02:15:47,640 --> 02:15:50,640
+wir haben ja hier die Buchstaben gefunden, ja, richtig.
+
+1125
+02:15:50,640 --> 02:15:55,640
+Aber, wenn Sie jetzt morphologische Operationen darauf anbinden,
+
+1126
+02:15:55,640 --> 02:15:57,640
+weil Sie Teile des Bildes, so wie C, haben,
+
+1127
+02:15:57,640 --> 02:15:59,640
+Sie wollen das glätten,
+
+1128
+02:15:59,640 --> 02:16:02,640
+dann wird das auf dem Bildteil, der im Bereich E liegt,
+
+1129
+02:16:02,640 --> 02:16:05,640
+dazu führen, dass die Buchstaben miteinander verschmelzen.
+
+1130
+02:16:05,640 --> 02:16:09,640
+Und damit haben wir dann ein Problem.
+
+1131
+02:16:09,640 --> 02:16:12,640
+Also globale Schwellen führen,
+
+1132
+02:16:12,640 --> 02:16:14,640
+zumindest wenn Sie die Beleuchtung nicht voll unter Kontrolle haben
+
+1133
+02:16:14,640 --> 02:16:17,640
+und verifiziert haben, dass Sie eine gleichmäßige Beleuchtung haben,
+
+1134
+02:16:17,640 --> 02:16:19,640
+zu einer ungleichmäßigen Segmentierung.
+
+1135
+02:16:19,640 --> 02:16:23,640
+Das heißt, Sie müssen irgendwie die Beleuchtung rausrechnen
+
+1136
+02:16:23,640 --> 02:16:25,640
+und da eine Shading-Korrektur machen.
+
+1137
+02:16:25,640 --> 02:16:30,640
+Das hatte ich in einer der vorangegangenen Vorlesungen gesagt,
+
+1138
+02:16:30,640 --> 02:16:33,640
+wie man da aus einem Bild die Beleuchtung rausrechnet.
+
+1139
+02:16:33,640 --> 02:16:36,640
+Sie erinnern sich, da war ein Bild mit einem Auto,
+
+1140
+02:16:36,640 --> 02:16:38,640
+wo wir das Kennzeichen gar nicht sehen konnten.
+
+1141
+02:16:38,640 --> 02:16:40,640
+Und nachdem wir die Beleuchtung rausgerechnet hatten,
+
+1142
+02:16:40,640 --> 02:16:46,640
+konnte man sogar das Kennzeichen lesen.
+
+1143
+02:16:46,640 --> 02:16:51,640
+Das heißt also, wir korrigieren das Bild,
+
+1144
+02:16:51,640 --> 02:16:54,640
+wir korrigieren das Shading, die Beleuchtung des Bildes,
+
+1145
+02:16:54,640 --> 02:16:57,640
+bevor wir die Binarisierung anwenden.
+
+1146
+02:17:00,640 --> 02:17:03,640
+Und das Beispiel sehen Sie hier,
+
+1147
+02:17:03,640 --> 02:17:06,640
+wenn Sie das Bild A einfach mit einem Schwellwert aufschlagen.
+
+1148
+02:17:06,640 --> 02:17:09,640
+Sie sehen, das Bild ist rechts dunkler als links.
+
+1149
+02:17:09,640 --> 02:17:14,640
+Dann bekommen Sie an Ihren Bildrändern diese weißen Flecken,
+
+1150
+02:17:14,640 --> 02:17:15,640
+diese großen.
+
+1151
+02:17:15,640 --> 02:17:17,640
+Wenn Sie vorher eine Shading-Korrektur machen,
+
+1152
+02:17:17,640 --> 02:17:19,640
+treten diese Probleme nicht auf.
+
+1153
+02:17:19,640 --> 02:17:22,640
+In dem Bild B sehen Sie einmal den Grauwertverlauf
+
+1154
+02:17:22,640 --> 02:17:25,640
+über eine Bildzeile, die weiße Bildzeile, die da ist.
+
+1155
+02:17:25,640 --> 02:17:28,640
+Wir sehen die Eindellung, das sind die Punkte,
+
+1156
+02:17:28,640 --> 02:17:30,640
+aber Sie sehen auch den Trend,
+
+1157
+02:17:30,640 --> 02:17:33,640
+dass das Bild insgesamt von links nach rechts dunkler wird.
+
+1158
+02:17:35,640 --> 02:17:38,640
+In diesem Bild ist das für uns sichtbar.
+
+1159
+02:17:38,640 --> 02:17:42,640
+Da fällt es sofort auf, aber es wird auch problematisch,
+
+1160
+02:17:42,640 --> 02:17:44,640
+wenn es nicht so offensichtlich ist wie in diesem Beispiel.
+
+1161
+02:17:44,640 --> 02:17:53,640
+Alternativ können Sie lokale Histogramme berechnen.
+
+1162
+02:17:53,640 --> 02:17:56,640
+Also Sie berechnen nicht ein Histogramm für das gesamte Bild,
+
+1163
+02:17:56,640 --> 02:17:59,640
+so wie wir es in der oberen Reihe in der Mitte sehen,
+
+1164
+02:17:59,640 --> 02:18:06,640
+und wenden dann auf diesem Histogramm eine Schwellwertoperation an,
+
+1165
+02:18:06,640 --> 02:18:11,640
+sondern Sie berechnen die Histogramme in kleinen Blöcken.
+
+1166
+02:18:12,640 --> 02:18:15,640
+Wir sehen jetzt unten in der Mitte,
+
+1167
+02:18:15,640 --> 02:18:21,640
+da wurde für das Eingangsbild 64 Histogramme berechnet.
+
+1168
+02:18:21,640 --> 02:18:26,640
+Aus diesen Histogrammen kann man dann Schwellwerte wieder berechnen.
+
+1169
+02:18:26,640 --> 02:18:29,640
+Die gelten dann immer für einen Block,
+
+1170
+02:18:29,640 --> 02:18:33,640
+und dann interpolieren Sie die Schwellwerte von einem Block zum nächsten.
+
+1171
+02:18:33,640 --> 02:18:37,640
+Der Schwellwert darf nicht springen von einem Bild zum nächsten.
+
+1172
+02:18:37,640 --> 02:18:40,640
+Interpolieren Sie, zum Beispiel mit binärer Interpolation,
+
+1173
+02:18:40,640 --> 02:18:45,640
+sodass jeder Bild mehr oder weniger seinen eigenen Schwellwert bekommt.
+
+1174
+02:18:45,640 --> 02:18:48,640
+Dann kriegen wir als Segmentierung das rechte Bild raus,
+
+1175
+02:18:48,640 --> 02:18:52,640
+was dann viel gleichmäßiger segmentiert ist als das Bild oben.
+
+1176
+02:18:52,640 --> 02:18:57,640
+Der Affe hat ja links und rechts diese Haare,
+
+1177
+02:18:57,640 --> 02:19:01,640
+und die sind in dem oberen oben rechts unterschiedlich segmentiert,
+
+1178
+02:19:01,640 --> 02:19:05,640
+und unten rechts sind sie dann gleichmäßig segmentiert,
+
+1179
+02:19:05,640 --> 02:19:08,640
+weil wir lokale Histogramme berechnet haben.
+
+1180
+02:19:08,640 --> 02:19:12,640
+Wir haben lokale Schwellwerte ausbestimmt,
+
+1181
+02:19:12,640 --> 02:19:17,640
+und damit wir trotzdem eine glatte, homogene Segmentierung bekommen,
+
+1182
+02:19:17,640 --> 02:19:20,640
+nicht eine blockweise homogene Segmentierung,
+
+1183
+02:19:20,640 --> 02:19:23,640
+wurden diese Schwellwerte dann von einem Block zum nächsten interpoliert.
+
+1184
+02:19:30,640 --> 02:19:33,640
+Schwellwertverfahren sind die einfachsten Segmentierungsverfahren.
+
+1185
+02:19:33,640 --> 02:19:36,640
+Selbst wenn Sie 64 Histogramme für ein Bild berechnen,
+
+1186
+02:19:36,640 --> 02:19:38,640
+ist das immer noch schnell.
+
+1187
+02:19:38,640 --> 02:19:41,640
+In der industriellen Bildverarbeitung bei Durchlichtbildern,
+
+1188
+02:19:41,640 --> 02:19:45,640
+eigentlich immer, wenn Sie die Beleuchtung unter Kontrolle haben,
+
+1189
+02:19:45,640 --> 02:19:49,640
+liefern die gute Dienste, auch in der medizinischen Bildverarbeitung.
+
+1190
+02:19:49,640 --> 02:19:55,640
+Sie können diese Segmentierungsverfahren auch anwenden,
+
+1191
+02:19:55,640 --> 02:19:58,640
+um Vorverarbeitungsschritte weiter zu verarbeiten.
+
+1192
+02:19:58,640 --> 02:20:00,640
+Wir hatten diese Änderungsdetektion.
+
+1193
+02:20:00,640 --> 02:20:15,640
+Sie können die Schwellwerte manuell oder automatisch nach OZU bestimmen.
+
+1194
+02:20:15,640 --> 02:20:21,640
+Eine ganz klare Segmentierung ist immer zielorientiert oder zielabhängig.
+
+1195
+02:20:21,640 --> 02:20:25,640
+Eine ungleichförmige Beleuchtung ist ein Problem,
+
+1196
+02:20:25,640 --> 02:20:27,640
+da müssen Sie die Beleuchtung ausrechnen.
+
+1197
+02:20:31,640 --> 02:20:42,640
+Die regionenbasierten Verfahren gehen davon aus,
+
+1198
+02:20:42,640 --> 02:20:46,640
+dass wir im Inneren eines Segments ein Homogenitätskriterium erfüllt haben.
+
+1199
+02:20:46,640 --> 02:20:49,640
+Also es wird gesagt, das Segment muss homogen sein.
+
+1200
+02:20:49,640 --> 02:20:53,640
+Homogenität kann auch bedeuten, die Unordnung ist überall gleich.
+
+1201
+02:20:54,640 --> 02:21:00,640
+Diese Homogenitätsbedingungen wird bei der Segmentierung ausgewertet.
+
+1202
+02:21:00,640 --> 02:21:05,640
+Die Homogenität ist immer relativ zu den Attributen eines Segments.
+
+1203
+02:21:05,640 --> 02:21:09,640
+Wir können ein Segment haben, das soll sehr verrauscht sein.
+
+1204
+02:21:09,640 --> 02:21:12,640
+Wir können ein anderes Segment haben, das soll nicht so verrauscht sein.
+
+1205
+02:21:12,640 --> 02:21:15,640
+Abhängig von der Anwendung.
+
+1206
+02:21:15,640 --> 02:21:18,640
+Hier haben wir eine Liste möglicher Homogenitätskriterien.
+
+1207
+02:21:18,640 --> 02:21:21,640
+Gleicher Grauwert, das ist das ganz Elementare.
+
+1208
+02:21:22,640 --> 02:21:26,640
+Genauso gleiche Farbe, das ist das gleiche Input.
+
+1209
+02:21:26,640 --> 02:21:31,640
+Gleiche Varianz der Grauwerte, wir wollen das gleiche Rauschen
+
+1210
+02:21:31,640 --> 02:21:34,640
+oder die gleiche Unordnung innerhalb eines Fensters haben.
+
+1211
+02:21:34,640 --> 02:21:37,640
+Vielleicht wollen wir Texturmerkmale beschreiben.
+
+1212
+02:21:37,640 --> 02:21:42,640
+Wir wissen, da gibt es hochfrequente Texturen mit Diagonalausrichtung
+
+1213
+02:21:42,640 --> 02:21:47,640
+und gleichartige Texturen mit einer anderen horizontalen Ausrichtung.
+
+1214
+02:21:47,640 --> 02:21:49,640
+Wir wollen das voneinander trennen.
+
+1215
+02:21:49,640 --> 02:21:53,640
+Wenn Sie Bewegungsvektoren haben aus einer Bildfolge,
+
+1216
+02:21:53,640 --> 02:21:57,640
+wollen Sie vielleicht gleiche Bewegungsvektoren zusammenclustern.
+
+1217
+02:21:57,640 --> 02:22:01,640
+Die Frage ist nun, wie finden Sie homogene Regionen?
+
+1218
+02:22:01,640 --> 02:22:04,640
+Es gibt zwei Ansätze.
+
+1219
+02:22:04,640 --> 02:22:08,640
+Das eine ist, Sie starten irgendwo und gucken,
+
+1220
+02:22:08,640 --> 02:22:10,640
+wie groß kann ich diese Region vergrößern,
+
+1221
+02:22:10,640 --> 02:22:15,640
+sodass mein Homogenitätskriterium auch erfüllt bleibt.
+
+1222
+02:22:15,640 --> 02:22:18,640
+Oder Sie starten mit einer großen Region und gucken,
+
+1223
+02:22:18,640 --> 02:22:22,640
+wie muss ich die aufteilen, damit das Homogenitätskriterium besser erfüllt ist.
+
+1224
+02:22:22,640 --> 02:22:24,640
+Das wären dann die Split-Merge-Verfahren,
+
+1225
+02:22:24,640 --> 02:22:26,640
+weil bei dem Ansatz kann es dann auch passieren,
+
+1226
+02:22:26,640 --> 02:22:30,640
+dass Sie benachbarte Regionen bekommen, die eigentlich zusammengehören.
+
+1227
+02:22:30,640 --> 02:22:32,640
+Da brauchen Sie einen Merge-Schritt.
+
+1228
+02:22:32,640 --> 02:22:37,640
+Region-Going, Regionensuche.
+
+1229
+02:22:37,640 --> 02:22:42,640
+Sie wählen einen Startpixel aus, einen englischen Seed,
+
+1230
+02:22:42,640 --> 02:22:46,640
+der noch keinem Signal zugeordnet ist.
+
+1231
+02:22:47,640 --> 02:22:58,640
+Dann erweitern Sie diesen Pixel, der ein neues Segment ist,
+
+1232
+02:22:58,640 --> 02:23:00,640
+um einzelne benachbarte Pixel.
+
+1233
+02:23:00,640 --> 02:23:07,640
+Diese Pixel, die Sie zum Segment hinzufügen wollen,
+
+1234
+02:23:07,640 --> 02:23:10,640
+müssen dann eben Ihr Homogenitätskriterium erfüllen.
+
+1235
+02:23:10,640 --> 02:23:12,640
+Zum Beispiel Differenz zu einem mittleren Grauwert,
+
+1236
+02:23:13,640 --> 02:23:16,640
+beim vorgegebenen Grauwert.
+
+1237
+02:23:16,640 --> 02:23:24,640
+Wenn wir hier ein Segment haben, das besteht schon aus den linken fünf Pixeln,
+
+1238
+02:23:24,640 --> 02:23:26,640
+dann betrachten Sie den zu prüfenden Nachbarpixel.
+
+1239
+02:23:26,640 --> 02:23:29,640
+Zum Beispiel ist der vom Grauwert her dicht genug dran.
+
+1240
+02:23:29,640 --> 02:23:32,640
+Da gibt es verschiedene Möglichkeiten.
+
+1241
+02:23:32,640 --> 02:23:35,640
+An dem Grauwert des Startpixels, den Sie mal hatten,
+
+1242
+02:23:35,640 --> 02:23:37,640
+oder an dem mittleren Grauwert des Segments.
+
+1243
+02:23:37,640 --> 02:23:41,640
+Mittlerer Grauwert des Segments ist sicherlich das bevorzugte Kriterium.
+
+1244
+02:23:42,640 --> 02:23:44,640
+Das Ganze geht dann ganz einfach.
+
+1245
+02:23:44,640 --> 02:23:46,640
+Sie haben einen Startpixel im Algorithmus.
+
+1246
+02:23:46,640 --> 02:23:50,640
+Sie wählen nacheinander alle Nachbarpixel.
+
+1247
+02:23:50,640 --> 02:23:52,640
+Und für jeden Nachbarpixel, den Sie haben,
+
+1248
+02:23:52,640 --> 02:23:55,640
+gucken Sie, ob das Homogenitätskriterium erfüllt ist.
+
+1249
+02:23:55,640 --> 02:23:57,640
+Wenn ja, fügen Sie den Punkt hinzu.
+
+1250
+02:23:57,640 --> 02:24:00,640
+Wenn nicht, gehen Sie zum weiteren Nachbarpixel.
+
+1251
+02:24:00,640 --> 02:24:05,640
+Das Homogenitätskriterium sehen Sie rechts.
+
+1252
+02:24:05,640 --> 02:24:07,640
+Das ist irgendeine Funktion,
+
+1253
+02:24:07,640 --> 02:24:09,640
+kann zum Beispiel eine Differenzfunktion sein,
+
+1254
+02:24:09,640 --> 02:24:13,640
+zwischen dem Wert, den der neue Nachbarpixel liefert,
+
+1255
+02:24:13,640 --> 02:24:15,640
+und dem Pixelwert der Region.
+
+1256
+02:24:15,640 --> 02:24:17,640
+Und wenn die sich ähnlich genug sind,
+
+1257
+02:24:17,640 --> 02:24:19,640
+das ist dann eine Schwellwertentscheidung,
+
+1258
+02:24:19,640 --> 02:24:21,640
+dann fügen Sie den Punkt hinzu.
+
+1259
+02:24:21,640 --> 02:24:23,640
+Sonst nicht.
+
+1260
+02:24:27,640 --> 02:24:29,640
+Hier sehen Sie das Beispiel.
+
+1261
+02:24:29,640 --> 02:24:31,640
+Oben das Bild.
+
+1262
+02:24:31,640 --> 02:24:34,640
+0 bis 7 sind die Koordinaten.
+
+1263
+02:24:35,640 --> 02:24:39,640
+Wir haben einen Startpixel mit der Koordinate 4,2.
+
+1264
+02:24:39,640 --> 02:24:41,640
+Der hat den Wert 14.
+
+1265
+02:24:41,640 --> 02:24:43,640
+Das ist jetzt auch der Regionswert.
+
+1266
+02:24:43,640 --> 02:24:48,640
+Und für den werden jetzt die Nachbarpunkte überprüft.
+
+1267
+02:24:48,640 --> 02:24:50,640
+Also zum Beispiel,
+
+1268
+02:24:50,640 --> 02:24:52,640
+Bildpunkt 15.
+
+1269
+02:24:52,640 --> 02:24:54,640
+Die Differenz ist 1.
+
+1270
+02:24:54,640 --> 02:24:57,640
+Und das Homogenitätskriterium für diese Region soll heißen,
+
+1271
+02:24:57,640 --> 02:24:59,640
+die Differenz soll kleiner als 5 sein.
+
+1272
+02:24:59,640 --> 02:25:01,640
+Das heißt also,
+
+1273
+02:25:01,640 --> 02:25:06,640
+diesen Punkt mit der Koordinate 4,1 können wir hinzufügen.
+
+1274
+02:25:06,640 --> 02:25:09,640
+Den wir da auf der Liste.
+
+1275
+02:25:09,640 --> 02:25:12,640
+Und jetzt besteht unsere Region aus zwei Bildpunkten.
+
+1276
+02:25:12,640 --> 02:25:14,640
+Wir berechnen neu den Mittelwert.
+
+1277
+02:25:14,640 --> 02:25:16,640
+Der ist jetzt 14,5.
+
+1278
+02:25:16,640 --> 02:25:21,640
+Und nun schauen wir uns den nächsten Punkt an.
+
+1279
+02:25:21,640 --> 02:25:24,640
+Das ist dann der Punkt mit der Koordinaten 2,3.
+
+1280
+02:25:24,640 --> 02:25:27,640
+Der erfüllt auch das Homogenitätskriterium.
+
+1281
+02:25:27,640 --> 02:25:29,640
+Und das machen Sie immer weiter,
+
+1282
+02:25:29,640 --> 02:25:33,640
+bis Sie letztendlich an die Bildpunkte kommen,
+
+1283
+02:25:33,640 --> 02:25:36,640
+die nicht mehr dazugehören.
+
+1284
+02:25:36,640 --> 02:25:39,640
+Das sehen Sie hier.
+
+1285
+02:25:39,640 --> 02:25:41,640
+Rot sind die Randpixel.
+
+1286
+02:25:41,640 --> 02:25:44,640
+Die sind vom Regionsmittelwert zu weit entfernt.
+
+1287
+02:25:48,640 --> 02:25:51,640
+Und rechts sehen Sie eine Baumschnittdarstellung
+
+1288
+02:25:51,640 --> 02:25:56,640
+dieser Region ausgehend von dem Startpunkt 4,2.
+
+1289
+02:26:00,640 --> 02:26:06,640
+Die Homogenitätskriterien hatten wir schon.
+
+1290
+02:26:06,640 --> 02:26:08,640
+Die Entscheidungsmethoden,
+
+1291
+02:26:08,640 --> 02:26:10,640
+hatte ich schon erwähnt,
+
+1292
+02:26:10,640 --> 02:26:12,640
+Differenz zum Nachbarpixel,
+
+1293
+02:26:12,640 --> 02:26:14,640
+Differenz zum Startpixel,
+
+1294
+02:26:14,640 --> 02:26:16,640
+Differenz zum mittleren Pixel
+
+1295
+02:26:16,640 --> 02:26:18,640
+oder Differenz zum Umgebungspixel.
+
+1296
+02:26:18,640 --> 02:26:22,640
+Das sind alles gültige Entscheidungsmethoden,
+
+1297
+02:26:22,640 --> 02:26:28,640
+die letztendlich zu leicht unterschiedlichen Ergebnissen führen.
+
+1298
+02:26:29,640 --> 02:26:31,640
+Sie können sich auch vorstellen,
+
+1299
+02:26:31,640 --> 02:26:34,640
+dass so ein Verfahren davon abhängt,
+
+1300
+02:26:34,640 --> 02:26:36,640
+wie Sie die Startpixel wählen.
+
+1301
+02:26:36,640 --> 02:26:39,640
+In der medizinischen Bildverarbeitung gerne interaktiv.
+
+1302
+02:26:39,640 --> 02:26:41,640
+Sie können aber auch sagen,
+
+1303
+02:26:41,640 --> 02:26:44,640
+Sie interessiert der hellste Punkt oder der dunkelste Punkt.
+
+1304
+02:26:44,640 --> 02:26:48,640
+Oder wenn Sie wieder reproduzierbare Aufnahmen haben,
+
+1305
+02:26:48,640 --> 02:26:50,640
+wie zum Beispiel in der industriellen Bildverarbeitung,
+
+1306
+02:26:50,640 --> 02:26:53,640
+können Sie das auch mit Startpixel vor definierte Positionen nehmen.
+
+1307
+02:26:53,640 --> 02:26:57,640
+Hier mal ein Beispiel für Region Drawing.
+
+1308
+02:26:57,640 --> 02:27:01,640
+Links das Röntgenbild.
+
+1309
+02:27:01,640 --> 02:27:04,640
+In die beiden Lungenflügel wurde ein Saatpixel reingesetzt.
+
+1310
+02:27:04,640 --> 02:27:08,640
+Dann gibt es ein Kriterium,
+
+1311
+02:27:08,640 --> 02:27:12,640
+Helligkeitsunterschied und Sie sehen rechts das Ergebnis.
+
+1312
+02:27:14,640 --> 02:27:17,640
+Wenn Ihnen die Lungenflügel zu klein erscheinen,
+
+1313
+02:27:17,640 --> 02:27:20,640
+dann können Sie diese Differenz zwischen dem Randpunkt
+
+1314
+02:27:20,640 --> 02:27:22,640
+und dem Mittelwert der Region,
+
+1315
+02:27:22,640 --> 02:27:24,640
+da können Sie größere Differenzen erlauben.
+
+1316
+02:27:24,640 --> 02:27:26,640
+Es kann natürlich dann auch passieren,
+
+1317
+02:27:26,640 --> 02:27:29,640
+dass diese Gebiete dann relativ schnell hier an dieser Stelle
+
+1318
+02:27:33,640 --> 02:27:36,640
+sich verbinden.
+
+1319
+02:27:36,640 --> 02:27:38,640
+Das will man dann vielleicht nicht.
+
+1320
+02:27:38,640 --> 02:27:42,640
+Oder auch hier ein Objekt,
+
+1321
+02:27:42,640 --> 02:27:45,640
+im Startpixel sehen Sie links,
+
+1322
+02:27:45,640 --> 02:27:48,640
+das wächst dann immer mehr und plötzlich ist alles zugewachsen,
+
+1323
+02:27:48,640 --> 02:27:50,640
+weil die Regionen
+
+1324
+02:27:54,640 --> 02:27:57,640
+weil der Mittelwert, den Sie hier definieren,
+
+1325
+02:27:57,640 --> 02:28:00,640
+dadurch, dass die Regionen wachsen, sich immer mehr verändert
+
+1326
+02:28:00,640 --> 02:28:03,640
+und es sich herausstellt, dass es dann irgendwo Lücken gibt,
+
+1327
+02:28:03,640 --> 02:28:06,640
+dass man mit bloßem Auge gar nicht so erkennt,
+
+1328
+02:28:06,640 --> 02:28:09,640
+wo eine Region drüber wachsen kann,
+
+1329
+02:28:09,640 --> 02:28:12,640
+weil sich der Regionsmittelwert im Laufe der Zeit so verändert hat,
+
+1330
+02:28:12,640 --> 02:28:15,640
+dass der Abstand zwischen dem Regionsmittelwert
+
+1331
+02:28:15,640 --> 02:28:18,640
+und den gerade zu überliegenden, zu betrachtenden Nachbarpunkten
+
+1332
+02:28:18,640 --> 02:28:21,640
+so klein ist, dass die Region wächst.
+
+1333
+02:28:22,640 --> 02:28:25,640
+Da muss man gegebenenfalls aufpassen.
+
+1334
+02:28:25,640 --> 02:28:28,640
+Hier ein letztes Beispiel,
+
+1335
+02:28:28,640 --> 02:28:31,640
+ein Bild von einem Gewitter.
+
+1336
+02:28:31,640 --> 02:28:34,640
+Rechts das Histogramm dazu.
+
+1337
+02:28:34,640 --> 02:28:37,640
+Das Bild ist ja überwiegend schwarz.
+
+1338
+02:28:37,640 --> 02:28:40,640
+Es gibt einige wenige Bildpunkte, die sehen Sie hier bei 250.
+
+1339
+02:28:40,640 --> 02:28:43,640
+Je nachdem,
+
+1340
+02:28:43,640 --> 02:28:46,640
+was Sie erlauben,
+
+1341
+02:28:46,640 --> 02:28:49,640
+an Grauwertdifferenzen
+
+1342
+02:28:50,640 --> 02:28:53,640
+zwischen Mittelwert und den Nachbarbildpunkten,
+
+1343
+02:28:53,640 --> 02:28:56,640
+bekommen Sie unterschiedliche Ergebnisse.
+
+1344
+02:28:56,640 --> 02:28:59,640
+Links lassen Sie letztendlich nur die Bildpunkte zu,
+
+1345
+02:28:59,640 --> 02:29:02,640
+die die Größe 255 haben.
+
+1346
+02:29:02,640 --> 02:29:05,640
+Dann ein Bild weiter.
+
+1347
+02:29:05,640 --> 02:29:08,640
+Da sind dann die Bildpunkte erlaubt
+
+1348
+02:29:08,640 --> 02:29:11,640
+zwischen 225 und 255
+
+1349
+02:29:11,640 --> 02:29:14,640
+und hier unten dann zwischen 190
+
+1350
+02:29:14,640 --> 02:29:17,640
+und hier 155 und 255.
+
+1351
+02:29:17,640 --> 02:29:20,640
+Also Sie sehen,
+
+1352
+02:29:20,640 --> 02:29:23,640
+die Parametrisierung der Region-Growing-Verfahrens
+
+1353
+02:29:23,640 --> 02:29:26,640
+ist durchaus etwas, was Sie gegebenenfalls,
+
+1354
+02:29:26,640 --> 02:29:29,640
+wenn Sie variabel Bilder haben, interaktiv durchführen müssen.
+
+1355
+02:29:29,640 --> 02:29:32,640
+Region-Growing ist einfach zu implementieren.
+
+1356
+02:29:32,640 --> 02:29:35,640
+Damit haben wir dann auch glücklicherweise
+
+1357
+02:29:35,640 --> 02:29:38,640
+verbunden einen begrenzten Rechenaufwand.
+
+1358
+02:29:38,640 --> 02:29:41,640
+Wir haben das Cartoon gesehen,
+
+1359
+02:29:41,640 --> 02:29:44,640
+das war ein Bildmaterial,
+
+1360
+02:29:44,640 --> 02:29:47,640
+das nicht für Region-Growing geeignet ist.
+
+1361
+02:29:47,640 --> 02:29:50,640
+Die Regionen müssen die richtige Textur haben.
+
+1362
+02:29:50,640 --> 02:29:53,640
+Sie brauchen typischerweise definierte Beleuchtungsbedingungen
+
+1363
+02:29:53,640 --> 02:29:56,640
+und die Anpassung des Schwellwerts
+
+1364
+02:29:56,640 --> 02:29:59,640
+ist kritisch.
+
+1365
+02:29:59,640 --> 02:30:02,640
+Dann danke ich Ihnen
+
+1366
+02:30:02,640 --> 02:30:05,640
+und weiter geht es
+
+1367
+02:30:05,640 --> 02:30:08,640
+dann mit Split & Merge beim nächsten Mal.
+
+1368
+02:30:08,640 --> 02:30:11,640
+Bis dahin.
+
+1369
+02:30:14,640 --> 02:30:17,640
+Untertitel der Amara.org-Community
+
